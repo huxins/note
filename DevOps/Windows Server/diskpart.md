@@ -24,13 +24,13 @@ $ list disk
 $ select disk=<n>
 ```
 
-从具有焦点的磁盘中删除所有分区或卷格式设置。
+从具有焦点的磁盘中删除所有分区或卷格式设置：
 
 ```sh
 $ clean
 ```
 
-显示当前磁盘的分区表中列出的分区。
+显示焦点磁盘的分区表中列出的分区：
 
 ```sh
 $ list partition
@@ -42,7 +42,7 @@ $ list partition
 $ select partition=<n>
 ```
 
-删除分区。
+删除具有焦点的分区：
 
 ```sh
 $ delete partition

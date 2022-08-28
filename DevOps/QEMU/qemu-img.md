@@ -10,6 +10,14 @@ qemu-img [standard options] command [command options]
 
 ## 命令
 
+### Check
+
+对磁盘映像 *FILENAME* 执行一致性检查。
+
+```sh
+$ qemu-img check openwrt.qcow2
+```
+
 ### Convert
 
 将磁盘映像 *FILENAME* 或快照 *SNAPSHOT_PARAM* 转换为 *OUTPUT_FMT* 格式的磁盘映像 *OUTPUT_FILENAME*。

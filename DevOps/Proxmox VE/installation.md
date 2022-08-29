@@ -1,4 +1,4 @@
-# 系统安装
+# Installation
 
 ## 刻录映像
 

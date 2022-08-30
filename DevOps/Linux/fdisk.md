@@ -47,6 +47,8 @@ fdisk -l [-u] [device...]
 
 输入 **`d`** 删除分区。
 
+输入 **`t`** 更改分区类型。
+
 输入 **`n`** 创建一个新分区。
 
 输入 **`q`** 退出而不保存更改。
@@ -56,4 +58,5 @@ fdisk -l [-u] [device...]
 ## 参考文献
 
 - [Partitioning with fdisk - LDP](https://tldp.org/HOWTO/html_single/Partition/#fdisk_partitioning)
+- [Partition type - Wikipedia](https://en.wikipedia.org/wiki/Partition_type)
 

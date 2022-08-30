@@ -12,3 +12,46 @@
 
 ## 创建物理卷
 
+使用分区工具 `fdisk` 创建分区，更改分区类型为 *Linux LVM*。
+
+创建物理卷：
+
+```sh
+$ pvcreate /dev/sdb1
+```
+
+创建卷组：
+
+```sh
+$ vgcreate vg01 /dev/sdb1
+```
+
+创建逻辑卷：
+
+```sh
+$ lvcreate -L 100M -n lvData vg01
+```
+
+
+
+查看物理卷：
+
+```sh
+$ pvs
+$ pvdisplay
+```
+
+查看卷组：
+
+```sh
+$ vgdisplay
+$ vgs
+```
+
+查看逻辑卷：
+
+```sh
+$ lvdisplay
+$ lvs
+```
+

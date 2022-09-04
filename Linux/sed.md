@@ -32,7 +32,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
 ### `s` 命令
 
-`s` 命令可以替换指定字符，并且有很多不同的选项。`s` 命令的语法是 '`s/regexp/replacement/flags`'。
+`s` 命令可以替换指定字符，并且有很多不同的选项。`s` 命令的语法是 `s/regexp/replacement/flags`。
 
 替换指定字符串：
 

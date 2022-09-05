@@ -193,16 +193,26 @@ $ curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Cent
 
 ```sh
 $ yum install epel-release
-$ sed -e 's!^metalink=!#metalink=!g' \
-    -e 's!^#baseurl=!baseurl=!g' \
-    -e 's!//download\.fedoraproject\.org/pub!//mirrors.tuna.tsinghua.edu.cn!g' \
-    -e 's!http://mirrors\.tuna!https://mirrors.tuna!g' \
-    -i /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel-testing.repo
+$ sed -e 's/^metalink/#metalink/g' \
+    -e 's/^#baseurl/baseurl/g' \
+    -e 's/download.fedoraproject.org\/pub/mirrors.tuna.tsinghua.edu.cn/g' \
+    -e 's/http/https/g' \
+    -i /etc/yum.repos.d/epel*.repo
+```
+
+## 插件
+
+插件的配置文件存在于 `/etc/yum/pluginconf.d/<plugin_name>.conf`。
+
+禁用插件：
+
+```sh
+$ sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
 ```
 
 ## yum-utils
 
-用于操作存储库和扩展包管理的工具。
+操作存储库和扩展包管理的工具。
 
 安装：
 
@@ -210,7 +220,7 @@ $ sed -e 's!^metalink=!#metalink=!g' \
 $ yum install yum-utils
 ```
 
-以下是 `yum-utils` 的常用命令：
+### 命令
 
 - **yum-config-manager**
 

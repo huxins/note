@@ -1,6 +1,6 @@
 # 数据定义
 
-## 创建表
+## 表基础
 
 创建一个表，需要用到 `CREATE TABLE` 命令。在这个命令中，我们需要为表指定一个名字，以及列的名字及数据类型。例如：
 
@@ -45,4 +45,90 @@ CREATE TABLE products (
     name text
 );
 ```
+
+## 约束
+
+### 检查约束
+
+指定一个特定列中的值必须要满足一个布尔表达式。例如，为了要求正值的产品价格，我们可以使用：
+
+```sql
+CREATE TABLE products (
+    product_no integer,
+    name text,
+    price numeric CHECK (price > 0)
+);
+```
+
+可以给约束一个独立的名称。这会使错误消息更为清晰，同时也允许我们在需要更改约束时能引用它：
+
+```sql
+CREATE TABLE products (
+    product_no integer,
+    name text,
+    price numeric CONSTRAINT positive_price CHECK (price > 0)
+);
+```
+
+一个检查约束也可以引用多个列。例如我们存储一个普通价格和一个打折后的价格，而我们希望保证打折后的价格低于普通价格：
+
+```sql
+CREATE TABLE products (
+    product_no integer,
+    name text,
+    price numeric CHECK (price > 0),
+    discounted_price numeric CHECK (discounted_price > 0),
+    CHECK (price > discounted_price)
+);
+```
+
+一个检查约束在其检查表达式值为 *true* 或 *null* 值时被满足。
+
+### 非空约束
+
+一个非空约束仅仅指定一个列中不会有空值：
+
+```sql
+CREATE TABLE products (
+    product_no integer NOT NULL,
+    name text NOT NULL,
+    price numeric
+);
+```
+
+### 唯一约束
+
+唯一约束保证在一列中或者一组列中保存的数据在表中所有行间是唯一的：
+
+```sql
+CREATE TABLE products (
+    product_no integer UNIQUE,
+    name text,
+    price numeric
+);
+```
+
+为一组列定义一个唯一约束，把它写作一个表级约束，列名用逗号分隔：
+
+```sql
+CREATE TABLE products (
+    product_no integer,
+    name text,
+    UNIQUE (product_no, name)
+);
+```
+
+这指定这些列的组合值在整个表的范围内是唯一的，但其中任意一列的值并不需要是唯一的。
+
+为一个唯一约束命名：
+
+```sql
+CREATE TABLE products (
+    product_no integer CONSTRAINT must_be_different UNIQUE,
+    name text,
+    price numeric
+);
+```
+
+增加一个唯一约束会在约束列或列组上自动创建一个唯一 *B-tree* 索引。
 

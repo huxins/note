@@ -1,6 +1,4 @@
-# Server Applications
-
-## initdb
+# initdb
 
 ```sh
 $ su postgres
@@ -11,7 +9,7 @@ $ /usr/pgsql-10/bin/initdb \
     --pwprompt
 ```
 
-### 命令行选项
+## 命令行选项
 
 - --pgdata=***directory***
 
@@ -43,5 +41,5 @@ $ /usr/pgsql-10/bin/initdb \
 
 ## 参见
 
-- [Server Applications - PostgreSQL](https://www.postgresql.org/docs/10/reference-server.html)
+- [initdb - PostgreSQL](https://www.postgresql.org/docs/10/app-initdb.html)
 

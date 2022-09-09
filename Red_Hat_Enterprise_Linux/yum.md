@@ -182,12 +182,12 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
 ### 存储库镜像
 
-阿里云 Base：
+清华 Base：
 
 ```sh
 $ sed -e 's/^mirrorlist/#mirrorlist/g' \
     -e 's/^#baseurl/baseurl/g' \
-    -e 's/mirror.centos.org/mirrors.aliyun.com/g' \
+    -e 's/mirror.centos.org/mirrors.cloud.tencent.com/g' \
     -e 's/http/https/g' \
     -i /etc/yum.repos.d/CentOS-Base.repo
 ```

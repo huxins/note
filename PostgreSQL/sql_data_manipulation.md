@@ -54,3 +54,13 @@ INSERT INTO products (product_no, name, price)
 UPDATE products SET price = 10 WHERE price = 5;
 ```
 
+联表更新：
+
+```sql
+UPDATE products ps SET price = po.number FROM productionorder po
+  WHERE ps.name = po.barcode;
+
+UPDATE products ps SET price = (SELECT number FROM productionorder po WHERE po.barcode = ps.name)
+  WHERE ps.name = 'SCDT202115309';
+```
+

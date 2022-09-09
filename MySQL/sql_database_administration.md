@@ -11,6 +11,31 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
 SET PASSWORD FOR 'root'@'localhost' = 'new_password';
 ```
 
+### 授权
+
+查询用户授权：
+
+```sql
+USE mysql;
+SELECT user, host FROM user;
+```
+
+增加用户授权：
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'auth_string' WITH GRANT OPTION;
+```
+
+## SET
+
+### 变量赋值
+
+修改系统变量：
+
+```sql
+SET GLOBAL system_var_name = expr;
+```
+
 ## 其他管理
 
 ### 刷新

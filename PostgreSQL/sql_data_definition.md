@@ -18,6 +18,12 @@ CREATE TABLE order_new AS
   SELECT * FROM order_old WHERE date_prod >= '2002-01-01';
 ```
 
+`SELECT INTO` 在功能上与 `CREATE TABLE AS` 相似：
+
+```sql
+SELECT * INTO order_new FROM order_old WHERE date_prod >= '2002-01-01';
+```
+
 ## 删除表
 
 如果不再需要一个表，可以通过使用 `DROP TABLE` 命令来移除它。例如：

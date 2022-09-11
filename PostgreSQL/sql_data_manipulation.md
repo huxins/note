@@ -64,3 +64,10 @@ UPDATE products ps SET price = (SELECT number FROM productionorder po WHERE po.b
   WHERE ps.name = 'SCDT202115309';
 ```
 
+## 删除数据
+
+```sql
+DELETE FROM products WHERE price = 10;
+TRUNCATE TABLE products;
+```
+

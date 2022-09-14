@@ -2,7 +2,7 @@
 
 ## ApplicationContext
 
-### 实例化
+### 在 Web 应用程序中快捷实例化
 
 可以使用 `ContextLoader` 以声明方式创建 `ApplicationContext` 实例。也可以使用 `ApplicationContext` 实现之一以编程方式创建 `ApplicationContext` 实例。
 

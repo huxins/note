@@ -24,39 +24,6 @@
 </web-app>
 ```
 
-## ServletContext
-
-```xml
-<context-param>
-    <param-name>name</param-name>
-    <param-value>value</param-value>
-</context-param>
-```
-
-获取初始化参数：
-
-```java
-this.getServletContext().getInitParameter("name");
-```
-
-获取资源文件绝对路径：
-
-```java
-this.getServletContext().getRealPath("/WEB-INF/classes/jdbc.properties");
-```
-
-获取资源文件 MIME type：
-
-```java
-this.getServletContext().getMimeType("test.jpg");
-```
-
-获取资源文件流：
-
-```java
-this.getServletContext().getResourceAsStream("/WEB-INF/classes/test.jpg");
-```
-
 ## Servlet
 
 ### 配置
@@ -98,6 +65,39 @@ this.getServletContext().getResourceAsStream("/WEB-INF/classes/test.jpg");
 
 ```java
 this.getServletConfig().getInitParameter("name");
+```
+
+## ServletContext
+
+```xml
+<context-param>
+    <param-name>name</param-name>
+    <param-value>value</param-value>
+</context-param>
+```
+
+获取初始化参数：
+
+```java
+this.getServletContext().getInitParameter("name");
+```
+
+获取资源文件绝对路径：
+
+```java
+this.getServletContext().getRealPath("/WEB-INF/classes/jdbc.properties");
+```
+
+获取资源文件 MIME type：
+
+```java
+this.getServletContext().getMimeType("test.jpg");
+```
+
+获取资源文件流：
+
+```java
+this.getServletContext().getResourceAsStream("/WEB-INF/classes/test.jpg");
 ```
 
 ## Filter

@@ -8,7 +8,3 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd" />
 ```
 
-## 参考文献
-
-- [xmlns, xmlns:xsi, xsi:schemaLocation, and targetNamespace - Stack Overflow](https://stackoverflow.com/questions/34202967/xmlns-xmlnsxsi-xsischemalocation-and-targetnamespace)
-

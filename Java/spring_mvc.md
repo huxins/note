@@ -32,32 +32,38 @@
 - `@GetMapping`
 - `@PostMapping`
 
-以下示例具有类型和方法级别的映射：
-
-```java
-@RestController
-@RequestMapping("/persons")
-class PersonController {
-
-    @GetMapping("/{id}")
-    public Person getPerson(@PathVariable Long id) {
-        // ...
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void add(@RequestBody Person person) {
-        // ...
-    }
-}
-```
-
 #### URI patterns
 
 `@RequestMapping` 方法可以使用 URL 模式进行映射。有两种选择：
 
 - `PathPattern` — 与 URL 路径匹配的预解析模式。
 - `AntPathMatcher` — 将字符串模式与字符串路径匹配。
+
+可以使用 `@PathVariable` 访问捕获的 URI 变量。例如：
+
+```java
+@GetMapping("/getUser/{userId}")
+public String findPet(@PathVariable String userId) {
+    // ...
+}
+```
+
+#### Producible Media Types
+
+可以根据 `Accept` 请求标头和控制器方法生成的内容类型列表来缩小请求映射，如以下示例所示：
+
+```java
+@GetMapping(path = "/getId", produces = "application/json")
+public String getId(String id) {
+    // ...
+}
+```
+
+媒体类型可以指定一个字符集：
+
+```java
+@GetMapping(path = "/getId", produces = "application/json; charset=utf-8")
+```
 
 ### Handler Methods
 
@@ -69,10 +75,34 @@ class PersonController {
 
 ```java
 @GetMapping
-public String setupForm(@RequestParam("petId") int petId, Model model) { 
-    Pet pet = this.clinic.loadPet(petId);
-    model.addAttribute("pet", pet);
-    return "petForm";
+public String getId(@RequestParam("id") int userId) {
+    // ...
+}
+```
+
+默认情况下，使用此注解的方法参数是必需的，但可以通过将 `@RequestParam` 的 `required` 标志设置为 `false` 或使用 `java.util.Optional` 声明参数来指定方法参数是可选的。
+
+将参数类型声明为数组或列表允许解析相同参数名称的多个参数值。
+
+#### `@ModelAttribute`
+
+可以在方法参数上使用 `@ModelAttribute` 来访问模型中的属性，如果不存在，则将其实例化。模型属性还覆盖了 HTTP Servlet 请求参数的值，这些参数的名称与字段名称匹配。这被称为数据绑定，它使您无需解析和转换单个查询参数和表单字段。以下示例显示了如何执行此操作：
+
+```java
+@PostMapping("/getCar")
+public String getCar(@ModelAttribute Car car) {
+    // method logic...
+}
+```
+
+#### `@RequestBody`
+
+可以使用 `@RequestBody` 注解通过 `HttpMessageConverter` 读取请求正文并将其反序列化为 `Object`。以下示例使用 `@RequestBody` 参数：
+
+```java
+@PostMapping("/getCar")
+public String getCat(@RequestBody Car car) {
+    // ...
 }
 ```
 
@@ -96,6 +126,21 @@ public String setupForm(@RequestParam("petId") int petId, Model model) {
     <mvc:annotation-driven/>
 
 </beans>
+```
+
+### 消息转换器
+
+```xml
+<mvc:annotation-driven>
+    <mvc:message-converters>
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <property name="supportedMediaTypes" value="text/html; charset=utf-8"/>
+        </bean>
+        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <property name="supportedMediaTypes" value="text/html; charset=utf-8"/>
+        </bean>
+    </mvc:message-converters>
+</mvc:annotation-driven>
 ```
 
 ## 参见

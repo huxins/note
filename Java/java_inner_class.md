@@ -63,15 +63,15 @@ public class Outer {
 成员内部类是依附外部类而存在的，也就是说，如果要创建成员内部类的对象，前提是必须存在一个外部类的对象。创建成员内部类对象的一般方式如下：
 
 ```java
-Outter outter = new Outter();
-Outter.Inner inner = outter.new Inner();
+Outer outer = new Outer();
+Outer.Inner inner = outer.new Inner();
 ```
 
 或者使用单例模式：
 
 ```java
-Outter outter = new Outter();
-Outter.Inner inner = outter.getInnerInstance();
+Outer outer = new Outer();
+Outer.Inner inner = outer.getInnerInstance();
 ```
 
 内部类可以拥有 `private`、`protected`、`public` 及包访问权限。这一点和外部类有一点不一样，外部类只能被 `public` 和包访问两种权限修饰。我个人是这么理解的，由于成员内部类看起来像是外部类的一个成员，所以可以像类的成员一样拥有多种权限修饰。
@@ -136,4 +136,79 @@ public class Outer {
     }
 }
 ```
+
+## 匿名内部类
+
+在 Java 中调用某个方法时，如果该方法的参数是一个接口类型，除了可以传入一个参数接口实现类，还可以使用匿名内部类实现接口来作为该方法的参数。匿名内部类其实就是没有名称的内部类，在调用包含有接口类型参数的方法时，通常为了简化代码，不会创建一个接口的实现类作为方法参数传入，而是直接通过匿名内部类的形式传入一个接口类型参数，在匿名内部类中直接完成方法的实现。
+
+创建匿名内部类的基本语法格式如下：
+
+```java
+new 父接口(){
+    ...
+}
+```
+
+匿名内部类是唯一没有构造器的类。正因为其没有构造器，所以匿名内部类的使用范围非常有限，大部分匿名内部类用于接口回调。匿名内部类在编译的时候由系统自动起名为 `Outer$1.class`。一般来说，匿名内部类用于继承其他类或是实现接口，并不需要增加额外的方法，只是对继承方法的实现或是重写。
+
+## 静态内部类
+
+所谓静态内部类，就是使用 `static` 关键字修饰的成员内部类。静态内部类是不需要依赖于外部类的，这点和类的静态成员属性有点类似，并且它只能访问外部类的静态成员；同时通过外部类访问静态内部类成员时，可以跳过外部类从而直接通过内部类访问静态内部类成员。
+
+```java
+Outer.Inner inner = new Outer.Inner();
+```
+
+## 使用场景
+
+### 静态内部类
+
+一般是当外部类需要使用内部类，而内部类无需外部类资源，并且内部类可以单独创建的时候会考虑采用静态内部类的设计。
+
+在 `Effective Java` 第二章，当面临许多构造函数参数时，请考虑构建器：
+
+```java
+public class Outer {
+    private String name;
+    private int age;
+
+    public static class Builder {
+        private String name;
+        private int age;
+
+        public Builder(int age) {
+            this.age = age;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withAge(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Outer build() {
+            return new Outer(this);
+        }
+    }
+
+    private Outer(Builder b) {
+        this.age = b.age;
+        this.name = b.name;
+    }
+}
+```
+
+静态内部类调用外部类的构造函数，来构造外部类：
+
+```java
+Outer outer = new Outer.Builder(2).withName("Yang Liu").build();
+```
+
+## 参考文献
+
+- [为什么匿名内部类的参数引用必须是 final - 知乎](https://www.zhihu.com/question/21395848)
 

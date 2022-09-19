@@ -292,11 +292,20 @@ Jackson 包含一组 Java 注解，可以使用这些注解来设置将 JSON 读
 
 ### 通用注解
 
-#### `@JsonIgnore`
+#### `@JsonProperty	`
+
+用于属性，把属性的名称映射到另外一个名称。
+
+```java
+@JsonProperty("userId")
+private long id;
+```
+
+#### `@JsonIgnore` 忽略属性
 
 注解 `@JsonIgnore` 用于忽略 Java 对象的某个属性。在将 JSON 读取到 Java 对象中以及将 Java 对象写入 JSON 时，都将忽略该属性。
 
-#### `@JsonIgnoreProperties`
+#### `@JsonIgnoreProperties` 忽略属性列表
 
 注解 `@JsonIgnoreProperties` 用于指定要忽略的类的属性列表。`@JsonIgnoreProperties` 注解放置在类声明上方，而不是要忽略的各个属性上方。
 
@@ -304,4 +313,183 @@ Jackson 包含一组 Java 注解，可以使用这些注解来设置将 JSON 读
 @JsonIgnoreProperties({"firstName", "lastName"})
 public class PersonIgnoreProperties {...
 ```
+
+#### `@JsonIgnoreType` 忽略类型
+
+注解 `@JsonIgnoreType` 只能用于类级别。当一个被 `@JsonIgnoreType` 注解的类作为其他类的属性时，在序列化和反序列化期间将忽略该属性。
+
+#### `@JsonAutoDetect`
+
+默认情况下，Jackson 可以访问 `public` 字段以进行序列化和反序列化。如果没有可用的 `public` 字段，则使用 `public` getter/setter。我们可以通过使用 `@JsonAutoDetect` 注解来自定义这个默认行为。
+
+```java
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public class PersonAutoDetect {...
+```
+
+### 反序列化注解
+
+#### @JsonSetter
+
+注解 `@JsonSetter` 用于 JSON 字段名与 Java 属性名不一致时。
+
+```java
+@JsonSetter("id")
+public void setCarId(String carId) {
+    this.carId = carId;
+}
+```
+
+#### `@JsonAnySetter`
+
+注解 `@JsonAnySetter` 为 JSON 中所有无法识别的字段调用相同的 `setter()`。*无法识别*是指尚未映射到 Java 对象中的属性。
+
+```java
+public class Car {
+    private Map<String, Object> properties = new HashMap<>();
+
+    @JsonAnySetter
+    public void set(String fieldName, Object value) {
+        this.properties.put(fieldName, value);
+    }
+
+    public Object get(String fieldName) {
+        return this.properties.get(fieldName);
+    }
+}
+```
+
+#### `@JsonCreator`
+
+注解 `@JsonCreator` 定义反序列化的构造函数或工厂方法。`@JsonCreator` 在无法使用 `@JsonSetter` 的情况下很有用。
+
+```java
+public class Car {
+    private long id = 0;
+    private String name = null;
+
+    @JsonCreator
+    public Car(
+            @JsonProperty("id") long id,
+            @JsonProperty("name") String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+```
+
+#### `@JacksonInject`
+
+注解 `@JacksonInject` 用于在反序列化过程中注入注解属性的值。对于想要添加源 JSON 中未包含的其他信息，这将非常有用。
+
+```java
+public class Car {
+    private long id = 0;
+    private String name = null;
+
+    @JacksonInject
+    private String source = null;
+}
+```
+
+为了将值注入属性，需要在创建 `ObjectMapper` 时做一些额外的工作：
+
+```java
+InjectableValues inject = new InjectableValues.Std().addValue(String.class, "douyu.com");
+Car car = new ObjectMapper().reader(inject)
+    .forType(Car.class)
+    .readValue(carJson);
+```
+
+#### `@JsonDeserialize`
+
+注解 `@JsonDeserialize` 为 Java 对象中给定的属性指定自定义反序列化器类。
+
+### 序列化注解
+
+#### `@JsonFormat`
+
+用于属性或者方法，以指定的格式转换属性。
+
+```java
+@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+private Date time;
+
+@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+public Date getTime() {
+    return time;
+}
+```
+
+#### `@JsonInclude`
+
+注解 `@JsonInclude` 定义仅在某些情况下包括属性。例如，仅当属性为非 `null` 或具有非默认值时，才应包括该属性。
+
+```java
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class Car {...
+```
+
+#### `@JsonGetter`
+
+`@JsonGetter` 注解用于 JSON 字段名与 Java 属性名不一致时。
+
+```java
+@JsonGetter("userId")
+public long getId() {
+    return id;
+}
+```
+
+#### `@JsonAnyGetter`
+
+序列化为 JSON 时，注解 `@JsonAnyGetter` 可以将 `Map` 中的每个键值对都视为一个属性。
+
+```java
+public class Car {
+    private Map<String, Object> properties = new HashMap<>();
+
+    @JsonAnyGetter
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+}
+```
+
+#### `@JsonPropertyOrder`
+
+注解 `@JsonPropertyOrder` 用于指定将 Java 对象的属性序列化为 JSON 的顺序。
+
+```java
+@JsonPropertyOrder({"id", "name"})
+public class Car {...
+```
+
+#### `@JsonRawValue`
+
+注解 `@JsonRawValue` 将 Java 对象属性值直接写入 JSON 输出。如果该属性是字符串，JSON 通常会将值括在引号中，如果使用 `@JsonRawValue` 在属性上进行注解，JSON 值不带引号。
+
+```java
+public class Car {
+    @JsonRawValue
+    private String name;
+}
+```
+
+#### `@JsonValue`
+
+注解 `@JsonValue` 定义序列化时，不序列化对象本身，而是调用将对象序列化为 JSON 字符串的方法。
+
+```java
+@JsonValue
+public String toJson(){
+    return this.id + "," + this.name;
+}
+```
+
+引号由 Jackson 添加。对象返回的值字符串中的所有引号均会转义。
+
+#### `@JsonSerialize`
+
+注解 `@JsonSerialize` 为 Java 对象中给定的属性指定自定义序列化器类。
 

@@ -1,5 +1,15 @@
 # MVC
 
+## 构件
+
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>4.3.2.RELEASE</version>
+</dependency>
+```
+
 ## DispatcherServlet
 
 在 web.xml 中注册并初始化 `DispatcherServlet`：
@@ -21,7 +31,11 @@
 </servlet-mapping>
 ```
 
-## 注解控制器
+## Controllers 注解
+
+Spring MVC 提供了一个基于注解的编程模型，其中 `@Controller` 和 `@RestController` 组件使用注解来表达请求映射、请求输入、异常处理等。带注解的控制器具有灵活的方法签名，不必扩展基类，也不必实现特定的接口。
+
+`@RestController` 是一个组合注解，它本身使用 `@Controller` 和 `@ResponseBody` 进行元注解，其每个方法都继承了类型级别的 `@ResponseBody` 注解，因此，直接写入 *response body*。
 
 ### Request Mapping
 
@@ -103,6 +117,18 @@ public String getCar(@ModelAttribute Car car) {
 @PostMapping("/getCar")
 public String getCat(@RequestBody Car car) {
     // ...
+}
+```
+
+### DataBinder
+
+```java
+@InitBinder
+private void initBinder(ServletRequestDataBinder binder) {
+    binder.registerCustomEditor(
+        Date.class,
+        new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true)
+    );
 }
 ```
 

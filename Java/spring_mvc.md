@@ -12,7 +12,9 @@
 
 ## DispatcherServlet
 
-在 web.xml 中注册并初始化 `DispatcherServlet`：
+`DispatcherServlet` 与所有 `Servlet` 一样，需要根据 `Servlet` 规范通过使用 Java 配置或在 `web.xml` 中进行声明和映射。
+
+以下 `web.xml` 配置示例注册并初始化 `DispatcherServlet`：
 
 ```xml
 <servlet>
@@ -31,7 +33,7 @@
 </servlet-mapping>
 ```
 
-## Controllers 注解
+## 注解 Controllers
 
 Spring MVC 提供了一个基于注解的编程模型，其中 `@Controller` 和 `@RestController` 组件使用注解来表达请求映射、请求输入、异常处理等。带注解的控制器具有灵活的方法签名，不必扩展基类，也不必实现特定的接口。
 
@@ -57,7 +59,7 @@ Spring MVC 提供了一个基于注解的编程模型，其中 `@Controller` 和
 
 ```java
 @GetMapping("/getUser/{userId}")
-public String findPet(@PathVariable String userId) {
+public String getUser(@PathVariable String userId) {
     // ...
 }
 ```
@@ -67,7 +69,7 @@ public String findPet(@PathVariable String userId) {
 可以根据 `Accept` 请求标头和控制器方法生成的内容类型列表来缩小请求映射，如以下示例所示：
 
 ```java
-@GetMapping(path = "/getId", produces = "application/json")
+@GetMapping(path = "/getId", produces = MediaType.APPLICATION_JSON_VALUE)
 public String getId(String id) {
     // ...
 }
@@ -76,12 +78,12 @@ public String getId(String id) {
 媒体类型可以指定一个字符集：
 
 ```java
-@GetMapping(path = "/getId", produces = "application/json; charset=utf-8")
+@GetMapping(path = "/getId", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 ```
 
 ### Handler Methods
 
-`@RequestMapping` 处理程序方法具有灵活的签名，可以从一系列受支持的控制器方法参数和返回值中进行选择。
+`@RequestMapping` handler methods 具有灵活的签名，可以从一系列受支持的控制器方法参数和返回值中进行选择。
 
 #### `@RequestParam`
 
@@ -136,7 +138,7 @@ private void initBinder(ServletRequestDataBinder binder) {
 
 ### 启用 MVC 配置
 
-在 XML 配置中，可以使用 `<mvc:annotation-driven>` 元素来启用 MVC 配置：
+在 XML 配置中，可以使用 `<mvc:annotation-driven>` 元素来启用 MVC 配置，如以下示例所示：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

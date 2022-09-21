@@ -1,8 +1,14 @@
-# 内部类
+# 语言规范
+
+## Classes
+
+### 类声明
+
+#### 内部类和封闭实例
 
 在 Java 中，可以将一个类定义在另一个类里面或者一个方法里面，这样的类称为内部类。广泛意义上的内部类一般包括这四种：成员内部类、局部内部类、匿名内部类和静态内部类。
 
-## 成员内部类
+##### 成员内部类
 
 在一个类中除了可以定义成员变量、成员方法，还可以定义类，这样的类被称作成员内部类。
 
@@ -78,7 +84,7 @@ Outer.Inner inner = outer.getInnerInstance();
 
 在 [Java 8](https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html) 中，非静态内部类的对象与其外部类的实例相关联，不能在其中拥有静态成员，除非是常量。这不是一个技术问题，是一个语言设计。参考 [stackoverflow](https://stackoverflow.com/questions/11684844/why-a-non-static-inner-class-cannot-have-static-members-fields-and-methods)。限 [Java 8](https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.1.3)，在 [Java 16](https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.1.3) 中发生了变化。
 
-## 局部内部类
+##### 局部内部类
 
 局部内部类，也叫做方法内部类，就是定义在某个局部范围中的类，它和局部变量一样，都是在方法中定义的，其有效范围只限于方法内部。
 
@@ -137,7 +143,7 @@ public class Outer {
 }
 ```
 
-## 匿名内部类
+##### 匿名内部类
 
 在 Java 中调用某个方法时，如果该方法的参数是一个接口类型，除了可以传入一个参数接口实现类，还可以使用匿名内部类实现接口来作为该方法的参数。匿名内部类其实就是没有名称的内部类，在调用包含有接口类型参数的方法时，通常为了简化代码，不会创建一个接口的实现类作为方法参数传入，而是直接通过匿名内部类的形式传入一个接口类型参数，在匿名内部类中直接完成方法的实现。
 
@@ -151,7 +157,7 @@ new 父接口(){
 
 匿名内部类是唯一没有构造器的类。正因为其没有构造器，所以匿名内部类的使用范围非常有限，大部分匿名内部类用于接口回调。匿名内部类在编译的时候由系统自动起名为 `Outer$1.class`。一般来说，匿名内部类用于继承其他类或是实现接口，并不需要增加额外的方法，只是对继承方法的实现或是重写。
 
-## 静态内部类
+##### 静态内部类
 
 所谓静态内部类，就是使用 `static` 关键字修饰的成员内部类。静态内部类是不需要依赖于外部类的，这点和类的静态成员属性有点类似，并且它只能访问外部类的静态成员；同时通过外部类访问静态内部类成员时，可以跳过外部类从而直接通过内部类访问静态内部类成员。
 
@@ -159,9 +165,9 @@ new 父接口(){
 Outer.Inner inner = new Outer.Inner();
 ```
 
-## 使用场景
+##### 使用场景
 
-### 静态内部类
+###### 静态内部类
 
 一般是当外部类需要使用内部类，而内部类无需外部类资源，并且内部类可以单独创建的时候会考虑采用静态内部类的设计。
 
@@ -211,4 +217,8 @@ Outer outer = new Outer.Builder(2).withName("Yang Liu").build();
 ## 参考文献
 
 - [为什么匿名内部类的参数引用必须是 final - 知乎](https://www.zhihu.com/question/21395848)
+
+## 参见
+
+- [The Java® Language Specification](https://docs.oracle.com/javase/specs/jls/se8/html/index.html)
 

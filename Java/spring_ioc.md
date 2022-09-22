@@ -258,6 +258,203 @@ void destroy() throws Exception;
 <bean id="exampleInitBean" class="examples.ExampleBean" destroy-method="cleanup"/>
 ```
 
+## 基于注解的容器配置
+
+基于注解的配置提供了 XML 设置的替代方案，它依赖于字节码元数据来连接组件，而不是尖括号声明。开发人员不使用 XML 来描述 bean 关系，而是通过在相关类、方法或字段声明上使用注解将配置移动到组件类本身。
+
+一如既往，您可以将 post-processors 注册为单独的 bean definitions，但也可以通过在基于 XML 的 Spring 配置中包含以下标记来隐式注册它们：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+</beans>
+```
+
+### `@Autowired`
+
+您可以将 `@Autowired` 注解应用于构造函数，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    private final CustomerPreferenceDao customerPreferenceDao;
+
+    @Autowired
+    public MovieRecommender(CustomerPreferenceDao customerPreferenceDao) {
+        this.customerPreferenceDao = customerPreferenceDao;
+    }
+
+}
+```
+
+> 构造函数注入是通过对象构建的时候建立关系，所以这种方式对对象创建的顺序会有要求，Spring 会自动处理这样的先后顺序，除非出现循环依赖，然后就会抛出异常。
+>
+> 从 Spring Framework 4.3 开始，如果目标 bean 仅定义了一个构造函数，则不再需要在此类构造函数上使用 `@Autowired` 注解。但是，如果有多个构造函数可用并且没有 primary/default 构造函数，则必须至少使用 `@Autowired` 注释其中一个构造函数，以指示容器使用哪一个。
+
+您还可以将 `@Autowired` 注解应用于传统的 setter 方法，如以下示例所示：
+
+```java
+public class SimpleMovieLister {
+
+    private MovieFinder movieFinder;
+
+    @Autowired
+    public void setMovieFinder(MovieFinder movieFinder) {
+        this.movieFinder = movieFinder;
+    }
+
+}
+```
+
+您还可以将注解应用于具有任意名称和多个参数的方法，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    private MovieCatalog movieCatalog;
+
+    private CustomerPreferenceDao customerPreferenceDao;
+
+    @Autowired
+    public void prepare(MovieCatalog movieCatalog,
+            CustomerPreferenceDao customerPreferenceDao) {
+        this.movieCatalog = movieCatalog;
+        this.customerPreferenceDao = customerPreferenceDao;
+    }
+
+}
+```
+
+您也可以将 `@Autowired` 应用于字段，甚至可以将其与构造函数混合使用，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    private final CustomerPreferenceDao customerPreferenceDao;
+
+    @Autowired
+    private MovieCatalog movieCatalog;
+
+    @Autowired
+    public MovieRecommender(CustomerPreferenceDao customerPreferenceDao) {
+        this.customerPreferenceDao = customerPreferenceDao;
+    }
+
+}
+```
+
+> 字段注入通过 Java 的反射机制实现，所以 `private` 的成员也可以被注入具体的对象。
+>
+> 默认情况下，Spring 是按照类型装配的，也就是 `byType` 方式。所以需要确保您的目标组件始终由您用于 `@Autowired` 注解的注入点的类型声明。否则，注入可能会由于运行时出现 *no type match found* 错误而失败。
+
+您还可以通过将 `@Autowired` 注解添加到需要该类型数组的字段或方法来指示 Spring 从 `ApplicationContext` 提供特定类型的所有 bean，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    @Autowired
+    private MovieCatalog[] movieCatalogs;
+
+}
+```
+
+这同样适用于集合，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    private Set<MovieCatalog> movieCatalogs;
+
+    @Autowired
+    public void setMovieCatalogs(Set<MovieCatalog> movieCatalogs) {
+        this.movieCatalogs = movieCatalogs;
+    }
+
+}
+```
+
+只要预期的键类型是 `String`，即使是 `Map` 实例也可以自动装配。映射值包含预期类型的所有 bean，键包含相应的 bean 名称，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    private Map<String, MovieCatalog> movieCatalogs;
+
+    @Autowired
+    public void setMovieCatalogs(Map<String, MovieCatalog> movieCatalogs) {
+        this.movieCatalogs = movieCatalogs;
+    }
+
+}
+```
+
+默认情况下，当给定注入点没有匹配的候选 bean 时，自动装配会失败。在声明的数组、集合或 map 的情况下，至少需要一个匹配元素。
+
+### 使用 `@Primary` 微调基于注解的自动装配
+
+因为按类型自动装配可能会导致多个候选者，因此通常需要对选择过程进行更多控制。实现这一点的一种方法是使用 Spring 的 `@Primary` 注解。`@Primary` 表示当多个 bean 成为自动装配到单值依赖项的候选者时，应该优先考虑特定的 bean。如果候选中恰好存在一个 primary bean，则它将成为自动装配的值。
+
+参考以下将 `firstMovieCatalog` 定义为主 `MovieCatalog` 的配置：
+
+```java
+@Configuration
+public class MovieConfiguration {
+
+    @Bean
+    @Primary
+    public MovieCatalog firstMovieCatalog() { ... }
+
+    @Bean
+    public MovieCatalog secondMovieCatalog() { ... }
+
+}
+```
+
+### 使用 `@Qualifiers` 微调基于注解的自动装配
+
+当可以确定一个主要候选者时，`@Primary` 是通过多个实例按类型使用自动关联的有效方法。当您需要对选择过程进行更多控制时，可以使用 Spring 的 `@Qualifier` 注解。您可以将限定符值与特定参数相关联，缩小类型匹配集，以便为每个参数选择一个特定的 bean。
+
+在最简单的情况下，这可以是一个简单的描述性值，如以下示例所示：
+
+```java
+public class MovieRecommender {
+
+    @Autowired
+    @Qualifier("movieCatalog")
+    private MovieCatalog movieCatalog;
+
+}
+```
+
+### `@Resource`
+
+Spring 还支持通过在字段或属性 setter 方法上使用 JSR-250 `@Resource` 注解 (`javax.annotation.Resource`) 进行注入。
+
+`@Resource` 采用名称属性。默认情况下，Spring 将该值解释为要注入的 bean name。换句话说，它遵循 by-name 语义，如以下示例所示：
+
+```java
+public class SimpleMovieLister {
+
+    private MovieFinder movieFinder;
+
+    @Resource(name="myMovieFinder") 
+    public void setMovieFinder(MovieFinder movieFinder) {
+        this.movieFinder = movieFinder;
+    }
+}
+```
+
+如果没有明确指定 name，则默认 name 派生自 field name 或 setter 方法。
+
 ## 类路径扫描和托管组件
 
 ### 自动检测类和注册 `BeanDefinition`

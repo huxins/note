@@ -258,6 +258,55 @@ void destroy() throws Exception;
 <bean id="exampleInitBean" class="examples.ExampleBean" destroy-method="cleanup"/>
 ```
 
+## 容器扩展点
+
+通常，应用程序开发人员不需要继承 `ApplicationContext` 实现类，相反，可以通过插入特殊集成接口的实现来扩展 Spring IoC 容器。接下来的几节描述了这些集成接口。
+
+### 使用 `BeanFactoryPostProcessor` 自定义配置元数据
+
+#### 示例：类名替换 `PropertySourcesPlaceholderConfigurer`
+
+您可以使用 `PropertySourcesPlaceholderConfigurer` 将 bean definition 中的属性值外部化到单独的文件中。这样做使部署应用程序的人员能够自定义特定于环境的属性，例如数据库 URL 和密码，而无需修改容器的主要 XML 定义文件。
+
+参考以下基于 XML 的配置元数据片段，其中定义了具有占位符值的 `DataSource`：
+
+```xml
+<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="locations" value="classpath:jdbc.properties"/>
+</bean>
+
+<bean id="dataSource" destroy-method="close"
+        class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+    <property name="url" value="${jdbc.url}"/>
+    <property name="username" value="${jdbc.username}"/>
+    <property name="password" value="${jdbc.password}"/>
+</bean>
+```
+
+该示例显示了从外部 `Properties` 文件配置的属性。在运行时，`PropertySourcesPlaceholderConfigurer` 应用于替换 `DataSource` 的某些属性的元数据。要替换的值被指定为 `${property-name}` 形式的占位符，它遵循 Ant 和 log4j 以及 JSP EL 样式。
+
+> `PropertyPlaceholderConfigurer`：Deprecated. as of 5.2.
+
+实际值来自标准 Java `Properties` 格式的另一个文件：
+
+```properties
+jdbc.driverClassName=org.hsqldb.jdbcDriver
+jdbc.url=jdbc:hsqldb:hsql://production:9002
+jdbc.username=sa
+jdbc.password=root
+```
+
+因此，`${jdbc.username}` 字符串在运行时被替换为值 *sa*，这同样适用于与 `properties` 文件中的键匹配的其他占位符值。`PropertySourcesPlaceholderConfigurer` 检查 bean definition 的大多数属性和属性中的占位符。此外，您可以自定义占位符前缀和后缀。
+
+使用 Spring 2.5 中引入的 `context` namespace，您可以使用专用配置元素配置属性占位符。您可以在 location 属性中以逗号分隔列表的形式提供一个或多个位置，如以下示例所示：
+
+```xml
+<context:property-placeholder location="classpath:jdbc.properties"/>
+```
+
+`PropertySourcesPlaceholderConfigurer` 不仅在您指定的 `Properties` 文件中查找属性。默认情况下，如果在指定的 `Properties` 文件中找不到属性，它会检查 Spring `Environment` 属性和常规 Java `System` 属性。
+
 ## 基于注解的容器配置
 
 基于注解的配置提供了 XML 设置的替代方案，它依赖于字节码元数据来连接组件，而不是尖括号声明。开发人员不使用 XML 来描述 bean 关系，而是通过在相关类、方法或字段声明上使用注解将配置移动到组件类本身。

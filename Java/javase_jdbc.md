@@ -35,7 +35,7 @@ jdbc:mysql://[host][,failoverhost...]
 URL 示例：
 
 ```properties
-jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.driverClassName=com.mysql.jdbc.Driver
 jdbc.jdbcUrl=jdbc:mysql://127.0.0.1:3306/dbname?useUnicode=true&characterEncoding=UTF-8
 jdbc.user=root
 jdbc.password=123456
@@ -56,8 +56,8 @@ jdbc.password=123456
 ##### PostgreSQL JDBC Driver URL
 
 ```properties
-jdbc.driverClass=org.postgresql.Driver
-jdbc.url=jdbc:postgresql://192.168.1.120:5432/dbname?characterEncoding=utf-8
+jdbc.driverClassName=org.postgresql.Driver
+jdbc.url=jdbc:postgresql://127.0.0.1:5432/dbname?characterEncoding=utf-8
 jdbc.username=postgres
 jdbc.password=123456
 ```

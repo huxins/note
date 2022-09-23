@@ -13,7 +13,7 @@
 ## 配置属性
 
 ```xml
-<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
     <property name="driverClassName" value="${jdbc.driverClassName}"/>
     <property name="url" value="${jdbc.url}"/>
     <property name="username" value="${jdbc.username}"/>

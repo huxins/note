@@ -142,6 +142,10 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <meta charset="utf-8">
 ```
 
+#### style 元素
+
+`style` 元素允许作者在他们的文档中嵌入 CSS 样式表。
+
 ### 部分
 
 #### h1、h2、h3、h4、h5 和 h6 元素
@@ -248,13 +252,87 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 `label` 元素表示用户界面中的标题。
 
+```html
+<label for="name">Name:</label> <input type="text" id="name" name="user_name">
+```
+
 #### input 元素
 
 `input` 元素表示一个类型化的数据字段，通常带有一个表单控件以允许用户编辑数据。
 
+`value` 属性给出了 `input` 元素的默认值：
+
+```html
+<input type="text" value="by default this element is filled with this text">
+```
+
+所有文本框都有一些通用规范：
+
+- 它们可以被标记为 `readonly`（用户不能修改输入值）甚至是 `disabled`（输入值永远不会与表单数据的其余部分一起发送）。
+- 它们可以有一个 `placeholder`；这是文本输入框中出现的文本，用来简略描述输入框的目的。
+- 它们可以使用 `size`（框的物理尺寸）和 `maxlength`（可以输入的最大字符数）进行限制。
+- 如果浏览器支持的话，它们可以从拼写检查（使用 `spellcheck` 属性）中获益。
+
+可以通过简单设置 [type](https://html.spec.whatwg.org/multipage/input.html#attr-input-type) 属性，来接收多种类型的数据：
+
+```html
+<input type="text" id="comment" name="comment" value="I'm a text field">
+<input type="password" id="pwd" name="pwd">
+<input type="hidden" id="timestamp" name="timestamp" value="1286705410">
+<input type="checkbox" id="questionOne" name="subscribe" value="yes" checked>
+<input type="radio" id="soup" name="meal" checked>
+<input type="file" name="file" id="file" accept="image/*" multiple>
+```
+
+> 任何带有 `checked` 属性的复选框和单选按钮在加载时都会匹配 `:default` 伪类，即使它们后面不再被选中。任何当前被选中的元素，都会匹配 `:checked` 伪类。
+
+#### button 元素
+
+`button` 元素表示一个按其内容标记的按钮。
+
+```html
+<li class="button">
+  <button type="submit">Send your message</button>
+</li>
+```
+
+`<button>` 元素也接受一个 `type` 属性，它接受 `submit`、`reset` 或者 `button` 三个值中的任一个。
+
+> 你还可以使用相应类型的 `<input>` 元素来生成一个按钮，如 `<input type="submit">`。`<button>` 元素的主要优点是，`<input>` 元素只允许纯文本作为其标签，而 `<button>` 元素允许完整的 HTML 内容，允许更复杂、更有创意的按钮内容。
+
 #### textarea 元素
 
 `textarea` 元素表示元素原始值的多行纯文本编辑控件。控件的内容代表控件的默认值。
+
+```html
+<textarea>
+by default this element is filled with this text
+</textarea>
+```
+
+#### fieldset 和 legend 元素
+
+`fieldset` 元素表示一组组合在一起的表单控件，可选地带有标题。标题由作为 `fieldset` 元素的子元素的第一个 `legend` 元素给出。
+
+```html
+<form>
+  <fieldset>
+    <legend>Fruit juice size</legend>
+    <p>
+      <input type="radio" name="size" id="size_1" value="small">
+      <label for="size_1">Small</label>
+    </p>
+    <p>
+      <input type="radio" name="size" id="size_2" value="medium">
+      <label for="size_2">Medium</label>
+    </p>
+    <p>
+      <input type="radio" name="size" id="size_3" value="large">
+      <label for="size_3">Large</label>
+    </p>
+  </fieldset>
+</form>
+```
 
 ### 脚本
 

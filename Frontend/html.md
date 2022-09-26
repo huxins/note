@@ -300,6 +300,95 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 > 你还可以使用相应类型的 `<input>` 元素来生成一个按钮，如 `<input type="submit">`。`<button>` 元素的主要优点是，`<input>` 元素只允许纯文本作为其标签，而 `<button>` 元素允许完整的 HTML 内容，允许更复杂、更有创意的按钮内容。
 
+#### select 元素
+
+`select` 元素表示用于在一组选项中进行选择的控件。
+
+```html
+<select id="simple" name="simple">
+  <option>Banana</option>
+  <option selected>Cherry</option>
+  <option>Lemon</option>
+</select>
+```
+
+如果需要的话，选择框的默认值可以由要指定默认值的 `<option>` 元素中的 `selected` 属性设置，这样在页面加载后，该选项可以预先选中。
+
+**使用 `optgroup`**
+
+`<option>` 元素可以嵌套在 `<optgroup>` 元素中，以在视觉上关联一组取值：
+
+```html
+<select id="groups" name="groups">
+  <optgroup label="fruits">
+    <option>Banana</option>
+    <option selected>Cherry</option>
+    <option>Lemon</option>
+  </optgroup>
+  <optgroup label="vegetables">
+    <option>Carrot</option>
+    <option>Eggplant</option>
+    <option>Potato</option>
+  </optgroup>
+</select>
+```
+
+在 `<optgroup>` 元素中，`label` 属性的值在嵌套选项之前显示。浏览器往往在视觉上将它们与选项分开，以避免它们与实际选项混淆。
+
+**使用 `value` 属性**
+
+如果一个 `<option>` 元素明确设置了 `value` 属性，当表单提交时也会提交那个选项对应的值。如果像上面的例子那样省略了 `value` 属性，`<option>` 元素的内容会作为提交的值。所以 `value` 属性并不是必需的，然而你可能需要向服务器中发送与视觉所见相比缩短或者改变过的值。
+
+```html
+<select id="simple" name="simple">
+  <option value="banana">Big, beautiful yellow banana</option>
+  <option value="cherry">Succulent, juicy cherry</option>
+  <option value="lemon">Sharp, powerful lemon</option>
+</select>
+```
+
+默认情况下，选择框的高度足以显示单个值。可选的 `size` 属性控制在选择框不处于聚焦状态时，可见选项的数量。
+
+**多选选择框**
+
+默认情况下，选择框只允许用户选择单个值。通过向 `<select>` 元素添加 `multiple` 属性，你可以允许用户使用操作系统提供的机制选择多个值，如按下 `Ctrl` 并先后单击多个值。
+
+```html
+<select id="multi" name="multi" multiple size="2">
+  <optgroup label="fruits">
+     <option>Banana</option>
+     <option selected>Cherry</option>
+     <option>Lemon</option>
+   </optgroup>
+   <optgroup label="vegetables">
+     <option>Carrot</option>
+     <option>Eggplant</option>
+     <option>Potato</option>
+   </optgroup>
+</select>
+```
+
+> 在多选选择框的情况下，你会注意到选择框不再以下拉内容的形式显示数值——相反，所有的值都会一次性显示在一个列表中，可选的 `size` 属性决定了控件的高度。
+
+#### datalist 元素
+
+`datalist` 元素代表一组 `option` 元素，这些元素代表其他控件的预定义选项。在渲染中，`datalist` 元素不代表任何内容，它及其子元素应该被隐藏。
+
+```html
+<label for="myFruit">What's your favorite fruit?</label>
+<input type="text" name="myFruit" id="myFruit" list="mySuggestion">
+<datalist id="mySuggestion">
+  <option>Apple</option>
+  <option>Banana</option>
+  <option>Blackberry</option>
+  <option>Blueberry</option>
+  <option>Lemon</option>
+  <option>Lychee</option>
+  <option>Peach</option>
+  <option>Pear</option>
+</datalist>
+```
+
 #### textarea 元素
 
 `textarea` 元素表示元素原始值的多行纯文本编辑控件。控件的内容代表控件的默认值。

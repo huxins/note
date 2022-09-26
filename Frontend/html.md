@@ -284,7 +284,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <input type="file" name="file" id="file" accept="image/*" multiple>
 ```
 
-> 任何带有 `checked` 属性的复选框和单选按钮在加载时都会匹配 `:default` 伪类，即使它们后面不再被选中。任何当前被选中的元素，都会匹配 `:checked` 伪类。
+> 任何带有 `checked` 属性的复选框和单选按钮在加载时都会匹配 [`:default`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-default) 伪类，即使它们后面不再被选中。任何当前被选中的元素，都会匹配 [`:checked`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-checked) 伪类。
 
 #### button 元素
 

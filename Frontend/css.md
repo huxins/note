@@ -13,6 +13,7 @@ Cascading Style Sheet，简称 CSS，是为网页添加样式的代码。
 截至 2021 年，***CSS*** 由以下规范定义。
 
 - [CSS Syntax Level 3](https://www.w3.org/TR/css-syntax-3/)
+- [CSS Fonts Level 3](https://www.w3.org/TR/css-fonts-3/)
 
 ### CSS Levels
 
@@ -46,6 +47,59 @@ p > a {
 - 在每个规则集里要用分号（`;`）将各个声明分隔开。
 
 ## Selectors
+
+### Groups of selectors
+
+一个以逗号分隔的选择器列表表示由列表中的每个单独选择器选择的所有元素的并集。例如，在 CSS 中，当多个选择器共享相同的声明时，它们可能会被分组到一个逗号分隔的列表中。
+
+```css
+h1, h2, h3 { font-family: sans-serif }
+```
+
+### Simple selectors
+
+#### Type selector
+
+类型选择器，也称为元素选择器，是使用 CSS qualified names 的语法编写的文档语言元素类型的名称。类型选择器表示文档树中元素类型的一个实例。
+
+例如，以下选择器表示文档树中的一个 `h1` 元素：
+
+```css
+h1
+```
+
+#### Attribute selectors
+
+选择器允许表示元素的属性。当选择器用作与元素匹配的表达式时，如果元素具有与属性选择器表示的属性匹配的属性，则必须将属性选择器视为与元素匹配。
+
+#### Class selectors
+
+使用 HTML 时，作者可以在表示 `class` 属性时使用*句点*表示法，作为 `~=` 表示法的替代。因此，对于 HTML，`div.value` 和 `div[class~=value]` 具有相同的含义。属性值必须紧跟在句号 `.` 之后。
+
+CSS 示例：
+
+```css
+.pastoral { color: green }  /* all elements with class~=pastoral */
+H1.pastoral { color: green }  /* H1 elements with class~=pastoral */
+```
+
+#### ID selectors
+
+文档语言可能包含声明为 ID 类型的属性。ID 类型属性的特殊之处在于，在一个符合标准的文档中，没有两个这样的属性可以具有相同的值，无论携带它们的元素的类型如何；无论使用哪种文档语言，都可以使用 ID 类型的属性来唯一标识其元素。在 HTML 中，所有 ID 属性都命名为 `id`。
+
+文档语言的 ID 类型属性允许作者将标识符分配给文档树中的一个元素实例。ID 选择器包含一个*数字符号* `#`，紧跟其后的是 ID 值，必须是 CSS 标识符。ID 选择器表示具有与 ID 选择器中的标识符匹配的标识符的元素实例。
+
+以下 ID 选择器表示一个 `h1` 元素，其 ID-typed 属性的值为 *chapter1*：
+
+```css
+h1#chapter1
+```
+
+#### Pseudo-classes
+
+引入伪类概念是为了允许基于位于文档树之外的信息或无法使用其他简单选择器表示的信息进行选择。
+
+## Fonts
 
 
 

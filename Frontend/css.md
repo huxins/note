@@ -13,7 +13,12 @@ Cascading Style Sheet，简称 CSS，是为网页添加样式的代码。
 截至 2021 年，***CSS*** 由以下规范定义。
 
 - [CSS Syntax Level 3](https://www.w3.org/TR/css-syntax-3/)
+- [CSS Box Model Module Level 3](https://www.w3.org/TR/css-box-3/)
 - [CSS Fonts Level 3](https://www.w3.org/TR/css-fonts-3/)
+
+### 相当稳定的模块，实施经验有限
+
+- [CSS Text Module Level 3](https://www.w3.org/TR/css-text-3/)
 
 ### CSS Levels
 
@@ -99,9 +104,109 @@ h1#chapter1
 
 引入伪类概念是为了允许基于位于文档树之外的信息或无法使用其他简单选择器表示的信息进行选择。
 
+## Box
+
+`padding`：即内边距，围绕着内容（比如段落）的空间。
+
+`border`：即边框，紧接着内边距的线。
+
+`margin`：即外边距，围绕元素外部的空间。
+
+相关规范：
+
+- [CSS Box Model Module Level 3](https://www.w3.org/TR/css-box-3/)
+- [CSS Box Sizing Module Level 3](https://www.w3.org/TR/css-sizing-3/)
+- [CSS Backgrounds and Borders Module Level 3](https://www.w3.org/TR/css-backgrounds-3/)
+
+### 指定 Box Sizes
+
+#### Sizing 属性
+
+本节定义尺寸属性 `width`、`height`、`min-width`、`min-height`、`max-width` 和 `max-height`。
+
+##### Preferred Size 属性：width and height 属性
+
+### Backgrounds
+
+每个盒子都有一个背景层，可以是完全透明的（默认），或者填充有颜色 and/or 一个或多个图像。背景属性指定要使用的颜色（`background-color`）和图像（`background-image`），以及它们的大小、定位、平铺等方式。
+
+`background` 属性不会被继承，但是由于 `background-color` 的初始透明值，父框的背景默认会发光。
+
+#### Base Color：background-color 属性
+
+此属性设置元素的背景颜色。颜色绘制在任何背景图像后面。
+
 ## Fonts
 
+### 基本字体属性
 
+用于呈现字符的特定字体由字体系列和适用于给定元素的其他字体属性确定。这种结构允许设置相互独立地变化。
+
+#### 字体系列：font-family 属性
+
+此属性指定字体系列名称或通用系列名称的优先列表。
+
+引用字体：
+
+```html
+<link href="https://fonts.font.im/css?family=Open+Sans" rel="stylesheet" type="text/css">
+```
+
+应用字体：
+
+```css
+font-family: "Open Sans", sans-serif;
+```
+
+#### 字体大小：font-size 属性
+
+此属性指示字形与字体的所需高度。对于可缩放字体，字体大小是应用于字体的 EM 单位的缩放因子。对于不可缩放字体，字体大小被转换为绝对单位，并与声明的字体 `font-size` 相匹配，对两个匹配值使用相同的绝对坐标空间。
+
+## Text
+
+相关规范
+
+- [CSS Text Module Level 3](https://www.w3.org/TR/css-text-3/)
+
+### Alignment and Justification
+
+对齐和对齐控制行内内容在行框中的分布方式。
+
+#### 文本对齐：text-align 简写属性
+
+参考[文档](https://www.w3.org/TR/css-text-3/#text-align-property)。
+
+此简写属性设置 `text-align-all` 和 `text-align-last` 属性，并描述如果内容未完全填满行框，块的行内级内容如何沿行内轴对齐。将 `justify-all` 或 `match-parent` 以外的值分配给 `text-align-all` 并将 `text-align-last` 重置为 `auto`。
+
+### Spacing
+
+CSS 通过 `word-spacing` 和 `letter-spacing` 属性提供对文本间距的控制，它们分别指定单词分隔符周围或印刷字符单元之间的额外空间。
+
+#### Word Spacing：word-spacing 属性
+
+此属性指定*单词*之间的额外间距。
+
+#### Tracking：letter-spacing 属性
+
+此属性指定相邻印刷字符单元之间的额外间距。`letter-spacing` 是在 [bidi reordering](https://www.w3.org/TR/css-writing-modes-4/#text-direction) 之后应用的，并且是对 [`kerning`](https://www.w3.org/TR/css-fonts-3/#font-kerning-prop) 和 [`word-spacing`](https://www.w3.org/TR/css-text-3/#word-spacing-property) 的补充。
+
+```css
+p { letter-spacing: 1px; }
+```
+
+## Inline Layout
+
+### 行尺寸和间距
+
+#### 行距：line-height 属性
+
+参考[文档](https://www.w3.org/TR/css-inline-3/#line-height-property)。
+
+此属性指定首选行高：用于计算行框高度的内联框的逻辑高度。
+
+```css
+div { line-height: 1.2; font-size: 10pt }
+```
 
 ## 参考文献
 

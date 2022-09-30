@@ -1,16 +1,16 @@
 # IntelliJ IDEA
 
-## Configuring the IDE
+## IDE 配置
 
-### Advanced configuration
+### 高级配置
 
 除了 IDE 设置可用的标准选项外，IntelliJ IDEA 还使您能够执行底层平台和 Java 运行时的低级配置。
 
-#### JVM options
+#### JVM 选项
 
 IntelliJ IDEA 在 Java 虚拟机 (JVM) 上运行，它具有控制其性能的各种选项。用于运行 IntelliJ IDEA 的默认选项在 IDE 安装目录中指定：
 
-- Windows: <IDE_HOME>\bin\idea64.exe.vmoptions
+- Windows: `<IDE_HOME>\bin\idea64.exe.vmoptions`
 
 ## Write and edit source code
 

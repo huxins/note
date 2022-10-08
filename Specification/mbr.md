@@ -1,10 +1,12 @@
 # Master boot record
 
-主引导记录是一种特殊类型的引导扇区，位于已分区的计算机大容量存储设备的最开始。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。
+MBR 是一种特殊类型的引导扇区，位于已分区的计算机大容量存储设备的最开始。
 
-主引导扇区是硬盘的第一扇区。它由三个部分组成，主引导记录、硬盘分区表和硬盘有效标志。在总共 512 字节的主引导扇区里引导代码区占 446 个字节，它负责从活动分区中装载，并运行系统引导程序；第二部分是 *Partition table* 区，占 64 个字节；第三部分是 *Magic number*，占 2 个字节。
+它由三个部分组成，引导代码区、硬盘分区表和硬盘有效标志。*Bootstrap code area* 占 446 字节，它负责从活动分区中装载，并运行系统引导程序；第二部分是 *[Partition table](https://en.wikipedia.org/wiki/Master_boot_record#Partition_table_entries)*，占 64 字节；第三部分是 *Magic number*，占 2 字节。
 
-所谓启动加载器，是一小段代码，用于加载驱动器上其他分区上更大的加载器。如果你安装了 Windows，Windows 启动加载器的初始信息就放在这个区域里，如果 MBR 的信息被覆盖导致 Windows 不能启动，你就需要使用 Windows 的 MBR 修复功能来使其恢复正常。如果你安装了 Linux，则位于 MBR 里的通常会是 GRUB 加载器。
+## 引导代码区
+
+引导代码区是一小段代码，用于加载其他分区上更大的启动加载器。如果你安装了 Windows，Windows 启动加载器的初始信息就放在这个区域里，如果 MBR 的信息被覆盖导致 Windows 不能启动，你就需要使用 Windows 的 MBR 修复功能来使其恢复正常。如果你安装了 Linux，则位于 MBR 里的通常会是 GRUB 加载器。
 
 ## 分区表
 
@@ -12,7 +14,7 @@
 
 **80 01 01 00, 0B FE BF FC, 3F 00 00 00, 7E 86 BB 00**
 
-*08* 是一个分区的激活标志，表示系统可引导；*01 01 00* 表示分区开始的磁头号为 *01*，开始的扇区号为 *01*，开始的柱面号为 *00*。
+*80* 是一个分区的激活标志，表示系统可引导；*01 01 00* 表示分区开始的磁头号为 *01*，开始的扇区号为 *01*，开始的柱面号为 *00*。
 
 *0B* 表示该分区的系统类型是 FAT32，*FE BF FC* 表示分区结束的磁头号为 *254*，分区结束的扇区号为 *63*、分区结束的柱面号为 *764*。
 
@@ -30,5 +32,5 @@
 
 ## 参见
 
-- [Partition table entries - Wikipedia](https://en.wikipedia.org/wiki/Master_boot_record#Partition_table_entries)
+- [Master boot record - Wikipedia](https://en.wikipedia.org/wiki/Master_boot_record)
 

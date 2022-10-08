@@ -108,15 +108,15 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 ### 文档元数据
 
-#### head 元素
+#### head
 
 `head` 元素表示 `Document` 的元数据集合。
 
-#### title 元素
+#### title
 
 `title` 元素表示文档的标题或名称。
 
-#### link 元素
+#### link
 
 `link` 元素允许作者将他们的文档链接到其他资源。
 
@@ -132,7 +132,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <link rel="stylesheet" href="my-css-file.css">
 ```
 
-#### meta 元素
+#### meta
 
 `meta` 元素表示无法使用 `title`, `base`, `link`, `style`, and `script` 元素表示的各种元数据。
 
@@ -142,13 +142,13 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <meta charset="utf-8">
 ```
 
-#### style 元素
+#### style
 
 `style` 元素允许作者在他们的文档中嵌入 CSS 样式表。
 
 ### 部分
 
-#### h1、h2、h3、h4、h5 和 h6 元素
+#### h1、h2、h3、h4、h5 和 h6
 
 这些元素代表其部分的标题。
 
@@ -160,7 +160,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 ### 分组内容
 
-#### p 元素
+#### p
 
 `p` 元素代表一个段落。
 
@@ -170,7 +170,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <p>我是一个段落，千真万确。</p>
 ```
 
-#### ol 元素
+#### ol
 
 `ol` 元素表示有序项目列表。
 
@@ -186,7 +186,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 </ol>
 ```
 
-#### ul 元素
+#### ul
 
 `ul` 元素表示一个无序项目列表。
 
@@ -201,7 +201,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 </ul>
 ```
 
-#### dl 元素
+#### dl
 
 `dl` 元素表示由零个或多个 name-value groups 组成的关联列表（描述列表）。
 
@@ -218,7 +218,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 ### 文本级语义
 
-#### a 元素
+#### a
 
 如果 `a` 元素具有 `href` 属性，则它表示由其内容标记的超链接：
 
@@ -232,13 +232,13 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <a href="https://youtu.be/tFXGhrHRLiA" title="星星点灯-郑智化">星星点灯</a>
 ```
 
-#### span 元素
+#### span
 
 `span` 元素本身没有任何意义。
 
 ### Forms
 
-#### form 元素
+#### form
 
 `form` 元素表示可以通过与表单相关的元素集合来操作的超链接，其中一些可以表示可以提交给服务器进行处理的可编辑值。
 
@@ -248,7 +248,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 </form>
 ```
 
-#### label 元素
+#### label
 
 `label` 元素表示用户界面中的标题。
 
@@ -256,7 +256,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 <label for="name">Name:</label> <input type="text" id="name" name="user_name">
 ```
 
-#### input 元素
+#### input
 
 `input` 元素表示一个类型化的数据字段，通常带有一个表单控件以允许用户编辑数据。
 
@@ -286,7 +286,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 > 任何带有 `checked` 属性的复选框和单选按钮在加载时都会匹配 [`:default`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-default) 伪类，即使它们后面不再被选中。任何当前被选中的元素，都会匹配 [`:checked`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-checked) 伪类。
 
-#### button 元素
+#### button
 
 `button` 元素表示一个按其内容标记的按钮。
 
@@ -300,7 +300,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 > 你还可以使用相应类型的 `<input>` 元素来生成一个按钮，如 `<input type="submit">`。`<button>` 元素的主要优点是，`<input>` 元素只允许纯文本作为其标签，而 `<button>` 元素允许完整的 HTML 内容，允许更复杂、更有创意的按钮内容。
 
-#### select 元素
+#### select
 
 `select` 元素表示用于在一组选项中进行选择的控件。
 
@@ -370,7 +370,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 
 > 在多选选择框的情况下，你会注意到选择框不再以下拉内容的形式显示数值——相反，所有的值都会一次性显示在一个列表中，可选的 `size` 属性决定了控件的高度。
 
-#### datalist 元素
+#### datalist
 
 `datalist` 元素代表一组 `option` 元素，这些元素代表其他控件的预定义选项。在渲染中，`datalist` 元素不代表任何内容，它及其子元素应该被隐藏。
 
@@ -389,7 +389,7 @@ HTML 标准中块级元素和行内元素的区别至高出现在 [4.01](https:/
 </datalist>
 ```
 
-#### textarea 元素
+#### textarea
 
 `textarea` 元素表示元素原始值的多行纯文本编辑控件。控件的内容代表控件的默认值。
 
@@ -399,7 +399,7 @@ by default this element is filled with this text
 </textarea>
 ```
 
-#### fieldset 和 legend 元素
+#### fieldset 和 legend
 
 `fieldset` 元素表示一组组合在一起的表单控件，可选地带有标题。标题由作为 `fieldset` 元素的子元素的第一个 `legend` 元素给出。
 
@@ -429,7 +429,7 @@ by default this element is filled with this text
 
 鼓励作者尽可能使用声明性替代脚本，因为声明性机制通常更易于维护，并且许多用户禁用脚本。
 
-#### script 元素
+#### script
 
 `script` 元素允许作者在他们的文档中包含动态脚本和数据块。该元素不代表用户的内容。
 
@@ -438,6 +438,26 @@ by default this element is filled with this text
 ```html
 <script src="my-js-file.js" defer></script>
 ```
+
+## Subresource Integrity
+
+SRI 全称是 Subresource Integrity，是用来解决由于 CDN 资源被污染而导致的 XSS。当浏览器检测加载脚本签名与给定的签名不一致时，会拒绝执行该脚本。
+
+启用 SRI 策略后，浏览器会对资源进行 CORS 校验，这就要求被请求的资源必须同域，或者配置了 `Access-Control-Allow-Origin` 响应头。
+
+要使用 SRI，只需要在原有的标签里增加 `integrity` 属性即可，这个属性的签名算法支持 sha256、sha384 和 sha512，签名算法和摘要签名内容用 `-` 分隔：
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+```
+
+可以使用 `openssl` 生成摘要签名，并进行 Base64 编码：
+
+```sh
+$ curl -fsSL https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css | openssl dgst -sha384 -binary | openssl enc -base64 -A
+```
+
+或者使用 [SRI Hash Generator](https://www.srihash.org/)。
 
 ## 参见
 

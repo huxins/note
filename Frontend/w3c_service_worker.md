@@ -50,6 +50,10 @@ this.addEventListener('fetch', function(event) {
 });
 ```
 
+#### 属性
+
+- `FetchEvent.request`：浏览器想要发送的 `Request`。
+
 ## 参考文献
 
 - [Service Worker API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)

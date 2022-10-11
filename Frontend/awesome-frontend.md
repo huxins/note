@@ -13,6 +13,7 @@
 
 ## JavaScript
 
+- [Service Worker](https://www.w3.org/TR/service-workers/) - Service Worker 是浏览器和网络间的代理。通过拦截文档中发出的请求，可以达到离线运行的目的。
 - [jQuery](https://jquery.com/) - 用于简化 HTML 与 JavaScript 之间的操作。
 - [DataTables](https://datatables.net/) - DataTables 是 jQuery Javascript 库的插件。用于创建定制的、可编辑的表格。
 

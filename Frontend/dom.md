@@ -1,10 +1,38 @@
 # DOM
 
-文档对象模型（DOM）是 HTML 和 XML 文档的编程接口。它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。简言之，它会将 web 页面和脚本或程序语言连接起来。
+DOM 是 HTML 和 XML 文档的编程接口。它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。
 
-一个 web 页面是一个文档。这个文档可以在浏览器窗口或作为 HTML 源码显示出来。但上述两个情况中都是同一份文档。文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+DOM 将文档解析为一个由节点和对象组成的结构集合。所有操作和创建 web 页面的属性，方法和事件都会被组织成对象的形式。例如，`document` 对象表示文档本身，`table` 对象实现了特定的 `HTMLTableElement` 接口来访问 HTML 表格等。
 
-所有操作和创建 web 页面的属性，方法和事件都会被组织成对象的形式（例如，`document` 对象表示文档本身，`table` 对象实现了特定的 `HTMLTableElement` DOM 接口来访问 HTML 表格等）。
+## Events
+
+### EventTarget 接口
+
+`EventTarget` 对象表示一个 target，当某事发生时可以将事件分派到该 target。
+
+DOM 节点的事件操作（监听和触发），都定义在 `EventTarget` 接口。所有节点对象都部署了这个接口，其他一些需要事件通信的浏览器内置对象（比如，`XMLHttpRequest`、`AudioNode`、`AudioContext`）也部署了这个接口。
+
+每个 `EventTarget` 对象都有一个关联的事件侦听器列表（零个或多个事件侦听器的列表）。它最初是空列表。
+
+该接口主要提供三个实例方法：
+
+- `addEventListener()`：绑定事件的监听函数
+- `removeEventListener()`：移除事件的监听函数
+- `dispatchEvent()`：触发事件
+
+#### EventTarget.addEventListener()
+
+`EventTarget.addEventListener()` 用于在当前节点或对象上（即部署了 `EventTarget` 接口的对象），定义一个特定事件的监听函数。一旦这个事件发生，就会执行监听函数。该方法没有返回值。
+
+```javascript
+target.addEventListener(type, listener[, useCapture]);
+```
+
+该方法接受三个参数：
+
+- `type`：事件名称，大小写敏感。
+- `listener`：监听函数。事件发生时，会调用该监听函数。
+- `useCapture`：布尔值，如果设为 `true`，表示监听函数将在捕获阶段触发。该参数可选，默认值为 `false`（监听函数只在冒泡阶段被触发）。
 
 ## Nodes
 
@@ -23,5 +51,5 @@
 
 ## 参见
 
-- [DOM Living Standard](https://dom.spec.whatwg.org/)
+- [DOM Living Standard - WHATWG](https://dom.spec.whatwg.org/)
 

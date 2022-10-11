@@ -22,6 +22,16 @@ var myRequest = new Request('flowers.jpg');
 
 - `request.url`：以字符串形式返回请求的 URL。
 
+### Fetch method
+
+```javascript
+fetch(new Request("https://api.ipify.org/"), {
+    headers: {
+        'User-Agent': 'Cloudflare Workers'
+    }
+})
+```
+
 ## 参见
 
 - [Fetch Standard - WHATWG](https://fetch.spec.whatwg.org/)

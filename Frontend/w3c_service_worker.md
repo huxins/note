@@ -52,7 +52,19 @@ this.addEventListener('fetch', function(event) {
 
 #### 属性
 
-- `FetchEvent.request`：浏览器想要发送的 `Request`。
+##### request
+
+`FetchEvent` 接口的 `request` 属性是只读的，返回触发事件处理程序的 `Request`。
+
+#### 方法
+
+##### respondWith()
+
+`FetchEvent` 接口的 `respondWith()` 方法阻止浏览器默认的 `fetch` 操作。
+
+```javascript
+respondWith(response)
+```
 
 ## 参考文献
 

@@ -152,9 +152,42 @@ Ajax 来源数据与 JavaScript 来源数据非常相似，但 DataTables 会进
 
 Ajax 数据由 DataTables 加载，只需使用 `ajax` 选项设置应该发出 Ajax 请求的 URL。
 
+```javascript
+$('#table').DataTable({
+    ajax: {
+        url: '/api/myData',
+        dataSrc: ''
+    },
+    columns: [
+        { title: "Name"},
+        { title: "Position" },
+        { title: "Office" },
+        { title: "Extn." },
+        { title: "Start date" },
+        { title: "Salary" }
+    ]
+});
+```
 
+## API
 
+### Core
 
+#### ajax.reload()
+
+从 Ajax 数据源重新加载表数据。
+
+```javascript
+$('#table').DataTable().ajax.reload();
+```
+
+#### ajax.url().load()
+
+从新设置的数据源 URL 加载数据。
+
+```javascript
+$('#table').DataTable().ajax.url('newData.json').load();
+```
 
 ## 参见
 

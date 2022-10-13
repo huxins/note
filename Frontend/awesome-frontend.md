@@ -1,9 +1,5 @@
 # Awesome Frontend
 
-## HTML
-
-- DOM
-
 ## CSS
 
 ### CSS Frameworks

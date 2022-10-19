@@ -50,3 +50,5 @@ ssr://example.com:10000:origin:rc4-md5:http_simple:MTIzNDU2/?obfsparam=ZG93bmxvY
 ssr://ZXhhbXBsZS5jb206MTAwMDA6b3JpZ2luOnJjNC1tZDU6aHR0cF9zaW1wbGU6TVRJek5EVTIvP29iZnNwYXJhbT1aRzkzYm14dllXUXVkMmx1Wkc5M2MzVndaR0YwWlM1amIyMCZwcm90b3BhcmFtPSZyZW1hcmtzPTVwZWw1cHlzNkptYTVvdWY1TGlUNTVTbzU3MlImZ3JvdXA9NUxxUg
 ```
 
+解码时，如果字符串包含 `-` 和 `_`，应先分别替换为 `+` 和 `/`。
+

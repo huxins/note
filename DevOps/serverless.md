@@ -45,7 +45,13 @@ def main_handler(event, context):
 
 Plugins 部署方式仅支持 Event 函数。`serverless.yml` 的详细配置选项可参考 [Serverless.yml 参考](https://github.com/serverless-tencent/serverless-tencent-scf/blob/master/docs/zh/yaml.md)。
 
-##### Example
+- 插件安装：
+
+```sh
+$ serverless plugin install --name serverless-tencent-scf
+```
+
+- 项目目录新建 `serverless.yml`：
 
 
 ```yaml
@@ -55,8 +61,7 @@ frameworkVersion: '3'
 
 provider:
   name: tencent
-  runtime: Python3.6
-  credentials: credentials.ini
+  credentials: ~/credentials.ini
   region: ap-guangzhou
   stage: dev
 
@@ -67,13 +72,13 @@ functions:
   hello_world:
     handler: index.main_handler
     description: Tencent Serverless Cloud Function
-    runtime: Python3.6
+    runtime: Python3.7
     events:
       - apigw:
           name: hello_world_apigw
           parameters:
             stageName: release
-            serviceId: service-oolooxe6
+            serviceId:
             httpMethod: ANY
             integratedResponse: false
             path: /abc/cde
@@ -81,17 +86,55 @@ functions:
             serviceTimeout: 10
 ```
 
-##### Serverless WSGI
+- 用户目录新建 `credentials.ini`：
+
+```ini
+[default]
+tencent_secret_id=AKIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+tencent_secret_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+tencent_app_id=1251******
+```
+
+- 项目目录新建 `index.py`：
+
+```python
+import json
+def main_handler(event, context):
+    print("Received event: " + json.dumps(event, indent = 2)) 
+    print("Received context: " + str(context))
+    print("Hello world")
+    return("Hello World")
+```
+
+- 部署或更新
+
+```sh
+$ serverless deploy
+```
+
+### Serverless Python Requirements
+
+一个 Serverless Framework 插件，用于自动捆绑 `requirements.txt` 中的依赖项并使其在您的 `PYTHONPATH` 中可用。
+
+- 插件安装
+
+```sh
+$ sls plugin install -n serverless-python-requirements
+```
+
+当您运行 `sls deploy` 时，该插件现在将捆绑您在 `requirements.txt` 或 `Pipfile` 中指定的 `python` 依赖项。
+
+注意，最后上传到云函数的包，包内文件的修改时间可能导致部署失败。
+
+### Serverless WSGI
 
 [Serverless WSGI](https://www.serverless.com/plugins/serverless-wsgi) 用于使用无服务器构建部署 Python WSGI 应用程序。
 
-安装插件：
+- 插件安装：
 
 ```sh
 $ sls plugin install -n serverless-wsgi
 ```
-
-
 
 ## Components
 

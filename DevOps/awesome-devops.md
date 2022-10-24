@@ -19,3 +19,9 @@ VPN、路由和防火墙。
 
 - [Serverless](https://www.serverless.com/) - 使用 AWS Lambda、Azure Functions、Google CloudFunctions 等构建具有无服务器架构的 Web、移动和 IoT 应用程序。
 
+## 操作系统
+
+操作系统 - 服务器平台。
+
+- [Windows](https://www.microsoft.com/zh-cn/windows-server)
+

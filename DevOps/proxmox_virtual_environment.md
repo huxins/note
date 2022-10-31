@@ -1,6 +1,6 @@
 # Proxmox Virtual Environment
 
-## Installation
+## 安装
 
 ### 刻录映像
 

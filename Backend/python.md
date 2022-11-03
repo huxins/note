@@ -90,7 +90,7 @@ flags = int('0b_1111_0000', 2)
 __import__(name, globals=None, locals=None, fromlist=(), level=0)
 ```
 
-此函数会由 `import` 语句发起调用。它可以被替换[^1]以便修改 import 语句的语义，但是 强烈 不建议这样做，因为使用导入钩子 (参见 PEP 302) 通常更容易实现同样的目标，并且不会导致代码问题，因为许多代码都会假定所用的是默认实现。 同样也不建议直接使用 __import__() 而应该用 importlib.import_module()。
+此函数会由 `import` 语句发起调用。它可以被替换[^1]以便修改 import 语句的语义[^2]，但是 强烈 不建议这样做，因为使用导入钩子 (参见 PEP 302) 通常更容易实现同样的目标，并且不会导致代码问题，因为许多代码都会假定所用的是默认实现。 同样也不建议直接使用 __import__() 而应该用 importlib.import_module()。
 
 ### 内置类型
 
@@ -603,4 +603,6 @@ flags = int('0b_1111_0000', 2)
 ## 备注
 
 [^1]: 通过导入 `builtins` 模块并赋值给 `builtins.__import__`。
+
+[^2]: 通过导入 `builtins` 模块并赋值给 `builtins.__import__`。
 

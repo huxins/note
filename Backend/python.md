@@ -600,8 +600,6 @@ flags = int('0b_1111_0000', 2)
 
 - [Python documentation](https://docs.python.org/3/)
 
-## 备注
-
 [^1]: 通过导入 `builtins` 模块并赋值给 `builtins.__import__`。
 
 [^2]: 通过导入 `builtins` 模块并赋值给 `builtins.__import__`。

@@ -1,10 +1,10 @@
 # Python
 
-## 安装和使用
+## 1. 安装和使用
 
-### 1. 命令行与环境
+### 1.1. 命令行与环境
 
-#### 1.1. 命令行
+#### 1.1.1. 命令行
 
 调用 Python 时，可以指定下列任意选项：
 
@@ -12,91 +12,149 @@
 python [-bBdEhiIOqsSuvVWx?] [-c command | -m module-name | script | - ] [args]
 ```
 
-##### 1.1.1. 接口选项
+##### 1.1.1.1. 接口选项
 
 - **-c** *`<command>`*
 
-执行 command 中的 Python 代码。command 可以是一条语句，也可以是用换行符分隔的多条语句，其中，前导空白字符与普通模块代码中的作用一样。
+  执行 *command* 中的 Python 代码。*command* 可以是一条语句，也可以是用换行符分隔的多条语句，其中，前导空白字符与普通模块代码中的作用一样。
 
-使用此选项时，`sys.argv` 的首个元素为 `'-c'`，并会把当前目录加入至 `sys.path` 开头（让该目录中的模块作为顶层模块导入）。
+  使用此选项时，`sys.argv` 的首个元素为 `'-c'`，并会把当前目录加入至 `sys.path` 开头。
 
-```sh
-$ python -c "import sys; print(sys.argv)"
-$ python -c "import sys; print(sys.path)"
-```
+  ```sh
+  $ python -c "import sys; print(sys.argv)"
+  $ python -c "import sys; print(sys.path)"
+  ```
 
 - **-m** *`<module-name>`*
 
-在 `sys.path` 中搜索指定模块，并以 `__main__` 模块执行其内容。
+  在 `sys.path` 中搜索指定模块，并以 `__main__` 模块执行其内容。
 
-```sh
-$ python -m pip --version
-```
+  ```sh
+  $ python -m pip --version
+  ```
 
-## 安装 Python 模块
+## 2. 安装 Python 模块
 
-### 关键术语
+### 2.1. 关键术语
 
 - `pip`：是首选的安装程序。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。
 - *virtual environment*：是一种半隔离的 Python 环境，允许为特定的应用安装各自的包，而不是安装到整个系统。
 - `venv`：是创建虚拟环境的标准工具，从 Python 3.3 开始成为 Python 的组成部分。从 Python 3.4 开始，它会默认安装 `pip` 到所创建的全部虚拟环境。
-- `virtualenv`：是 `venv` 的第三方替代（及其前身）。它允许在 Python 3.4 之前的版本中使用虚拟环境，那些版本或是完全不提供 `venv`，或是不会自动安装 `pip` 到所创建的虚拟环境。
+- `virtualenv`：是 `venv` 的第三方替代及其前身。它允许在 Python 3.4 之前的版本中使用虚拟环境，那些版本或是完全不提供 `venv`，或是不会自动安装 `pip` 到所创建的虚拟环境。
 - [Python Package Index](https://pypi.org/)：是一个开源许可的软件包公共存储库，可供所有 Python 用户使用。
-- `distutils`：是最初的构建和分发系统，于 1998 年首次加入 Python 标准库。虽然直接使用 `distutils` 的方式已被淘汰，它仍然是当前打包和分发架构的基础，而且它不仅仍然是标准库的一部分，这个名称还以其他方式存在（例如用于协调 Python 打包标准开发流程的邮件列表就以此命名）。
+- `distutils`：是最初的构建和分发系统，于 1998 年首次加入 Python 标准库。虽然直接使用 `distutils` 的方式已被淘汰，它仍然是当前打包和分发架构的基础，而且它不仅仍然是标准库的一部分，这个名称还以其他方式存在，例如用于协调 Python 打包标准开发流程的邮件列表就以此命名。
 
-### 虚拟环境
+### 2.2. 虚拟环境
 
 Python 虚拟环境允许将 Python 包安装在特定应用程序的隔离位置，而不是全局安装。
 
-使用 `venv`：
+- 使用 `venv`
 
-```sh
-$ python3 -m venv <DIR>
-# Linux
-$ source <DIR>/bin/activate
-$ source <DIR>/bin/deactivate
-# Windows
-$ <DIR>\Scripts\activate
-$ <DIR>\Scripts\deactivate
-```
+  - 创建虚拟环境
 
-## Python 标准库
+    ```sh
+    $ python3 -m venv <DIR>
+    ```
+    
+  - 激活虚拟环境
+    
+    ```sh
+    $ source <DIR>/bin/activate  # Linux
+    $ <DIR>\Scripts\activate     # Windows
+    ```
+    
+  - 退出虚拟环境
+  
+    ```sh
+    $ source <DIR>/bin/deactivate  # Linux
+    $ <DIR>\Scripts\deactivate     # Windows
+    ```
 
-### 内置函数
+## 3. Python 标准库
 
-#### I
+### 3.1. 内置函数
 
-##### `int()`
+#### `int()`
 
 ```python
-class int([x])
-class int(x, base=10)
+int(x=0)
+int(x, base=10)
 ```
 
 返回一个基于数字或字符串 *x* 构造的整数对象，或者在未给出参数时返回 `0`。如果 *x* 定义了 `__int__()`，`int(x)` 将返回 `x.__int__()`。如果 *x* 定义了 `__index__()`，它将返回 `x.__index__()`。如果 *x* 定义了 `__trunc__()`，它将返回 `x.__trunc__()`。对于浮点数，它将向零舍入。
 
-如果 *x* 不是数字，或者有 *base* 参数，*x* 必须是字符串、*bytes*、表示进制为 *base* 的整数字面值的 *bytearray* 实例。
+如果 *x* 不是数字，或者有 *base* 参数，则 *x* 必须是字符串、*bytes* 或 *bytearray* 实例，表示进制为 *base* 的整数字面值。字面值前可以加上 `+` 或 `-`。一个进制为 *n* 的数字包含 *0* 到 *n-1* 的数，其中 *a-z* 或 *A-Z* 表示 *10* 到 *35*。默认的 *base* 为 10，允许的进制有 0、2-36。2、8、16 进制的数字可以在代码中用 `0b`/`0B`、`0o`/`0O`、`0x`/`0X` 前缀来表示。进制为 0 将按照代码的字面量来精确解释，最后的结果会是 2、8、10、16 进制中的一个。所以 `int('010', 0)` 是非法的，但 `int('010')` 和 `int('010', 8)` 是合法的。
 
 ```python
-# 二进制转十进制
-flags = int('0b_1111_0000', 2)
+int('0b_1111_0000', 2)     # 二进制转十进制
 ```
 
-#### _
-
-##### `__import__()`
+#### `__import__()`
 
 ```python
 __import__(name, globals=None, locals=None, fromlist=(), level=0)
 ```
 
-此函数会由 `import` 语句发起调用。它可以被替换[^1]以便修改 import 语句的语义[^2]，但是 强烈 不建议这样做，因为使用导入钩子 (参见 PEP 302) 通常更容易实现同样的目标，并且不会导致代码问题，因为许多代码都会假定所用的是默认实现。 同样也不建议直接使用 __import__() 而应该用 importlib.import_module()。
+此函数会由 `import` 语句发起调用。它可以被替换[^1]以便修改 `import` 语句的语义，但是强烈不建议这样做，因为使用导入钩子[^2] 通常更容易实现同样的目标，并且不会导致代码问题，因为许多代码都会假定所用的是默认实现。同样也不建议直接使用 `__import__()` 而应该用 `importlib.import_module()`。
 
-### 内置类型
+本函数会导入模块 *name*，利用 *globals* 和 *locals* 来决定如何在包的上下文中解释该名称。*fromlist* 给出了应从 *name* 模块中导入的对象或子模块的名称。标准的实现代码完全不会用到 *locals* 参数，只用到了 *globals* 用于确定 `import` 语句所在的包上下文。
 
-#### 数字类型 - int, float, complex
+*level* 指定是使用绝对还是相对导入。`0` 意味着仅执行绝对导入。*level* 为正数值表示相对于模块调用 `__import__()` 的目录，将要搜索的父目录层数[^3]。
+
+当 *name* 变量的形式为 `package.module` 时，通常将会返回最高层级的包，而不是以 *name* 命名的模块。但是，当给出了非空的 *fromlist* 参数时，则将返回以 *name* 命名的模块。
+
+例如，语句 `import time` 的结果将为与以下代码作用相同的字节码：
+
+```python
+time = __import__('time', globals(), locals(), [], 0)
+```
+
+语句 `import lxml.html` 的结果将为以下调用：
+
+```python
+lxml = __import__('lxml.html', globals(), locals(), [], 0)
+```
+
+请注意，在这里 `__import__()` 是返回顶层模块的，因为这是通过 `import` 语句绑定到特定名称的对象。
+
+另一方面，语句 `from lxml.html import fromstring, document_fromstring as doc_fromstring` 的结果将为：
+
+```python
+_temp = __import__('lxml.html', globals(), locals(), ['fromstring', 'document_fromstring'], 0)
+fromstring = _temp.fromstring
+doc_fromstring = _temp.document_fromstring
+```
+
+在这里，`lxml.html` 模块会由 `__import__()` 返回。要导入的对象将从此对象中提取并赋值给它们对应的名称。
+
+如果您只想按名称导入模块，请使用 `importlib.import_module()`。
+
+### 3.3. 内置类型
+
+#### 3.3.4. 数字类型 - int, float, complex
 
 共有三种不同的数字类型：[整数](https://docs.python.org/zh-cn/3/library/functions.html#int)、[浮点数](https://docs.python.org/zh-cn/3/library/functions.html#float)和[复数](https://docs.python.org/zh-cn/3/library/functions.html#complex)。此外，[布尔值](https://docs.python.org/zh-cn/3/library/functions.html#bool)是整数的子类型。
+
+整数和浮点数支持下列运算：
+
+| 运算           | 结果                  |
+| -------------- | --------------------- |
+| `x + y`        | *x* 和 *y* 的和       |
+| `x - y`        | *x* 和 *y* 的差       |
+| `x * y`        | *x* 和 *y* 的乘积     |
+| `x / y`        | *x* 和 *y* 的商       |
+| `x // y`       | *x* 和 *y* 的商数[^4] |
+| `x % y`        | `x / y` 的余数        |
+| `-x`           | *x* 取反              |
+| `+x`           | *x* 不变              |
+| `abs(x)`       | *x* 的绝对值          |
+| `int(x)`       | 将 *x* 转换为整数     |
+| `float(x)`     | 将 *x* 转换为浮点数   |
+| `divmod(x, y)` | `(x // y, x % y)`     |
+| `pow(x, y)`    | *x* 的 *y* 次幂       |
+| `x ** y`       | *x* 的 *y* 次幂       |
+
+
 
 #### 序列类型 - list, tuple, range
 
@@ -458,7 +516,11 @@ f(**{'a': 1, 'b': 2})
 
 `import` 语句结合了两个操作；它先搜索指定名称的模块，然后将搜索结果绑定到当前作用域中的名称。`import` 语句的搜索操作被定义为对 `__import__()` 函数的调用并带有适当的参数。`__import__()` 的返回值会被用于执行 `import` 语句的名称绑定操作。
 
-对 `__import__()` 的直接调用将仅执行模块搜索，如果找到，则执行模块创建操作。不过也可能产生某些副作用，例如导入父包和更新各种缓存（包括 `sys.modules`），只有 `import` 语句会执行名称绑定操作。
+对 `__import__()` 的直接调用将仅执行模块搜索，如果找到，则执行模块创建操作。只有 `import` 语句会执行名称绑定操作。
+
+当一个模块首次被导入时，Python 会搜索该模块，如果找到就创建一个 `module` 对象并初始化它。如果指定名称的模块未找到，则会引发 `ModuleNotFoundError`。当发起调用导入机制时，Python 会实现多种策略来搜索指定名称的模块。这些策略可以通过使用下文所描述的多种钩子来加以修改和扩展。
+
+#### 5.1. `importlib`
 
 
 
@@ -600,7 +662,13 @@ flags = int('0b_1111_0000', 2)
 
 - [Python documentation](https://docs.python.org/3/)
 
+## 备注
+
 [^1]: 通过导入 `builtins` 模块并赋值给 `builtins.__import__`。
 
-[^2]: 通过导入 `builtins` 模块并赋值给 `builtins.__import__`。
+[^2]: 参见 [PEP 302 – New Import Hooks](https://peps.python.org/pep-0302/)。
+
+[^3]: 参见 [PEP 328 – Imports: Multi-Line and Absolute/Relative](https://peps.python.org/pep-0328/)
+
+[^4]: 也称为整数除法。结果值是一个整数，但结果的类型不一定是 `int`。运算结果总是向负无穷的方向舍入：`1//2` 为 `0`，`(-1)//2` 为 `-1`，`1//(-2)` 为 `-1` 而 `(-1)//(-2)` 为 `0`。
 

@@ -360,3 +360,75 @@ url_for('static', filename='style.css')
 
 这个静态文件在文件系统中的位置应该是 `static/style.css`。
 
+#### 2.2.7. 操作请求数据
+
+在 Flask 中由全局对象 `request` 来提供请求信息。既然这个对象是全局的，怎么还能保持线程安全？答案是*本地环境*。
+
+##### 2.2.7.2. 请求对象
+
+从 `flask` 模块导入请求对象：
+
+```python
+from flask import request
+```
+
+通过使用 `method` 属性可以操作当前请求方法，通过使用 `form` 属性处理表单数据。以下是使用上述两个属性的例子：
+
+```python
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'],
+                       request.form['password']):
+            return log_the_user_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+    return render_template('login.html', error=error)
+```
+
+要操作 URL（如 `?key=value`）中提交的参数可以使用 `args` 属性：
+
+```python
+searchword = request.args.get('key', '')
+```
+
+将 `application/json` 数据解析为 JSON：
+
+```python
+obj = request.get_json()
+```
+
+### 2.14. 使用蓝图进行应用模块化
+
+为了在一个或多个应用中，使应用模块化并且支持常用方案，Flask 引入了*蓝图*概念。蓝图可以极大地简化大型应用并为扩展提供集中的注册入口。`Blueprint` 对象与 Flask 应用对象的工作方式类似，但不是一个真正的应用。它更像一个用于构建和扩展应用的*蓝图*。
+
+#### 2.14.3. 第一个蓝图
+
+以下是一个最基本的蓝图示例：
+
+```python
+from flask import Blueprint
+
+simple_page = Blueprint('simple_page', __name__, url_prefix='/')
+
+@simple_page.route('/', defaults={'page': 'index'})
+@simple_page.route('/<page>')
+def show(page):
+    return page
+```
+
+当你使用 `@simple_page.route` 装饰器绑定一个函数时，蓝图会记录下所登记的 `show` 函数。当以后在应用中注册蓝图时，这个函数会被注册到应用中。另外，它会把构建 `Blueprint` 时所使用的名称作为函数端点的前缀。蓝图的名称不修改 URL，只修改端点。
+
+#### 2.14.4. 注册蓝图
+
+可以这样注册蓝图：
+
+```python
+from flask import Flask
+import simple_page
+
+app = Flask(__name__)
+app.register_blueprint(simple_page)
+```
+

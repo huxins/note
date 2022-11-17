@@ -481,3 +481,97 @@ with connection:
 
 ## 4. SQLAlchemy
 
+### 4.1. 入门
+
+#### 4.1.1. 安装
+
+```sh
+$ pip install SQLAlchemy
+```
+
+### 4.2. 引擎和连接使用
+
+#### 4.2.5. 引擎配置
+
+##### 4.2.5.2. Database URLs
+
+`create_engine()` 函数根据 URL 生成一个 `Engine` 对象。URL 的格式通常遵循 [RFC1738](https://tools.ietf.org/html/rfc1738)，也有一些例外。URL 通常包括用户名、密码、主机名、数据库名称字段，以及用于其他配置的可选关键字参数。数据库 URL 的典型形式是：
+
+```
+dialect+driver://username:password@host:port/database
+```
+
+`dialect` 包括 SQLAlchemy 方言的标识名称，例如 `sqlite`、`mysql`、`postgresql`、`oracle` 或 `mssql`。`driver` 是用于连接到数据库的 DBAPI 的名称，全部使用小写字母。如果未指定，则将导入默认 DBAPI，此默认值通常是该后端可用的最广为人知的驱动程序。
+
+##### 4.2.5.3. 引擎创建 API
+
+###### 4.2.5.3.1. `create_engine()`
+
+```
+function sqlalchemy.create_engine(url, **kwargs)
+```
+
+创建一个新的 `Engine` 实例。
+
+标准调用形式是将 URL 作为第一个位置参数发送，通常是指数据库方言和连接参数的字符串：
+
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine("postgresql://scott:tiger@localhost/test")
+```
+
+### 4.3. 使用 Session
+
+#### 4.3.8. Session API
+
+##### 4.3.8.1. Session 和 `sessionmaker()`
+
+###### 4.3.8.1.1. sessionmaker
+
+一个可配置的 `Session` 工厂。
+
+`sessionmaker` 工厂在调用时生成新的 `Session` 对象，根据建立的配置参数创建它们。
+
+```python
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine("postgresql://scott:tiger@localhost/test")
+DBSession = sessionmaker(bind=engine)
+```
+
+### 4.4. ORM 映射类配置
+
+#### 4.4.8. Class Mapping API
+
+##### 4.4.8.1. registry
+
+###### 4.4.8.1.5. `registry.generate_base()`
+
+生成声明类基类。
+
+从返回的类对象继承的类将使用声明映射自动映射。
+
+```python
+from sqlalchemy.orm import registry
+
+mapper_registry = registry()
+
+Base = mapper_registry.generate_base()
+
+class MyClass(Base):
+    __tablename__ = "my_table"
+    id = Column(Integer, primary_key=True)
+```
+
+##### 4.4.8.2. `declarative_base()`
+
+为声明类定义构造一个基类。
+
+```python
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
+```
+

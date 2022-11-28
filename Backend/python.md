@@ -103,6 +103,12 @@ int(x, base=10)
 int('0b_1111_0000', 2)     # 二进制转十进制
 ```
 
+#### `isinstance()`
+
+- **isinstance**(*object*, *classinfo*)
+
+  如果对象参数是 *classinfo* 参数或其子类的实例，则返回 True。
+
 #### `str()`
 
 ```

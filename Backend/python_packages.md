@@ -541,6 +541,24 @@ engine = create_engine("postgresql://scott:tiger@localhost/test")
 DBSession = sessionmaker(bind=engine)
 ```
 
+###### 4.3.8.1.3. Session
+
+- `Session.add()`
+
+  将对象放入此会话中。
+  
+- `Session.close()`
+
+  关闭此会话使用的事务资源和 ORM 对象。
+
+- `Session.commit()`
+
+  刷新挂起的更改并提交当前事务。
+  
+- `Session.query()`
+
+  返回一个新的 `Query` 对象对应于这个 `Session`。
+
 ### 4.4. ORM 映射类配置
 
 #### 4.4.8. Class Mapping API
@@ -574,4 +592,24 @@ from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 ```
+
+### 4.5. 查询数据、加载对象
+
+#### 4.5.5. Query API
+
+##### 4.5.5.1. Query 对象
+
+###### 4.5.5.1.1. Query
+
+- `Query.all()`
+
+  将此 `Query` 表示的结果作为列表返回。
+
+- `Query.filter()`
+
+  使用 SQL 表达式将给定的过滤条件应用于此查询的副本。
+  
+- `Query.one()`
+
+  只返回一个结果或引发异常。
 

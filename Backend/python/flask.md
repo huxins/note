@@ -274,3 +274,67 @@ app = Flask(__name__)
 app.register_blueprint(simple_page)
 ```
 
+## 19. Flask 方案
+
+### 19.8. 使用 SQLAlchemy
+
+因为 SQLAlchemy 是一个常用的数据库抽象层，并且需要一定的配置才能使用，因此，我们为你做了一个处理 SQLAlchemy 的扩展。如果你需要快速的开始使用 SQLAlchemy，那么推荐你使用这个扩展。
+
+#### 19.8.1. 快速开始
+
+##### 19.8.1.2. 安装
+
+从 PyPI 下载 [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/)：
+
+```sh
+$ pip install -U Flask-SQLAlchemy
+```
+
+##### 19.8.1.3. 配置扩展
+
+唯一需要的 Flask 应用程序配置是 `SQLALCHEMY_DATABASE_URI` 键。这是一个连接字符串，它告诉 SQLAlchemy 要连接到哪个数据库。
+
+创建 Flask 应用程序对象，加载配置，然后通过调用 `db.init_app` 使应用程序初始化 SQLAlchemy 扩展类。此示例连接到 SQLite 数据库，该数据库存储在应用程序的实例文件夹中。
+
+```python
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+# 创建扩展
+db = SQLAlchemy()
+# 创建应用
+app = Flask(__name__)
+# 配置 SQLite 数据库，相对于应用程序实例文件夹
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+# 使用扩展初始化应用程序
+db.init_app(app)
+```
+
+`db` 对象使您可以访问 `db.Model` 类来定义模型，并访问 `db.session` 来执行查询。
+
+##### 19.8.1.4. 定义 Models
+
+子类 `db.Model` 以定义模型类。`db` 对象使 `sqlalchemy` 和 `sqlalchemy.orm` 中的名称方便使用，例如 `db.Column`。该模型将通过将 CamelCase 类名转换为 snake_case 来生成表名。
+
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String)
+```
+
+表名 `user` 将自动分配给模型的表。
+
+##### 19.8.1.5. 创建表
+
+定义完所有模型和表后，调用 `SQLAlchemy.create_all()` 在数据库中创建表。这需要一个应用程序上下文。由于此时您不在请求中，请手动创建一个。
+
+```python
+with app.app_context():
+    db.create_all()
+```
+
+如果你在其他模块中定义模型，你必须在调用 `create_all` 之前导入它们，否则 SQLAlchemy 将不知道它们。
+
+如果表已经在数据库中，`create_all` 不会更新它们。
+

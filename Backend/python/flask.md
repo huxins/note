@@ -241,6 +241,50 @@ searchword = request.args.get('key', '')
 obj = request.get_json()
 ```
 
+## 9. 配置管理
+
+应用总是需要一定的配置的。根据应用环境不同，会需要不同的配置。比如开关调试模式、设置密钥以及其他依赖于环境的东西。
+
+### 9.1. 配置入门
+
+`config` 实质上是一个字典的子类，可以像字典一样操作：
+
+```python
+app = Flask(__name__)
+app.config['TESTING'] = True
+```
+
+某些配置值还转移到了 Flask 对象中，可以直接通过 Flask 来操作：
+
+```python
+app.testing = True
+```
+
+一次更新多个配置值可以使用 `dict.update()` 方法：
+
+```python
+app.config.update(
+    TESTING=True,
+    SECRET_KEY='192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
+)
+```
+
+### 9.3. 内置配置变量
+
+以下配置变量由 Flask 内部使用：
+
+- **ENV**
+
+  应用运行于什么环境。
+  
+  缺省值：`'production'`
+  
+- **DEBUG**
+
+  是否开启调试模式。
+  
+  缺省值：当 `ENV` 是 `'development'` 时，为 `True`；否则为 `False`。
+
 ## 14. 使用蓝图进行应用模块化
 
 为了在一个或多个应用中，使应用模块化并且支持常用方案，Flask 引入了*蓝图*概念。蓝图可以极大地简化大型应用并为扩展提供集中的注册入口。`Blueprint` 对象与 Flask 应用对象的工作方式类似，但不是一个真正的应用。它更像一个用于构建和扩展应用的*蓝图*。

@@ -140,7 +140,7 @@ python -m pip config [<file-option>] set command.option value
 python -m pip config [<file-option>] unset command.option
 ```
 
-##### 3.2.2. 例子
+#### 3.2.2. 例子
 
 - 配置文件中指定包索引的 Base URL
 

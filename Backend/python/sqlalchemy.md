@@ -74,9 +74,25 @@ DBSession = sessionmaker(bind=engine)
 
   刷新挂起的更改并提交当前事务。
   
+- `Session.execute()`
+
+  执行 SQL 表达式构造。
+
+  ```python
+  db.session.execute(db.select(User)).scalars()
+  ```
+
 - `Session.query()`
 
   返回一个新的 `Query` 对象对应于这个 `Session`。
+
+  ```python
+  session.query(User).filter(User.id == '5').one()
+  ```
+
+- `Session.scalars()`
+
+  执行语句并将结果作为纯量返回。
 
 ## 4. ORM 映射类配置
 
@@ -265,6 +281,18 @@ int 整数的类型。
   - **length**
   
     可选，用于 DDL 和 CAST 表达式的列的长度。如果不会发出 `CREATE TABLE`，则可以安全地省略。某些数据库可能需要在 DDL 中使用长度，如果包含没有长度的 `VARCHAR`，则在发出 `CREATE TABLE` DDL 时会引发异常。该值是被解释为字节还是字符是特定于数据库的。
+
+## 8. SQL 语句和表达式 API
+
+### 8.3. Selectables, Tables, FROM 对象
+
+#### 8.3.1. Selectables 基础构造函数
+
+顶级 `FROM` 子句和 `SELECT` 构造函数。
+
+- **select**()
+
+  使用构造函数样式创建 Select。
 
 ## 参见
 

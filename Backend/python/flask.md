@@ -382,3 +382,25 @@ with app.app_context():
 
 如果表已经在数据库中，`create_all` 不会更新它们。
 
+## 23. API 参考
+
+### 23.1. Application Object
+
+- **json_encoder**
+
+  `flask.json.JSONEncoder` 的别名。
+
+### 23.10. 有用的函数和类
+
+- flask.**current_app**
+
+  处理当前请求的应用程序的代理。
+
+### 23.12. JSON 支持
+
+Flask 使用内置的 `json` 模块来处理 JSON。它将使用当前蓝图或应用程序的 JSON 编码器和解码器，以便于定制。默认情况下它处理一些额外的数据类型：
+
+- `datetime.datetime` 和 `datetime.date` 被序列化为 RFC 822 字符串。这与 HTTP 日期格式相同。
+- `uuid.UUID` 被序列化为一个字符串。
+- `dataclasses.dataclass` 传递给 `dataclasses.asdict()`。
+

@@ -294,7 +294,3 @@ int 整数的类型。
 
   使用构造函数样式创建 Select。
 
-## 参见
-
-- [SQLAlchemy 1.4 Documentation](https://docs.sqlalchemy.org/en/14/)
-

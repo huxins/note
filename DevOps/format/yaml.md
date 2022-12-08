@@ -173,7 +173,3 @@ test:
   str: str
 ```
 
-## 参考
-
-- [The Official YAML Web Site](https://yaml.org/)
-

@@ -621,7 +621,3 @@ $ /usr/pgsql-10/bin/initdb \
     --pwprompt
 ```
 
-## 参见
-
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/current/index.html)
-

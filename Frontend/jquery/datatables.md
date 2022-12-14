@@ -1,22 +1,15 @@
 # DataTables
 
-## 入门
+## 1. 入门
 
-### 快速开始
-
-#### CSS
-
-```css
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-```
-
-#### JS
+### 1.1. 快速开始
 
 ```html
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 ```
 
-### 初始化数据表
+### 1.2. 初始化数据表
 
 ```javascript
 $(document).ready(function() {
@@ -24,9 +17,9 @@ $(document).ready(function() {
 });
 ```
 
-## 数据
+## 2. 数据
 
-### 数据源类型
+### 2.1. 数据源类型
 
 用于 DataTable 的主要数据源必须始终是一个数组。该数组中的每个项目都将定义要显示的行，DataTables 可以使用三种基本的 JavaScript 数据类型作为行的数据源：
 
@@ -34,7 +27,7 @@ $(document).ready(function() {
 - Objects - `{}`
 - Instances - `new MyClass()`
 
-#### Arrays
+#### 2.1.1. Arrays
 
 数组很容易在 DataTable 中使用，因为数组元素到数据所在列的映射只需通过读取该位置的数组元素值的列索引来执行。因此，当使用数组作为数据源时，每个数组中的元素数必须等于表中的列数。
 
@@ -79,7 +72,7 @@ $(document).ready(function() {
 });
 ```
 
-#### Objects
+#### 2.1.2. Objects
 
 对象非常适合直观地使用，其方式与数组略有不同。如果您通过 API 积极处理数据，对象可以使获取特定数据变得非常容易，因为您只需要使用属性名称，而不是记住数据所在的数组索引（例如 `data.name`，而不是 `data[0]`）。
 
@@ -124,7 +117,7 @@ $(document).ready(function() {
 });
 ```
 
-### 数据源
+### 2.2. 数据源
 
 DataTables 将在表中显示的数据有三个基本来源：
 
@@ -132,7 +125,7 @@ DataTables 将在表中显示的数据有三个基本来源：
 - JavaScript
 - Ajax sourced data
 
-#### JavaScript
+#### 2.2.1. JavaScript
 
 可以使用数据初始化选项指示 DataTables 使用提供给它的 `data`。
 
@@ -144,11 +137,11 @@ $(document).ready(function() {
 });
 ```
 
-#### Ajax
+#### 2.2.2. Ajax
 
 Ajax 来源数据与 JavaScript 来源数据非常相似，但 DataTables 会进行 Ajax 调用来为您获取数据。
 
-##### 加载数据
+##### 2.2.2.1. 加载数据
 
 Ajax 数据由 DataTables 加载，只需使用 `ajax` 选项设置应该发出 Ajax 请求的 URL。
 
@@ -169,11 +162,11 @@ $('#table').DataTable({
 });
 ```
 
-## Options
+## 3. Options
 
-### Columns
+### 3.1. Columns
 
-#### columns.data
+#### 3.1.1. columns.data
 
 从行数据对象 / 数组中设置列的数据源。
 
@@ -195,11 +188,11 @@ $('#table').DataTable({
 });
 ```
 
-## API
+## 4. API
 
-### Core
+### 4.1. Core
 
-#### ajax.reload()
+#### 4.1.1. ajax.reload()
 
 从 Ajax 数据源重新加载表数据。
 
@@ -207,7 +200,7 @@ $('#table').DataTable({
 $('#table').DataTable().ajax.reload();
 ```
 
-#### ajax.url().load()
+#### 4.1.2. ajax.url().load()
 
 从新设置的数据源 URL 加载数据。
 
@@ -215,9 +208,9 @@ $('#table').DataTable().ajax.reload();
 $('#table').DataTable().ajax.url('newData.json').load();
 ```
 
-### Columns
+### 4.2. Columns
 
-#### column()
+#### 4.2.1. column()
 
 从表中选择单个列。
 
@@ -225,7 +218,7 @@ $('#table').DataTable().ajax.url('newData.json').load();
 $('#table').DataTable().column( $('#table').find('thead th')[0] );
 ```
 
-#### column().visible()
+#### 4.2.2. column().visible()
 
 获取 / 设置单个选定列的可见性。
 
@@ -233,9 +226,9 @@ $('#table').DataTable().column( $('#table').find('thead th')[0] );
 $('#table').DataTable().column( $('#table').find('thead th')[0] ).visible(true);
 ```
 
-### Rows
+### 4.3. Rows
 
-#### row()
+#### 4.3.1. row()
 
 从表中选择一行。
 
@@ -243,7 +236,7 @@ $('#table').DataTable().column( $('#table').find('thead th')[0] ).visible(true);
 $('#table').DataTable().row( $('#table').find('tbody tr')[0] );
 ```
 
-#### row().data()
+#### 4.3.2. row().data()
 
 获取 / 设置所选行的数据。
 
@@ -253,11 +246,11 @@ $('#table').DataTable().row( $('#table').find('tbody tr')[0] );
 $('#table').DataTable().row( $('#table').find('tbody tr')[0] ).data();
 ```
 
-## Examples
+## 5. Examples
 
-### 基本初始化
+### 5.1. 基本初始化
 
-#### 显示行序号
+#### 5.1.1. 显示行序号
 
 ```javascript
 $('#table').DataTable({
@@ -275,7 +268,7 @@ $('#table').DataTable({
 });
 ```
 
-#### 显示行的附加信息
+#### 5.1.2. 显示行的附加信息
 
 ```javascript
 $(document).ready(function(){
@@ -307,7 +300,7 @@ $('#table tbody').on('click', 'td.details-control', function() {
 });
 ```
 
-#### 初始化完成回调
+#### 5.1.3. 初始化完成回调
 
 ```javascript
 $('#table').DataTable({
@@ -320,9 +313,9 @@ $('#table').DataTable({
 });
 ```
 
-### 高级初始化
+### 5.2. 高级初始化
 
-#### 服务器分页
+#### 5.2.1. 服务器分页
 
 https://www.cnblogs.com/xiashengwang/p/8087181.html
 
@@ -562,9 +555,9 @@ $(function () {
 });
 ```
 
-### API
+### 5.3. API
 
-#### 获取 checkBox id
+#### 5.3.1. 获取 checkBox id
 
 ```javascript
 function (checkBoxName) {
@@ -585,7 +578,7 @@ function (checkBoxName) {
 }
 ```
 
-#### selected
+#### 5.3.2. selected
 
 ```javascript
 $('#tableId tbody tr').addClass('row_selected');
@@ -603,13 +596,13 @@ $('#tableId tbody tr').removeClass('row_selected');
 }
 ```
 
-#### sorting
+#### 5.3.3. sorting
 
 ```javascript
 $("#tableId thead tr th:first").removeClass("sorting_asc");
 ```
 
-#### 获取第一条选中的数据
+#### 5.3.4. 获取第一条选中的数据
 
 ```javascript
 var obj = $("#table").DataTable().rows('.row_selected').data()[0];

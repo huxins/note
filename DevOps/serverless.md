@@ -1,18 +1,32 @@
 # Serverless
 
-## Plugins
+## 1. Plugins
 
-Serverless Framework Plugin 实际上是一个函数的管理工具，无论针对 AWS 还是腾讯云，Plugin 的目标都是对函数进行管理。
+Serverless Framework Plugin 实际上是一个函数的管理工具，无论针对 AWS 还是腾讯云，Plugin 的目标都是对函数进行管理。可参考相关[例子](https://github.com/serverless/examples)。
 
-相关例子：
+以下为 `serverless.yml` 基本配置示例：
 
-- [Serverless Examples](https://github.com/serverless/examples)
+```yaml
+service: aws-python-api
 
-### Tencent Cloud
+frameworkVersion: '3'
 
-#### Web 函数
+provider:
+  name: aws
+  runtime: python3.7
 
-Web 函数下，API 网关会在 header 里加上函数触发所需要的信息，并将原始请求直接透传，触发后端函数运行。
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - httpApi: '*'
+```
+
+### 1.1. 腾讯云
+
+#### 1.1.1. Web 函数
+
+Web 函数下，API 网关会在 `header` 里加上函数触发所需要的信息，并将原始请求直接透传，触发后端函数运行。
 
 ```python
 from flask import Flask
@@ -20,18 +34,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-   return 'Hello World'
+    return 'Hello World'
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0',port=9000)
+    app.run(host='0.0.0.0', port=9000)
 ```
 
-#### Event 函数
+#### 1.1.2. Event 函数
 
 Event 函数下，API 网关会将请求内容以参数形式传递给函数，并将函数返回作为响应返回给请求方。
 
 ```python
 import json
+
 def main_handler(event, context):
     print("Received event: " + json.dumps(event, indent = 2)) 
     print("Received context: " + str(context))
@@ -39,11 +54,11 @@ def main_handler(event, context):
     return("Hello World")
 ```
 
-#### Plugins
+#### 1.1.3. Plugin
 
 [serverless-tencent-scf](https://github.com/tencentyun/serverless-tencent-scf/blob/master/README.zh-hans.md) 插件提供 [Serverless Framework](https://github.com/serverless/serverless) 对 [Tencent SCF](https://cloud.tencent.com/product/scf) 的支持。
 
-Plugins 部署方式仅支持 Event 函数。`serverless.yml` 的详细配置选项可参考 [Serverless.yml 参考](https://github.com/serverless-tencent/serverless-tencent-scf/blob/master/docs/zh/yaml.md)。
+Plugin 部署方式仅支持 Event 函数。`serverless.yml` 的详细配置选项可参考 [serverless-tencent-scf](https://github.com/serverless-tencent/serverless-tencent-scf/blob/master/docs/zh/yaml.md)。
 
 - 插件安装：
 
@@ -51,8 +66,15 @@ Plugins 部署方式仅支持 Event 函数。`serverless.yml` 的详细配置选
 $ serverless plugin install --name serverless-tencent-scf
 ```
 
-- 项目目录新建 `serverless.yml`：
+- 部署或更新
 
+```sh
+$ serverless deploy
+```
+
+##### 1.1.3.1. 配置
+
+- 项目目录新建 `serverless.yml`：
 
 ```yaml
 service: hello-world
@@ -86,47 +108,40 @@ functions:
             serviceTimeout: 10
 ```
 
-- 用户目录新建 `credentials.ini`：
+- `provider`
 
-```ini
-[default]
-tencent_secret_id=AKIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-tencent_secret_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-tencent_app_id=1251******
-```
+  - `credentials`
+  
+    腾讯云帐户凭据。
+    
+    新建 `credentials.ini` 文件：
+    
+    ```ini
+    [default]
+    tencent_secret_id=AKIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    tencent_secret_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    tencent_app_id=1251******
+    ```
+    
+  - `region`
+  
+    地域和可用区。可选地区列表可参考[地域和可用区](https://cloud.tencent.com/document/product/213/6091)。
 
-- 项目目录新建 `index.py`：
-
-```python
-import json
-def main_handler(event, context):
-    print("Received event: " + json.dumps(event, indent = 2)) 
-    print("Received context: " + str(context))
-    print("Hello world")
-    return("Hello World")
-```
-
-- 部署或更新
-
-```sh
-$ serverless deploy
-```
-
-### Serverless Python Requirements
+### 1.2. Serverless Python Requirements
 
 一个 Serverless Framework 插件，用于自动捆绑 `requirements.txt` 中的依赖项并使其在您的 `PYTHONPATH` 中可用。
 
 - 插件安装
 
 ```sh
-$ sls plugin install -n serverless-python-requirements
+$ serverless plugin install -n serverless-python-requirements
 ```
 
 当您运行 `sls deploy` 时，该插件现在将捆绑您在 `requirements.txt` 或 `Pipfile` 中指定的 `python` 依赖项。
 
 注意，最后上传到云函数的包，包内文件的修改时间可能导致部署失败。
 
-### Serverless WSGI
+### 1.3. Serverless WSGI
 
 [Serverless WSGI](https://www.serverless.com/plugins/serverless-wsgi) 用于使用无服务器构建部署 Python WSGI 应用程序。
 

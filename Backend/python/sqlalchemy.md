@@ -284,6 +284,18 @@ int 整数的类型。
 
 ## 8. SQL 语句和表达式 API
 
+### 8.1. 列元素和表达式
+
+#### 8.1.1. 列元素基础构造函数
+
+##### 8.1.1.1. text()
+
+```python
+sqlalchemy.sql.expression.text(text, bind=None)
+```
+
+构造一个新的 `TextClause` 子句，直接表示文本 SQL 字符串。
+
 ### 8.3. Selectables, Tables, FROM 对象
 
 #### 8.3.1. Selectables 基础构造函数

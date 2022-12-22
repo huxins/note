@@ -206,10 +206,18 @@ Base = declarative_base()
 
   将此 `Query` 表示的结果作为列表返回。
 
+- `sqlalchemy.orm.Query.exists()`
+
+  一种将查询转换为 EXISTS (SELECT 1 FROM … WHERE …) 形式的 EXISTS 子查询的便捷方法。
+
 - `Query.filter()`
 
   使用 SQL 表达式将给定的过滤条件应用于此查询的副本。
-  
+
+- `sqlalchemy.orm.Query.filter_by(**kwargs)`
+
+  使用关键字表达式将给定的过滤条件应用于此查询的副本。
+
 - `Query.one()`
 
   只返回一个结果或引发异常。

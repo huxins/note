@@ -1,101 +1,70 @@
 # JavaScript
 
-## 一、语法
+## 一、语句和声明
 
-### 1.1. 词法语法
+### 1.1. 声明
 
-- **自动分号补全**
+#### 1.1.1. let
 
-  一些 JavaScript 语句必须用分号结束，所以会被自动分号补全影响。
+`let` 允许声明一个作用域被限制在块作用域中的局部变量。`let` 声明的变量不会在作用域中被提升。
 
-- **注释**
+```javascript
+let x = 1;
 
-  - **单行注释**
-
-    单行注释以两个正斜杠字符 `//` 开始。
-
-    ```javascript
-    function comment() {
-      // 这是单行注释
-      console.log("Hello world!");
-    }
-    comment();
-    ```
-  
-  - **多行注释**
-
-    多行注释以一个正斜杠和星号开始 `/*` 并以一个星号和正斜杠结束 `*/`。
-
-    ```javascript
-    function comment() {
-      /* 这是多行注释，
-         注意在写完注释前无需终止注释 */
-      console.log("Hello world!");
-    }
-    comment();
-    ```
-
-### 1.2. 语句和声明
-
-#### 1.2.1. 声明和变量语句
-
-- **let**
-
-  `let` 允许你声明一个作用域被限制在块作用域中的变量、语句或者表达式。`let` 声明的变量不会在作用域中被提升。
-
-  ```javascript
-  let x = 1;
-  
-  if (x === 1) {
-    let x = 2;
-    console.log(x);
-  }
-  
+if (x === 1) {
+  let x = 2;
   console.log(x);
-  ```
+}
 
-- **var**
+console.log(x);
+```
 
-  `var` 语句用于声明一个函数范围或全局范围的变量。
+#### 1.1.2. var
 
-  ```javascript
-  var x = 1;
-  
-  if (x === 1) {
-    var x = 2;
-    console.log(x);
-  }
-  
+`var` 语句用于声明一个函数范围或全局范围的变量。
+
+```javascript
+var x = 1;
+
+if (x === 1) {
+  var x = 2;
   console.log(x);
-  ```
+}
 
-  无论在何处声明变量，都会在执行任何代码之前进行处理。这被称为变量提升。这些变量的初始值为 `undefined`。
+console.log(x);
+```
 
-  ```javascript
-  console.log(x);
-  var x = 1;
-  console.log(x);
-  ```
+无论在何处声明变量，都会在执行任何代码之前进行处理。这被称为变量提升。这些变量的初始值为 `undefined`。
 
-- **const**
+```javascript
+console.log(x);
 
-  使用 `const` 声明的变量称为常量。常量是块级范围的，非常类似用 `let` 语句定义的变量。但常量的值是无法改变的，也不能被重新声明。
+var x = 1;
 
-  ```javascript
-  const number = 42;
-  
-  try {
-    number = 99;
-  } catch (err) {
-    console.log(err);
-  }
-  
-  console.log(number);
-  ```
+console.log(x);
+```
 
-### 1.3. 字面量
+#### 1.1.3. const
 
-#### 1.3.1. String
+`const` 声明的变量称为常量。常量是块级范围的，非常类似用 `let` 语句定义的变量。但常量的值无法改变，也不能被重新声明。
+
+```javascript
+const number = 42;
+
+try {
+  number = 99;
+} catch (err) {
+  console.log(err);
+}
+
+console.log(number);
+```
+
+## 二、词汇语法
+
+### 2.1. 字面量
+
+#### 2.1.1. String
 
 字符串字面量是由双引号 `"` 或单引号 `'` 括起来的零个或多个字符。字符串被限定在同种引号之间；也即，必须是成对单引号或成对双引号。下面的例子都是字符串字面值：
 

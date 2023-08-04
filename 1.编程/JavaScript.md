@@ -66,15 +66,20 @@ console.log(number);
 
 #### 2.1.1. String
 
-字符串字面量是由双引号 `"` 或单引号 `'` 括起来的零个或多个字符。字符串被限定在同种引号之间；也即，必须是成对单引号或成对双引号。下面的例子都是字符串字面值：
+字符串字面量是由双引号或单引号括起来的零个或多个字符。
 
 ```javascript
-const string1 = "A string primitive";
-const string2 = 'Also a string primitive';
-const string3 = `Yet another string primitive`;
+"A string primitive";
+'Also a string primitive';
 ```
 
-在 ES2015 中，还提供了一种模板字面量，模板字符串提供了一些语法糖来帮你构造字符串。这与 Perl、Python 还有其他语言中的字符串插值的特性非常相似。
+## 三、表达式
+
+### 3.1. 基本表达式
+
+#### 3.1.1. 模板字面量
+
+在 ES2015 中，还提供了一种模板字面量，模板字符串提供了一些语法糖来构造字符串。这与 Perl、Python 还有其他语言中的字符串插值的特性非常相似。
 
 ```javascript
 var name = "Bob";
@@ -82,200 +87,353 @@ var time = "today";
 `Hello ${name}, how are you ${time}?`
 ```
 
-### 1.4. 表达式
+### 3.2. 一元运算符
 
-#### 1.4.1. 一元运算
+#### 3.2.1. typeof
 
-- **typeof**
+`typeof` 运算符返回一个字符串，表示操作数据的类型。
 
-  `typeof` 运算符返回一个字符串，表示操作数据的类型。
+```javascript
+console.log(typeof 42);
+```
 
-  ```javascript
-  console.log(typeof 42);
-  ```
+## 四、严格模式
 
-## 二、严格模式
+ES5 规范增加了新的语言特性并且修改了一些已经存在的特性。为了保证旧的功能能够使用，大部分修改是默认不生效的。需要一个特殊的指令 `use strict` 来明确地激活这些特性。
 
-ES5 规范增加了新的语言特性并且修改了一些已经存在的特性。为了保证旧的功能能够使用，大部分修改是默认不生效的。你需要一个特殊的指令 `use strict` 来明确地激活这些特性。
+### 4.1. 调用严格模式
 
-- 为脚本开启严格模式
+#### 4.1.1. 脚本
 
-  ```javascript
-  // 整个脚本都开启严格模式的语法
-  "use strict";
-  var v = "Hi!  I'm a strict mode script!";
-  ```
+为脚本开启严格模式。
 
-- 为函数开启严格模式
+```javascript
+"use strict";
+var v = "Hi!  I'm a strict mode script!";
+```
 
-  ```javascript
-  function strict() {
-    // 函数级别严格模式语法
-    'use strict';
-    function nested() {
-      return "And so am I!";
-    }
-    return "Hi!  I'm a strict mode function!  " + nested();
+#### 4.1.2. 函数
+
+为函数开启严格模式。
+
+```javascript
+function strict() {
+  'use strict';
+  function nested() {
+    return "And so am I!";
   }
-  ```
+  return "Hi!  I'm a strict mode function!  " + nested();
+}
+```
 
-以下是几个在严格模式和非严格模式下运行不同的例子：
+### 4.2. 严格模式中的变化
 
-- 声明全局变量
+#### 4.2.1. 八进制语法
 
-  非严格模式下，如果在函数内部使用未声明的变量，JavaScript 会自动将其创建为全局变量；但是在严格模式下，这种行为是被禁止的。
+严格模式禁止八进制数字语法。ECMAScript 并不包含八进制语法，但所有的浏览器都支持这种以零开头的八进制语法：`0644 === 420`。在 ECMAScript 6 中支持为一个数字加 `0o` 的前缀来表示八进制数。
 
-  ```javascript
-  function myFunction() {
-    x = 10;
-  }
-  
-  myFunction();
-  console.log(x);
-  ```
+```javascript
+"use strict";
+console.log(0644 === 420);
+```
 
-## 三、数据类型和值
+#### 4.2.2. 声明全局变量
 
-- **Undefined**
+非严格模式下，如果在函数内部使用未声明的变量，JavaScript 会自动将其创建为全局变量；但是在严格模式下，这种行为是被禁止的。
 
-  `undefined` 的含义是未被赋值。
+```javascript
+function myFunction() {
+  x = 10;
+}
 
-- **Null**
+myFunction();
+console.log(x);
+```
 
-  JavaScript 中的 `null` 仅仅是一个代表 `无`、`空` 或 `值未知` 的特殊值。
+## 五、数据类型
 
-- **Boolean**
+### 5.1. 语言类型
 
-  `Boolean` 类型仅包含两个值：`true` 和 `false`。
+#### 5.1.1. Undefined
 
-- **String**
+表示变量未赋值时的属性。
 
-  `String` 类型表示文本数据并编码为 `UTF-16` 的整数值序列。字符串中的每个元素在字符串中占据一个位置。第一个元素的索引为 0，下一个是索引 1，依此类推。字符串的长度是其中的 `UTF-16` 代码单元的数量，这可能与 Unicode 字符的实际数量不符。
+#### 5.1.2. Null
 
-- **Number**
+代表 `无`、`空` 或 `值未知` 的特殊值。
 
-  `Number` 类型代表整数和浮点数。
+#### 5.1.3. Boolean
 
-  `Number` 类型是一种基于 IEEE 754 标准的双精度 64 位二进制格式的值。它能够存储 `Number.MIN_VALUE` 和 `Number.MAX_VALUE` 之间的正浮点数，以及 `-Number.MIN_VALUE` 和 `-Number.MAX_VALUE` 之间的负浮点数，但是它仅能安全地存储在 `Number.MIN_SAFE_INTEGER` 到 `Number.MAX_SAFE_INTEGER` 范围内的整数。超出这个范围，JavaScript 将不能安全地表示整数；相反，它们将由双精度浮点近似表示。你可以使用 `Number.isSafeInteger()` 检查一个数是否在安全的整数范围内。
+Boolean 类型仅包含两个值：`true` 和 `false`。
 
-  `±`(`Number.MIN_VALUE` 到 `Number.MAX_VALUE`) 范围之外的值会自动转换：
+#### 5.1.4. String
 
-  - 大于 `Number.MAX_VALUE` 的正值被转换为 `+Infinity`。
-  - 小于 `Number.MIN_VALUE` 的正值被转换为 `+0`。
-  - 小于 `-Number.MAX_VALUE` 的负值被转换为 `-Infinity`。
-  - 大于 `-Number.MIN_VALUE` 的负值被转换为 `-0`。
+String 类型是一串表示文本值的字符序列。内部将其编码为 `UTF-16` 的整数值序列。字符串的长度是其中的 `UTF-16` 代码单元的数量，这可能与 Unicode 字符的实际数量不符。
 
-  `NaN` 是一个特殊的数值，当算术运算的结果不表示数值时，通常会遇到它。它也是 JavaScript 中唯一不等于自身的值。
+`str.charAt()` 返回一个由给定索引处的单个 `UTF-16` 码元构成的新字符串；`charCodeAt()` 则返回给定索引处的 `UTF-16` 代码单元；`codePointAt()` 返回一个 Unicode 编码点值的非负整数。
 
-- **BigInt**
+#### 5.1.5. Symbol
 
-  `BigInt` 类型可以表示任意大小的整数。使用 `BigInt`，你可以安全地存储和操作巨大的整数，甚至超过 `Number` 的安全整数限制。
+Symbol 类型用于创建对象的唯一标识符。
 
-  `BigInt` 是通过将 `n` 附加到整数末尾或调用 `BigInt()` 函数来创建的。
+#### 5.1.6. Number
 
-  ```javascript
-  const bigInt = 1234567890123456789012345678901234567890n;
-  ```
+Number 类型代表整数和浮点数，是一种基于 IEEE 754 标准的双精度 64 位二进制格式的值。
 
-- **Object**
+它能够存储 `Number.MIN_VALUE` 和 `Number.MAX_VALUE` 之间的正浮点数，以及 `-Number.MIN_VALUE` 和 `-Number.MAX_VALUE` 之间的负浮点数，但是它仅能安全地存储在 `Number.MIN_SAFE_INTEGER` 到 `Number.MAX_SAFE_INTEGER` 范围内的整数。可以使用 `Number.isSafeInteger()` 检查一个数是否在安全的整数范围内。
 
-  `object` 类型是一个特殊的类型。其他所有的数据类型都被称为原始类型，因为它们的值只包含一个单独的内容（字符串、数字或者其他）。相反，`object` 则用于储存数据集合和更复杂的实体。
+#### 5.1.7. BigInt
 
-- **Symbol**
+BigInt 类型可以表示任意大小的整数。
 
-  `symbol` 类型用于创建对象的唯一标识符。
+BigInt 是通过将 `n` 附加到整数末尾或调用 `BigInt()` 函数来创建的。
 
-## 四、函数
+```javascript
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+#### 5.1.8. Object
+
+Object 类型是一个特殊的类型。其他所有的数据类型都被称为原始类型，因为它们的值只包含一个单独的内容。相反，Object 则用于储存数据集合和更复杂的实体。
+
+## 六、函数和类
+
+### 6.1. 函数定义
+
+#### 6.1.1. 函数声明
+
+函数声明定义一个具有指定参数的函数。
+
+```javascript
+function add(a, b) {
+  console.log(a + b)
+}
+```
+
+#### 6.1.2. 函数表达式
 
 `function` 关键字可以用来在一个表达式中定义一个函数。
 
-- **函数声明**
+```javascript
+var add = function (a, b) {
+  console.log(a + b)
+}
+```
 
-  ```javascript
-  function name([param[, param[, ... param]]]) { statements }
-  ```
+### 6.2. 箭头函数定义
 
-- **函数表达式**
+箭头函数表达式的语法比函数表达式更简洁，并且没有自己的 `this`，`arguments`，`super` 或 `new.target`。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
 
-  ```javascript
-  var myFunction = function name([param[, param[, ... param]]]) { statements }
-  ```
+```javascript
+(param1, param2, …, paramN) => { statements }
+(param1, param2, …, paramN) => expression
+// 相当于：(param1, param2, …, paramN) => { return expression; }
 
-- **箭头函数**
+// 当只有一个参数时，圆括号是可选的
+(singleParam) => { statements }
+singleParam => { statements }
 
-  箭头函数表达式的语法比函数表达式更简洁，并且没有自己的 `this`，`arguments`，`super` 或 `new.target`。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
+// 没有参数的函数应该写成一对圆括号
+() => { statements }
+```
 
-  ```javascript
-  (param1, param2, …, paramN) => { statements }
-  (param1, param2, …, paramN) => expression
-  // 相当于：(param1, param2, …, paramN) => { return expression; }
+### 6.3. 类定义
+
+类是用于创建对象的模板。实际上，类是特殊的函数。
+
+#### 6.3.1. 类声明
+
+定义类的一种方法是使用类声明。要声明一个类，可以使用带有 `class` 关键字的类名。
+
+```javascript
+class Car {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+#### 6.3.2. 类表达式
+
+类表达式是定义类的另一种方法。类表达式可以命名或不命名。
+
+```javascript
+let Car = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+```
+
+#### 6.3.3. 构造函数
+
+`constructor` 方法是一个特殊的方法，这种方法用于创建和初始化一个由 `class` 创建的对象。
+
+一个构造函数可以使用 `super` 关键字来调用一个父类的构造函数。
+
+#### 6.3.4. 原型方法
+
+原型方法是在构造函数的原型对象上定义的方法。原型方法只能通过实例对象来访问。
+
+```javascript
+let Car = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+
+  get area() {
+    return this.calcArea();
+  }
+
+  calcArea() {
+    return this.height * this.width;
+  }
+};
+```
+
+#### 6.3.5. 静态方法
+
+静态方法是直接在构造函数本身上定义的方法。它们并不属于构造函数的实例，而是属于构造函数本身。
+
+```javascript
+class Point {
+  static displayName = "Point";
+
+  static distance(a, b) {
+    return Math.max(a, b);
+  }
+}
+```
+
+## 七、文本处理
+
+### 7.1. String
+
+#### 7.1.1. 方法
+
+- String.prototype.**replace**()
+
+  `replace()` 方法返回一个由替换值替换部分或所有的模式匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果模式是字符串，则仅替换第一个匹配项。
   
-  // 当只有一个参数时，圆括号是可选的
-  (singleParam) => { statements }
-  singleParam => { statements }
+  ```
+  str.replace(regexp|substr, newSubStr|function)
+  ```
   
-  // 没有参数的函数应该写成一对圆括号
-  () => { statements }
+  - 替换单个字符串
+  
+    ```javascript
+    '你的唯一'.replace('你', '我')
+    ```
+
+  - Camel case 转 Snake case
+  
+    ```javascript
+    const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+    ```
+
+- String.prototype.**slice**()
+
+  `slice()` 方法提取某个字符串的一部分，并返回一个新的字符串，且不会改动原字符串。
+  
+  ```
+  str.slice(beginIndex[, endIndex])
+  ```
+  
+  从 `beginIndex` 索引处开始提取原字符串中的字符，如果值为负数，会被当做 `strLength + beginIndex` 看待。在 `endIndex` 索引处结束提取字符串，如果省略该参数，`slice()` 会一直提取到字符串末尾。`endIndex` 不包含最后一个元素。
+
+## 八、集合
+
+### 8.1. Array
+
+#### 8.1.1. 方法
+
+- Array.prototype.**join**()
+
+  `join()` 方法将一个数组的所有元素连接成一个字符串并返回这个字符串，用逗号或指定的分隔符字符串分隔。
+
+  ```javascript
+  join([separator])
   ```
 
-## 五、内置对象
-
-### 5.1. String 对象
-
-- **方法**
-
-  - *str*.**replace**(*regexp*|*substr*, *newSubStr*|*function*)
-
-    `replace()` 方法返回一个由替换值替换部分或所有的 `pattern` 匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果 `pattern` 是字符串，则仅替换第一个匹配项。
-
-    - 字符串 Camel case 转 Snake case。
-
-      ```javascript
-      const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
-      ```
-
-  - *str*.**slice**(*beginIndex*[, *endIndex*])
-
-    `slice()` 方法提取某个字符串的一部分，并返回一个新的字符串，且不会改动原字符串。
-
-    - **beginIndex**
-
-      从该索引处开始提取原字符串中的字符。如果值为负数，会被当做 `strLength + beginIndex` 看待。
-
-    - **endIndex**
-
-      在该索引处结束提取字符串。如果省略该参数，`slice()` 会一直提取到字符串末尾。不包含最后一个元素。
-
-### 5.2. Array 对象
-
-- **方法**
-
-  - *arr*.**join**(*separator*)
-
-    `join()` 方法将一个数组的所有元素连接成一个字符串并返回这个字符串，用逗号或指定的分隔符字符串分隔。
+  - 拼接数组字符串
 
     ```javascript
     $("input[name='checkList']:checked")
-      .map(function () {
+      .map(function() {
         return $(this).val();
       })
       .get()
-      .join(",");
+      .join();
     ```
 
-### 5.3. Function 对象
+## 九、基本对象
 
-- **方法**
+### 9.1. Function
 
-  - *function*.**call**(*thisArg*, *arg1*, *arg2*, ...)
+#### 9.1.1. 方法
 
-    `call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
+- Function.prototype.**call**()
 
-### 5.4. Object 对象
+  `call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
+  
+  ```
+  function.call(thisArg, arg1, arg2, ...)
+  ```
+  
+### 9.2. Object
 
-- **方法**
+#### 9.2.1. 方法
 
-  - *Object*.**fromEntries**(*iterable*)
+- Object.**fromEntries**()
 
-    将键值对列表转换为一个对象。
+  `fromEntries()` 静态方法将键值对列表转换为一个对象。
+
+  ```
+  Object.fromEntries(iterable)
+  ```
+
+  - 将 Map 转为 Object
+
+    ```javascript
+    const entries = new Map([
+      ['foo', 'bar'],
+      ['baz', 42],
+    ]);
+    
+    const obj = Object.fromEntries(entries);
+    ```
+
+- Object.**defineProperty**()
+
+  `defineProperty()` 静态方法会直接在一个对象上定义一个新属性，或修改其现有属性，并返回此对象。
+
+  ```
+  Object.defineProperty(obj, prop, descriptor)
+  ```
+
+  - 在对象上，添加一个不可枚举属性。
+
+    ```javascript
+    const obj = {car: 'mazda'}
+    
+    Object.defineProperty(obj, 'year', {
+      value: 2020
+    })
+    ```
+
+  - 在对象上，添加一个属性，采用数据代理的方式。
+  
+    ```javascript
+    const obj = { car: 'mazda' };
+    var number = 18;
+    
+    Object.defineProperty(obj, 'year', {
+      get() {
+        return number;
+      },
+    });
+    ```
 

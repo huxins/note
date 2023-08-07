@@ -65,6 +65,21 @@ var vm = new Vue({
   })
   ```
 
+- **methods**
+
+  可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 `this` 自动绑定为 Vue 实例。
+
+  ```javascript
+  const vm = new Vue({
+    el: '#app',
+    methods: {
+      showInfo() {
+        alert('你好呀')
+      }
+    }
+  })
+  ```
+
 ### 1.2. 模板语法
 
 #### 1.2.1. 插值
@@ -97,7 +112,7 @@ var vm = new Vue({
   <a v-bind:href="dynamicUrl">传送门</a>
   ```
 
-  该指令可简写为：
+  `v-bind` 指令可简写为 `:`。
 
   ```html
   <a :href="dynamicUrl">传送门</a>
@@ -118,5 +133,103 @@ var vm = new Vue({
 ```html
 <input v-model="message" placeholder="edit me">
 <p>Message is: {{ message }}</p>
+```
+
+### 1.4. 事件处理
+
+#### 1.4.1. 事件处理方法
+
+可以用 `v-on` 指令监听 DOM 事件，还可以接收一个需要调用的方法名称。
+
+```html
+<div id="app">
+  <h2>欢迎来到 {{address}}</h2>
+  <button v-on:click="showInfo">点我提示信息</button>
+</div>
+```
+
+```javascript
+const vm = new Vue({
+  el: '#app',
+  data,
+  methods: {
+    showInfo() {
+      alert('你好呀')
+    }
+  }
+})
+```
+
+`v-on` 可以缩写为 `@`。
+
+```html
+<div id="app">
+  <h2>欢迎来到 {{address}}</h2>
+  <button @click="showInfo">点我提示信息</button>
+</div>
+```
+
+#### 1.4.2. 内联处理器方法
+
+除了直接绑定到一个方法，也可以在内联 JavaScript 语句中调用方法。
+
+```html
+<div id="app">
+  <h2>欢迎来到 {{address}}</h2>
+  <button @click="showInfo('hi')">点我提示信息</button>
+</div>
+```
+
+```javascript
+const vm = new Vue({
+  el: '#app',
+  data,
+  methods: {
+    showInfo(message) {
+      alert(message)
+    }
+  }
+})
+```
+
+有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 `$event` 把它传入方法。
+
+```html
+<div id="app">
+  <h2>欢迎来到 {{address}}</h2>
+  <button @click="showInfo($event, 'hi')">点我提示信息</button>
+</div>
+```
+
+```javascript
+const vm = new Vue({
+  el: '#app',
+  data,
+  methods: {
+    showInfo(event, message) {
+      console.log(event, message)
+    }
+  }
+})
+```
+
+#### 1.4.3. 事件修饰符
+
+在事件处理程序中调用 `event.preventDefault()` 或 `event.stopPropagation()` 是非常常见的需求。为了解决这个问题，Vue 为 `v-on` 提供了事件修饰符。
+
+- `.prevent`
+
+  阻止事件默认行为。
+
+  ```html
+  <form v-on:submit.prevent="onSubmit"></form>
+  ```
+
+#### 1.4.4. 按键修饰符
+
+在监听键盘事件时，经常需要检查详细的按键。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符。
+
+```html
+<input @keyup.enter="submit">
 ```
 

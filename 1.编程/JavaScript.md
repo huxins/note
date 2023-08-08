@@ -287,6 +287,49 @@ Person.prototype.sayHello = function() {
 };
 ```
 
+#### 6.1.5. 原型链
+
+- **prototype**
+
+  是函数对象特有的属性，每个函数都有一个 `prototype` 属性，它指向一个对象，这个对象就是该函数的原型。
+
+  在构造函数创建对象时，对象会继承构造函数的 `prototype` 上的属性和方法。这意味着通过构造函数创建的所有实例都共享同一个 `prototype` 对象上的方法。
+
+- **\__proto__**
+
+  是每个对象都具有的属性，它指向对象的原型。它用于实现对象之间的原型链。
+
+  当访问一个对象的属性或方法时，如果对象本身没有这个属性或方法，JavaScript 引擎会沿着对象的 `__proto__` 链向上查找，直到找到为止。
+
+原型、原型链遵循以下两个准则。
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+let person = new Person('小明', 18);
+
+Person.prototype.constructor === Person;
+person.__proto__ === Person.prototype;
+```
+
+根据以上两个准则，原型链查找逻辑如下。
+
+```javascript
+person.__proto__ === Person.prototype;
+Person.prototype.__proto__ === Object.prototype;
+Object.prototype.__proto__ === null;
+
+Person.__proto__ === Function.prototype;
+Function.prototype.__proto__ === Object.prototype;
+Object.prototype.__proto__ === null;
+
+Object.__proto__ === Function.prototype;    // Object 本质也是函数
+Function.__proto__ === Function.prototype;
+```
+
 ### 6.2. 类定义
 
 类是用于创建对象的模板。实际上，类是特殊的函数，是构造函数的一种更现代、更清晰的语法糖。

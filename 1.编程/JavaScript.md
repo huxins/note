@@ -269,9 +269,27 @@ singleParam => { statements }
 () => { statements }
 ```
 
+#### 6.1.4. 构造函数
+
+构造函数是用于创建对象的模板。
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+```
+
+在构造函数的原型上添加方法。
+
+```javascript
+Person.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+};
+```
+
 ### 6.2. 类定义
 
-类是用于创建对象的模板。实际上，类是特殊的函数。
+类是用于创建对象的模板。实际上，类是特殊的函数，是构造函数的一种更现代、更清晰的语法糖。
 
 #### 6.2.1. 类声明
 

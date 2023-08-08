@@ -80,6 +80,75 @@ var vm = new Vue({
   })
   ```
 
+- **computed**
+
+  计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 `this` 上下文自动地绑定为 Vue 实例。
+
+  ```javascript
+  const vm = new Vue({
+    el: '#app',
+    computed: {
+      email: {
+        get() {
+          return `${this.address}地区`;
+        }
+      }
+    }
+  })
+  ```
+
+  只读取时，可简写为：
+  
+  ```javascript
+  const vm = new Vue({
+    el: '#app',
+    computed: {
+      email() {
+        return `${this.address}地区`;
+      }
+    }
+  })
+  ```
+
+- **watch**
+
+  Vue 通过 `watch` 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。
+
+  ```javascript
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      address: '上海',
+      dynamicUrl: "https://www.baidu.com/"
+    },
+    watch: {
+      address: {
+        handler(val, oldVal) {
+          console.log(`address 已修改，原值为 ${oldVal}，新值为 ${val}`);
+        }
+      }
+    }
+  })
+  ```
+
+#### 1.1.2. Vue 实例方法
+
+- vm.**$watch**()
+
+  观察 Vue 实例上的一个表达式或者一个函数计算结果的变化。回调函数得到的参数为新值和旧值。
+
+  ```
+  vm.$watch( expOrFn, callback, [options] )
+  ```
+
+  - 监听属性变化。
+
+    ```javascript
+    vm.$watch('address', function (val, oldVal) {
+      console.log(`address 已修改，原值为 ${oldVal}，新值为 ${val}`);
+    })
+    ```
+
 ### 1.2. 模板语法
 
 #### 1.2.1. 插值
@@ -231,5 +300,75 @@ const vm = new Vue({
 
 ```html
 <input @keyup.enter="submit">
+```
+
+### 1.5. 条件渲染
+
+#### 1.5.1. v-show
+
+`v-show` 指令用于条件性地展示元素。
+
+```html
+<h2 v-show="true">欢迎来到 {{address}}</h2>
+```
+
+#### 1.5.2. v-if
+
+`v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 True 值的时候被渲染。
+
+```html
+<h2 v-if="flase">欢迎来到 {{address}}</h2>
+```
+
+### 1.6. 列表渲染
+
+#### 1.6.1. v-for
+
+可以用 `v-for` 指令基于一个数组来渲染一个列表。
+
+```html
+<ul>
+  <li v-for="item in items" :key="item.id">
+    {{ item.message }}
+  </li>
+</ul>
+```
+
+#### 1.6.2. 数组更新检测
+
+Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
+
+- `push()`
+
+### 1.7. 过滤器
+
+过滤器可以用在两个地方：双花括号插值和 `v-bind` 表达式。过滤器应该被添加在 JavaScript 表达式的尾部，由 `|` 符号指示：
+
+```html
+{{ message | capitalize }}
+
+<div v-bind:id="rawId | formatId"></div>
+```
+
+#### 1.7.1. 本地过滤器
+
+可以在一个组件的选项中定义本地过滤器：
+
+```javascript
+filters: {
+  capitalize: function (value) {
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+}
+```
+
+#### 1.7.2. 全局过滤器
+
+在创建 Vue 实例之前定义全局过滤器：
+
+```javascript
+Vue.filter('capitalize', function (value) {
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
 ```
 

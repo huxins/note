@@ -570,3 +570,261 @@ const language = {
     });
     ```
 
+## 十、脚本和模块
+
+### 10.1. CommonJS
+
+CommonJS 规范主要用于服务器端开发，特别适用于 Node.js 环境。一个模块可以通过 `module.exports` 或 `exports` 来导出其内部的变量、函数或对象，使其他模块能够访问这些导出内容。
+
+#### 10.1.1. 服务器端实现
+
+```javascript
+// hello.js
+function Hello() {
+  console.log('Hello');
+}
+
+exports.Hello = Hello;
+```
+
+在其他模块中，可以使用 `require` 函数来导入另一个模块的导出内容。导入的模块会被加载并执行，然后返回其导出内容。
+
+```javascript
+// index.js
+var Hello = require('./hello').Hello;
+
+Hello();
+```
+
+略显冗余，可以用下面方法简化。
+
+```javascript
+// hello.js
+function Hello() {
+  console.log('Hello');
+}
+
+module.exports = Hello;
+```
+
+```javascript
+// index.js
+var Hello = require('./hello');
+
+Hello();
+```
+
+#### 10.1.2. 浏览器端实现
+
+模块名的解析是基于 Node.js 的模块系统，而在浏览器环境下是不支持的。在前端开发中，通常需要使用工具（如 Browserify、Webpack 等）来转换和处理模块名的导入。
+
+以 Browserify 为例。
+
+```sh
+$ browserify ./index.js -o ./build.js
+```
+
+### 10.2. AMD
+
+AMD 采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。推崇依赖前置。
+
+RequireJS 是目前 AMD 规范最热门的一个实现。
+
+#### 10.2.1. 规范模块加载
+
+若一个模块不依赖其他模块，可以直接定义在 `define()` 函数中。
+
+```javascript
+// math.js
+define(function () {
+  var add = function (x, y) {
+    return x + y;
+  };
+  return {
+    add
+  };
+});
+```
+
+若这个模块还依赖其他模块，那么 `define()` 函数的第一个参数，必须是一个数组，指明该模块的依赖性。当 `require()` 函数加载该模块时，就会先加载 `math.js` 模块。
+
+```javascript
+// dataService.js
+define(['math'], function (math) {
+  function doSomething() {
+    let result = math.add(2, 9);
+    console.log(result);
+  }
+  return {
+    doSomething
+  };
+})
+```
+
+设置一个主模块，统一调度当前项目中所有依赖模块。
+
+```javascript
+// main.js
+(function () {
+  require.config({
+    // baseUrl:'',
+    paths: {
+      math: './math',
+      dataService: './dataService'
+    }
+  })
+  require(['dataService'], function (dataService) {
+    dataService.doSomething()
+  });
+})();
+```
+
+在 `index.html` 中引入 `require.js`，并设置 `data-main` 入口主模块。
+
+```html
+<script data-main="./main.js" src="https://cdn.bootcdn.net/ajax/libs/require.js/2.3.6/require.min.js"></script>
+```
+
+#### 10.2.2. 非规范模块加载
+
+理论上 RequireJS 加载的模块，必须是按照 AMD 规范用 `define()` 函数定义的模块。但实际上，虽然已经有一部分流行的函数库（比如 jQuery）符合 AMD 规范，更多的库并不符合。
+
+这样的模块在用 `require()` 加载之前，要先用 `require.config()` 方法，定义它们的一些特征。例如，`underscore` 和 `backbone` 这两个库，都没有采用 AMD 规范编写。如果要加载的话，必须先定义它们的特征。
+
+- **exports**：输出的变量名，表示这个模块外部调用时的名称。
+- **deps**：数组，表示该模块的依赖项。
+
+```javascript
+require.config({
+  shim: {
+    underscore: {
+      exports: '_'
+    },
+    backbone: {
+      deps: ['underscore', 'jquery'],
+      exports: 'Backbone'
+    }
+  }
+});
+```
+
+### 10.3. CMD
+
+CMD 是通用模块加载，要解决的问题与 AMD 一样，只不过是对依赖模块的执行时机不同，推崇就近依赖。
+
+Sea.js 是 CMD 规范的一个实现。
+
+定义模块使用全局函数 `define()`，接收一个 `factory` 参数，可以是一个函数，也可以是一个对象或字符串。
+
+- `factory` 是函数时有三个参数，`function(require, exports, module)`：
+
+  - **require**：用来获取其他模块提供的接口。
+  - **exports**：用来向外提供本模块接口。
+  - **module**：存储了与当前模块相关联的属性和方法。
+  
+  ```javascript
+  // hello.js
+  define(function (require, exports, module) {
+    function Hello() {
+      console.log('Hello');
+    }
+    module.exports = {Hello};
+  });
+  ```
+  
+  导入使用：
+  
+  ```javascript
+  // main.js
+  define(function(require, exports, module) {
+    var hello = require('./hello.js')
+    hello.Hello()
+  });
+  ```
+  
+  异步导入使用：
+  
+  ```javascript
+  // main.js
+  define(function (require, exports, module) {
+    require.async('./hello.js', function (hello) {
+      hello.Hello()
+    })
+  });
+  ```
+
+- `factory` 为对象、字符串时，表示模块的接口就是该对象、字符串。比如可以定义一个 JSON 数据模块：
+
+  ```javascript
+  // foo.js
+  define({foo: "bar"});
+  ```
+
+  导入使用：
+
+  ```javascript
+  // main.js
+  define(function(require, exports, module) {
+    var obj = require('./foo.js')
+    console.log(obj)
+  });
+  ```
+
+在 `index.html` 中引入 `sea.js`，并调用 `main.js` 入口主模块。
+
+```html
+<script src="https://cdn.bootcdn.net/ajax/libs/seajs/3.0.3/sea.js"></script>
+<script>
+  seajs.use('./main.js');
+</script>
+```
+
+### 10.4. ES Modules
+
+ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出变量。
+
+#### 10.4.1. 命名导出
+
+使用命名导出时，可以将模块中的多个变量、函数或类分别导出，以便其他模块可以通过相应的名称进行导入。
+
+```javascript
+// math.js
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+```
+
+等效于：
+
+```javascript
+// math.js
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+
+export {
+  add,
+  subtract
+};
+```
+
+在其他模块中导入。
+
+```javascript
+import { add, subtract } from './math.js';
+```
+
+#### 10.4.2. 默认导出
+
+默认导出用于导出模块的主要内容，一个模块只能有一个默认导出。在导入时，您可以选择为默认导出指定任何名称。
+
+```javascript
+// math.js
+const myFunction = (a, b) => a + b;
+export default myFunction;
+```
+
+在其他模块中导入。
+
+```javascript
+import myFunction from './math.js';
+```
+

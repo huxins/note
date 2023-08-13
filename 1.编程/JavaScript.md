@@ -828,3 +828,26 @@ export default myFunction;
 import myFunction from './math.js';
 ```
 
+#### 10.4.3. 全量导出
+
+`export * from 'fs'` 用于将另一个模块的所有导出内容重新在当前模块导出。在这个特定的例子中，它会将 Node.js 的内置模块 `fs` 的所有导出内容重新在当前模块导出。
+
+```javascript
+// myModule.js
+export * from 'fs';
+```
+
+然后，可以在其他模块中来访问这些导出的内容。
+
+```javascript
+// 在其他模块中导入
+import { readFile, writeFile } from './myModule.js';
+```
+
+也可以全量导入其他模块。
+
+```javascript
+import * as fs from 'fs'
+import {default as fs} from 'fs'
+```
+

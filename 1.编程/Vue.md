@@ -135,6 +135,45 @@ var vm = new Vue({
   })
   ```
 
+- **props**
+
+  `props` 可以是数组或对象，用于接收来自父组件的数据。
+
+  数组语法：
+
+  ```javascript
+  export default {
+    name: "SchoolDetails",
+    props: ['size']
+  };
+  ```
+
+  对象语法：
+
+  ```javascript
+  export default {
+    name: "SchoolDetails",
+    props: {
+      height: Number,
+      size: {
+        type: Number,
+        default: 0,
+        required: true,
+      }
+    }
+  };
+  ```
+
+  父组件传递参数：
+
+  ```html
+  <template>
+    <div id="app">
+      <School :height="123"/>
+    </div>
+  </template>
+  ```
+
 ##### 1.1.1.3. 生命周期
 
 - **mounted**
@@ -253,6 +292,25 @@ var vm = new Vue({
   })
   
   Vue.component('school', school)
+  ```
+
+#### 1.1.4. Vue 特殊属性
+
+- **ref**
+
+  `ref` 被用来给元素或子组件注册引用信息。
+
+  ```html
+  <p ref="p">hello</p>
+  <child-component ref="child"></child-component>
+  ```
+
+  调用方式：
+
+  ```javascript
+  doSomething() {
+    console.log(this.$refs.p);
+  }
   ```
 
 ### 1.2. 插值
@@ -559,4 +617,24 @@ new Vue({
   render: h => h(App),
 }).$mount('#app')
 ```
+
+## 二、Vue CLI
+
+### 2.1. 常用命令
+
+- vue **create**
+
+  创建一个新项目。
+
+  ```sh
+  $ vue create hello-world
+  ```
+
+- vue **inspect**
+
+  审查 webpack 配置。
+
+  ```sh
+  $ vue inspect > output.js
+  ```
 

@@ -224,6 +224,23 @@ var vm = new Vue({
   })
   ```
 
+##### 1.1.1.5. 组合
+
+- **mixins**
+
+  `mixins` 选项接收一个混入对象的数组。这些混入对象可以像正常的实例对象一样包含实例选项，这些选项将会被合并到最终的选项中。
+
+  ```javascript
+  var mixin = {
+    created: function () { console.log(1) }
+  }
+  
+  var vm = new Vue({
+    created: function () { console.log(2) },
+    mixins: [mixin]
+  })
+  ```
+
 #### 1.1.2. Vue 实例方法
 
 ##### 1.1.2.1. 数据

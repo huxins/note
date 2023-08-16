@@ -261,6 +261,25 @@ var vm = new Vue({
     })
     ```
 
+##### 1.1.2.2. 生命周期
+
+- vm.**$nextTick**()
+
+  将回调延迟到下次 DOM 更新循环之后执行。
+
+  ```javascript
+  new Vue({
+    methods: {
+      example: function () {
+        this.message = 'changed'
+        this.$nextTick(function () {
+          this.doSomethingElse()
+        })
+      }
+    }
+  })
+  ```
+
 #### 1.1.3. Vue 静态方法
 
 - Vue.**filter**()
@@ -635,6 +654,40 @@ new Vue({
 }).$mount('#app')
 ```
 
+#### 1.4.3. 自定义事件
+
+在子组件标签上绑定自定义事件：
+
+```html
+<my-component v-on:my-event="doSomething"></my-component>
+```
+
+通过 `ref` 给子组件绑定自定义事件，例如在生命周期上：
+
+```javascript
+export default {
+  name: 'App',
+  mounted() {
+    this.$refs.student.$on('my-event', this.showInfo)
+  }
+};
+```
+
+在子组件方法中，触发自定义事件：
+
+```javascript
+export default {
+  name: 'School',
+  methods: {
+    showInfo() {
+      this.$emit('my-event', args)
+    }
+  }
+};
+```
+
+通过自定义事件，也能实现子组件向父组件传递信息。不同的是，`props` 是父组件将回调函数先传递到子组件，而自定义事件是直接触发事件。
+
 ## 二、Vue CLI
 
 ### 2.1. 常用命令
@@ -654,4 +707,119 @@ new Vue({
   ```sh
   $ vue inspect > output.js
   ```
+
+## 三、Vuex
+
+### 3.1. 安装
+
+安装 Vuex 之后，创建一个 `store`，供后续调用。
+
+```javascript
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
+```
+
+## 四、Vue Router
+
+### 4.1. VueRouter
+
+#### 4.1.1. 构建选项
+
+将组件映射到路由：
+
+```javascript
+const router = new VueRouter({
+  routes: [
+    { path: '/foo', component: Foo },
+    { path: '/bar', component: Bar }
+  ]
+})
+```
+
+### 4.2. 路由对象
+
+一个路由对象表示当前激活的路由的状态信息，包含了当前 URL 解析得到的信息，还有 URL 匹配到的路由记录。
+
+#### 4.2.1. 路由组件传参
+
+- $route.**query**
+
+  一个对象，URL `/search?q=vue` 会将 `{query: 'vue'}` 作为属性传递给组件，在组件内通过 `$route.query` 可以获取。
+
+- $route.**params**
+
+  一个对象，如果没有路由参数，就是一个空对象。
+
+  需要配合动态路由获取参数，在组件内通过 `$route.params` 可以获取。
+
+  ```javascript
+  const router = new VueRouter({
+    routes: [
+      { path: '/user/:id', component: User }
+    ]
+  })
+  ```
+
+### 4.3. 路由守卫
+
+#### 4.3.1. 全局前置守卫
+
+可以使用 `router.beforeEach` 注册一个全局前置守卫。
+
+```javascript
+const router = new VueRouter({ ... })
+
+router.beforeEach((to, from, next) => {
+  // ...
+})
+```
+
+#### 4.3.2. 全局后置钩子
+
+可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 `next` 函数也不会改变导航本身。
+
+```javascript
+router.afterEach((to, from) => {
+  // ...
+})
+```
+
+#### 4.3.3. 路由独享守卫
+
+可以在路由配置上直接定义 `beforeEnter` 守卫。
+
+```javascript
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      beforeEnter: (to, from, next) => {
+        // ...
+      }
+    }
+  ]
+})
+```
+
+#### 4.3.4. 组件内的守卫
+
+可以在路由组件内直接定义以下路由导航守卫。
+
+- `beforeRouteEnter`
+- `beforeRouteUpdate`
+- `beforeRouteLeave`
 

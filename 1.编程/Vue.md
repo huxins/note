@@ -823,3 +823,27 @@ const router = new VueRouter({
 - `beforeRouteUpdate`
 - `beforeRouteLeave`
 
+## 五、组合式 API
+
+### 5.1. setup()
+
+`setup()` 钩子是在组件中使用组合式 API 的入口。
+
+```vue
+<script>
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+
+    return {
+      count
+    }
+  }
+}
+</script>
+```
+
+推荐通过 `<script setup>` 以获得更加简洁及符合人体工程学的语法。
+

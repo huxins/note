@@ -851,3 +851,13 @@ import * as fs from 'fs'
 import {default as fs} from 'fs'
 ```
 
+## 十一、反射
+
+### 11.1. Proxy
+
+Proxy 对象用于创建一个对象的代理，从而实现基本操作的拦截和自定义。
+
+### 11.2. Reflect
+
+Reflect 是一个内置的对象，它提供拦截 JavaScript 操作的方法。
+

@@ -1,14 +1,12 @@
-# 序列化
+# PyYAML
 
-## 一、PyYAML
-
-### 1.1. 安装
+## 一、安装
 
 ```sh
 $ pip install pyyaml
 ```
 
-### 1.2. 加载 YAML
+## 二、加载 YAML
 
 - **safe_load**
 

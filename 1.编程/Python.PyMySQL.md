@@ -1,14 +1,12 @@
-# 数据库
+# PyMySQL
 
-## 一、PyMySQL
-
-### 1.1. 安装
+## 一、安装
 
 ```sh
 $ python -m pip install PyMySQL
 ```
 
-### 1.2. 数据库连接
+## 二、数据库连接
 
 ```python
 import pymysql.cursors
@@ -23,7 +21,7 @@ connection = pymysql.connect(
 )
 ```
 
-### 1.3. 数据新增操作
+## 三、数据新增操作
 
 ```python
 with connection:
@@ -34,7 +32,7 @@ with connection:
     connection.commit()
 ```
 
-### 1.4. 数据查询操作
+## 四、数据查询操作
 
 ```python
 with connection:

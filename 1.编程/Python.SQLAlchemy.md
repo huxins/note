@@ -40,9 +40,9 @@ dialect+driver://username:password@host:port/database
 
 ## 三、Session
 
-### 3.1. 使用会话
+### 3.1. 基本使用
 
-#### 3.1.1. 打开和关闭会话
+#### 3.1.1. 开始和结束会话
 
 `Session` 可以自己构建，也可以使用 `sessionmaker` 类构建。它通常通过单个引擎作为前端连接源。
 

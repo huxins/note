@@ -441,68 +441,7 @@ const language = {
 };
 ```
 
-## 七、文本处理
-
-### 7.1. String
-
-#### 7.1.1. 方法
-
-- String.prototype.**replace**()
-
-  `replace()` 方法返回一个由替换值替换部分或所有的模式匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果模式是字符串，则仅替换第一个匹配项。
-  
-  ```
-  str.replace(regexp|substr, newSubStr|function)
-  ```
-  
-  - 替换单个字符串
-  
-    ```javascript
-    '你的唯一'.replace('你', '我')
-    ```
-
-  - Camel case 转 Snake case
-  
-    ```javascript
-    const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
-    ```
-
-- String.prototype.**slice**()
-
-  `slice()` 方法提取某个字符串的一部分，并返回一个新的字符串，且不会改动原字符串。
-  
-  ```
-  str.slice(beginIndex[, endIndex])
-  ```
-  
-  从 `beginIndex` 索引处开始提取原字符串中的字符，如果值为负数，会被当做 `strLength + beginIndex` 看待。在 `endIndex` 索引处结束提取字符串，如果省略该参数，`slice()` 会一直提取到字符串末尾。`endIndex` 不包含最后一个元素。
-
-## 八、集合
-
-### 8.1. Array
-
-#### 8.1.1. 方法
-
-- Array.prototype.**join**()
-
-  `join()` 方法将一个数组的所有元素连接成一个字符串并返回这个字符串，用逗号或指定的分隔符字符串分隔。
-
-  ```javascript
-  join([separator])
-  ```
-
-  - 拼接数组字符串
-
-    ```javascript
-    $("input[name='checkList']:checked")
-      .map(function() {
-        return $(this).val();
-      })
-      .get()
-      .join();
-    ```
-
-## 九、基本对象
+## 九、内置对象
 
 ### 9.1. Function
 
@@ -569,6 +508,77 @@ const language = {
       },
     });
     ```
+
+### 9.3. String
+
+#### 9.3.1. 方法
+
+- String.prototype.**replace**()
+
+  `replace()` 方法返回一个由替换值替换部分或所有的模式匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果模式是字符串，则仅替换第一个匹配项。
+  
+  ```
+  str.replace(regexp|substr, newSubStr|function)
+  ```
+  
+  - 替换单个字符串
+  
+    ```javascript
+    '你的唯一'.replace('你', '我')
+    ```
+
+  - Camel case 转 Snake case
+  
+    ```javascript
+    const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+    ```
+
+- String.prototype.**slice**()
+
+  `slice()` 方法提取某个字符串的一部分，并返回一个新的字符串，且不会改动原字符串。
+  
+  ```
+  str.slice(beginIndex[, endIndex])
+  ```
+  
+  从 `beginIndex` 索引处开始提取原字符串中的字符，如果值为负数，会被当做 `strLength + beginIndex` 看待。在 `endIndex` 索引处结束提取字符串，如果省略该参数，`slice()` 会一直提取到字符串末尾。`endIndex` 不包含最后一个元素。
+
+### 9.4. Array
+
+#### 9.4.1. 方法
+
+- Array.prototype.**join**()
+
+  `join()` 方法将一个数组的所有元素连接成一个字符串并返回这个字符串，用逗号或指定的分隔符字符串分隔。
+
+  ```javascript
+  join([separator])
+  ```
+
+  - 拼接数组字符串
+
+    ```javascript
+    $("input[name='checkList']:checked")
+      .map(function() {
+        return $(this).val();
+      })
+      .get()
+      .join();
+    ```
+
+### 9.5 ArrayBuffer
+
+`ArrayBuffer` 对象用来表示通用的、固定长度的原始二进制数据缓冲区。
+
+它是一个字节数组，通常在其他语言中称为 `byte array`。不能直接操作 ArrayBuffer 中的内容；而是要通过 TypedArray 或 DataView 对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
+
+### 9.6. Uint8Array
+
+Uint8Array 数组类型表示一个 8 位无符号整型数组，创建时内容被初始化为 0。创建完后，可以以对象的方式或使用数组下标索引的方式引用数组中的元素。
+
+### 9.7. Date
+
+
 
 ## 十、脚本和模块
 

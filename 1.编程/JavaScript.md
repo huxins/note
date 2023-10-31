@@ -445,7 +445,7 @@ const language = {
 
 ### 9.1. Function
 
-#### 9.1.1. 方法
+#### 9.1.1. 原型方法
 
 - Function.prototype.**call**()
 
@@ -457,7 +457,7 @@ const language = {
   
 ### 9.2. Object
 
-#### 9.2.1. 方法
+#### 9.2.1. 静态方法
 
 - Object.**fromEntries**()
 
@@ -511,7 +511,7 @@ const language = {
 
 ### 9.3. String
 
-#### 9.3.1. 方法
+#### 9.3.1. 原型方法
 
 - String.prototype.**replace**()
 
@@ -545,7 +545,7 @@ const language = {
 
 ### 9.4. Array
 
-#### 9.4.1. 方法
+#### 9.4.1. 原型方法
 
 - Array.prototype.**join**()
 
@@ -578,7 +578,31 @@ Uint8Array 数组类型表示一个 8 位无符号整型数组，创建时内容
 
 ### 9.7. Date
 
+#### 9.7.1. 构造函数
 
+```javascript
+new Date()
+```
+
+#### 9.7.2. 原型方法
+
+- Date.prototype.**toLocaleString**()
+
+  `toLocaleString()` 方法返回该日期对象的字符串，该字符串格式因不同语言而不同。
+
+  ```javascript
+  const date = new Date()
+  const str = date.toLocaleString("zh-CN", { timeZone: 'Asia/Shanghai' })
+  ```
+
+- Date.prototype.**toLocaleDateString**()
+
+  `toLocaleDateString()` 方法返回指定日期对象日期部分的字符串，该字符串格式因不同语言而不同。
+
+  ```javascript
+  const date = new Date()
+  const str = date.toLocaleDateString("zh-CN", { timeZone: 'Asia/Shanghai' })
+  ```
 
 ## 十、脚本和模块
 

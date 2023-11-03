@@ -119,6 +119,13 @@ const o = {
 };
 ```
 
+展开语法，可以在函数调用或数组构造时，将数组表达式或者 string 在语法层面展开；还可以在构造字面量对象时，将对象表达式按 key-value 的方式展开。
+
+```javascript
+const item = { id: "123", name: "zh" };
+const new_item = { ...item, value: item.id, label: item.name };
+```
+
 ### 3.2. 一元运算符
 
 #### 3.2.1. typeof

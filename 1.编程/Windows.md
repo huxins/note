@@ -18,6 +18,14 @@
 > Start-Service RemoteAccess
 ```
 
+#### 1.1.2. Active Probe
+
+系统无法正确判断网络连接状态时，通过调整注册表配置，让系统不去主动探测网络连接状态。
+
+```powershell
+> Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\NlaSvc\Parameters\Internet" -Name EnableActiveProbing -Type DWord -Value 0
+```
+
 ## 二、命令
 
 ### 2.1. reg
@@ -80,5 +88,83 @@
 
 ```powershell
 > tracert 1.1.1.1
+```
+
+### 2.6. diskpart
+
+`diskpart` 可帮助管理计算机的驱动器（磁盘、分区、卷或虚拟硬盘）。
+
+启动 `diskpart` 命令解释器，请在命令提示符下键入 `diskpart`。
+
+显示计算机上的所有磁盘。
+
+```powershell
+> list disk
+```
+
+将焦点切换到磁盘。
+
+```powershell
+> select disk=<n>
+```
+
+从具有焦点的磁盘中删除所有分区或卷格式设置。
+
+```powershell
+> clean
+```
+
+显示焦点磁盘的分区表。
+
+```powershell
+> list partition
+```
+
+将焦点切换到分区。
+
+```powershell
+> select partition=<n>
+```
+
+删除具有焦点的分区。
+
+```powershell
+> delete partition
+```
+
+## 三、远程桌面服务
+
+### 3.1. Listening Port
+
+远程桌面的侦听端口默认为 3389。可以通过修改注册表来更改。
+
+```powershell
+> Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name PortNumber -Type DWord -Value 3389
+```
+
+## 四、安全
+
+### 4.1. 帐户锁定策略
+
+可以在组策略编辑器 `gpedit.msc` 的以下位置配置帐户锁定策略：[计算机配置\Windows 设置\安全设置\帐户策略\帐户锁定策略]。
+
+- 帐户锁定阈值
+
+  帐户锁定阈值确定登录尝试次数，失败将导致用户帐户被锁定。可以将登录尝试次数设置为 1 到 999，也可以通过将值设置为 0 来指定永远不会锁定帐户。
+
+### 4.2. 附件管理器
+
+附件管理器在 Windows 中，用以帮助计算机防范不安全的附件，这些附件可能是随电子邮件接收的，也可能是来自 Internet 的不安全文件。
+
+可以在组策略编辑器 `gpedit.msc` 的以下位置配置附件管理器：[用户配置\管理模板\Windows 组件\附件管理器]。
+
+- 文件附件中不保留区域信息
+
+  设置为 `已启用` 可以关闭限制。
+
+也可以通过修改注册表来更改。
+
+```powershell
+> Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments" -Name SaveZoneinformation -Type DWord -Value 1
 ```
 

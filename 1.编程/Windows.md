@@ -50,3 +50,35 @@
 > route delete 192.168.11.0 mask 255.255.255.0
 ```
 
+### 2.3. sc
+
+配置服务启动方式。
+
+```powershell
+> sc config RemoteAccess start= auto
+```
+
+启动服务。
+
+```powershell
+> sc start RemoteAccess
+```
+
+### 2.4. netsh
+
+- netsh **interface**
+
+  查找网络接口的名称或索引。
+
+  ```powershell
+  > netsh interface ipv4 show interfaces
+  ```
+
+### 2.5. tracert
+
+向目标发送 ICMP 请求，并以递增的 TTL 字段值来确定到达目标的路径。
+
+```powershell
+> tracert 1.1.1.1
+```
+

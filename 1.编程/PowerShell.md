@@ -46,3 +46,14 @@
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 
+## 三、Management
+
+### 3.1. Set-ItemProperty
+
+可以使用 `Set-ItemProperty` 来创建和更改注册表值和数据。
+
+```powershell
+> Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name IPEnableRouter -Value 1
+> Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"
+```
+

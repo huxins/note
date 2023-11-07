@@ -7,8 +7,46 @@
 #### 1.1.1. IP Forwarding
 
 ```powershell
-# 1、打开 regedit，转到 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]。
-# 2、修改 [IPEnableRouter] 键，将其数值数据设置为 [1]。
-> Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name IPEnableRouter -Value 1
+# 1、IPEnableRouter 用于全局控制整个系统的 IP 转发功能
+> Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name IPEnableRouter -Type DWord -Value 1
+# 2、查看单个网络接口的转发功能
+> Get-NetIPInterface | Select-Object -Property ifIndex, InterfaceAlias, AddressFamily, ConnectionState, Forwarding | Sort-Object -Property ifIndex | Format-Table
+# 3、启用所有网络接口的转发功能
+> Set-NetIPInterface -Forwarding Enabled
+# 4、启用远程访问服务
+> Set-Service RemoteAccess -StartupType Automatic
+> Start-Service RemoteAccess
+```
+
+## 二、命令
+
+### 2.1. reg
+
+- reg **add**
+
+  将新的子项或项添加到注册表中。
+
+  ```powershell
+  > reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v IPEnableRouter /t REG_DWORD /d 1 /f
+  ```
+
+### 2.2. route
+
+查看路由表。
+
+```powershell
+> route print -4
+```
+
+添加路由。
+
+```powershell
+> route add 192.168.11.0 mask 255.255.255.0 192.168.10.245 -p
+```
+
+删除路由。
+
+```powershell
+> route delete 192.168.11.0 mask 255.255.255.0
 ```
 

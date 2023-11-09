@@ -18,3 +18,11 @@ Content-Disposition: attachment; filename="filename.jpg"
 Content-Disposition: attachment; filename*=UTF-8''%E6%96%87%E4%BB%B6.txt
 ```
 
+### 1.2. Content-MD5
+
+RFC 1864 中定义的请求体内容的 128 位二进制 MD5 哈希值的 Base64 编码形式。
+
+```
+Content-MD5: ti4QvKtVqIJAvZxDbP/c+Q==
+```
+

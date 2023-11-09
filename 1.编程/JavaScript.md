@@ -573,6 +573,21 @@ const language = {
       .join();
     ```
 
+- Array.prototype.**slice**()
+
+  `slice()` 方法返回一个新的数组对象，这一对象是一个由 `[start, end)` 决定的原数组的浅拷贝。
+
+  ```javascript
+  const arrayLike = [1, 2, 3, 4, 5];
+  const slice = Array.prototype.slice.call(arrayLike, 1, 3);
+  ```
+
+#### 9.4.2. 静态方法
+
+- Array.**from**()
+
+  `Array.from()` 静态方法从可迭代或类数组对象创建一个新的浅拷贝的数组实例。
+
 ### 9.5 ArrayBuffer
 
 `ArrayBuffer` 对象用来表示通用的、固定长度的原始二进制数据缓冲区。

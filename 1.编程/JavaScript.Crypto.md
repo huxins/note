@@ -10,7 +10,7 @@ $ npm install crypto-js
 
 ### 1.1. MD5
 
-计算文件 MD5。
+计算文件的 MD5。
 
 ```javascript
 import MD5 from 'crypto-js/md5';
@@ -19,6 +19,45 @@ import CryptoJS from 'crypto-js';
 const arrayBuffer = await file.arrayBuffer();
 const wordArray = CryptoJS.lib.WordArray.create(arrayBuffer);
 const md5 = MD5(wordArray).toString(CryptoJS.enc.Hex);
+```
+
+流式计算文件的 MD5。
+
+```javascript
+function calculateFileMd5(file: File): Promise<ReturnType<typeof CryptoJS.MD5>> {
+    return new Promise((resolve, reject) => {
+
+        const reader = new FileReader();
+        const totalSize = file.size;
+        const chunkSize = 1024 * 1024; // 每块大小为 1MB
+        const hash = CryptoJS.algo.MD5.create();
+        let offset = 0;
+
+        reader.onload = function (event) {
+            const wordArray = CryptoJS.lib.WordArray.create(reader.result);
+            hash.update(wordArray);
+            offset += (reader.result as ArrayBuffer).byteLength;
+
+            if (offset < totalSize) {
+                readNextChunk();
+            } else {
+                // const md5Hex = hash.finalize().toString(CryptoJS.enc.Hex);
+                resolve(hash.finalize());
+            }
+        };
+
+        reader.onerror = function (error) {
+            reject(error);
+        };
+
+        function readNextChunk() {
+            const blob = file.slice(offset, offset + chunkSize);
+            reader.readAsArrayBuffer(blob);
+        }
+
+        readNextChunk();
+    });
+}
 ```
 
 ### 1.2. WordArray

@@ -50,3 +50,21 @@ const blob = new Blob([file], {type: file.type});
   };
   ```
 
+## 二、URL
+
+### 2.1. 构造函数
+
+`URL()` 构造函数返回一个新创建的 URL 对象，该对象表示由参数定义的 URL。
+
+```javascript
+new URL(url)
+```
+
+- 将字符串解析为 URL。
+
+  ```javascript
+  var input = "https://example.org/path";
+  var url = new URL(input);
+  url.pathname // "/path"
+  ```
+

@@ -1,22 +1,22 @@
 # HTML
 
-## 一、介绍
+## 一、基本结构
 
 ### 1.1. 示例
 
-一个基本的 HTML 文档如下所示：
+一个基本的 HTML 文档如下所示。
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Sample page</title>
   </head>
   <body>
     <h1>Sample page</h1>
     <p>This is a <a href="demo.html">simple</a> sample.</p>
-    <img src="https://placekitten.com/200/300" alt="My test image">
+    <img src="https://placekitten.com/200/300" alt="My test image" />
     <!-- this is a comment -->
   </body>
 </html>
@@ -28,9 +28,9 @@
 
 HTML 中有多个地方可以接受特定的数据类型，例如日期或数字。
 
-- **Boolean** 属性
+#### 2.1.1. Boolean 属性
 
-  元素上存在布尔属性表示真值，不存在该属性表示假值。
+元素上存在布尔属性表示真值，不存在该属性表示假值。
 
   如果存在该属性，则其值必须是空字符串或与属性的规范名称匹配的不区分大小写的 ASCII 值，并且没有前导或尾随空格。
 

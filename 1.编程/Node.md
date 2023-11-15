@@ -30,6 +30,15 @@
 
   在全局模式下（即，将 `-g` 或 `--global` 附加到命令中），它将当前包上下文（即当前工作目录）安装为全局包。
 
+#### 1.1.3. npm link
+
+包链接步骤。
+
+```
+1、在依赖包目录中执行没有参数的 npm link，将在全局文件夹中创建一个符号链接。
+2、在其他位置，执行 npm link package-name 将在当前文件夹下的 node_modules/ 目录下，创建一个符号链接，链接到全局安装的 package-name。
+```
+
 ### 1.2. NPM 配置
 
 #### 1.2.1. npmrc
@@ -54,6 +63,14 @@
   
   ```sh
   $ npm config set registry https://registry.npmmirror.com/
+  ```
+
+- **prefix**
+
+  在全局模式下，安装可执行文件的文件夹。
+  
+  ```sh
+  $ npm config get prefix
   ```
 
 ## 二、Crypto

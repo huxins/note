@@ -92,3 +92,25 @@ $ qm stop <vmid> [OPTIONS]
 $ qm status <vmid> [OPTIONS]
 ```
 
+## 三、Control Group
+
+CentOS 7 和 Ubuntu 16.10 的 systemd 版本太旧，无法在 cgroupv2 环境中运行。[社区讨论](https://forum.proxmox.com/threads/solved-warn-old-systemd-v232-detected-container-wont-run-in-a-pure-cgroupv2-environment.114736/)。
+
+```
+WARN: old systemd (< v232) detected, container won't run in a pure cgroupv2 environment! Please see documentation -> container -> cgroup version.
+```
+
+可以切换回 legacy cgroup。从 Proxmox VE 9.0 开始，将不再支持 legacy controller。
+
+编辑 `/etc/default/grub`。
+
+```
+GRUB_CMDLINE_LINUX_DEFAULT="systemd.unified_cgroup_hierarchy=0 quiet"
+```
+
+将其内容附加到 `/boot/grub/grub.cfg`。
+
+```sh
+$ update-grub
+```
+

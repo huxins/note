@@ -83,3 +83,57 @@ $ mkdir /mnt/data
 $ chown minio-user:minio-user /mnt/data
 ```
 
+## 三、MinIO Client
+
+安装 `mc`。
+
+```sh
+$ curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
+$ chmod +x mc
+$ mv mc /usr/local/bin/mc
+```
+
+### 3.1. mc alias
+
+`mc alias` 命令为管理 `mc` 可以连接并执行操作的 S3 兼容主机列表提供了便捷的接口。
+
+- `mc alias set`
+
+  `mc alias set` 命令用于向本地 `mc` 配置添加或更新别名。
+
+  ```sh
+  $ mc alias set myminio http://127.0.0.1:9199 Root-User Root-Password
+  ```
+
+### 3.2. mc ls
+
+`mc ls` 命令列出 MinIO 或其他与 S3 兼容的服务上的存储桶和对象。
+
+```sh
+$ mc ls myminio
+```
+
+列出 `ALIAS` 中每个存储桶或目录的内容。
+
+```sh
+$ mc ls -r myminio
+```
+
+## 四、MinIO Admin Client
+
+### 4.1. mc admin info
+
+`mc admin info` 命令显示 MinIO 服务器上的信息。对于分布式 MinIO 部署，`mc admin info` 显示部署中每个 MinIO 服务器的信息。
+
+```sh
+$ mc admin info myminio
+```
+
+### 4.2. mc admin service
+
+`mc admin service` 命令可以重新启动或停止 MinIO 服务器。
+
+```sh
+$ mc admin service restart myminio
+```
+

@@ -98,7 +98,7 @@ $ cat < output.txt
 从当前源读取输入，读取的所有行都用作命令的标准输入。
 
 ```sh
-$ cat <<-'EOF' > output.txt
+$ cat <<-EOF > output.txt
 Line 1
 Line 2
 Line 3

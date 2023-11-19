@@ -21,6 +21,12 @@ $ systemctl list-dependencies graphical.target
 $ systemctl enable sshd
 ```
 
+重新加载配置文件。
+
+```sh
+$ systemctl daemon-reload
+```
+
 ## 二、Unit
 
 System Unit 有多个搜索路径，详见 [System Unit Search Path](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#System%20Unit%20Search%20Path)。

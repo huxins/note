@@ -37,3 +37,71 @@ $ NAME="Alice"
 $ echo "Hello, ${NAME}"!
 ```
 
+### 2.2. 进程替换
+
+进程替换允许通过文件名引用进程的输入或输出。详见 [Process Substitution](https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html)。
+
+```sh
+$ cat <(tree -h)
+```
+
+## 三、重定向
+
+文件描述符是内核为了高效管理已经被打开的文件所创建的索引，是一个非负整数，用于指代被打开的文件，所有执行 I/O 操作的系统调用都通过文件描述符来实现。同时还规定 0 是标准输入，1 是标准输出，2 是标准错误。这意味着如果此时去打开一个新的文件，它的文件描述符会是 3；再打开一个文件，文件描述符就是 4。
+
+| 整数值 | 名称     | 文件流   |
+| ------ | -------- | -------- |
+| `0`    | 标准输入 | `stdin`  |
+| `1`    | 标准输出 | `stdout` |
+| `2`    | 标准错误 | `stderr` |
+
+重定向详见 [Redirections](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)。
+
+### 3.1. 重定向输出
+
+将输出重定向到文件。
+
+```sh
+$ echo "Hello, World"! > output.txt
+```
+
+将输出以追加的方式重定向到文件。
+
+```sh
+$ echo "Hello, World"! >> output.txt
+```
+
+`[n]>` 表示将文件描述符为 `n` 的流重定向到文件。
+
+```sh
+$ cat non_existent_file.txt 2> error.log
+```
+
+将标准输出和标准错误重定向到文件。有三种格式，语义上是等同的。
+
+```sh
+$ cat non_existent_file.txt &> all.log
+$ cat non_existent_file.txt >& all.log
+$ echo log.txt > /dev/null 2>&1
+```
+
+### 3.2. 重定向输入
+
+将输入重定向到文件。
+
+```sh
+$ cat < output.txt
+```
+
+### 3.3. Here Documents
+
+从当前源读取输入，读取的所有行都用作命令的标准输入。
+
+```sh
+$ cat <<-'EOF' > output.txt
+Line 1
+Line 2
+Line 3
+EOF
+```
+

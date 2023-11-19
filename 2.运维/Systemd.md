@@ -65,3 +65,33 @@ WantedBy=multi-user.target
 
   只涉及依赖关系，与启动顺序无关，默认情况下是同时启动的。
 
+## 三、journalctl
+
+`journalctl` 用于打印由 `systemd-journald.service` 和 `systemd-journal-remote.service` 存储的日志条目。
+
+```sh
+$ journalctl -xeu minio.service
+```
+
+- `-x`：显示日志的详细信息，包括每行的字段。
+- `-e`：从日志的最后一行开始显示。
+- `-u` *UNIT*：显示指定 *UNIT* 匹配的日志。
+
+清除日志。
+
+```sh
+$ journalctl --vacuum-size=100M --vacuum-time=7d
+```
+
+- `--vacuum-size`=*100M*：删除最旧的日志文件，直到它们使用的磁盘空间低于指定的大小。接受 `K`、`M`、`G` 和 `T` 后缀。
+- `--vacuum-time`=*7d*：删除早于指定时间跨度的日志文件。接受 `s`、`m`、`h`、`days`、`weeks`、`months` 和 `years` 后缀。
+- `--rotate`：归档日志文件并重命名，然后创建新的日志文件。Added in version 227.
+
+较低版本清除日志。
+
+```sh
+$ systemctl stop systemd-journald
+$ echo "" > /run/log/journal/7fd8464130ec492c90c5cb07a51beedb/system.journal
+$ systemctl start systemd-journald
+```
+

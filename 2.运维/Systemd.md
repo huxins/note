@@ -101,3 +101,32 @@ $ echo "" > /run/log/journal/7fd8464130ec492c90c5cb07a51beedb/system.journal
 $ systemctl start systemd-journald
 ```
 
+## 三、localectl
+
+`localectl` 用于控制系统区域设置和键盘布局设置。详见 [localectl](https://www.freedesktop.org/software/systemd/man/latest/localectl.html)。
+
+通过 `locale` 查看系统当前语言包，通过 `locale -a` 查看系统拥有的语言包。
+
+运行以下命令更新 `locale`。
+
+```sh
+$ localectl set-locale LANG=en_US.utf8
+$ localectl set-locale LANG=zh_CN.UTF8
+```
+
+## 四、timedatectl
+
+`timedatectl` 用于控制系统时间和日期。详见 [timedatectl](https://www.freedesktop.org/software/systemd/man/latest/timedatectl.html)。
+
+列出可用的时区。
+
+```sh
+$ timedatectl list-timezones
+```
+
+将系统时区设置为指定值。
+
+```sh
+$ timedatectl set-timezone Asia/Shanghai
+```
+

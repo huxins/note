@@ -79,7 +79,23 @@
   查找网络接口的名称或索引。
 
   ```powershell
+  > netsh interface show interface
   > netsh interface ipv4 show interfaces
+  ```
+
+  禁用或启用有线连接。
+
+  ```powershell
+  > netsh interface set interface "YourInterfaceName" admin=disable
+  > netsh interface set interface "YourInterfaceName" admin=enable
+  ```
+
+- netsh **wlan**
+
+  断开与无线网络的连接。
+
+  ```powershell
+  > netsh wlan disconnect
   ```
 
 ### 2.5. tracert
@@ -166,5 +182,14 @@
 
 ```powershell
 > Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments" -Name SaveZoneinformation -Type DWord -Value 1
+```
+
+### 4.3. 本地账户
+
+系统默认只能使用微软账户进行登录，可以通过一些被锁定的账户名来绕过限制。
+
+```
+no@thankyou.com
+a@a.com
 ```
 

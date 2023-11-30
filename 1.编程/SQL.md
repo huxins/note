@@ -35,6 +35,16 @@ FROM ( SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 ) AS digit
 
 `RIGHT JOIN` 会读取右侧数据表的全部数据，即便左侧表无对应数据。
 
+### 1.3. 子查询
+
+#### 1.3.1. EXISTS
+
+如果子查询返回任何行，则 `EXISTS` 子查询为 `TRUE`，`NOT EXISTS` 子查询为 `FALSE`。
+
+```sql
+SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
+```
+
 ## 二、数据定义
 
 ### 2.1. 创建
@@ -86,4 +96,17 @@ UPDATE users
   LEFT JOIN tests ON tests.username = users.username
     SET users.password = tests.password;
 ```
+
+## 四、实用程序
+
+### 4.1. USE
+
+`USE` 是 MySQL 中的一个 SQL 命令，它用于选择当前要操作的数据库。
+
+- 查询 MySQL 用户名和主机名
+
+  ```sql
+  USE mysql;
+  SELECT user, host FROM user;
+  ```
 

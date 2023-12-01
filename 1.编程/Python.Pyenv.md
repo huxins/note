@@ -18,14 +18,6 @@ $ echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~
 $ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 ```
 
-添加到 `~/.profile`。
-
-```sh
-$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
-$ echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
-$ echo 'eval "$(pyenv init -)"' >> ~/.profile
-```
-
 安装 Python 构建依赖项。
 
 ```sh
@@ -49,15 +41,27 @@ $ pyenv install -l
 
 ## 三、切换 Python
 
+查询所选版本。
+
+```sh
+$ pyenv versions
+```
+
 仅为当前 Shell 会话选择。
 
 ```sh
 $ pyenv shell 3.9.18
 ```
 
-查询所选版本。
+在当前目录及其子目录中自动选择。
 
 ```sh
-$ pyenv versions
+$ pyenv local 3.9.18
+```
+
+为用户帐户全局选择。
+
+```sh
+$ pyenv global 3.9.18
 ```
 

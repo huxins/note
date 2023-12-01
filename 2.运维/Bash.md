@@ -25,6 +25,7 @@ fi
 详见 [Conditional Expressions](https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html)。
 
 - `-z` *string*：如果字符串的长度为零，则为 True。
+- `-n` *string*：如果字符串的长度非零，则为 True。
 
 ## 二、Shell 扩展
 
@@ -158,4 +159,18 @@ fi
 ```sh
 $ bash myscript.sh
 ```
+
+## 五、内置命令
+
+### 5.1. exec
+
+`exec` 是一个 Bash 内建命令，用于替换当前 Shell 进程。详见 [exec](https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html#index-exec)。
+
+- 重新启动 Shell
+
+  用当前用户的默认 Shell 替换当前的 Shell 进程。
+
+  ```sh
+  $ exec "$SHELL"
+  ```
 

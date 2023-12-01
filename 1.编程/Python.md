@@ -25,6 +25,43 @@
   $ python -m pip --version
   ```
 
+### 1.2. Linux
+
+#### 1.2.1. CentOS 7
+
+安装编译 Python 所需的依赖。
+
+```sh
+$ yum groupinstall "Development Tools"
+$ yum install openssl-devel bzip2-devel libffi-devel
+```
+
+下载 Python 源代码。
+
+```sh
+$ wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz
+```
+
+解压源代码并进入目录。
+
+```sh
+$ tar xzf Python-3.9.18.tgz
+$ cd Python-3.9.18
+```
+
+配置并编译 Python。
+
+```sh
+$ ./configure
+$ make -j$(nproc)
+```
+
+安装 Python。
+
+```sh
+$ make altinstall
+```
+
 ## 二、Python 模块
 
 ### 2.1. venv

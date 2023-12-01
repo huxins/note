@@ -105,3 +105,57 @@ Line 3
 EOF
 ```
 
+## 四、启动文件
+
+### 4.1. 交互式
+
+交互式（Interactive）和非交互式（Non-Interactive）是两种不同的用户界面模式。
+
+- 非交互式 Shell
+
+  ```sh
+  $ bash myscript.sh
+  ```
+
+- 交互式 Shell
+
+  ```sh
+  $ echo "Hello, World"!
+  ```
+
+以下是一个在 Bash 脚本中判断当前 Shell 是否交互式的示例。
+
+```sh
+#!/bin/bash
+
+if [ -n "$PS1" ]; then
+  echo "当前是交互式 Shell"
+else
+  echo "当前是非交互式 Shell"
+fi
+```
+
+### 4.2. 登录式
+
+登录式（login shell）和非登录式（non-login shell）是两种不同的交互式 Shell 启动方式。
+
+- 登录式 Shell
+
+  当用户登录到系统时，系统会启动一个登录式 Shell。用户通常通过用户名和密码进行登录。
+
+  登录式 Shell 会执行用户的登录配置文件（如 `~/.bash_profile` 或 `~/.bash_login` 或 `~/.profile`）来设置环境变量、别名等配置信息。
+
+- 非登录式 Shell
+
+  在已经登录的环境中启动新的 Shell，或者通过执行脚本来启动 Shell 时，通常会得到一个非登录式 Shell。
+
+  非登录式 Shell 不会执行用户的登录配置文件，而是执行其他配置文件，如 `~/.bashrc`。
+
+可以通过查看 `$0` 环境变量的值来确定当前 Shell 是否为登录式或非登录式。如果 `$0` 的值以 `-` 开头，通常表示登录式 Shell。
+
+非交互式非登录式 Shell 的典型用例如下。
+
+```sh
+$ bash myscript.sh
+```
+

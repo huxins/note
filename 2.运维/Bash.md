@@ -174,3 +174,67 @@ $ bash myscript.sh
   $ exec "$SHELL"
   ```
 
+## 六、语法
+
+### 6.1. Simple Commands
+
+Simple Commands 是最常见的命令类型。它是一个由空格分隔的单词序列，由 Shell 的一个[控制操作符](https://www.gnu.org/software/bash/manual/html_node/Definitions.html#index-control-operator)终止。第一个单词通常指定要执行的命令，其余单词是该命令的参数。
+
+```sh
+$ date +'%Y-%m-%d %T'
+```
+
+#### 6.1.1. 简单命令展开
+
+当执行一个 simple command 时，Shell 从左到右按以下顺序执行以下扩展、赋值和重定向。
+
+- 命令名之前的变量赋值将被保存，以供以后处理。
+- Shell Expansions。
+- 命令名之前的变量赋值。
+
+变量将添加到执行命令的环境中，不会影响当前的 Shell 环境，即设置当前执行命令中的临时环境变量。
+
+```sh
+$ v=var echo $v
+```
+
+由于 command substitution 的原因，`echo $v` 的执行会在变量赋值之前发生，从而导致 `$v` 的值在赋值时仍为空。
+
+具体过程如下。
+
+```
+1、命令替换，$v 为空，命令结果为 echo。
+2、命令名之前的变量赋值，执行 v=var。
+3、执行命令结果，即执行 echo。
+```
+
+### 6.2. Environment
+
+#### 6.2.1. 命令临时环境
+
+当一个程序被调用时，它会获得一个名为 *environment* 的字符串数组。这是一个以 `name=value` 形式表示的键值对列表。
+
+这些赋值语句只影响该命令所看到的 Environment，不会影响当前的 Shell Environment。
+
+设置临时环境变量。
+
+```sh
+$ CITY=Shanghai env | grep CITY
+```
+
+输出指定时区的日期。
+
+```sh
+$ TZ=':Asia/Tokyo' date +'%Y-%m-%d %T'
+```
+
+#### 6.2.2. 命令执行环境
+
+当一个简单的命令而不是一个内置或 Shell 函数被执行时，它在一个单独的执行环境中被调用，该环境由以下内容组成。
+
+- 标记为 export 的 Shell 变量和函数。
+
+  ```sh
+  $ export CITY=Shanghai; env | grep CITY
+  ```
+

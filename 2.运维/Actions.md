@@ -103,6 +103,33 @@ jobs:
           echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
 ```
 
+### 1.3. Workflow commands
+
+在 workflow 或 action's code 中运行 Shell 命令时，可以使用 workflow commands。详见 [Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)。
+
+大多数 workflow commands 使用特定格式的 `echo` 命令。
+
+```sh
+$ echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
+```
+
+#### 1.3.1. 环境变量
+
+`set-env` 可以设置环境变量。该命令以被弃用。
+
+```yaml
+name: 'Get Date'
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+run: echo "::set-env name=REPORT_DATE::$(TZ=':Asia/Shanghai' date +'%Y-%m-%d %T')"
+```
+
+替代方案为通过 Environment files 设置环境变量。
+
+```sh
+$ echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date +'%Y-%m-%d %T')" >> $GITHUB_ENV
+```
+
 ## 二、变量
 
 ### 2.1. 环境变量

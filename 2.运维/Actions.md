@@ -54,7 +54,7 @@ jobs:
     name: My second job
 ```
 
-### 1.2. Jobs syntax
+### 1.2. Job syntax
 
 #### 1.2.1. needs
 
@@ -103,7 +103,19 @@ jobs:
           echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
 ```
 
-### 1.3. Workflow commands
+### 1.3. Step syntax
+
+#### 1.3.1. uses
+
+指定版本。详见 [Using tags for release management](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-tags-for-release-management)。
+
+```yaml
+steps:
+  - name: 'Checkout codes'
+    uses: actions/checkout@v1
+```
+
+### 1.4. Workflow commands
 
 在 workflow 或 action's code 中运行 Shell 命令时，可以使用 workflow commands。详见 [Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)。
 
@@ -113,7 +125,7 @@ jobs:
 $ echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
 ```
 
-#### 1.3.1. 环境变量
+#### 1.4.1. 环境变量
 
 `set-env` 可以设置环境变量。该命令以被弃用。
 

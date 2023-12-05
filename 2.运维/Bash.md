@@ -174,6 +174,18 @@ $ bash myscript.sh
   $ exec "$SHELL"
   ```
 
+### 5.2. set
+
+设置或取消设置 Shell 选项和位置参数的值。详见 [set](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html#index-set)。
+
+```sh
+$ set -eux
+```
+
+- `-e`：当脚本中的任何命令返回非零退出状态时，立即退出脚本。
+- `-u`：如果尝试使用未声明的变量，则引发错误并导致脚本退出。
+- `-x`：执行脚本时，在执行每个命令之前，打印出实际执行的命令及其参数。
+
 ## 六、语法
 
 ### 6.1. Simple Commands

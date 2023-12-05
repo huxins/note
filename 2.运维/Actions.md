@@ -71,7 +71,7 @@ jobs:
 
 #### 1.2.2. runs-on
 
-`runs-on` 字段指定运行所需要的虚拟机环境。目前可用的虚拟机如下。
+`runs-on` 字段指定运行所需要的虚拟机环境。目前可用的虚拟机如下。详见 [GitHub Actions Runner Images](https://github.com/actions/runner-images)。
 
 ```
 ubuntu-latest

@@ -141,3 +141,15 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 sshd:x:74:
 ```
 
+## 三、文本处理
+
+### 3.1. tr
+
+`tr` 通过替换或删除选定字符将标准输入复制到标准输出。
+
+- CRLF 转 LF。
+
+  ```sh
+  $ cat -v test.txt | tr -d "^M"
+  ```
+

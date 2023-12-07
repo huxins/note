@@ -240,3 +240,7 @@ jobs:
     node-version: 16
 ```
 
+## 四、Runner Images
+
+Linux 虚拟机使用无密码的 `sudo` 运行。当需要执行比当前用户权限更高的命令或安装工具时，可以使用 `sudo` 而无需提供密码。详见 [Administrative privileges](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#administrative-privileges)。
+

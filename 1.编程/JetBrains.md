@@ -32,3 +32,11 @@ Enable system notifications：
 在 Windows 上，禁用此选项以隐藏系统托盘中的 IntelliJ IDEA 图标。
 ```
 
+## 三、插件
+
+### 3.1. 控制台
+
+#### 3.1.1. Grep Console
+
+以不同颜色显示控制台不同级别的日志。详见 [krasa/GrepConsole](https://github.com/krasa/GrepConsole)。
+

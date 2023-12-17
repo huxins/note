@@ -41,6 +41,18 @@ Vim 有多个版本，有些系统预装的 Vim 可能是 `vim.tiny`。
   $ cat -v test.txt | tr -d "^M"
   ```
 
+### 1.3. truncate
+
+`truncate` 将文件缩小或扩展到指定大小。
+
+- `-s` *SIZE*：指定 SIZE。
+
+清空文件的内容。
+
+```sh
+$ truncate -s 0 filename
+```
+
 ## 二、账户管理
 
 ### 2.1. 新建账户

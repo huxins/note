@@ -302,7 +302,7 @@ Person.prototype.sayHello = function() {
 
   在构造函数创建对象时，对象会继承构造函数的 `prototype` 上的属性和方法。这意味着通过构造函数创建的所有实例都共享同一个 `prototype` 对象上的方法。
 
-- **\__proto__**
+- **\_\_proto__**
 
   是每个对象都具有的属性，它指向对象的原型。它用于实现对象之间的原型链。
 
@@ -580,6 +580,15 @@ const language = {
   ```javascript
   const arrayLike = [1, 2, 3, 4, 5];
   const slice = Array.prototype.slice.call(arrayLike, 1, 3);
+  ```
+
+- Array.prototype.**filter**()
+
+  `filter()` 方法创建给定数组一部分的浅拷贝，其中包含通过指定函数测试的所有元素。
+
+  ```javascript
+  const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+  const result = words.filter(word => word.length > 6);
   ```
 
 #### 9.4.2. 静态方法

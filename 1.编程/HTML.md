@@ -539,6 +539,12 @@ const formData = new FormData(form);
   - **entries**()
 
     返回一个 `iterator` 对象，此对象可以遍历访问 `FormData` 中的键值对。
+    
+    ```javascript
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
+    ```
 
 ## 八、File API
 

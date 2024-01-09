@@ -2,11 +2,15 @@
 
 ## 一、函数
 
-### 1.1. 查找和引用
+### 1.1. 查找
 
-- **INDEX**(*reference*, *row_num*, [*column_num*], [*area_num*])
+#### 1.1.1. INDEX
 
-  返回指定的行与列交叉处的单元格引用。
+返回指定的行与列交叉处的单元格引用。
+
+```sql
+INDEX(reference, row_num, [column_num], [area_num])
+```
 
   - *reference*
 

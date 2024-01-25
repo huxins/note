@@ -1,34 +1,36 @@
 # jQuery
 
-## 一、事件
+## 一、原型方法
 
-### 1.1. 文档加载
+### 1.1. 事件处理
 
-- .**ready**( *handler* )
+- jQuery.prototype.**ready**()
 
-  `window.load` 事件的替代方法。在 DOM 载入就绪能够读取并操纵时立即调用所绑定的函数。
+  `DOMContentLoaded` 事件的替代方法。在 DOM 载入就绪能够读取并操纵时立即调用所绑定的函数。
 
   ```javascript
   $(document).ready(handler)
   ```
 
-  可以简写为：
+  可以简写。
 
   ```javascript
   $(handler)
   ```
 
-### 1.2. 事件处理
-
-- .**on**( *events* [, *selector* ] [, *data* ], *handler* )
+- jQuery.prototype.**on**()
 
   在选择元素上绑定一个或多个事件的事件处理函数。
 
-  - **events** (*String*)
+  ```javascript
+  jQuery.prototype.on(events[, selector][, data], handler)
+  ```
+
+  - **events** (*string*)
 
     一种或多种以空格分隔的事件类型和可选的命名空间，例如 `click` 或 `keydown.myPlugin`。
 
-  - **selector** (*String*)
+  - **selector** (*string*)
 
     选择器字符串，用于过滤触发事件的所选元素的后代。
 
@@ -36,7 +38,7 @@
 
     触发事件时要传递的 `event.data` 给事件处理函数。
 
-  - **handler** (*Function*)
+  - **handler** (*function*)
 
     触发事件时执行的函数。
 
@@ -58,21 +60,31 @@
       });
       ```
 
-- .**trigger**( *eventType* [, *extraParameters* ] )
+- jQuery.prototype.**trigger**()
 
   在每一个匹配的元素上触发某类事件。
 
   ```javascript
+  jQuery.prototype.trigger(eventType[, extraParameters])
+  ```
+  
+  例如，在指定元素上触发点击事件。
+  
+  ```javascript
   $(".videoListItem").trigger("click");
   ```
 
-## 二、Ajax
+## 二、静态方法
 
-### 2.1. 底层接口
+### 2.1. Ajax
 
-- *jQuery*.**ajax**( *url* [, *settings* ] )
+- jQuery.**ajax**()
 
   执行异步 HTTP Ajax 请求。
+
+  ```javascript
+  jQuery.ajax(url[, settings])
+  ```
 
   - **url** (*String*)
 
@@ -107,9 +119,9 @@
       默认情况下，所有请求都是异步发送的，即默认情况下设置为 `true`。
 
   以下为一些例子：
-
+  
   - 发送 JSON 数据到服务器，成功时显示信息。
-
+  
     ```javascript
     $.ajax({
       type: "POST",

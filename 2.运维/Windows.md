@@ -193,3 +193,7 @@ no@thankyou.com
 a@a.com
 ```
 
+### 4.4. 修改密码
+
+电脑已解锁的状态下，可以通过 `lusrmgr.msc` 重置密码。
+

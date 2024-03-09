@@ -74,69 +74,9 @@
   $(".videoListItem").trigger("click");
   ```
 
-## 二、静态方法
+### 1.2. 序列化
 
-### 2.1. Ajax
-
-- jQuery.**ajax**()
-
-  执行异步 HTTP Ajax 请求。
-
-  ```javascript
-  jQuery.ajax(url[, settings])
-  ```
-
-  - **url** (*String*)
-
-    一个用来包含发送请求的 URL 字符串。
-
-  - **settings** (*PlainObject*)
-
-    Ajax 请求设置。所有选项都是可选的。
-
-    - **data** (*PlainObject* or *String* or *Array*)
-
-      要发送到服务器的数据。如果 HTTP 方法是不能有实体主体的方法，例如 GET，数据将附加到 URL。
-
-    - **type** (*String*)
-
-      默认值为 `GET`。请求方式可选 `POST` 或 `GET`。其它 HTTP 请求方法，如 PUT 和 DELETE 也可以使用，但仅部分浏览器支持。
-
-    - **url** (*String*)
-
-      一个用来包含发送请求的 URL 字符串。
-
-    - **contentType** (*Boolean* or *String*)
-
-      向服务器发送数据时，使用此内容类型。
-
-    - **success** (*Function*)
-
-      请求成功时调用的函数。
-
-    - **async** (*Boolean*)
-
-      默认情况下，所有请求都是异步发送的，即默认情况下设置为 `true`。
-
-  以下为一些例子：
-  
-  - 发送 JSON 数据到服务器，成功时显示信息。
-  
-    ```javascript
-    $.ajax({
-      type: "POST",
-      url: "https://nghttp2.org/httpbin/post",
-      contentType: "application/json",
-      data: JSON.stringify([1, 2, 3]),
-      success: function (msg) {
-        alert("Data Saved: " + msg);
-      },
-    });
-    ```
-
-### 2.2. 辅助函数
-
-- .**serialize**()
+- jQuery.prototype.**serialize**()
 
   将一组表单元素编码为字符串以供提交。
 
@@ -144,7 +84,7 @@
   var str = $("form").serialize();
   ```
 
-- .**serializeArray**()
+- jQuery.prototype.**serializeArray**()
 
   将一组表单元素编码为名称和值的数组。
 
@@ -165,6 +105,70 @@
     
       return indexed_array;
     }
+    ```
+
+## 二、静态方法
+
+### 2.1. Ajax
+
+- jQuery.**ajax**()
+
+  执行异步 HTTP Ajax 请求。
+
+  ```javascript
+  jQuery.ajax(url[, settings])
+  ```
+
+  - **url** (*string*)
+
+    一个包含发送请求的 URL 字符串。
+
+  - **settings** (*object*)
+
+    Ajax 请求设置。所有选项都是可选的。
+
+    - **data** (*object* or *string* or *array*)
+
+      要发送到服务器的数据。如果 HTTP 方法是不能有实体主体的方法，例如 `GET`，数据将附加到 URL。
+
+    - **type** (*String*)
+
+      默认值为 `GET`。请求方式可选 `POST` 或 `GET`。其它 HTTP 请求方法，如 `PUT` 和 `DELETE` 也可以使用，但仅部分浏览器支持。
+
+    - **url** (*String*)
+
+      一个用来包含发送请求的 URL 字符串。
+
+    - **contentType** (*boolean* or *string*)
+
+      向服务器发送数据时，使用此内容类型。如 `application/x-www-form-urlencoded`。
+
+    - **success** (*function*)
+
+      请求成功时调用的函数。
+
+    - **async** (*boolean*)
+
+      默认情况下，所有请求都是异步发送的，即默认情况下设置为 `true`。
+      
+    - **beforeSend** (*function*)
+    
+      在发送请求之前调用，并且传入一个 XMLHttpRequest 作为参数。
+  
+  以下为一些例子：
+  
+  - 发送 JSON 数据到服务器，成功时显示信息。
+  
+    ```javascript
+    $.ajax({
+      type: "POST",
+      url: "https://nghttp2.org/httpbin/post",
+      contentType: "application/json",
+      data: JSON.stringify([1, 2, 3]),
+      success: function (msg) {
+        alert("Data Saved: " + msg);
+      },
+    });
     ```
 
 ## 三、工具

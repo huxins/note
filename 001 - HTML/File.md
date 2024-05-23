@@ -2,47 +2,52 @@
 
 ## 一、Blob
 
-#### 8.1.1. 构造函数
+`Blob` 对象表示一个不可变、原始数据的类文件对象。
 
-```javascript
-var aBlob = new Blob(array, options);
-```
+- **Blob**()
 
-将文件对象转换为 Blob 对象。
+  返回一个新创建的 `Blob` 对象，其内容由参数中给定的数组拼接组成。
 
-```javascript
-const file = document.querySelector('input[type="file"]').files[0];
+  ```javascript
+  const blob = new Blob(array);
+  ```
 
-const blob = new Blob([file], {type: file.type});
-```
+  - 将 File 对象转换为 Blob 对象。
 
-### 8.2. FileReader
+    ```javascript
+    const file = document.querySelector('input[type="file"]').files[0];
+    const blob = new Blob([file], {type: file.type});
+    ```
 
-#### 8.2.1. 实例方法
+## 二、FileReader
 
-- FileReader.**readAsDataURL**()
+实例方法：
 
-  `readAsDataURL` 方法会读取指定的 Blob 或 File 对象。读取操作完成的时候，`readyState` 会变成已完成 `DONE`，并触发 `loadend` 事件，同时 `result` 属性将包含一个 `data:` URL 格式的字符串（Base64 编码）以表示所读取文件的内容。
+- FileReader.**readAsDataURL**(*blob*)
+
+  `readAsDataURL` 方法会读取指定的 Blob 或 File 对象。
+
+  读取操作完成的时候，`readyState` 会变成已完成 `DONE`，并触发 `loadend` 事件，同时 `result` 属性将包含一个 `data:` URL 格式的 Base64 编码字符串以表示所读取文件的内容。
 
   ```javascript
   const reader = new FileReader();
   reader.readAsDataURL(blob);
   
-  // 读取完成后，将文件内容转换为 base64 字符串
   reader.onload = function() {
     const base64Data = reader.result;
   };
   ```
 
-- FileReader.**readAsArrayBuffer**()
+- FileReader.**readAsArrayBuffer**(*blob*)
 
-  `readAsArrayBuffer` 方法用于启动读取指定的 Blob 或 File 内容。当读取操作完成时，`readyState` 变成 `DONE`（已完成），并触发 `loadend` 事件，同时 `result` 属性中将包含一个 `ArrayBuffer` 对象以表示所读取文件的数据。
+  `readAsArrayBuffer` 方法用于开始读取指定 Blob 或 File 的内容。
 
+  当读取操作完成时，`readyState` 变成 `DONE`，并触发 `loadend` 事件，同时 `result` 属性将包含一个 `ArrayBuffer` 对象以表示所读取文件的数据。
+  
   ```javascript
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
   
-  // 读取完成后，创建 ArrayBuffer 对象
   reader.onload = function() {
     const arrayBuffer = reader.result;
   };

@@ -11,7 +11,7 @@
 
 ## 二、扩展
 
-### 2.1. Web 扩展
+### 2.1. Web
 
 #### Highlight Matching Tag
 
@@ -26,4 +26,10 @@
 #### Live Server
 
 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 为静态和动态页面启动具有实时重新加载功能的本地开发服务器。
+
+### 2.2. CSharp
+
+#### C#
+
+Visual Studio Code 的官方 [C# 支持](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)。
 

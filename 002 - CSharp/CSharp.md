@@ -87,3 +87,67 @@ Console.WriteLine("\u3053\u3093\u306B\u3061\u306F World!");
 string message = $"{greeting} {firstName}!";
 ```
 
+### 1.2. 引用类型
+
+#### 1.2.1. 数组
+
+可以将同一类型的多个变量存储在一个数组数据结构中。
+
+```c#
+int[] array1 = new int[5];
+int[] array2 = [1, 2, 3, 4, 5, 6];
+```
+
+## 二、语句
+
+### 2.1. 选择语句
+
+`if`、`if-else` 和 `switch` 语句根据表达式的值从多个可能的语句选择要执行的路径。
+
+```c#
+if (total > 14)
+{
+    Console.WriteLine("You win!");
+}
+```
+
+`switch` 语句根据与匹配表达式匹配的模式来选择要执行的语句列表。
+
+```c#
+switch (fruit)
+{
+    case "apple":
+        Console.WriteLine($"App will display information for apple.");
+        break;
+
+    case "banana":
+        Console.WriteLine($"App will display information for banana.");
+        break;
+
+    default:
+        Console.WriteLine($"App will display information for default.");
+        break;
+}
+```
+
+### 2.2. 迭代语句
+
+在指定的布尔表达式的计算结果为 `true` 时，`for` 语句会执行一条语句或一个语句块。
+
+```c#
+for (int i = 0; i < 3; i++)
+{
+    Console.Write(i);
+}
+```
+
+`foreach` 语句提供一种简单、明了的方法来循环访问数组的元素。
+
+```c#
+string[] names = ["Rowena", "Robin", "Bao"];
+foreach (string name in names)
+{
+    Console.WriteLine(name);
+}
+```
+

@@ -1,8 +1,8 @@
 # System 类库
 
-## 一、工具类
+## 一、工具
 
-### 1.1. Random
+### Random
 
 伪随机数生成器。
 
@@ -16,4 +16,16 @@
   Random dice = new Random();
   int roll = dice.Next(1, 7);  // 该随机数大于等于 1，小于 7。
   ```
+
+## 二、类型
+
+### String
+
+将文本表示为 UTF-16 代码单元的序列。
+
+静态方法：
+
+- String.**IsNullOrWhiteSpace**(*String*)
+
+  指示指定的字符串是 `null`、空还是仅由空白字符组成。
 

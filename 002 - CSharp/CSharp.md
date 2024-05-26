@@ -8,7 +8,7 @@ CSharp 是一种强[类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/fund
 
 CSharp 提供了一组标准的[内置类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/built-in-types)。
 
-#### 1.1.1. char
+#### char
 
 `char` 类型表示 Unicode UTF-16 字符。
 
@@ -16,7 +16,7 @@ CSharp 提供了一组标准的[内置类型](https://learn.microsoft.com/zh-cn/
 char firstLetter = 'C';
 ```
 
-#### 1.1.2. integer
+#### integer
 
 所有的整型数值类型均为值类型。
 
@@ -24,7 +24,7 @@ char firstLetter = 'C';
 | ----- | --------------------- | -------------- |
 | `int` | Signed 32-bit integer | `System.Int32` |
 
-#### 1.1.3. float
+#### float
 
 所有的浮点型数值类型均为值类型。
 
@@ -52,14 +52,14 @@ Console.WriteLine(2.625.GetType());
 Console.WriteLine(12.39816M.GetType());
 ```
 
-#### 1.1.4. bool
+#### bool
 
 ```c#
 Console.WriteLine(true);
 Console.WriteLine(false);
 ```
 
-#### 1.1.5. string
+#### string
 
 转义字符序列以反斜杠 `\` 开头，后跟要转义的字符。例如，`\n` 序列将添加一个新行，而 `\t` 序列将添加一个制表符。
 

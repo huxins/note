@@ -158,3 +158,117 @@
    }
    ```
 
+## 二、命令
+
+[命令](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8)是 WPF 中的一种输入机制。
+
+WPF 命令模型具有 4 个重要元素，`命令`、`命令源`、`命令目标`和`命令绑定`。
+
+WPF 命令模型的核心在于 `ICommand` 接口，该接口定义命令的工作原理。
+
+```c#
+public interface ICommand
+{
+    event EventHandler CanExecuteChanged;
+    bool CanExecute(object parameter);
+    void Execute(object parameter);
+}
+```
+
+`ICommand` 公开了两种方法 `Execute` 和 `CanExecute`，以及一个事件 `CanExecuteChanged`。
+
+`Execute` 执行与该命令关联的操作。
+
+`CanExecute` 确定是否可以在当前命令目标上执行该命令。例如，文本框中没有选择任何文本，此时 `Copy` 命令是不可用的，`CanExecute` 则返回 `false`。
+
+实际上，`Execute` 和 `CanExecute` 方法并没有包含命令的处理逻辑，而是将触发遍历元素树的事件来查找具有 `CommandBinding` 的对象，真正命令的处理程序包含在 `CommandBinding` 的事件处理程序中。
+
+执行过程如下。
+
+```
+1、按钮点击：当用户点击按钮时，按钮的 Command 属性（ApplicationCommands.New）被触发。
+2、调用 RoutedCommand.Execute：ApplicationCommands.New.Execute 方法被调用。
+3、触发事件：Execute 方法触发 Executed 路由事件。
+4、查找 CommandBinding：WPF 在元素树中查找与 ApplicationCommands.New 绑定的 CommandBinding。
+5、调用处理程序：找到 CommandBinding 后，调用 Executed 事件处理程序，即 NewCommandExecuted 方法。
+6、显示消息：NewCommandExecuted 方法执行，显示消息框。
+```
+
+### 2.1. 内置命令
+
+在 WPF 中，`CommandBinding` 和 `Command` 是实现命令模式的一部分，用于将用户界面操作与命令逻辑分离。这使得代码更模块化和更容易维护。
+
+在 XAML 中创建命令绑定。
+
+```xaml
+<Window.CommandBindings>
+    <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand" />
+</Window.CommandBindings>
+```
+
+在 C# 中创建命令绑定。
+
+```c#
+public MainWindow()
+{
+    InitializeComponent();
+    CommandBinding bindingNew = new CommandBinding(ApplicationCommands.New);
+    bindingNew.Executed += NewCommand;
+    this.CommandBindings.Add(bindingNew);
+}
+```
+
+`ApplicationCommands.New` 是 WPF 提供的一个预定义命令，表示`新建`操作。`Executed="NewCommand"` 用于指定当命令被执行时应该调用的方法。
+
+```c#
+private void NewCommand(object sender, ExecutedRoutedEventArgs e)
+{
+    MessageBox.Show("New 命令被触发了，命令源是：" + e.Source.ToString());
+}
+```
+
+在 XAML 中，设置命令源。
+
+```xaml
+<StackPanel>
+    <Button
+        Margin="5"
+        Padding="5"
+        Command="ApplicationCommands.New"
+        ToolTip="{x:Static ApplicationCommands.New}">
+        New
+    </Button>
+    <Button
+        Margin="5"
+        Padding="5"
+        Command="ApplicationCommands.New"
+        Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+</StackPanel>
+```
+
+除了在 XAML 中设置命令源，还可以绑定事件方法，手动调用命令。
+
+```c#
+private void DoCommand_Click(object sender, RoutedEventArgs e)
+{
+    // 直接调用命令的两种方式
+    ApplicationCommands.New.Execute(null, (Button)sender);
+    //  this.CommandBindings[0].Command.Execute(null);
+}
+```
+
+然后在 XAML 中绑定事件方法。
+
+```xaml
+<StackPanel>
+    <Button
+        Margin="5"
+        Padding="5"
+        Click="DoCommand_Click">
+        DoCommand
+    </Button>
+</StackPanel>
+```
+
+### 2.2. 自定义命令
+

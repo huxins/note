@@ -198,6 +198,8 @@ public interface ICommand
 
 在 WPF 中，`CommandBinding` 和 `Command` 是实现命令模式的一部分，用于将用户界面操作与命令逻辑分离。这使得代码更模块化和更容易维护。
 
+#### 2.1.1. 命令绑定
+
 在 XAML 中创建命令绑定。
 
 ```xaml
@@ -218,6 +220,8 @@ public MainWindow()
 }
 ```
 
+#### 2.1.2. 绑定执行方法
+
 `ApplicationCommands.New` 是 WPF 提供的一个预定义命令，表示`新建`操作。`Executed="NewCommand"` 用于指定当命令被执行时应该调用的方法。
 
 ```c#
@@ -226,6 +230,8 @@ private void NewCommand(object sender, ExecutedRoutedEventArgs e)
     MessageBox.Show("New 命令被触发了，命令源是：" + e.Source.ToString());
 }
 ```
+
+#### 2.1.3. 命令源
 
 在 XAML 中，设置命令源。
 
@@ -245,6 +251,8 @@ private void NewCommand(object sender, ExecutedRoutedEventArgs e)
         Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
 </StackPanel>
 ```
+
+#### 2.1.4. 事件调用
 
 除了在 XAML 中设置命令源，还可以绑定事件方法，手动调用命令。
 
@@ -271,4 +279,83 @@ private void DoCommand_Click(object sender, RoutedEventArgs e)
 ```
 
 ### 2.2. 自定义命令
+
+#### 2.2.1. 实现命令
+
+自定义实现一个命令，如 `RelayCommand`。
+
+```c#
+public class RelayCommand : ICommand
+{
+    private readonly Action<object> execute;
+    private readonly Predicate<object> canExecute;
+
+    public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
+    {
+        this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
+        this.canExecute = canExecute;
+    }
+
+    public bool CanExecute(object parameter)
+    {
+        return canExecute == null || canExecute(parameter);
+    }
+
+    public void Execute(object parameter)
+    {
+        execute(parameter);
+    }
+
+    public event EventHandler CanExecuteChanged
+    {
+        add { CommandManager.RequerySuggested += value; }
+        remove { CommandManager.RequerySuggested -= value; }
+    }
+}
+```
+
+#### 2.2.2. 命令绑定
+
+在 `ViewModel` 中实例化命令。
+
+```c#
+public class YourViewModel
+{
+    public ICommand MyCommand { get; }
+
+    public YourViewModel()
+    {
+        MyCommand = new RelayCommand(ExecuteMyCommand, CanExecuteMyCommand);
+    }
+
+    private void ExecuteMyCommand(object parameter)
+    {
+        // 执行命令的逻辑
+    }
+
+    private bool CanExecuteMyCommand(object parameter)
+    {
+        // 判断命令是否可以执行的逻辑
+        return true;
+    }
+}
+```
+
+在 `XAML` 中绑定命令。
+
+```xaml
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DataBinding"
+    d:DataContext="{d:DesignInstance local:YourViewModel}">
+    <StackPanel>
+        <Button
+            Margin="5"
+            Padding="5"
+            Command="{Binding MyCommand}"
+            Content="Execute Command" />
+    </StackPanel>
+</Window>
+```
 

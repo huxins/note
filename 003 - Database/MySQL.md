@@ -401,3 +401,18 @@ $ source dump.sql
 
   如果 `expr1` 为真，`IF()` 返回 `expr2`。否则，它返回 `expr3`。
 
+## 九、日志
+
+### 9.1. 常规查询日志
+
+常规查询日志是 `mysqld` 正在进行的一般记录。当客户端连接或断开时，服务器会向该日志写入信息，并记录从客户端收到的每条 SQL 语句。
+
+默认情况下，常规查询日志处于禁用状态。要明确指定初始的常规查询日志状态，可使用 [general_log](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_general_log)。要指定日志文件名，使用 [general_log_file](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_general_log_file)。要指定日志目的地，使用 [log_output](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_log_output)。
+
+启用常规查询日志：
+
+```sql
+SET GLOBAL general_log_file = 'general_log.log';
+SET GLOBAL general_log = 'ON';
+```
+

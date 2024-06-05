@@ -1,4 +1,4 @@
-# VSCode
+# Visual Studio Code
 
 ## 一、快捷键
 

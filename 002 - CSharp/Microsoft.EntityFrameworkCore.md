@@ -101,7 +101,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 ```c#
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
-    if (!optionsBuilder.IsConfigured) return;
+    if (optionsBuilder.IsConfigured) return;
 
     string connectionString = @"server=localhost;
                                 port=3307;
@@ -113,6 +113,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         new MySqlServerVersion(new Version(8, 0, 21)));
 }
 ```
+
+更工程化的方法的通过[依赖关系注入](https://learn.microsoft.com/zh-cn/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core)。
 
 ### 2.4. 关系导航
 

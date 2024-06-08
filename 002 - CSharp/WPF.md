@@ -359,3 +359,11 @@ public class YourViewModel
 </Window>
 ```
 
+## 三、编译
+
+### 3.1. 异常错误
+
+- 当前上下文中不存在名称 `InitializeComponent`
+
+  在 VS 中，如果 XAML 的后台代码提示不存在 `InitializeComponent`，尝试将 XAML 的属性从 `页` 更改为其他，再更改回 `页`，会自动选择 `MSBuild:Compile`。
+

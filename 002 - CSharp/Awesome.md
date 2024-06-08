@@ -16,3 +16,9 @@
 
 WPF 提供一套完善的应用程序开发功能，这些功能包括 XAML、控件、数据绑定、布局、二维和三维图形、动画、样式、模板、文档、媒体、文本和版式。WPF 属于 .NET，因此可以生成整合 .NET API 其他元素的应用程序。
 
+## 三、控件
+
+### Syncfusion
+
+[社区许可证](https://www.syncfusion.com/products/communitylicense)为个人开发人员和小企业提供了对所有 [Syncfusion](https://www.syncfusion.com/) 产品的免费访问。
+

@@ -158,6 +158,46 @@
    }
    ```
 
+### 2.3. 格式化
+
+[StringFormat](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.data.bindingbase.stringformat?view=windowsdesktop-8.0) 获取或设置一个字符串，该字符串指定在绑定值显示为字符串时如何[格式化](https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/formatting-types)绑定。
+
+日期格式化：
+
+```xaml
+<syncfusion:GridTextColumn
+    DisplayBinding="{Binding Path=OrderDate, StringFormat='{}{0:yyyy-MM-dd}'}"
+    HeaderText="订单日期"
+    MappingName="OrderDate" />
+```
+
+定点小数格式化：
+
+```xaml
+<syncfusion:GridTextColumn
+    DisplayBinding="{Binding Path=OrderQuantity, StringFormat='{}{0:F2}'}"
+    HeaderText="订单数量"
+    MappingName="OrderQuantity" />
+```
+
+货币格式化：
+
+```xaml
+<syncfusion:GridTextColumn
+    DisplayBinding="{Binding Path=SalesUnitPrice, StringFormat='{}{0:C2}', ConverterCulture='zh-CN'}"
+    HeaderText="销售单价"
+    MappingName="SalesUnitPrice" />
+```
+
+百分比格式化：
+
+```xaml
+<syncfusion:GridTextColumn
+    DisplayBinding="{Binding Path=GrossMargin, StringFormat='{}{0:P2}'}"
+    HeaderText="毛利率"
+    MappingName="GrossMargin" />
+```
+
 ## 二、命令
 
 [命令](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8)是 WPF 中的一种输入机制。

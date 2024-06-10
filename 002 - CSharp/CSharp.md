@@ -151,3 +151,23 @@ foreach (string name in names)
 }
 ```
 
+## 三、LINQ
+
+语言集成查询 [LINQ](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/) 是一系列直接将查询功能集成到 C# 语言的技术统称。
+
+[语言级查询](https://learn.microsoft.com/zh-cn/dotnet/standard/linq/#language-level-query-syntax)语法如下：
+
+```c#
+var parts = from x in salesOrderItems
+            where salesOrderItems.FindIndex(z => z.PartNumber == x.PartNumber) == salesOrderItems.IndexOf(x)
+            select x;
+```
+
+使用 `IEnumerable<T>` API 的情况如下：
+
+```c#
+var parts = salesOrderItems
+    .Where((x, i) => salesOrderItems.FindIndex(z => z.PartNumber == x.PartNumber) == i)
+    .ToList();
+```
+

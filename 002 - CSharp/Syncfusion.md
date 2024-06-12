@@ -50,7 +50,25 @@ SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
 
 #### 条件样式
 
-[数据触发器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-triggers)：默认只能进行等于比较，无法直接进行大于或小于的比较。
+##### 列样式
+
+###### 转换器
+
+通过使用[转换器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-converter)根据 `cell value` 或 `data object` 更改其属性值，可以有条件地自定义 `GridCell`。
+
+```xaml
+<syncfusion:GridPercentColumn.CellStyle>
+    <Style TargetType="syncfusion:GridCell">
+        <Setter Property="Background" Value="{Binding Path=GrossMargin, Converter={StaticResource ProfitRateColorConverter}}" />
+    </Style>
+</syncfusion:GridPercentColumn.CellStyle>
+```
+
+###### 数据触发器
+
+基于指定条件应用属性值的[触发器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-triggers)。
+
+默认只能进行等于比较，无法直接进行大于或小于的比较。
 
 ```xaml
 <syncfusion:GridPercentColumn.CellStyle>
@@ -62,5 +80,21 @@ SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
         </Style.Triggers>
     </Style>
 </syncfusion:GridPercentColumn.CellStyle>
+```
+
+通过转换器，可以实现大于、小于或者其他条件进行判定。
+
+例如，当关联单据为空，就更换背景颜色。
+
+```xaml
+<syncfusion:GridCurrencyColumn.CellStyle>
+    <Style TargetType="syncfusion:GridCell">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="">
+                <Setter Property="Background" Value="LightPink" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</syncfusion:GridCurrencyColumn.CellStyle>
 ```
 

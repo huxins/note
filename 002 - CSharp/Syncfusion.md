@@ -50,7 +50,7 @@ SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
 
 #### 条件样式
 
-##### 列样式
+##### 单元格样式
 
 ###### 转换器
 

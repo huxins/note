@@ -171,3 +171,120 @@ var parts = salesOrderItems
     .ToList();
 ```
 
+### 3.1. 排序
+
+排序操作基于一个或多个属性对序列的元素进行排序。第一个排序条件对元素执行主要排序。通过指定第二个排序条件，可以对每个主要排序组内的元素进行排序。
+
+```c#
+var salesOrderItems = salesOrderItems
+    .OrderByDescending(x => x.OrderDate)
+    .ThenBy(x => x.SalesOrderNumber)
+    .ThenBy(x=> x.SalesItemNumber)
+    .ToList();
+```
+
+## 四、异步
+
+异步编程的核心是 `Task` 和 `Task<T>` 对象，这两个对象对异步操作建模。它们受关键字 `async` 和 `await` 的支持。
+
+### 4.1. I/O 绑定
+
+主要指的是那些需要等待外部资源的操作，如文件系统、数据库、网络请求等。
+
+```c#
+// 异步调用并等待异步方法执行完成
+await MyAsyncMethod();
+Console.WriteLine("主线程继续执行。");
+Console.ReadLine();
+
+static async Task MyAsyncMethod()
+{
+    // 模拟异步操作，比如网络请求或者文件读取
+    await Task.Delay(2000); // 两秒钟的延迟
+    Console.WriteLine("异步方法执行完成。");
+}
+```
+
+当 `await Task.Delay(2000)` 执行时，它实际上会立即返回一个任务给调用者，并且主线程可以继续处理其他任务或保持响应状态，而不需要等待 2 秒钟。
+
+在等待期间，主线程是空闲的，它可以继续处理其他操作，比如用户输入、UI 更新等。
+
+等待结束后，当 `Task.Delay(2000)` 完成时，控制权返回到 `MyAsyncMethod` 并继续执行后面的代码。
+
+### 4.2. CPU 绑定
+
+主要指的是那些需要大量计算的操作，比如复杂的数学计算、数据处理等。
+
+```c#
+// 异步调用并等待异步方法执行完成
+int result = await CalculateFactorialAsync(10);
+Console.WriteLine($"Factorial of 10 is {result}");
+Console.ReadLine();
+
+static async Task<int> CalculateFactorialAsync(int number)
+{
+    // 使用 Task.Run 在后台线程中执行 CPU 绑定操作
+    return await Task.Run(() => CalculateFactorial(number));
+}
+
+static int CalculateFactorial(int number)
+{
+    int result = 1;
+    for (int i = 1; i <= number; i++)
+    {
+        result *= i;
+    }
+    return result;
+}
+```
+
+### 4.3. 异常处理
+
+在异步编程中，`async` 方法通常返回 `Task` 或 `Task<T>`，这使得调用方可以等待它们完成并处理可能的异常。
+
+当 `async` 方法返回 `void` 时，异常处理会变得复杂，因为调用方无法直接捕获这些异常。
+
+```c#
+// 调用无法捕获异常
+try
+{
+    DoSomethingAsync();
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Exception caught: " + ex.Message);
+}
+
+async void DoSomethingAsync()
+{
+    // 可能抛出异常
+    await Task.Delay(1000);
+    throw new Exception("Something went wrong!");
+}
+```
+
+推荐的做法：`async Task`。
+
+```c#
+// 调用可以捕获异常
+try
+{
+    await DoSomethingAsync();
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Exception caught: " + ex.Message);
+}
+
+async Task DoSomethingAsync()
+{
+    // 可能抛出异常
+    await Task.Delay(1000);
+    throw new Exception("Something went wrong!");
+}
+```
+
+### 4.4. 异步机制
+
+`await` 内部维护了一个状态机。当主线程运行到 `await` 时，如果等待的任务尚未完成，方法会返回一个未完成的任务，并释放当前线程。状态机保存当前的执行位置。当异步操作完成时，状态机会尝试在捕获的同步上下文中恢复执行后续代码。如果没有特定的同步上下文，代码将在线程池线程中继续执行。
+

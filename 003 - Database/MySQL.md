@@ -250,6 +250,12 @@ $ mysqldump --all-databases > dump.sql
 $ mysqldump --databases db1 db2 db3 > dump.sql
 ```
 
+要只转储数据库中的特定表，请在命令行中将这些表命名在数据库名称之后。
+
+```sh
+$ mysqldump db1 t1 t3 t7 > dump.sql
+```
+
 要重新加载由 `mysqldump` 编写的包含 SQL 语句的转储文件，请将其用作 `mysql` 客户端的输入。
 
 ```sh

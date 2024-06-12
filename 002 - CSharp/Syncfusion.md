@@ -31,6 +31,21 @@ SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
     Style="{StaticResource WPFPrimaryButtonStyle}" />
 ```
 
+### SfBusyIndicator
+
+[繁忙指示器](https://help.syncfusion.com/wpf/busy-indicator/overview)控件包含超过 37 个内置动画，可在应用程序中显示。
+
+```xaml
+<syncfusion:SfBusyIndicator
+    x:Name="busyIndicator"
+    Grid.Row="1"
+    AnimationType="DoubleCircle"
+    Background="Transparent"
+    Foreground="Black"
+    Header="正在加载..."
+    IsBusy="{Binding IsBusy}" />
+```
+
 ### SfDataGrid
 
 [SfDataGrid](https://help.syncfusion.com/wpf/datagrid/overview) 控件用于在行和列中显示数据的集合。

@@ -183,6 +183,19 @@ var salesOrderItems = salesOrderItems
     .ToList();
 ```
 
+### 3.2. 分组
+
+[分组](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/standard-query-operators/grouping-data)是指将数据分到不同的组，使每组中的元素拥有公共的属性。
+
+```c#
+var parts = salesOrderItems
+    .Where(s => s.Status == "NOT REVIEWED")
+    .Where(s => s.OrderItemLinks == null || !s.OrderItemLinks.Any())
+    .GroupBy(s => new { s.PartNumber, s.PartType })
+    .Select(g => g.First())
+    .ToList();
+```
+
 ## 四、异步
 
 异步编程的核心是 `Task` 和 `Task<T>` 对象，这两个对象对异步操作建模。它们受关键字 `async` 和 `await` 的支持。

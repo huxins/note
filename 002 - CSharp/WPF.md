@@ -401,13 +401,27 @@ public class YourViewModel
 </Window>
 ```
 
-## 三、编译
+## 三、异常
 
-### 3.1. 异常错误
+### 3.1. 编译错误
 
 - 当前上下文中不存在名称 `InitializeComponent`
 
   在 VS 中，如果 XAML 的后台代码提示不存在 `InitializeComponent`，尝试将 XAML 的属性从 `页` 更改为其他，再更改回 `页`，会自动选择 `MSBuild:Compile`。
+
+### 3.2. 运行错误
+
+#### 查看事件日志
+
+Windows 事件查看器是排查应用程序崩溃问题的一个重要工具。
+
+按 `Win + R` 打开运行对话框，输入 `eventvwr` 并按回车。
+
+在事件查看器中，导航到 `Windows Logs > Application`。
+
+查找有关应用程序崩溃的错误日志。它们通常标记为 `Error` 或 `Critical`，并且来源可能是 `.NET Runtime` 或 `Application Error`。
+
+这些日志会包含崩溃的详细信息，如异常类型、错误消息和堆栈跟踪。
 
 ## 四、部署
 

@@ -40,3 +40,18 @@ PolarDB MySQL Serverless 存储空间最小为 20 GB。
 | PCU      | 0.4 PCU/H   | 0.2 PCU/H |
 | 存储空间 | 0.0016 GB/H |           |
 
+## 二、腾讯云
+
+### TDSQL-C MySQL
+
+[TDSQL-C MySQL](https://cloud.tencent.com/document/product/1003/30488) 是腾讯云自研的新一代云原生关系型数据库。采用存储和计算分离的架构，所有计算节点共享一份数据。
+
+[Serverless](https://cloud.tencent.com/document/product/1003/50853) 服务的计算和存储独立计费：计算按 CCU 个数计费，存储按使用量 GB 计费，计费系统按秒计费，按小时结算。
+
+TDSQL-C MySQL 版 Serverless 服务无最小存储空间要求。
+
+| 收费项   | 标准单价    | 优惠单价 |
+| -------- | ----------- | -------- |
+| CCU      | 0.34 CCU/H  |          |
+| 存储空间 | 0.0049 GB/H |          |
+

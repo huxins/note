@@ -97,7 +97,7 @@ SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
 </syncfusion:GridPercentColumn.CellStyle>
 ```
 
-通过转换器，可以实现大于、小于或者其他条件进行判定。
+通过 `Converter`，可以实现大于、小于或者其他条件进行判定。
 
 例如，当关联单据为空，就更换背景颜色。
 
@@ -108,6 +108,24 @@ SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
             <DataTrigger Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="">
                 <Setter Property="Background" Value="LightPink" />
             </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</syncfusion:GridCurrencyColumn.CellStyle>
+```
+
+使用 `MultiDataTrigger` 可以指定多个条件。
+
+```xaml
+<syncfusion:GridCurrencyColumn.CellStyle>
+    <Style TargetType="syncfusion:GridCell">
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="" />
+                    <Condition Binding="{Binding Path=PurchaseUnitPrice, Converter={StaticResource GreaterThanConverter}, ConverterParameter=0}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Background" Value="#CCCCCC" />
+            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 </syncfusion:GridCurrencyColumn.CellStyle>

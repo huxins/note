@@ -46,3 +46,9 @@ Windows [提供](https://learn.microsoft.com/zh-cn/windows/apps/get-started/)各
 
 [Kino.Toolkit.Wpf](https://github.com/DinoChan/Kino.Toolkit.Wpf) 是一组简单实用的 WPF 控件与工具，用于介绍自定义控件的入门。
 
+## 四、消息传递
+
+### MediatR
+
+[MediatR](https://github.com/jbogard/MediatR) 是一个用于实现中介者模式的库。
+

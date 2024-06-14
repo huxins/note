@@ -323,7 +323,7 @@ $ source dump.sql
 
 ## 六、数据类型
 
-### 6.1. String
+### 6.1. 字符串
 
 字符串数据类型为 `CHAR`、`VARCHAR`、`BINARY`、`VARBINARY`、`BLOB`、`TEXT`、`ENUM` 和 `SET`。
 
@@ -333,13 +333,62 @@ $ source dump.sql
 
 与 `CHAR` 不同，`VARCHAR` 值被存储为一个 `1` 字节或 `2` 字节的长度前缀加上数据。长度前缀表示值中的字节数。如果值不超过 255 字节，则列使用一个长度字节，如果值可能超过 255 字节，则使用两个长度字节。
 
-### 6.2. Date
+#### TEXT
+
+`TEXT` 是用来存储非常长的文本数据的类型，最大长度为 65535 个字符。它存储的方式和 `VARCHAR` 不同，会占用额外的存储空间。
+
+#### ENUM
+
+`ENUM` 是一个字符串对象，其值从允许的值列表中选择，这些值在表创建时在列规范中显式枚举。
+
+```sql
+CREATE TABLE shirts (
+    name VARCHAR(40),
+    size ENUM('x-small', 'small', 'medium', 'large', 'x-large')
+);
+```
+
+### 6.2. 日期
 
 日期和时间数据类型有 `DATE`、`TIME`、`DATETIME`、`TIMESTAMP` 和 `YEAR`。
 
 #### DATETIME
 
 `DATETIME` 类型用于包含日期和时间部分的数值。MySQL 以 `'YYYY-MM-DD hh:mm:ss'` 格式检索和显示 `DATETIME` 值。支持的范围是 `'1000-01-01 00:00:00'` 到 `'9999-12-31 23:59:59'`。
+
+#### DATE
+
+`DATE` 类型用于有日期部分但没有时间部分的值。MySQL 检索并显示 `'YYYY-MM-DD'` 格式的 `DATE` 值。支持的范围为 `'1000-01-01'` 到 `'9999-12-31'`。
+
+#### TIMESTAMP
+
+`TIMESTAMP` 数据类型用于同时包含日期和时间部分的值。`TIMESTAMP` 的范围为协调世界时 `1970-01-01 00:00:01` 到协调世界时 `2038-01-19 03:14:07`。
+
+### 6.3. 数字
+
+#### Integer
+
+[整数](https://dev.mysql.com/doc/refman/5.7/en/integer-types.html)类型。
+
+`INT` 为 4 字节 32 位有符号整数。
+
+#### BOOLEAN
+
+`BOOLEAN` 类型是 `TINYINT(1)` 的同义词。零值被认为是 `false`。非零值被认为是 `true`。
+
+```sql
+SELECT IF(0, 'true', 'false');
+```
+
+#### 定点数
+
+在 `DECIMAL` 列声明中，可以指定精度和小数位数。
+
+```sql
+salary DECIMAL(5, 2)
+```
+
+标准 SQL 要求 `DECIMAL(5, 2)` 能够存储任何具有五位数字和两位小数的值，因此可以存储在 *salary* 列中的值范围为 `-999.99` 到 `999.99`。
 
 ## 七、函数
 

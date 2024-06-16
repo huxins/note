@@ -119,3 +119,134 @@ public class MyService
 }
 ```
 
+### 策略模式
+
+策略模式是一种行为设计模式，它能让你定义一系列算法，并将每种算法分别放入独立的类中，以使算法的对象能够相互替换。
+
+#### 使用场景
+
+当你想使用对象中各种不同的算法变体，并希望能在运行时切换算法时，可使用策略模式。
+
+#### 代码示例
+
+假设我们有一个简单的支付系统，我们可以用不同的支付方式进行支付，如信用卡支付和 PayPal 支付。下面是不使用策略模式的实现。
+
+```c#
+PaymentProcessor paymentProcessor = new PaymentProcessor();
+paymentProcessor.ProcessPayment("CreditCard");
+paymentProcessor.ProcessPayment("PayPal");
+Console.ReadLine();
+
+public class PaymentProcessor
+{
+    public void ProcessPayment(string paymentType)
+    {
+        if (paymentType == "CreditCard")
+        {
+            Console.WriteLine("Processing credit card payment...");
+            // 信用卡支付的具体实现
+        }
+        else if (paymentType == "PayPal")
+        {
+            Console.WriteLine("Processing PayPal payment...");
+            // PayPal 支付的具体实现
+        }
+        else
+        {
+            Console.WriteLine("Unknown payment type");
+        }
+    }
+}
+```
+
+现在，通过策略模式来优化这个支付系统。我们将创建一个接口来表示支付策略，并为每种支付方式创建一个实现该接口的类。
+
+```c#
+// 使用信用卡支付
+IPaymentStrategy creditCardPayment = new CreditCardPayment();
+PaymentProcessor paymentProcessor = new PaymentProcessor(creditCardPayment);
+paymentProcessor.ProcessPayment();
+
+// 使用 PayPal 支付
+IPaymentStrategy payPalPayment = new PayPalPayment();
+paymentProcessor = new PaymentProcessor(payPalPayment);
+paymentProcessor.ProcessPayment();
+
+Console.ReadLine();
+
+// 定义支付策略接口
+public interface IPaymentStrategy
+{
+    void ProcessPayment();
+}
+
+// 实现信用卡支付策略
+public class CreditCardPayment : IPaymentStrategy
+{
+    public void ProcessPayment()
+    {
+        Console.WriteLine("Processing credit card payment...");
+        // 信用卡支付的具体实现
+    }
+}
+
+// 实现 PayPal 支付策略
+public class PayPalPayment : IPaymentStrategy
+{
+    public void ProcessPayment()
+    {
+        Console.WriteLine("Processing PayPal payment...");
+        // PayPal 支付的具体实现
+    }
+}
+
+// 支付处理器类，使用策略模式
+public class PaymentProcessor
+{
+    private readonly IPaymentStrategy _paymentStrategy;
+
+    public PaymentProcessor(IPaymentStrategy paymentStrategy)
+    {
+        this._paymentStrategy = paymentStrategy;
+    }
+
+    public void ProcessPayment()
+    {
+        this._paymentStrategy.ProcessPayment();
+    }
+}
+```
+
+## 二、创建型模式
+
+### 单例模式
+
+单例模式是一种创建型设计模式，让你能够保证一个类只有一个实例，并提供一个访问该实例的全局节点。
+
+#### 代码示例
+
+确保每种支付策略都只有一个实例，可以使用单例模式来实现。
+
+```c#
+// 定义支付策略接口
+public interface IPaymentStrategy
+{
+    void ProcessPayment();
+}
+
+// 实现信用卡支付策略
+public class CreditCardPayment : IPaymentStrategy
+{
+    private static readonly CreditCardPayment _instance = new CreditCardPayment();
+    private CreditCardPayment() { }
+
+    public static CreditCardPayment Instance => _instance;
+
+    public void ProcessPayment()
+    {
+        Console.WriteLine("Processing credit card payment...");
+        // 信用卡支付的具体实现
+    }
+}
+```
+

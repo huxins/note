@@ -299,3 +299,18 @@ using (var context = new BloggingContext())
 }
 ```
 
+## 四、保存
+
+### 4.1. 添加数据
+
+使用 `DbSet<TEntity>.Add` 方法添加实体类的新实例。调用 `DbContext.SaveChanges()` 时，数据将插入到数据库中。
+
+```c#
+using (var context = new BloggingContext())
+{
+    var blog = new Blog { Url = "http://example.com" };
+    context.Blogs.Add(blog);
+    context.SaveChanges();
+}
+```
+

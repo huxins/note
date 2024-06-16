@@ -254,4 +254,13 @@ const date = new Date()
 const str = date.toLocaleDateString("zh-CN", { timeZone: 'Asia/Shanghai' })
 ```
 
+## 五、反射
+
+### Proxy
+
+Proxy 对象用于创建一个对象的代理，从而实现基本操作的拦截和自定义。
+
+### Reflect
+
+Reflect 是一个内置的对象，它提供拦截 JavaScript 操作的方法。
 

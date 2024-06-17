@@ -20,3 +20,18 @@
 
 [云服务器 BCC](https://cloud.baidu.com/doc/BCC/index.html)支持包年包月、按量付费和抢占实例。仅按量付费支持[关机不收费](https://cloud.baidu.com/doc/BCC/s/Djxbqzl12)。
 
+## 二、美国
+
+### CloudCone
+
+[CloudCone](https://cloudcone.com/) 是一家美国的云服务提供商，机房位于洛杉矶。
+
+促销活动：
+
+- [2024 复活节大减价](https://hello.cloudcone.com/easter-vps-sale-2024/)
+- [2024 年度大减价](https://hello.cloudcone.com/hashtag-2024-sale-yearly-vps/)
+
+| 配置                         | 带宽                        | 价格        | 时间       |
+| ---------------------------- | --------------------------- | ----------- | ---------- |
+| 2 vCPU、1 GB RAM、55 GB Disk | 2 TB/Mo Bandwidth at 1 Gb/s | $17.12/Year | 2024/06/17 |
+

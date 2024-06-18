@@ -1,5 +1,13 @@
 # Systemd
 
+
+
+```
+systemctl list-units --type=service | grep postgresql
+```
+
+
+
 ## 一、命令
 
 查看默认的启动 Target。

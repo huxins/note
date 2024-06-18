@@ -27,6 +27,14 @@ $ systemctl enable postgresql-12
 $ systemctl start postgresql-12
 ```
 
+#### Debian
+
+Debian 默认包含 PostgreSQL。
+
+```sh
+$ apt install postgresql
+```
+
 ## 二、约束条件
 
 ### 检查约束
@@ -237,6 +245,19 @@ SELECT p.relname, a.adsrc FROM pg_class p
 
 设置参数的最基本方法是[编辑](https://www.postgresql.org/docs/12/config-setting.html#CONFIG-SETTING-CONFIGURATION-FILE) `postgresql.conf` 文件，该文件通常保存在数据目录中。
 
+通过 SQL 查询配置文件和数据目录位置。
+
+```sh
+$ psql -U postgres -c "SHOW config_file"
+$ psql -U postgres -c "SHOW data_directory"
+```
+
+通过 `pg_config` 可以查询执行文件所在目录。
+
+```sh
+$ pg_config --bindir
+```
+
 #### 连接设置
 
 [连接设置](https://www.postgresql.org/docs/12/runtime-config-connection.html#RUNTIME-CONFIG-CONNECTION-SETTINGS)的相关配置项如下。
@@ -284,6 +305,16 @@ PostgreSQL 提供了多种[验证](https://www.postgresql.org/docs/12/auth-metho
 - **password**
 
   `password` 方法以明文形式发送密码，因此容易受到密码嗅探攻击。
+
+### 账户管理
+
+#### 修改密码
+
+通过 SQL 修改用户密码。
+
+```sh
+$ psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'new-password'"
+```
 
 ## 五、命令行程序
 

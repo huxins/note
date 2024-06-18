@@ -2,9 +2,9 @@
 
 ## 一、安装
 
-### 1.1. Linux
+### Linux
 
-#### 1.1.1. Yum
+#### Yum
 
 添加 MySQL Yum 存储库。
 

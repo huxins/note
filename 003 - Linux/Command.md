@@ -84,6 +84,17 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 
 密码已经用 `x` 替换掉了，基于安全考虑，密码的密文存储在 `/etc/shadow` 中。
 
+### adduser
+
+[`adduser`](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html) 是一个在后端使用 `useradd` 二进制文件的 *perl* 脚本。
+
+- --**system**：创建一个动态分配的系统用户和组。
+- --**shell** *shell*：使用 *shell* 作为用户的登录 Shell。
+- --**comment** *comment*：为生成的新条目设置注释字段。
+- --**group**：在 `adduser --system` 中使用该选项表示新用户应获得一个相同名称的组作为其主要组。如果还没有相同名称的组，则会创建该组。
+- --**disabled-login**, --**disabled-password**：请勿运行 `passwd` 设置密码。
+- --**home** *dir*：使用 *dir* 作为用户的主目录。如果目录不存在，则会创建该目录。
+
 ### groupadd
 
 [`groupadd`](https://manpages.debian.org/bookworm/passwd/groupadd.8.en.html) 命令用于创建一个新的工作组。

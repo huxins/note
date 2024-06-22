@@ -18,6 +18,8 @@
 
 [云服务器 CVM](https://cloud.tencent.com/document/product/213/495) 的[计费方式](https://cloud.tencent.com/document/product/213/2180)为包年包月、按量计费和竞价实例。仅按量计费实例支持[关机不收费](https://cloud.tencent.com/document/product/213/19918)。
 
+产品定价：[云服务器](https://buy.cloud.tencent.com/price/cvm)、[云硬盘](https://buy.cloud.tencent.com/price/cbs)。
+
 ### 青云
 
 [云服务器](https://docsv4.qingcloud.com/user_guide/compute/vm/billing/reserved_contract/)支持包年包月和按需计费两种模式。

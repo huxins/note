@@ -314,6 +314,10 @@ WantedBy=multi-user.target
 - **Restart**：定义何种情况 *Systemd* 会自动重启当前服务，可能的值包括 `always`、`no`。
 - **Environment**：指定环境变量。
 
+### 2.5. 实例化单元
+
+可以使用单个模板配置来管理服务的[多个实例](https://docs.redhat.com/zh_hans/documentation/red_hat_enterprise_linux/8/html/using_systemd_unit_files_to_customize_and_optimize_your_system/con_working-with-instantiated-units_assembly_working-with-systemd-unit-files)。可以为单元定义一个通用模板，并在运行时使用特定参数生成该单元的多个实例。
+
 ## 三、Target
 
 启动计算机的时候，需要启动大量的 *Unit*。如果每一次启动，都要一一写明本次启动需要哪些 *Unit*，显然非常不方便。*Systemd* 的解决方案就是 *Target*。

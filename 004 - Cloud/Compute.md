@@ -6,6 +6,12 @@
 
 [云服务器 ECS](https://help.aliyun.com/zh/ecs/product-overview/terms) 的计费方式为包年包月、按量付费和抢占式实例。除包年包月外，均支持[节省停机模式](https://help.aliyun.com/zh/ecs/product-overview/economical-mode)。
 
+[定价详情](https://www.aliyun.com/price/ecs/ecs-pricing/zh)如下。
+
+| 实例规格                                                     | 配置          | 地域 | 实例原价  | 实例现价 | 云盘类型 | 存储价格      | 付费类型 |
+| ------------------------------------------------------------ | ------------- | ---- | --------- | -------- | -------- | ------------- | -------- |
+| [`ecs.sn1ne.large`](https://help.aliyun.com/zh/ecs/user-guide/overview-of-instance-families#e05c342213m5e) | 2 vCPU、4 RAM | 东京 | ￥0.785/H | 0.04/H   | 高效云盘 | ￥0.0005 GB/H | 抢占式   |
+
 ### 腾讯云
 
 [云服务器 CVM](https://cloud.tencent.com/document/product/213/495) 的[计费方式](https://cloud.tencent.com/document/product/213/2180)为包年包月、按量计费和竞价实例。仅按量计费实例支持[关机不收费](https://cloud.tencent.com/document/product/213/19918)。

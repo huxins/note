@@ -175,3 +175,27 @@ $ ps -aux
 $ kill -9 PID
 ```
 
+## 五、网络请求
+
+### wget
+
+[Wget](https://www.gnu.org/software/wget/manual/html_node/index.html) 用于使用 HTTP、HTTPS、FTP 和 FTPS 检索文件。
+
+- [-**4**, -**6**](https://www.gnu.org/software/wget/manual/html_node/Download-Options.html#index-IPv6)：强制连接到 IPv4 或 IPv6 地址。
+- -**b**：后台下载。
+- -**c**：断点续传。
+- --**limit-rate**=*amount*：限速下载。
+- --**server-response**：显示响应头部信息。
+
+下载文件。
+
+```sh
+wget -4 https://mirrors.upr.edu/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso
+```
+
+下载文件并重命名。
+
+```sh
+wget -4 -O CentOS-7.iso https://mirrors.upr.edu/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso
+```
+

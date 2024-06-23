@@ -1,20 +1,23 @@
 # OpenSSH
 
+[OpenSSH](https://www.openssh.com/manual.html) 是使用 SSH 协议进行远程登录的主要连接工具。
+
 ## 一、安装
 
+### CentOS
+
 ```sh
-# CentOS 7
-$ yum install openssh-server
+yum install openssh-server
 ```
 
 ## 二、登录
 
-### 2.1. 口令登录
+### 口令登录
 
 以用户名 *user*，登录远程主机 *host*。
 
 ```sh
-$ ssh -p 22 user@host
+ssh -p 22 user@host
 ```
 
 口令登录的过程如下。
@@ -27,7 +30,7 @@ $ ssh -p 22 user@host
 
 口令登录有中间人攻击风险，可以手动校验公钥指纹。例如 [GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)。
 
-### 2.2. 公钥登录
+### 公钥登录
 
 公钥登录的过程如下。
 
@@ -40,59 +43,65 @@ $ ssh -p 22 user@host
 如果没有现成的公钥，可以直接用 `ssh-keygen` 生成一个。
 
 ```sh
-$ ssh-keygen -t rsa -C "comment"
+ssh-keygen -t rsa -C "comment"
 ```
 
 将公钥传送到远程主机 *host* 上面，保存在登录后的用户主目录的 `~/.ssh/authorized_keys` 文件中。
 
 ```sh
-$ ssh-copy-id -p 22 user@host
+ssh-copy-id -p 22 user@host
 ```
 
 该命令等效于。
 
 ```sh
-$ ssh -p 22 user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+ssh -p 22 user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 ```
 
-从 `known_hosts` 文件中删除属于指定主机名的所有公钥。
+从 *known_hosts* 文件中删除属于指定主机名的所有公钥。
 
 ```sh
-$ ssh-keygen -R host
+ssh-keygen -R host
 ```
 
 ## 三、配置
 
-### 3.1. 客户端配置
+### 客户端配置
 
-按以下顺序获取配置数据。
+[ssh](https://man.openbsd.org/ssh.1) 按以下顺序获取配置数据。
 
 - 命令行选项。
-- 用户配置文件 `~/.ssh/config`。
-- 系统配置文件 `/etc/ssh/ssh_config`。
+- 用户配置文件 *~/.ssh/config*。
+- 系统配置文件 */etc/ssh/ssh_config*。
 
 配置选项及其含义如下。
 
-- `StrictHostKeyChecking`：严格的主机密钥检查，此选项强制用户手动添加所有新主机到 `known_hosts`。
-- `UserKnownHostsFile`：指定用于用户主机密钥数据库的文件。
+- **StrictHostKeyChecking**：严格的主机密钥检查，此选项强制用户手动添加所有新主机到 *known_hosts*。
+- **UserKnownHostsFile**：指定用于用户主机密钥数据库的文件。
 
 可以通过 `-o` 选项动态指定配置。
 
 ```sh
-$ ssh -p 22 -o StrictHostKeyChecking=no user@host
+ssh -p 22 -o StrictHostKeyChecking=no user@host
 ```
 
-### 3.2. 服务端配置
+### 服务端配置
 
-`sshd` 从 `/etc/ssh/sshd_config` 读取配置数据。
+[sshd](https://man.openbsd.org/sshd.8) 从 */etc/ssh/sshd_config* 读取配置数据。
 
 配置选项及其含义如下。
 
-- `PasswordAuthentication`：指定是否允许密码身份验证，默认值为 `yes`。
-- `PermitRootLogin`：指定 root 是否可以使用 ssh 登录。
-- `PubkeyAuthentication`：指定是否允许公钥身份验证，默认值为 `yes`。
-- `AuthorizedKeysFile`：指定包含用于用户身份验证的公钥数据文件，默认值为 `.ssh/authorized_keys`。
-- `GatewayPorts`：指定是否允许远程主机连接到通过 SSH 隧道打开的端口，默认值为 `no`。
+- **PasswordAuthentication**：指定是否允许密码身份验证，默认值为 `yes`。
+- **PermitRootLogin**：指定 *root* 是否可以使用 `ssh` 登录。
+- **PubkeyAuthentication**：指定是否允许公钥身份验证，默认值为 `yes`。
+- **AuthorizedKeysFile**：指定包含用于用户身份验证的公钥数据文件，默认值为 *.ssh/authorized_keys*。
+- **GatewayPorts**：指定是否允许远程主机连接到通过 SSH 隧道打开的端口，默认值为 `no`。
+
+Xshell 登录时，如果提示找不到匹配的 *host key* 算法，是因为 OpenSSH 弃用 *rsa* 导致的。可以配置 *sshd_config* 启用 *rsa*。
+
+```
+HostKeyAlgorithms +ssh-rsa
+```
 
 ## 四、代理
 
@@ -103,7 +112,7 @@ $ ssh -p 22 -o StrictHostKeyChecking=no user@host
 在代理服务器上启动一个 `3800` 端口，映射到 `119.29.29.29:80` 上，通过 `host` 服务器中转。
 
 ```sh
-$ ssh -L 0.0.0.0:3800:119.29.29.29:80 user@host
+ssh -L 0.0.0.0:3800:119.29.29.29:80 user@host
 ```
 
 ### 4.2. 反向代理
@@ -113,7 +122,7 @@ $ ssh -L 0.0.0.0:3800:119.29.29.29:80 user@host
 在本地服务器上运行以下代码，将自己可以访问的 `119.29.29.29:80` 暴露给 `host` 的指定端口。
 
 ```sh
-$ ssh -R 0.0.0.0:3800:119.29.29.29:80 user@host
+ssh -R 0.0.0.0:3800:119.29.29.29:80 user@host
 ```
 
 ### 4.3. SOCKS
@@ -121,15 +130,15 @@ $ ssh -R 0.0.0.0:3800:119.29.29.29:80 user@host
 在本地端口启动一个 SOCKS 服务，数据通过 `host` 转发给目标服务器。
 
 ```sh
-$ ssh -D 0.0.0.0:1080 user@host
+ssh -D 0.0.0.0:1080 user@host
 ```
 
 ### 4.4. 优化参数
 
-- `-C`：压缩数据。
-- `-q`：安静模式。
-- `-T`：禁止远程分配终端。
-- `-n`：关闭标准输入。
-- `-N`：不执行远程命令。
-- `-f`：后台运行。
+- -**C**：压缩数据。
+- -**q**：安静模式。
+- -**T**：禁止远程分配终端。
+- -**n**：关闭标准输入。
+- -**N**：不执行远程命令。
+- -**f**：后台运行。
 

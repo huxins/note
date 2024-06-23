@@ -106,3 +106,55 @@ psql -U gitea -d giteadb
 psql "postgres://gitea@127.0.0.1/giteadb"
 ```
 
+### 反向代理
+
+#### Nginx
+
+创建 */etc/nginx/conf.d/gitea*，配置如下 *server*。
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name git.example.com;
+    
+    ssl_session_cache   shared:SSL:10m;
+    ssl_session_timeout 10m;
+    ssl_certificate     www.example.com.crt;
+    ssl_certificate_key www.example.com.key;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+## 二、管理
+
+### 备份
+
+为了确保 Gitea 实例的一致性，在备份期间必须关闭它。
+
+```sh
+systemctl stop gitea
+```
+
+使用 `dump` 命令备份所有需要的文件到一个 *zip* 压缩文件中。
+
+```sh
+su gitea -c "/usr/local/bin/gitea dump --config /etc/gitea/app.ini"
+```
+
+最后生成的 *gitea-dump-1719182585.zip* 文件将会包含如下内容。
+
+```
+1、app.ini：配置文件。
+2、data/：数据目录。
+3、repos/：仓库目录的完整副本。
+4、gitea-db.sql：数据库备份。
+```
+

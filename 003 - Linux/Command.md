@@ -238,3 +238,20 @@ ufw enable
 ufw disable
 ```
 
+## 六、文件管理
+
+### find
+
+[`find`](https://www.man7.org/linux/man-pages/man1/find.1.html) 根据用户给定的表达式在目录层次结构中搜索文件和目录，并且可以对每个匹配的文件执行用户指定的操作。
+
+- -**type** *c*：文件类型。*f* 为常规文件。
+- -**name** *pattern*：文件名。
+- -**mtime** *n*：文件的数据上次修改时间小于、大于或正好 *n*\*24 小时前。
+- -**exec** *command ;*
+
+在根目录下，递归查找某个文件。
+
+```sh
+find / -type f -name unzip
+```
+

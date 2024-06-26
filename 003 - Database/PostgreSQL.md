@@ -1,5 +1,7 @@
 # PostgreSQL
 
+PostgreSQL 是一个强大的开源对象关系数据库系统，它使用并扩展了 SQL 语言，并结合了许多功能，可以安全地存储和扩展最复杂的数据工作负载。
+
 ## 一、安装
 
 ### Linux
@@ -338,8 +340,6 @@ $ /usr/pgsql-10/bin/initdb \
     --pwprompt
 ```
 
-#### 选项
-
 - --**auth**=*authmethod*
 
   为本地用户指定在 *pg_hba.conf* 中使用的默认认证方法。
@@ -369,4 +369,74 @@ $ /usr/pgsql-10/bin/initdb \
 - --**pwprompt**
 
   让 `initdb` 提示要求为数据库超级用户给予一个口令。
+
+### createuser
+
+[createuser](https://www.postgresql.org/docs/12/app-createuser.html) 用于定义一个新的 PostgreSQL 用户帐户。
+
+- -**P**, --**pwprompt**：如果给定，`createuser` 将提示输入新用户的密码。
+- -**s**, --**superuser**：新用户将是超级用户。
+- -**e**, --**echo**：回显 `createuser` 生成并发送到服务器的命令。
+
+```sh
+su postgres
+createuser -P -s -e sonar;
+```
+
+### psql
+
+[psql](https://www.postgresql.org/docs/12/app-psql.html) 是 PostgreSQL 的一个基于终端的前端。
+
+- -**U** *username*, --**username**=*username*：以指定用户名连接到数据库。
+- -**d** *dbname*, --**dbname**=*dbname*：指定要连接到的数据库的名称。
+- -**h** *hostname*, --**host**=*hostname*：指定运行服务器的计算机的主机名。
+- -**p** *port*, --**port**=*port*：指定服务器正在侦听连接的 TCP 端口。
+
+连接指定数据库。
+
+```sh
+psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432
+```
+
+Meta 命令：
+
+- \\**l**：列出服务器中的数据库，并显示它们的名称、所有者、字符集编码和访问权限。
+- \\**c** *dbname*：建立到 PostgreSQL 服务器的新连接。
+- \\**dt**：列举表，`t` 为表。
+- \\**z**：列出表、视图和序列及其关联的访问权限。
+- \\**encoding**：设置客户端字符集编码。如果没有参数，此命令将显示当前编码。
+- \\**q**：退出 `psql` 程序。
+
+### pg_dump
+
+[`pg_dump`](https://www.postgresql.org/docs/12/app-pgdump.html) 是一个用于备份 PostgreSQL 数据库的实用程序。
+
+- -**U** *username*：连接的用户名。
+- -**d** *dbname*：指定要连接到的数据库的名称。
+
+备份单个数据库。
+
+```sh
+pg_dump -U postgres -d mydb > mydb.pgsql
+# 压缩
+pg_dump -U postgres -d mydb | gzip > mydb.pgsql.gz
+# 分包
+pg_dump -U postgres -d mydb | gzip | split -b 100M - mydb.pgsql.gz
+```
+
+备份单个表。
+
+```sh
+pg_dump -U postgres -d mydb -t mytable > mydb-mytable.pgsql
+```
+
+恢复数据。
+
+```sh
+psql -U postgres -d mydb -f mydb.pgsql
+# 解压
+gunzip -c mydb.pgsql.gz | psql -U postgres -d mydb
+# 合包
+cat mydb.pgsql.gz* | gunzip | psql -U postgres -d mydb
+```
 

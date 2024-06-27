@@ -302,3 +302,17 @@ ufw disable
 find / -type f -name unzip
 ```
 
+### savelog
+
+[savelog](https://manpages.ubuntu.com/manpages/noble/en/man8/savelog.8.html) 命令可以保存文件的旧副本，也可以压缩旧副本。
+
+- -**c** *cycle*：日志文件的保存周期版本。
+- -**n**：不要旋转空文件。
+- -**t**：生成新的日志文件。
+
+将日志文件重命名，并且只保留指定数量的历史版本。
+
+```sh
+savelog -n -t -c 2 /var/log/syslog
+```
+

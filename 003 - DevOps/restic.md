@@ -59,6 +59,12 @@ restic \
     backup /data/app/data_cache
 ```
 
+从标准输出来保存数据。
+
+```sh
+mysqldump [...] | restic -r /srv/restic-repo backup --stdin --stdin-filename production.sql
+```
+
 ### 快照
 
 列出存储库中的可用快照。

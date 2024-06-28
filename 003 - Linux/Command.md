@@ -354,6 +354,12 @@ sysctl -p /etc/sysctl.d/disable-ipv6.conf
 +------------------------- 分钟 (0 - 59)
 ```
 
+`CRON_TZ` 指定了 `cron` 表的特定时区。修改 */etc/crontab*，添加变量：
+
+```sh
+CRON_TZ=Asia/Shanghai
+```
+
 常用时间如下：
 
 | 执行计划     | 格式        |

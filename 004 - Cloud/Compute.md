@@ -20,6 +20,10 @@
 
 产品定价：[云服务器](https://buy.cloud.tencent.com/price/cvm)、[云硬盘](https://buy.cloud.tencent.com/price/cbs)。
 
+| 实例规格                                                     | 配置          | 地域 | 实例原价  | 实例现价 | 云盘类型 | 存储价格      | 付费类型 |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| [S5.MEDIUM4](https://cloud.tencent.com/document/product/213/11518#S5) | 2 vCPU、4 RAM | 首尔二区 | ￥0.37/H | 0.02/H | 高性能云硬盘 | ￥0.0005 GB/H | 抢占式 |
+
 ### 青云
 
 [云服务器](https://docsv4.qingcloud.com/user_guide/compute/vm/billing/reserved_contract/)支持包年包月和按需计费两种模式。

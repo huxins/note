@@ -440,3 +440,15 @@ gunzip -c mydb.pgsql.gz | psql -U postgres -d mydb
 cat mydb.pgsql.gz* | gunzip | psql -U postgres -d mydb
 ```
 
+### pg_controldata
+
+显示 PostgreSQL 数据库集群的控制信息。
+
+控制文件 *global/pg_control* 包含了关于数据库集群的信息，包括版本号。
+
+可以使用 `pg_controldata` 工具来读取这个文件的信息：
+
+```sh
+/usr/pgsql-12/bin/pg_controldata /path/to/data/directory
+```
+

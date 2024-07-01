@@ -86,3 +86,33 @@ Plugin 部署方式仅支持 Event 函数。
 
 - [@serverless/tencent-examples](https://github.com/serverless-components/tencent-examples)
 
+#### SCF
+
+[serverless-tencent](https://github.com/Serverlesstencent/serverless-tencent/tree/v3.21.6) 基于 Component 的方式，进行了一些封装，目前已[弃用](https://www.npmjs.com/package/serverless-tencent/v/3.21.6)。
+
+[serverless-cloud-framework](https://github.com/Serverlesstencent/serverless-cloud-framework) 是 [serverless-tencent](https://github.com/Serverlesstencent/serverless-tencent/tree/v3.21.6) 的继任[版本](https://www.npmjs.com/package/serverless-cloud-framework)。
+
+[安装](https://cloud.tencent.com/document/product/583/44753) `serverless-cloud-framework`：
+
+```sh
+npm i -g serverless-cloud-framework
+```
+
+配置[本地密钥授权](https://cloud.tencent.com/document/product/1154/43006#.E6.9C.AC.E5.9C.B0.E5.AF.86.E9.92.A5.E6.8E.88.E6.9D.83)：
+
+```ini
+# .env
+TENCENT_SECRET_ID=xxxxxxxxxx
+TENCENT_SECRET_KEY=xxxxxxxx
+```
+
+*serverless.yml* 配置项可参考 [@serverless-components/tencent-scf](https://github.com/serverless-components/tencent-scf/blob/master/docs/configure.md)。
+
+[@tencentyun/serverless-demo](https://github.com/tencentyun/serverless-demo) 也有许多模板可供参考。
+
+部署函数：
+
+```sh
+scf deploy --noCache
+```
+

@@ -142,3 +142,12 @@ ssh -D 0.0.0.0:1080 user@host
 - -**N**：不执行远程命令。
 - -**f**：后台运行。
 
+## 五、安全
+
+### CVE-2024-6387
+
+- [OpenSSH 爆高危漏洞 CVE-2024-6387](https://v2ex.com/t/1054091)
+- [CVE-2024-6387](https://www.cve.org/CVERecord?id=CVE-2024-6387)
+- [Debian](https://security-tracker.debian.org/tracker/CVE-2024-6387)
+- [Aliyun](https://avd.aliyun.com/detail?id=AVD-2024-6387)
+

@@ -220,3 +220,10 @@ a@a.com
 
 可以在组策略编辑器 `gpedit.msc` 的以下位置启用不安全的来宾登录：【计算机配置 \ 管理模板 \ 网络 \ Lanman 工作站】。
 
+- [在 SMB2 和 SMB3 中启用不安全的来宾登录](https://learn.microsoft.com/zh-cn/windows-server/storage/file-server/enable-insecure-guest-logons-smb2-and-smb3)
+
+#### 协议版本
+
+- [在 Windows 中检测、启用和禁用 SMBv1、SMBv2 和 SMBv3](https://learn.microsoft.com/zh-cn/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3)
+- [Stop using SMB1](https://techcommunity.microsoft.com/t5/storage-at-microsoft/stop-using-smb1/ba-p/425858)
+

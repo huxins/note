@@ -37,6 +37,21 @@ Debian 默认包含 PostgreSQL。
 $ apt install postgresql
 ```
 
+#### Docker
+
+Docker 可以不受宿主机的限制，安装各种版本的 PostgreSQL。
+
+```sh
+docker run -d -p 5432:5432 --name postgres \
+  --restart always \
+  -e POSTGRES_PASSWORD=password \
+  -e TZ=Asia/Shanghai \
+  -v /var/lib/postgres/data:/var/lib/postgresql/data \
+  postgres:10.7-alpine
+```
+
+*PGDATA* 在 [Docker](https://hub.docker.com/_/postgres) 中的默认路径为 */var/lib/postgresql/data*。需要持久化数据时，请将此目录挂载到宿主机。
+
 ## 二、约束条件
 
 ### 检查约束

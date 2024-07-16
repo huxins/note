@@ -196,6 +196,26 @@ a@a.com
 
 电脑已解锁的状态下，可以通过 `lusrmgr.msc` 重置密码。
 
+#### 免密登录
+
+配置注册表，启用无密码登录。
+
+```powershell
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PasswordLess\Device" -Name DevicePasswordLessBuildVersion -Type DWord -Value 0
+```
+
+通过 `control userpasswords2` 或 `netplwiz` 打开用户账户界面，启用无密码登录。
+
+### 屏幕保护
+
+可以通过 `ms-settings:lockscreen` 快速进入锁屏界面设置。
+
+使用以下命令，可以快速锁屏。
+
+```cmd
+%windir%\system32\rundll32.exe user32.dll,LockWorkStation
+```
+
 ### 附件管理器
 
 附件管理器在 Windows 中，用以帮助计算机防范不安全的附件，这些附件可能是随电子邮件接收的，也可能是来自 Internet 的不安全文件。

@@ -161,6 +161,16 @@ select partition=<n>
 delete partition
 ```
 
+### fsutil
+
+- fsutil **fsinfo**
+
+  列出指定卷的特定于 NTFS 的卷信息。
+
+  ```powershell
+  fsutil fsinfo ntfsinfo C:
+  ```
+
 ## 三、远程桌面服务
 
 ### Listening Port

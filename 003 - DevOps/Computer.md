@@ -11,4 +11,5 @@
 | ------------------------------------------------------------ | ---------- | -------- |
 | [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | `i5-11400` | 2021     |
 | [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | `i5-10400` | 2021     |
+| [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | `i5-9400`  | 2019     |
 

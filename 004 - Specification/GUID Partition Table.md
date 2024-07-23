@@ -30,3 +30,19 @@ GPT 分区表的结构如下。
 
 每个逻辑块（LBA）为 512 字节，每个分区的记录为 128 字节。负数的 LBA 地址表示从最后的块开始倒数，-1 表示最后一个块。
 
+## 三、UEFI
+
+**UEFI**（Unified Extensible Firmware Interface）是 **BIOS**（Basic Input/Output System）的一种升级替代方案。
+
+仅从系统启动原理方面来做比较，UEFI 之所以比 BIOS 强大，是因为 UEFI 本身已经相当于一个微型操作系统。
+
+BIOS 下启动操作系统之前，必须从主引导记录中读取系统启动代码，然后从活动分区中引导启动操作系统。UEFI 使用 **EFI** 系统分区（ESP，EFI System Partition）进行引导。
+
+**ESP** 是一个 **FAT** 格式的分区，包含启动加载程序、设备驱动程序和系统工具。
+
+尽管 UEFI 兼容传统的 BIOS 引导方式（称为 CSM，Compatibility Support Module），但新硬件和操作系统更倾向于使用 UEFI。
+
+如果通过 UEFI 安装了 Windows，会发现有两个很小的隐藏分区。一个叫 **ESP**（EFI system partition），另一个叫 **MSR**（Microsoft Reserved Partition）。
+
+ESP 对 UEFI 启动很重要，UEFI 的操作系统引导程序（后缀名为 `efi` 的文件）存放在 ESP 分区中，启动操作系统本质上就是运行 ESP 分区内的 *bootloader* 程序。
+

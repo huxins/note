@@ -32,6 +32,8 @@ GPT 分区表的结构如下。
 
 ## 三、UEFI
 
+- [基于 UEFI/GPT 的硬盘驱动器分区](https://learn.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/configure-uefigpt-based-hard-drive-partitions?view=windows-11)
+
 **UEFI**（Unified Extensible Firmware Interface）是 **BIOS**（Basic Input/Output System）的一种升级替代方案。
 
 仅从系统启动原理方面来做比较，UEFI 之所以比 BIOS 强大，是因为 UEFI 本身已经相当于一个微型操作系统。

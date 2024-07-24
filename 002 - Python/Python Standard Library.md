@@ -963,3 +963,31 @@ print(count)
 
   返回 *fs* 给出的 `Future` 实例的迭代器，按线程完成的顺序返回 *futures*。
 
+## 十四、软件打包和分发
+
+### venv
+
+[`venv`](https://docs.python.org/zh-cn/3/library/venv.html) 是创建虚拟环境的标准工具，从 Python 3.3 开始成为 Python 的组成部分。从 Python 3.4 开始，它会默认安装 `pip` 到所创建的全部虚拟环境。
+
+`virtualenv` 是 `venv` 的第三方替代及其前身。它允许在 Python 3.4 之前的版本中使用虚拟环境，那些版本或是完全不提供 `venv`，或是不会自动安装 `pip` 到所创建的虚拟环境。
+
+创建虚拟环境。
+
+```sh
+python3 -m venv DIR
+```
+
+激活虚拟环境。
+
+```sh
+source DIR/bin/activate  # Linux
+DIR\Scripts\activate     # Windows
+```
+
+退出虚拟环境。
+
+```sh
+source DIR/bin/deactivate  # Linux
+DIR\Scripts\deactivate     # Windows
+```
+

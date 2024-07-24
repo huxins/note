@@ -257,3 +257,40 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Passw
 - [在 Windows 中检测、启用和禁用 SMBv1、SMBv2 和 SMBv3](https://learn.microsoft.com/zh-cn/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3)
 - [Stop using SMB1](https://techcommunity.microsoft.com/t5/storage-at-microsoft/stop-using-smb1/ba-p/425858)
 
+## 五、系统设置
+
+### 休眠唤醒
+
+[ACPI](https://en.wikipedia.org/wiki/ACPI) 定义了以下几种[休眠状态](https://en.wikipedia.org/wiki/ACPI#Global_states)：
+
+- **S0**：正常工作状态。
+- **S1**：CPU 停止执行指令，CPU 和 RAM 的电源保持不变，硬盘停转。唤醒时间 0 秒。
+- **S2**：CPU 断电，*Dirty cache* 被刷新到 RAM。
+- **S3**：Suspend to RAM，除内存外，其他设备停止工作，即**睡眠**状态。唤醒时间 0.5 秒。
+- **S4**：Suspend to Disk，内存中的信息写入硬盘，所有部件停止，即**休眠**状态。唤醒时间 30 秒。
+- **S5**：Shutdown，关机状态。
+
+查看系统上可用的睡眠状态。
+
+```cmd
+powercfg /A
+```
+
+启用或禁用休眠功能。
+
+```cmd
+powercfg /H on
+powercfg /H off
+```
+
+如果长时间睡眠后无法正常唤醒，可以进行以下尝试。
+
+```
+1、在【设备管理器】中的【系统设备】里找到【Intel(R) Management Engine Interface】，在其【电源管理】中取消【允许计算机关闭此设备以节约电源】。
+2、在【控制面板\硬件和声音\电源选项】【选择电源按钮的功能】【更改当前不可用的设置】，取消【启用快速启动】。
+3、将【控制面板\硬件和声音\电源选项】【更改计划设置】【更改高级电源设置】【睡眠】【允许混合睡眠】更改为关闭。
+4、禁用休眠功能。
+5、运行【rundll32.exe desk.cpl,InstallScreenSaver】，将屏幕保护程序设置为【无】。
+6、更新 ACPI 电源驱动程序和芯片组驱动程序。
+```
+

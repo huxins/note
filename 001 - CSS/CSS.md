@@ -75,5 +75,5 @@ p > a {
 
 在[上面](https://www.w3.org/TR/css-syntax-3/#syntax-description)的规则中，`p > a` 是选择器，如果源文档是 HTML，它会选择任何作为 `p` 元素的子元素的 `a` 元素。
 
-`color: blue` 是一个[声明](https://www.w3.org/TR/css-syntax-3/#declaration)，指定对于匹配选择器的元素，它们的 `color` 属性应该具有值 `blue`。同样，它们的 `text-decoration` 属性应该具有 `underline` 值。
+`color: blue` 是一个[声明](https://www.w3.org/TR/css-syntax-3/#declaration)，指定对于匹配选择器的元素，它们的 `color` 属性应该具有 `blue` 值。同样，它们的 `text-decoration` 属性应该具有 `underline` 值。
 

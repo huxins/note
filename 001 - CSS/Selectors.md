@@ -28,13 +28,13 @@ p {
 }
 ```
 
-#### 2.2.2. 属性选择器
+### 属性选择器
 
-选择器允许表示元素的属性。当选择器用作匹配元素的表达式时，如果元素具有与属性选择器表示的属性相匹配的属性，则被视为匹配该元素。
+[属性选择器](https://www.w3.org/TR/selectors-3/#attribute-selectors)允许表示元素的属性。当选择器用作与元素匹配的表达式时，如果元素具有与属性选择器表示的属性相匹配的属性，则被视为匹配该元素。
 
-- `[att~=val]`
+- **[att~=val]**
 
-  表示具有 `att` 属性的元素，该属性的值是以空格分隔的单词列表，其中一个单词正好是 `val`。
+  表示具有 *att* 属性的元素，该属性的值是以空格分隔的单词列表，其中一个单词正好是 *val*。
 
   ```css
   p[class~='example'] {
@@ -42,9 +42,9 @@ p {
   }
   ```
 
-#### 2.2.3. 类选择器
+### 类选择器
 
-使用 HTML 时，可以使用 `.` 来替代表示 `class` 属性的 `~=` 符号。因此，在 HTML 中，`div.value` 和 `div[class~=value]` 具有相同的含义。
+使用 HTML 时，可以使用 `.` 来替代表示 *class* 属性的 *~=* 符号。因此，在 HTML 中，*div.value* 和 *div[class~=value]* 具有相同的含义。
 
 ```css
 p.example {
@@ -52,9 +52,9 @@ p.example {
 }
 ```
 
-#### 2.2.4. ID 选择器
+### ID 选择器
 
-在一个符合标准的文档中，没有两个 ID 属性可以具有相同的值，无论携带它们的元素的类型如何。在 HTML 中，所有 ID 属性都命名为 `id`。
+在一个符合标准的文档中，没有两个 *ID* 属性可以具有相同的值，无论携带它们的元素的类型如何。在 HTML 中，所有 *ID* 属性都命名为 *id*。
 
 ```css
 h1#chapter1 {
@@ -62,19 +62,19 @@ h1#chapter1 {
 }
 ```
 
-#### 2.2.5. 伪类
+### 伪类
 
-引入伪类概念是为了允许基于文档树之外的信息或无法使用其他简单选择器表示的信息进行选择。
+引入[伪类](https://www.w3.org/TR/selectors-3/#pseudo-classes)概念是为了允许基于文档树之外的信息或无法使用其他简单选择器表示的信息进行选择。
 
 伪类总是由 `:` 和伪类名称组成，括号中还可选择包含一个值。
 
-##### 2.2.5.1. 结构伪类
+#### 结构伪类
 
-###### 2.2.5.1.1. nth-child()
+##### nth-child()
 
-根据元素在父元素的子元素列表中的索引来选择元素。元素的第一个子元素的索引为 1。
+[nth-child](https://www.w3.org/TR/selectors-3/#nth-child-pseudo) 根据元素在父元素的子元素列表中的索引来选择元素。元素的第一个子元素的索引为 1。
 
-选择所有 `li` 元素，且该元素是其父元素下所有元素中的偶数元素：
+选择所有 *li* 元素，且该元素是其父元素下所有元素中的偶数元素。
 
 ```css
 li:nth-child(even) {
@@ -82,7 +82,7 @@ li:nth-child(even) {
 }
 ```
 
-还可以使用 `:nth-child(an+b)` 表示法，其中 `n` 为任何正整数或零：
+使用 *:nth-child(an+b)* 表示法，其中 *n* 为任何正整数或零。
 
 ```css
 li:nth-child(2n) {
@@ -90,13 +90,13 @@ li:nth-child(2n) {
 }
 ```
 
-对于 `a` 和 `b` 的值大于零的情况，这实际上是将元素的子元素分成每组 `a` 个元素（最后一组取余数），并选择每组中的第 `b` 个元素。
+对于 *a* 和 *b* 的值大于零的情况，实际上是将元素的子元素分成每组 *a* 个元素（最后一组取余数），并选择每组中的第 *b* 个元素。
 
-###### 2.2.5.1.2. nth-of-type()
+##### nth-of-type()
 
-根据元素在父元素的同名称子元素列表中的索引来选择元素。
+[nth-of-type](https://www.w3.org/TR/selectors-3/#nth-of-type-pseudo) 根据元素在父元素的同名称子元素列表中的索引来选择元素。
 
-选择所有 `li` 元素，且该元素是其父元素下所有 `li` 元素中的偶数元素：
+选择所有 *li* 元素，且该元素是其父元素下所有 *li* 元素中的偶数元素。
 
 ```css
 li:nth-of-type(even) {
@@ -104,9 +104,9 @@ li:nth-of-type(even) {
 }
 ```
 
-###### 2.2.5.1.3. first-child
+##### first-child
 
-与 `:nth-child(1)` 相同。`:first-child` 伪类表示在同级元素列表中排在第一位的元素。
+[first-child](https://www.w3.org/TR/selectors-3/#first-child-pseudo) 与 `:nth-child(1)` 相同，表示在同级元素列表中排在第一位的元素。
 
 ```css
 li:first-child {
@@ -114,12 +114,13 @@ li:first-child {
 }
 ```
 
-###### 2.2.5.1.4. last-child
+##### last-child
 
-与 `:nth-last-child(1)` 相同。`:last-child` 伪类表示在同级元素列表中排在最后的元素。
+[last-child](https://www.w3.org/TR/selectors-3/#last-child-pseudo) 与 `:nth-last-child(1)` 相同，表示在同级元素列表中排在最后的元素。
 
 ```css
 li:last-child {
   background-color: lightyellow;
 }
 ```
+

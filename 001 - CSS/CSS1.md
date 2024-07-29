@@ -4,34 +4,9 @@
 
 
 
-## 三、盒模型
 
-### 3.1. Box Sizing
 
-Sizing 属性有 `width`、`height`、`min-width`、`min-height`、`max-width` 和 `max-height`。
 
-`width` 默认设置内容区域的宽度，但如果 `box-sizing` 属性被设置为 `border-box`，就转而设置边框区域的宽度。
-
-Sizing 值有 `auto`、`max-content`、`min-content` 和 `fit-content()`。
-
-## 四、背景和边框
-
-### 4.1. Backgrounds
-
-每个盒模型都有一个背景层，默认是完全透明的，或者填充有颜色和图像。
-
-背景属性不会被继承，但由于 `background-color` 的初始透明值，父框的背景会默认显示出来。
-
-#### 4.1.1. background-color
-
-`background-color` 属性设置元素的背景颜色。颜色绘制在任何背景图像后面。
-
-```css
-h1 {
-  background-color: green;
-  width: max-content;
-}
-```
 
 ## 五、Fonts
 

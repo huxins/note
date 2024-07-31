@@ -1,6 +1,14 @@
-# PEPs
+# Python 增强提案
 
-## 一、源代码增强
+[Python Enhancement Proposals](https://peps.python.org/)（PEPs）是 Python 社区用于提出、讨论和记录 Python 语言改进和新特性的一种正式化文档。
+
+PEPs 的类型主要包括：
+
+- **标准跟踪 PEP**（Standards Track PEPs）：这些提案涉及对 Python 语言本身的变更、标准库的变更或者新的标准。
+- **信息性 PEP**（Informational PEPs）：这些提案提供一般性指导或者信息，但不提出新的特性或功能。
+- **流程 PEP**（Process PEPs）：这些提案描述 Python 社区的流程、决策过程和其他运营方面的事务。
+
+## 一、Finished
 
 ### 定义源代码编码
 
@@ -16,20 +24,18 @@
 
 其中，*encoding* 可以是 Python 支持的任意一种 [codecs](https://docs.python.org/3/library/codecs.html)。
 
-比如，声明使用 *utf8* 编码，源码文件要写成：
+比如，声明使用 *utf8* 编码。
 
 ```python
 # -*- coding: utf8 -*-
 ```
 
-第一行的规则也有一种例外情况，源码以 [UNIX Shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) 开头。此时，编码声明要写在文件的第二行。例如：
+第一行的规则也有一种例外情况，源码以 [UNIX Shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) 开头。此时，编码声明要写在文件的第二行。
 
 ```python
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
 ```
-
-## 二、代码可读性
 
 ### 导入多行模块
 

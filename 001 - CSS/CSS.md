@@ -77,3 +77,40 @@ p > a {
 
 `color: blue` 是一个[声明](https://www.w3.org/TR/css-syntax-3/#declaration)，指定对于匹配选择器的元素，它们的 `color` 属性应该具有 `blue` 值。同样，它们的 `text-decoration` 属性应该具有 `underline` 值。
 
+## 三、层叠和继承
+
+[Cascading and Inheritance](https://www.w3.org/TR/css-cascade-3/) 模块描述了如何整理样式规则并为所有元素的所有属性赋值。通过层叠和继承，所有元素的所有属性的值都会被传播。
+
+### 默认值
+
+每个属性都有一个[初始值](https://www.w3.org/TR/css-cascade-3/#initial-values)，该初始值在属性的定义表中定义。如果该属性不是[继承](https://www.w3.org/TR/css-cascade-3/#inheriting)属性，并且[层叠](https://www.w3.org/TR/css-cascade-3/#cascading)没有产生一个值，那么该属性的指定值就是它的初始值。
+
+[`initial`](https://www.w3.org/TR/css-cascade-3/#initial) 将属性的初始值应用于元素。
+
+```css
+img {
+  opacity: initial;
+}
+```
+
+[`unset`](https://www.w3.org/TR/css-cascade-3/#inherit-initial) 可以分为两种情况，如果这个属性是继承属性，则将该属性重新设置为继承的值；如果不是，则将该属性重新设置为初始值。
+
+例如，`margin` 和 `padding` 不是继承属性，使用 `unset` 将该属性重新设置为初始值；`font-size` 是继承属性，使用 `unset` 将该属性重新设置为继承的值。
+
+```css
+ul {
+  margin: unset;
+  padding: unset;
+  font-size: unset;
+}
+```
+
+[`revert`](https://www.w3.org/TR/css-cascade-4/#default) 将属性重置为浏览器默认样式。
+
+```css
+ul {
+  margin: revert;
+  padding: revert;
+}
+```
+

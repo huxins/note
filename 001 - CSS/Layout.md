@@ -82,3 +82,19 @@ span {
 }
 ```
 
+## 三、Overflow
+
+[Overflow](https://www.w3.org/TR/css-overflow-3/) 模块包含了与可滚动溢出处理相关的 CSS 特性，适用于视觉媒体。
+
+### 滚动和剪切
+
+[`overflow`](https://www.w3.org/TR/css-overflow-3/#propdef-overflow) 是简写属性，其设置了元素溢出时所需的行为，即当元素的内容太大而无法适应它的[区块格式化上下文](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_display/Block_formatting_context)（Block Formatting Context，BFC）时。
+
+```css
+p {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+```
+

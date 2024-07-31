@@ -8,31 +8,9 @@
 
 
 
-## 九、Overflow
 
-### 9.1. overflow
 
-`overflow` 是简写属性，其设置了元素溢出时所需的行为。
 
-```css
-p {
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-}
-```
-
-## 十、Color
-
-### 10.1. opacity
-
-`opacity` 属性指定了一个元素的不透明度。换言之，`opacity` 属性指定了一个元素后面的背景的被覆盖程度。
-
-```css
-img {
-  opacity: 0.6;
-}
-```
 
 ## 十一、层叠和继承
 

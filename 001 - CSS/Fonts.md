@@ -36,7 +36,7 @@ h1 {
 
 [Text](https://www.w3.org/TR/css-text-3/) 模块定义了文本操作的属性，并指定了它们的处理模型。它涵盖了换行、对齐、空格处理和文本转换。
 
-### 文本对齐
+### 对齐
 
 [`text-align`](https://www.w3.org/TR/css-text-3/#propdef-text-align) 属性设置块元素的行内内容的水平对齐。
 
@@ -63,3 +63,4 @@ p {
   word-spacing: 4px;
 }
 ```
+

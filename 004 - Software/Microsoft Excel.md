@@ -331,6 +331,7 @@ COUNTA(value1, [value2], ...)
 | ------------------------------------------------------------ | ----------------------- |
 | 移到工作表的开头                                             | `Ctrl + Home`           |
 | 移到工作表的结尾                                             | `Ctrl + End`            |
+| 移到当前数据区域边缘                                         | `Ctrl + 箭头键`         |
 | 选择整行                                                     | `Shift + 空格键`        |
 | 选择整个表                                                   | `Ctrl + A`              |
 | [扩展单元格的选定范围](https://support.microsoft.com/zh-cn/office/1798d9d5-842a-42b8-9c99-9b7213f0040f#bkmk_selectwin) | `Ctrl + Shift + 箭头键` |

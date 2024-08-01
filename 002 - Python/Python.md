@@ -131,7 +131,7 @@ object.__repr__(self)
 
 #### 上下文管理器
 
-*[上下文管理器](https://docs.python.org/zh-cn/3.10/library/stdtypes.html#context-manager-types)*是一个对象，它定义了在执行 `with` 语句时要建立的运行时上下文。
+[*上下文管理器*](https://docs.python.org/zh-cn/3.10/library/stdtypes.html#context-manager-types)是一个对象，它定义了在执行 `with` 语句时要建立的运行时上下文。
 
 [上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#with-statement-context-managers)处理进入和退出所需运行时上下文，以执行代码块。通常使用 `with` 语句，但是也可以通过直接调用它们的方法来使用。
 

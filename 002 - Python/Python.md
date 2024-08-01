@@ -1,16 +1,18 @@
 # Python
 
+[Python](https://docs.python.org/zh-cn/3/) 是一种广泛使用的解释型、高级和通用的编程语言。
+
 ## 一、词法分析
 
-词法分析（Lexical Analysis）是编译器或解释器中的一个关键步骤，其主要任务是将源代码转换成一系列的标记（token）。这些标记是源代码中最小的有意义的单元，比如关键字、标识符、运算符和分隔符等。词法分析器（lexer 或 scanner）负责执行这一过程。
+[词法分析](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html)（Lexical Analysis）是编译器或解释器中的一个关键步骤，其主要任务是将源代码转换成一系列的标记（token）。这些标记是源代码中最小的有意义的单元，比如关键字、标识符、运算符和分隔符等。词法分析器（lexer 或 scanner）负责执行这一过程。
 
 ### 字面值
 
-字面值是内置类型常量值的表示法。
+[字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#literals)是内置类型常量值的表示法。
 
 #### 字节串
 
-字节串字面值要加前缀 `b` 或 `B`。生成的是类型 `bytes` 的实例，不是类型 `str` 的实例。
+[字节串字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals)要加前缀 `b` 或 `B`。生成的是类型 `bytes` 的实例，不是类型 `str` 的实例。
 
 字节串只能包含 ASCII 字符。
 
@@ -26,7 +28,7 @@ bytes = b'hello\x80world'
 
 #### 字符串
 
-字符串和字节串都可以加前缀 `r` 或 `R`，称为**原始字符串**，原始字符串把反斜杠当作原义字符，不执行转义操作。
+[字符串和字节串](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals)都可以加前缀 `r` 或 `R`，称为**原始字符串**，原始字符串把反斜杠当作原义字符，不执行转义操作。
 
 ```python
 normal_str = "C:\\Users\\User\\Documents"
@@ -35,28 +37,25 @@ raw_str = r"C:\Users\User\Documents"
 
 为兼容 Python 2，支持 Unicode 字面值前缀 `u` 或 `U`，和普通字符串意义一样。
 
-前缀为 `f` 或 `F` 的字符串称为**格式字符串**；`f` 可与 `r` 连用，但不能与 `b` 或 `u` 连用，因此，可以使用**原始格式字符串**，但不能使用格式字节串。
+```python
+name = "Fred"
+u_name = u"Fred"
+```
 
-**格式字符串**字面值是标注了 `f` 或 `F` 前缀的字符串字面值。这种字符串可包含替换字段，即以 `{}` 标注的表达式。其他字符串字面值只是常量，格式字符串字面值则是可在运行时求值的表达式。
+前缀为 `f` 或 `F` 的字符串称为**[格式字符串](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings)**；`f` 可与 `r` 连用，但不能与 `b` 或 `u` 连用，因此，可以使用**原始格式字符串**，但不能使用格式字节串。
 
 ```python
 name = "Fred"
 formatted_str = f"He said his name is {name!r}."
 ```
 
-#### 数值
+#### 整数
 
-数值字面值有三种类型：整数、浮点数、虚数。没有复数字面值。
-
-##### 整数
-
-整数字面值的长度没有限制，能一直大到占满可用内存。
+[整数字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#integer-literals)的长度没有限制，能一直大到占满可用内存。
 
 确定数值时，会忽略字面值中的下划线。下划线只是为了分组数字，让数字更易读。下划线可在数字之间，也可在 `0x` 等基数说明符后。
 
 注意，除了 0 以外，十进制数字的开头不允许有零。以免与八进制字面值混淆。
-
-整数字面值示例如下：
 
 ```
 decinteger: 10_000_000
@@ -65,11 +64,9 @@ octinteger: 0o_1232
 hexinteger: 0x_29a
 ```
 
-##### 浮点数
+#### 浮点数
 
-浮点数解析时，整数和指数部分总以 10 为基数。例如，`077e010` 是合法的，表示的数值与 `77e10` 相同。浮点数字面值的支持范围取决于具体实现。整数字面值支持用下划线分组数字。
-
-浮点数字面值示例如下：
+[浮点数](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#floating-point-literals)解析时，整数和指数部分总以 10 为基数。例如，`077e010` 是合法的，表示的数值与 `77e10` 相同。
 
 ```
 3.14
@@ -82,7 +79,7 @@ hexinteger: 0x_29a
 
 ### 运算符
 
-运算符如下所示：
+[运算符](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#operators)如下所示。
 
 | 运算符 | 描述                                           | 实例          |
 | ------ | ---------------------------------------------- | ------------- |
@@ -100,9 +97,7 @@ hexinteger: 0x_29a
 
 ### 特殊方法名称
 
-#### 基本定制
-
-一个类可以通过定义具有**特殊名称**的方法来实现由特殊语法来发起调用的特定操作。
+一个类可以通过定义具有[特殊名称的方法](https://docs.python.org/zh-cn/3/reference/datamodel.html#special-method-names)来实现由特殊语法来发起调用的特定操作。
 
 这是 Python 实现*运算符重载*的方式，允许每个类自行定义基于该语言运算符的特定行为。举例来说，如果一个类定义了名为 `__getitem__()` 的方法，并且 `x` 是该类的一个实例，则 `x[i]` 基本就等价于 `type(x).__getitem__(x, i)`。
 
@@ -110,13 +105,15 @@ hexinteger: 0x_29a
 
 在实现模拟任何内置类型的类时，很重要的一点是模拟的实现程度对于被模拟对象来说应当是有意义的。例如，提取单个元素的操作对于某些序列来说是适宜的，但提取切片可能就没有意义。
 
-##### init
+#### 对象初始化
+
+[`__init__`](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__init__) 在实例通过 `__new__()` 创建之后，返回调用者之前调用。其参数与传递给类构造器表达式的参数相同。
 
 ```python
 object.__init__(self[, ...])
 ```
 
-在实例通过 `__new__()` 被创建之后，返回调用者之前调用。其参数与传递给类构造器表达式的参数相同。一个基类如果有 `__init__()` 方法，其所派生的类如果也有 `__init__()` 方法，就必须显式地调用它以确保实例基类部分的正确初始化。
+一个基类如果有 `__init__()` 方法，其所派生的类如果也有 `__init__()` 方法，就必须显式地调用它以确保实例基类部分的正确初始化。
 
 ```python
 super().__init__([args...])
@@ -124,27 +121,29 @@ super().__init__([args...])
 
 因为对象是由 `__new__()` 和 `__init__()` 协作构造完成的，由 `__new__()` 创建，并由 `__init__()` 定制，所以 `__init__()` 返回的值只能是 `None`，否则会在运行时引发 `TypeError`。
 
-##### repr
+#### 字符串表示
+
+[`__repr__`](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__repr__) 由 `repr()` 内置函数调用以输出一个对象的字符串表示。
 
 ```python
 object.__repr__(self)
 ```
 
-由 `repr()` 内置函数调用以输出一个对象的字符串表示。
-
 #### 上下文管理器
 
-*上下文管理器*是一个对象，它定义了在执行 `with` 语句时要建立的运行时上下文。上下文管理器处理进入和退出所需运行时上下文以执行代码块。通常使用 `with` 语句，但是也可以通过直接调用它们的方法来使用。
+*[上下文管理器](https://docs.python.org/zh-cn/3.10/library/stdtypes.html#context-manager-types)*是一个对象，它定义了在执行 `with` 语句时要建立的运行时上下文。
+
+[上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#with-statement-context-managers)处理进入和退出所需运行时上下文，以执行代码块。通常使用 `with` 语句，但是也可以通过直接调用它们的方法来使用。
 
 上下文管理器的典型用法包括保存和恢复各种全局状态，锁定和解锁资源，关闭打开的文件等等。
 
 - object.**\__enter__**(*self*)
 
-  进入与此对象相关的运行时上下文。`with` 语句将会绑定这个方法的返回值到 `as` 子句中指定的目标，如果有的话。
+  [进入](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__enter__)与此对象相关的运行时上下文。`with` 语句将会绑定这个方法的返回值到 `as` 子句中指定的目标，如果有的话。
 
 - object.**\__exit__**(*self*, *exc_type*, *exc_value*, *traceback*)
 
-  退出关联到此对象的运行时上下文。各个参数描述了导致上下文退出的异常。如果上下文是无异常地退出的，三个参数都将为 `None`。
+  [退出](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__exit__)关联到此对象的运行时上下文。各个参数描述了导致上下文退出的异常。如果上下文是无异常地退出的，三个参数都将为 `None`。
 
   如果提供了异常，并且希望方法屏蔽此异常，则应当返回真值。否则的话，异常将在退出此方法时按正常流程处理。
 

@@ -1,4 +1,4 @@
-# CLI
+# Python CLI
 
 CPython 解析器在启动时会扫描[命令行](https://docs.python.org/zh-cn/3/using/cmdline.html)参数和环境变量，以获取各种设置信息，这样可以根据用户提供的参数和环境配置调整其行为。
 

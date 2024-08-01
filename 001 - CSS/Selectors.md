@@ -1,4 +1,4 @@
-# Selectors
+# CSS Selectors
 
 [选择器](https://www.w3.org/TR/selectors-3/#abstract)是一种用于匹配树中元素的模式，是多种选择 XML 文档节点技术中的一种。选择器经过优化，适用于 HTML 和 XML，并设计为可在性能关键的代码中使用。
 

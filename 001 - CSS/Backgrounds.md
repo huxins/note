@@ -1,4 +1,4 @@
-# 背景和边框
+# CSS 背景和边框
 
 [Backgrounds and Borders](https://www.w3.org/TR/css-backgrounds-3/) 模块包含 CSS 与边框和背景相关的功能。
 
@@ -18,3 +18,4 @@ h1 {
   width: max-content;
 }
 ```
+

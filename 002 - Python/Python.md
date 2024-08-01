@@ -119,7 +119,7 @@ object.__init__(self[, ...])
 super().__init__([args...])
 ```
 
-因为对象是由 `__new__()` 和 `__init__()` 协作构造完成的，由 `__new__()` 创建，并由 `__init__()` 定制，所以 `__init__()` 返回的值只能是 `None`，否则会在运行时引发 `TypeError`。
+因为对象是由 `__new__()` 和 `__init__()` 协作构造完成的，由 `__new__()` 创建，并由 `__init__()` 定制，所以 `__init__()` 返回的值只能是 `None`，否则会在运行时引发 [`TypeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#TypeError)。
 
 #### 字符串表示
 
@@ -153,44 +153,44 @@ object.__repr__(self)
 
 一个 *module* 内的 Python 代码通过 *importing* 操作就能够访问另一个模块内的代码。
 
-`import` 语句是发起调用导入机制的最常用方式，但不是唯一的方式。`importlib.import_module()` 以及内置的 `__import__()` 等函数也可以被用来发起调用导入机制。
+[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句是发起调用[导入机制](https://docs.python.org/zh-cn/3/reference/import.html)的最常用方式，但不是唯一的方式。[`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module) 以及内置的 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 等函数也可以被用来发起调用导入机制。
 
-`import` 语句结合了两个操作：
+[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句结合了两个操作：
 
 ```
 1、搜索指定名称的模块。
 2、然后将搜索结果绑定到当前作用域中的名称。
 ```
 
-`import` 语句的搜索操作被定义为对 `__import__()` 函数的调用并带有适当的参数。`__import__()` 的返回值会被用于执行 `import` 语句的名称绑定操作。
+[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句的搜索操作被定义为对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 函数的调用并带有适当的参数。[`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的返回值会被用于执行 `import` 语句的名称绑定操作。
 
-对 `__import__()` 的直接调用将仅执行模块搜索，如果找到，则执行模块创建操作。只有 `import` 语句会执行名称绑定操作。
+对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的直接调用将仅执行模块搜索，如果找到，则执行模块创建操作。只有 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句会执行名称绑定操作。
 
-当一个模块首次被导入时，Python 会搜索该模块，如果找到就创建一个 *module* 对象并初始化它。如果指定名称的模块未找到，则会引发 `ModuleNotFoundError`。
+当一个模块首次被导入时，Python 会搜索该模块，如果找到就创建一个 *module* 对象并初始化它。如果指定名称的模块未找到，则会引发 [`ModuleNotFoundError`](https://docs.python.org/zh-cn/3/library/exceptions.html#ModuleNotFoundError)。
 
 当发起调用导入机制时，Python 会实现多种策略来搜索指定名称的模块。这些策略可以通过使用下文所描述的多种钩子来加以修改和扩展。
 
 ### importlib
 
-`importlib` 模块提供了丰富的 API 用来与导入系统进行交互。
+[`importlib`](https://docs.python.org/zh-cn/3/library/importlib.html#module-importlib) 模块提供了丰富的 API 用来与导入系统进行交互。
 
-例如 `importlib.import_module()` 提供了相比内置的 `__import__()` 更推荐、更简单的 API 用来发起调用导入机制。
+例如 [`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module) 提供了相比内置的 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 更推荐、更简单的 API 用来发起调用导入机制。
 
 ### 包
 
-Python 只有一种模块对象类型，所有模块都属于该类型，无论模块是用 Python、C 还是别的语言实现。为了帮助组织模块并提供名称层次结构，Python 还引入了包的概念。
+Python 只有一种模块对象类型，所有模块都属于该类型，无论模块是用 Python、C 还是别的语言实现。为了帮助组织模块并提供名称层次结构，Python 还引入了[包](https://docs.python.org/zh-cn/3/reference/import.html#packages)的概念。
 
 可以把包看成是文件系统中的目录，并把模块看成是目录中的文件。与文件系统一样，包通过层次结构进行组织，在包之内除了一般的模块，还可以有**子包**。
 
-要注意的是所有**包都是模块**，但并非所有模块都是包。或者换句话说，包只是一种特殊的模块。特别地，任何具有 `__path__` 属性的模块都会被当作是包。
+所有**包都是模块**，但并非所有模块都是包。或者换句话说，包只是一种特殊的模块。特别地，任何具有 `__path__` 属性的模块都会被当作是包。
 
 所有模块都有自己的名字。子包名与其父包名会以点号分隔，与 Python 的标准属性访问语法一致。因此你可能会有一个名为 `email` 的包，这个包中又有一个名为 `email.mime` 的子包，以及该子包中的名为 `email.mime.text` 的子包。
 
-**常规包**是传统的包类型。常规包通常以一个包含 `__init__.py` 文件的目录形式实现。当一个常规包被导入时，这个 `__init__.py` 文件会隐式地被执行，它所定义的对象会被绑定到该包命名空间中的名称。
+[常规包](https://docs.python.org/zh-cn/3/reference/import.html#regular-packages)是传统的包类型。常规包通常以一个包含 `__init__.py` 文件的目录形式实现。当一个常规包被导入时，这个 `__init__.py` 文件会隐式地被执行，它所定义的对象会被绑定到该包命名空间中的名称。
 
 `__init__.py` 文件可以包含与任何其他模块中所包含的 Python 代码相似的代码，Python 将在模块被导入时为其添加额外的属性。
 
-例如，以下文件系统布局定义了一个最高层级的 *parent* 包和三个子包：
+例如，以下文件系统布局定义了一个最高层级的 `parent` 包和三个子包：
 
 ```
 parent/

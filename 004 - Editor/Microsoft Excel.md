@@ -331,5 +331,6 @@ COUNTA(value1, [value2], ...)
 | ------------------------------------------------------------ | ----------------------- |
 | [打开或关闭筛选](https://support.microsoft.com/zh-cn/office/d6ae119c-5fab-4b7f-8869-6ef02ece71f5#bkmk_keyboardshortcuts_win) | `Ctrl + Shift + L`      |
 | [扩展单元格的选定范围](https://support.microsoft.com/zh-cn/office/1798d9d5-842a-42b8-9c99-9b7213f0040f#bkmk_selectwin) | `Ctrl + Shift + 箭头键` |
+| 选择整行                                                     | `Shift + 空格键`        |
 | 填充颜色                                                     | `Alt + H + H`           |
 

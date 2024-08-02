@@ -300,17 +300,15 @@ class range(start, stop[, step])
 
 使用三重引号的字符串可以跨越多行，其中所有的空白字符都将包含在该字符串字面值中。
 
-#### 实例方法
-
 字符串实现了所有一般序列的操作，还额外提供了以下列出的一些附加方法。
 
 - str.**encode**(*encoding*=*'utf-8'*, *errors*=*'strict'*)
 
-  返回原字符串编码为字节串对象的版本。默认编码为 `utf-8`。
+  [`str.encode`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str.encode) 返回原字符串编码为字节串对象的版本。默认编码为 `utf-8`。
 
 - str.**format**(*args*, ***kwargs*)
 
-  执行字符串格式化操作。调用此方法的字符串可以包含字符串字面值或者以花括号 `{}` 括起来的替换域。每个替换域可以包含一个位置参数的数字索引，或者一个关键字参数的名称。返回的字符串副本中每个替换域都会被替换为对应参数的字符串值。
+  [`str.format`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str.format) 执行字符串格式化操作。调用此方法的字符串可以包含字符串字面值或者以花括号 `{}` 括起来的替换域。每个替换域可以包含一个位置参数的数字索引，或者一个关键字参数的名称。返回的字符串副本中每个替换域都会被替换为对应参数的字符串值。
 
   ```python
   "The sum of 1 + 2 is {0}".format(1+2)
@@ -319,15 +317,15 @@ class range(start, stop[, step])
 
 - str.**upper**()
 
-  返回原字符串的副本，其中所有区分大小写的字符均转换为大写。
+  [`str.upper`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str.upper) 返回原字符串的副本，其中所有区分大小写的字符均转换为大写。
 
-#### 字符串格式化
+#### printf
 
-##### printf 风格
+字符串具有一种特殊的[内置操作](https://docs.python.org/zh-cn/3/library/stdtypes.html#printf-style-string-formatting)：使用 `%` 运算符。这也被称为字符串的格式化或插值运算符。
 
-字符串具有一种特殊的[内置操作](https://docs.python.org/zh-cn/3/library/stdtypes.html#printf-style-string-formatting)：使用 `%` 运算符。这也被称为字符串的格式化或插值运算符。对于 `format % values`（其中 `format` 为一个字符串），在 `format` 中的 `%` 转换标记符将被替换为零个或多个 `values` 条目。其效果类似于在 C 语言中使用 `sprintf()`。
+对于 `format % values`（其中 `format` 为一个字符串），在 `format` 中的 `%` 转换标记符将被替换为零个或多个 `values` 条目。
 
-如果 `format` 要求一个单独参数，则 `values` 可以为一个非元组对象。否则的话，`values` 必须是一个包含项数与格式字符串中指定的转换符项数相同的元组，或者是一个单独映射对象（例如字典）。
+如果 `format` 要求一个单独参数，则 `values` 可以为一个非元组对象；否则的话，`values` 必须是一个包含项数与格式字符串中指定的转换符项数相同的元组，或者是一个单独映射对象（例如字典）。
 
 | 转换符 | 含意             |
 | ------ | ---------------- |
@@ -344,24 +342,22 @@ print(
 
 ### 二进制序列类型
 
-操作二进制数据的核心内置类型是 `bytes` 和 `bytearray`。它们由 `memoryview` 提供支持，该对象使用缓冲区协议来访问其他二进制对象所在内存，不需要创建对象的副本。
+操作二进制数据的核心内置类型是 [`bytes`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytes) 和 [`bytearray`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytearray)。它们由 [`memoryview`](https://docs.python.org/zh-cn/3/library/stdtypes.html#memoryview) 提供支持，该对象使用缓冲区协议来访问其他二进制对象所在内存，不需要创建对象的副本。
 
-`array` 模块支持高效地存储基本数据类型，例如 32 位整数和 IEEE754 双精度浮点值。
+[`array`](https://docs.python.org/zh-cn/3/library/array.html#module-array) 模块支持高效地存储基本数据类型，例如 32 位整数和 IEEE754 双精度浮点值。
 
-#### bytes
+[`bytes`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytes-objects) 对象是由单个字节构成的不可变序列。
 
-`bytes` 对象是由单个字节构成的不可变序列。由于许多主要二进制协议都基于 ASCII 文本编码，因此 `bytes` 对象提供了一些仅在处理 ASCII 兼容数据时可用，并且在许多特性上与字符串对象紧密相关的方法。
+由于主流二进制协议都基于 ASCII 文本编码，因此 `bytes` 对象提供了一些仅在处理 ASCII 兼容数据时可用，并且在许多特性上与字符串对象紧密相关的方法。
 
-#### bytearray
+[`bytearray`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytearray-objects) 对象是 `bytes` 对象的可变对应物。
 
-`bytearray` 对象是 `bytes` 对象的可变对应物。
-
-#### 实例方法
+`bytes` 和 `bytearray` 对象的下列方法可以用于任意二进制数据。
 
 - bytes.**decode**(*encoding*=*'utf-8'*, *errors*=*'strict'*)
 - bytearray.**decode**(*encoding*=*'utf-8'*, *errors*=*'strict'*)
 
-  返回从给定 `bytes` 解码出来的字符串。默认编码为 `utf-8`。
+  [`decode`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytes.decode) 返回解码为 [`str`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str) 的字符串。默认编码为 `utf-8`。
 
   ```python
   bytes.decode(b'Hello', encoding="utf-8")
@@ -369,7 +365,7 @@ print(
 
 ### 映射类型
 
-用法如下。
+目前仅有一种标准映射类型 [`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#dict)。
 
 ```python
 class dict(**kwargs)
@@ -398,14 +394,12 @@ class dict(iterable, **kwargs)
   ```python
   body = {k: v for k, v in body.items() if v is not None}
   ```
-  
-#### 实例方法
 
 这些是字典所支持的操作：
 
 - **get**(*key*[, *default*])
 
-  如果 `key` 存在于字典中则返回 `key` 的值，否则返回 `default`。如果 `default` 未给出则默认为 `None`。
+  如果 *key* 存在于字典中，则返回 *key* 的值，否则返回 *default*。如果 *default* 未给出则默认为 `None`。
 
 - **keys**()
 
@@ -424,35 +418,49 @@ class dict(iterable, **kwargs)
 
 - **setdefault**(*key*[, *default*])
 
-  如果字典存在键 `key`，返回它的值。如果不存在，插入值为 `default` 的键 `key`，并返回 `default`。`default` 默认为 `None`。
+  如果字典存在键 *key*，返回它的值。如果不存在，插入值为 *default* 的键 *key*，并返回 *default*。*default* 默认为 `None`。
 
 - **update**([*other*])
 
-  使用来自 `other` 的键值对更新字典，覆盖原有的键。返回 `None`。
+  使用来自 *other* 的键值对更新字典，覆盖原有的键。返回 `None`。
 
-  `update()` 接受另一个字典对象，或者一个包含键值对的可迭代对象。如果给出了关键字参数，则会以其所指定的键值对更新字典：`d.update(red=1, blue=2)`。
+  [`update()`](https://docs.python.org/zh-cn/3/library/stdtypes.html#dict.update) 接受另一个字典对象，或者一个包含键值对的可迭代对象。
+  
+  如果给出了关键字参数，则会以其所指定的键值对更新字典。
+  
+  ```python
+  d.update(red=1, blue=2)
+  ```
 
 ### 上下文管理器类型
 
-Python 的 `with` 语句支持由上下文管理器定义的运行时上下文这一概念。此对象的实现使用了一对专门方法，允许用户自定义类来定义运行时上下文，在语句体被执行前进入该上下文，并在语句执行完毕时退出该上下文：
+Python 的 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句支持由[上下文管理器](https://docs.python.org/zh-cn/3/library/stdtypes.html#context-manager-types)定义的运行时上下文这一概念。
+
+此对象的实现使用了一对专门方法，允许用户自定义类来定义运行时上下文，在语句体被执行前进入该上下文，并在语句执行完毕时退出该上下文。
 
 - contextmanager.**\__enter__**()
 
-  进入运行时上下文并返回此对象或关联到该运行时上下文的其他对象。此方法的返回值会绑定到使用此上下文管理器的 `with` 语句的 `as` 子句中的标识符。
+  进入运行时上下文并返回此对象或关联到该运行时上下文的其他对象。
 
-  一个返回其自身的上下文管理器的例子是 *file object*。文件对象会从 `__enter__()` 返回其自身，以允许 `open()` 被用作 `with` 语句中的上下文表达式。
+  此方法的返回值会绑定到使用此上下文管理器的 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句的 `as` 子句中的标识符。
 
-  一个返回关联对象的上下文管理器的例子是 `decimal.localcontext()` 所返回的对象。此种管理器会将活动的 `decimal` 上下文设为原始 `decimal` 上下文的一个副本并返回该副本。这允许对 `with` 语句的语句体中的当前 `decimal` 上下文进行更改，而不会影响 `with` 语句以外的代码。
+  - 一个返回其自身的上下文管理器的例子是 *file object*。
+
+    文件对象会从 [`__enter__()`](https://docs.python.org/zh-cn/3/library/stdtypes.html#contextmanager.__enter__) 返回其自身，以允许 [`open()`](https://docs.python.org/zh-cn/3/library/functions.html#open) 被用作 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句中的上下文表达式。
+
+  - 一个返回关联对象的上下文管理器的例子是 [`decimal.localcontext()`](https://docs.python.org/zh-cn/3/library/decimal.html#decimal.localcontext) 所返回的对象。
+
+    此种管理器会将活动的 [`decimal`](https://docs.python.org/zh-cn/3/library/decimal.html) 上下文设为原始 [`decimal`](https://docs.python.org/zh-cn/3/library/decimal.html) 上下文的一个副本并返回该副本。这允许对 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句的语句体中的当前 [`decimal`](https://docs.python.org/zh-cn/3/library/decimal.html) 上下文进行更改，而不会影响 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句以外的代码。
 
 - contextmanager.**\__exit__**(*exc_type*, *exc_val*, *exc_tb*)
 
-  退出运行时上下文并返回一个布尔值标识来表明所发生的任何异常是否应当被屏蔽。如果在执行 `with` 语句的语句体期间发生了异常，则参数会包含异常的类型、值以及回溯信息。在其他情况下三个参数均为 `None`。
+  退出运行时上下文并返回一个布尔值标识来表明所发生的任何异常是否应当被屏蔽。
 
-  自此方法返回一个真值将导致 `with` 语句屏蔽异常并继续执行紧随在 `with` 语句之后的语句。否则异常将在此方法结束执行后继续传播。在此方法执行期间发生的异常将会取代 `with` 语句的语句体中发生的任何异常。
+  如果在执行 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句的语句体期间发生了异常，则参数会包含异常的类型、值以及回溯信息。在其他情况下三个参数均为 `None`。
 
-  传入的异常绝对不应当被显式地重新引发，相反地，此方法应当返回一个假值以表明方法已成功完成并且不希望屏蔽被引发的异常。这允许上下文管理代码方便地检测 `__exit__()` 方法是否确实已失败。
+Python 定义了一些上下文管理器来支持简易的线程同步、文件或其他对象的快速关闭，以及更方便地操作活动的 `decimal` 上下文。
 
-Python 定义了一些上下文管理器来支持简易的线程同步、文件或其他对象的快速关闭，以及更方便地操作活动的 `decimal` 上下文。除了实现上下文管理协议以外，不同类型不会被特殊处理。
+除了实现上下文管理协议以外，不同类型不会被特殊处理。
 
 ## 三、内置异常
 

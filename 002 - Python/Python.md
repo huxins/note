@@ -207,23 +207,23 @@ parent/
 
 ## 四、表达式
 
+[表达式](https://docs.python.org/zh-cn/3/reference/expressions.html)（Expression）是一个能够计算出一个值的代码片段。表达式可以由常量、变量、运算符、函数调用等组成，并且在求值时会生成一个具体的结果。
+
 ### 算术转换
+
+[算术转换](https://docs.python.org/zh-cn/3/reference/expressions.html#arithmetic-conversions)是指在算术运算过程中对不同类型的数据进行隐式或显式转换，以确保操作数兼容并生成预期结果的过程。算术转换通常涉及基本数据类型（如整数、浮点数等）之间的转换。
 
 - 如果任一参数为复数，另一参数会被转换为复数；
 - 否则，如果任一参数为浮点数，另一参数会被转换为浮点数；
 - 否则，两者应该都为整数，不需要进行转换。
 
-### 原型
+### 函数调用
 
-原型代表编程语言中最紧密绑定的操作。
+所谓[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)就是附带可能为空的一系列参数来执行一个可调用对象（如函数）。
 
-#### 调用
+#### 位置参数
 
-所谓调用就是附带可能为空的一系列参数来执行一个可调用对象（如函数）。
-
-##### 位置参数
-
-用于函数调用，根据函数定义的参数位置来传递参数。
+用于函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)，根据[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)的参数位置来传递参数。
 
 以此函数为例：
 
@@ -241,9 +241,11 @@ def print_hello(name, sex):
 print_hello('x', 1)
 ```
 
-##### 关键字参数
+#### 关键字参数
 
-用于函数调用，通过键值对形式加以指定。可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。
+用于函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)，通过键值对形式加以指定。可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。
+
+有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。
 
 以上一节函数为例，通过关键字参数调用：
 
@@ -261,15 +263,13 @@ print_hello(name='x', 1)
 print_hello(sex=1, 'x')
 ```
 
-注意，有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。
+#### 解包
 
-##### 额外的位置参数
+如果存在比正式参数空位多的**位置参数**，将会引发 [`TypeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#TypeError) 异常，除非有一个正式参数使用了 `*expression` 句法。在此情况下，该正式参数将接受一个包含了多余位置参数的元组，如果没有多余位置参数则为一个空元组。
 
-如果存在比正式参数空位多的位置参数，将会引发 `TypeError` 异常，除非有一个正式参数使用了 `*expression` 句法；在此情况下，该正式参数将接受一个包含了多余位置参数的元组，如果没有多余位置参数则为一个空元组。
+如果函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)中出现了 `*expression` 句法，`expression` 必须求值为一个 `iterable`。来自该可迭代对象的元素会被当作是额外的位置参数。
 
-如果**函数调用**中出现了 `*expression` 句法，`expression` 必须求值为一个 `iterable`。来自该可迭代对象的元素会被当作是额外的位置参数。
-
-注意，`*expression` 句法可能出现于显式的关键字参数之后，但它会在关键字参数，以及任何 `**expression` 参数之前被处理。
+`*expression` 句法可能出现于显式的关键字参数之后，但它会在关键字参数，以及任何 `**expression` 参数之前被处理。
 
 ```python
 def f(a, b):
@@ -278,11 +278,9 @@ def f(a, b):
 f(b=1, *(2,))
 ```
 
-##### 额外的关键字参数
+如果任何**关键字参数**没有与之对应的正式参数名称，将会引发 [`TypeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#TypeError) 异常，除非有一个正式参数使用了 `**expression` 句法，该正式参数将接受一个包含了多余关键字参数的字典，如果没有多余关键字参数则为一个空字典。
 
-如果任何关键字参数没有与之对应的正式参数名称，将会引发 `TypeError` 异常，除非有一个正式参数使用了 `**expression` 句法，该正式参数将接受一个包含了多余关键字参数的字典，如果没有多余关键字参数则为一个空字典。
-
-如果**函数调用**中出现了 `**expression` 句法，则 `expression` 必须求值为一个映射，其内容被视为额外的关键字参数。
+如果函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)中出现了 `**expression` 句法，则 `expression` 必须求值为一个映射，其内容被视为额外的关键字参数。
 
 ```python
 def f(a, b):
@@ -291,9 +289,17 @@ def f(a, b):
 f(**{'a': 1, 'b': 2})
 ```
 
-### lambda 表达式
+### lambda
 
-`lambda` 表达式被用于创建匿名函数。表达式 `lambda parameters: expression` 会产生一个函数对象。该未命名对象的行为类似于用以下方式定义的函数：
+[`lambda`](https://docs.python.org/zh-cn/3/reference/expressions.html#lambda) 表达式被用于创建匿名函数。
+
+下列表达式会产生一个函数对象。
+
+```python
+lambda parameters: expression
+```
+
+该未命名对象的行为类似于用以下方式定义的函数。
 
 ```python
 def <lambda>(parameters):
@@ -302,11 +308,13 @@ def <lambda>(parameters):
 
 ## 五、简单语句
 
+[简单语句](https://docs.python.org/zh-cn/3/reference/simple_stmts.html)由一个单独的逻辑行构成。多条简单语句可以存在于同一行内并以分号分隔。
+
 ### 赋值语句
 
-赋值语句用于将名称（重）绑定到特定值，以及修改属性或可变对象的成员项。
+[赋值语句](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#assignment-statements)用于将名称（重）绑定到特定值，以及修改属性或可变对象的成员项。
 
-赋值的左手边与右手边是同时进行的，例如 `a, b = b, a` 会交换两个变量的值。但在赋值给变量的多项集之内的重叠是从左至右进行的：
+赋值的左手边与右手边是同时进行的，例如 `a, b = b, a` 会交换两个变量的值。但在赋值给变量的多项集之内的重叠是从左至右进行的。
 
 ```python
 x = [0, 1]
@@ -317,9 +325,9 @@ print(x)
 
 ### raise
 
-如果没有提供表达式，则 `raise` 会重新引发当前正在处理的异常，它也被称为活动的异常。如果当前没有活动的异常，则会引发 `RuntimeError` 来提示发生了错误。
+如果没有提供表达式，则 [`raise`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#the-raise-statement) 会重新引发当前正在处理的异常，它也被称为活动的异常。如果当前没有活动的异常，则会引发 [`RuntimeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#RuntimeError) 来提示发生了错误。
 
-否则的话，`raise` 会将第一个表达式求值为异常对象。它必须为 `BaseException` 的子类或实例。如果它是一个类，当需要时会通过不带参数地实例化该类来获得异常的实例。
+否则的话，[`raise`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#the-raise-statement) 会将第一个表达式求值为异常对象。它必须为 [`BaseException`](https://docs.python.org/zh-cn/3/library/exceptions.html#BaseException) 的子类或实例。如果它是一个类，当需要时会通过不带参数地实例化该类来获得异常的实例。
 
 ```python
 raise KeyError('未找到对应的配置信息')
@@ -327,7 +335,7 @@ raise KeyError('未找到对应的配置信息')
 
 ### import
 
-基本的 `import` 语句会分两步执行：
+基本的 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#the-import-statement) 语句会分两步执行：
 
 ```
 1、查找一个模块，如果有必要还会加载并初始化模块。
@@ -336,18 +344,18 @@ raise KeyError('未找到对应的配置信息')
 
 当语句包含多个子句时，这两个步骤将对每个子句分别执行，如同这些子句被分成独立的 `import` 语句一样。
 
-`from` 形式使用的过程略微繁复一些：
+[`from`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#index-36) 形式使用的过程略微繁复一些：
 
 ```
-1、查找 from 子句中指定的模块，如有必要还会加载并初始化模块；
+1、查找 from 子句中指定的模块，如有必要还会加载并初始化模块。
 2、对于 import 子句中指定的每个标识符：
-    1、检查被导入模块是否有该名称的属性；
-    2、如果没有，尝试导入具有该名称的子模块，然后再次检查被导入模块是否有该属性；
-    3、如果未找到该属性，则引发 ImportError；
+    1、检查被导入模块是否有该名称的属性。
+    2、如果没有，尝试导入具有该名称的子模块，然后再次检查被导入模块是否有该属性。
+    3、如果未找到该属性，则引发 ImportError。
     4、否则的话，将对该值的引用存入局部命名空间，如果有 as 子句则使用其指定的名称，否则使用该属性的名称。
 ```
 
-如果标识符列表改为一个星号 `*`，则在模块中定义的全部公有名称都将按 `import` 语句所在的作用域被绑定到局部命名空间。
+如果标识符列表改为一个星号 `*`，则在模块中定义的全部**公有名称**都将按 `import` 语句所在的作用域被绑定到局部命名空间。
 
 ```python
 from module import *
@@ -357,8 +365,6 @@ from module import *
 - **私有名称**：私有名称通常以下划线 `_` 开头，表示这些名称是模块的内部实现细节，不建议外部访问。
 
 一个模块所定义的**公有名称**，是由在模块的命名空间中检测一个名为 `__all__` 的变量来确定的；如果有定义，它必须是一个字符串列表，其中的项为该模块所定义或导入的名称。
-
-当我们在模块中定义 `__all__` 时，`__all__` 是一个列表，包含模块中所有被认为是公有的名称。
 
 当使用 `from module import *` 语句时，只有 `__all__` 列表中的名称会被导入。
 
@@ -372,7 +378,7 @@ __all__ = ["views"]
 
 ### assert
 
-`assert` 语句是在程序中插入调试性断言的简便方式。
+[`assert`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#the-assert-statement) 语句是在程序中插入调试性断言的简便方式。
 
 简单形式 `assert expression` 等价于
 
@@ -390,11 +396,13 @@ if __debug__:
 
 ## 六、复合语句
 
+[复合语句](https://docs.python.org/zh-cn/3/reference/compound_stmts.html)是包含其它语句的语句，它们会以某种方式影响或控制所包含其它语句的执行。
+
 ### with
 
-`with` 语句用于包装带有使用上下文管理器定义的方法的代码块的执行。这允许对普通的 `try...except...finally` 使用模式进行封装以方便地重用。
+[`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句用于包装带有使用[上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#context-managers)定义的方法的代码块的执行。这允许对普通的 [`try`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#try)...[`except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#except)...[`finally`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#finally) 使用模式进行封装以方便地重用。
 
-`with` 语句的执行过程如下：
+[`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#with) 语句的执行过程如下：
 
 ```
 1、对上下文表达式进行求值来获得上下文管理器。
@@ -437,7 +445,7 @@ finally:
         exit(manager, None, None, None)
 ```
 
-如果有多个项目，则会视作存在多个 `with` 语句嵌套来处理多个上下文管理器：
+如果有多个项目，则会视作存在多个 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#with) 语句嵌套来处理多个上下文管理器：
 
 ```python
 with A() as a, B() as b:
@@ -452,7 +460,7 @@ with A() as a:
         SUITE
 ```
 
-也可以用圆括号包围的多行形式的多项目上下文管理器。例如：
+也可以用圆括号包围的多行形式的多项目上下文管理器：
 
 ```python
 with (
@@ -464,22 +472,46 @@ with (
 
 ### 函数定义
 
-函数定义是一条可执行语句。它执行时会在当前局部命名空间中将函数名称绑定到一个函数对象（函数可执行代码的包装器）。这个函数对象包含对当前全局命名空间的引用，作为函数被调用时所使用的全局命名空间。
+[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)是一条可执行语句。它执行时会在当前局部命名空间中将函数名称绑定到一个函数对象（函数可执行代码的包装器）。
 
-函数定义并不会执行函数体；只有当函数被调用时才会执行此操作。
+这个函数对象包含对当前全局命名空间的引用，作为函数被调用时所使用的全局命名空间。
 
 #### 默认形参
 
-用于定义函数，为参数提供默认值，调用函数时可传可不传该默认参数的值。
+默认形参值会在执行函数定义时按从左至右的顺序被求值，这意味着当函数被定义时将对表达式求值一次，相同的*预计算*值将在每次调用时被使用。
 
-注意，所有位置参数必须出现在默认参数前，包括函数定义和调用。
+例如，列表或字典等可变对象，如果函数修改了该对象，则实际上默认值也会被修改。
+
+```python
+def test(a=[]):
+    a.append('test')
+    print(a)
+
+test()
+test()
+```
+
+绕过此问题的一个方法是使用 `None` 作为默认值。
+
+```python
+def whats_on_the_telly(penguin=None):
+    if penguin is None:
+        penguin = []
+    penguin.append("property of the zoo")
+    return penguin
+
+whats_on_the_telly()
+whats_on_the_telly()
+```
+
+所有位置参数必须出现在默认参数前，包括[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)和[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)。
 
 ```python
 def print_hello(name, sex=1):
     pass
 ```
 
-#### 额外的位置参数
+#### 位置参数
 
 我们传进的额外的位置参数都会被 `args` 变量收集，它会根据传进参数的位置合并为一个元组，`args` 是元组类型。
 
@@ -488,7 +520,9 @@ def func(*args):
     pass
 ```
 
-#### 额外的关键字参数
+在 `/` 之前的形参，都是仅限位置形参，因而只能通过位置参数传入。
+
+#### 关键字参数
 
 我们传进的额外的关键字参数都会被 `kargs` 变量收集，它会根据传进参数的关键字合并为一个字典，`kargs` 是字典类型。
 
@@ -497,13 +531,22 @@ def func(**kargs):
     pass
 ```
 
+在 `*` 或 `*identifier` 之后的形参，都是仅限关键字形参，因而只能通过关键字参数传入。
+
+```python
+def add(a, b, c, *, d):
+    print(a, b, c, d)
+
+add(1, 2, 3, d=4)
+```
+
 #### 装饰器
 
 一个函数定义可以被一个或多个 *decorator* 表达式所包装。
 
 当函数被定义时将在包含该函数定义的作用域中对装饰器表达式求值。求值结果必须是一个可调用对象，它会以该函数对象作为唯一参数被发起调用。其返回值将被绑定到函数名称而非函数对象。
 
-多个装饰器会以嵌套方式被应用。例如以下代码：
+多个装饰器会以嵌套方式被应用：
 
 ```python
 @f1(arg)
@@ -538,13 +581,13 @@ def now():
     print('2015-3-25')
 ```
 
-大致等价于
+大致等价于：
 
 ```python
 now = log(now)
 ```
 
-可快速调用
+可快速调用：
 
 ```python
 log(now)()
@@ -574,7 +617,7 @@ def now():
 now = log('execute')(now)
 ```
 
-可快速调用
+可快速调用：
 
 ```python
 log('execute')(now)()
@@ -582,11 +625,13 @@ log('execute')(now)()
 
 ##### 函数签名
 
-还差最后一步。因为我们讲了函数也是对象，它有 `__name__` 等属性，但你去看经过 *decorator* 装饰之后的函数，它们的 `__name__` 已经从原来的 `'now'` 变成了 `'wrapper'`。
+函数也是对象，它有 `__name__` 等属性，经过 *decorator* 装饰之后的函数，它们的 `__name__` 已经从原来的 `'now'` 变成了 `'wrapper'`。
 
-因为返回的那个 `wrapper()` 函数名字就是 `'wrapper'`，所以，需要把原始函数的 `__name__` 等属性复制到 `wrapper()` 函数中，否则，有些依赖函数签名的代码执行就会出错。
+因为返回的 `wrapper()` 函数名字就是 `'wrapper'`，所以，需要把原始函数的 `__name__` 等属性复制到 `wrapper()` 函数中，否则，有些依赖函数签名的代码执行就会出错。
 
-不需要编写 `wrapper.__name__ = func.__name__` 这样的代码，Python 内置的 `functools.wraps` 就是干这个事的，所以，一个完整的 *decorator* 的写法如下：
+不需要编写 `wrapper.__name__ = func.__name__` 这样的代码，Python 内置的 `functools.wraps` 就是解决这个问题的。
+
+一个完整的 *decorator* 的写法如下：
 
 ```python
 import functools
@@ -614,28 +659,11 @@ def log(text):
     return decorator
 ```
 
-#### * 和 /
-
-星号 `*` 被用作参数列表中的特殊符号。
-
-在函数定义中，星号后面的参数必须使用**关键字传递**，这些参数称为关键字参数。在函数调用中，星号前面的参数被认为是位置参数，而星号后面的参数被认为是关键字参数。
-
-```python
-def add(a, b, c, *, d):
-    print(a, b, c, d)
-
-add(1, 2, 3, d=4)
-```
-
-在 `*` 或 `*identifier` 之后的形参，都是仅限关键字形参，因而只能通过关键字参数传入。
-
-在 `/` 之前的形参，都是仅限位置形参，因而只能通过位置参数传入。
-
 ### 类定义
 
-类定义就是对类对象的定义。
+[类定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#class-definitions)就是对类对象的定义。
 
-类定义是一条可执行语句。其中继承列表通常给出基类的列表，列表中的每一项都应当被求值为一个允许子类的类对象。没有继承列表的类默认继承自基类 `object`。
+类定义是一条可执行语句。其中继承列表通常给出基类的列表，列表中的每一项都应当被求值为一个允许子类的类对象。没有继承列表的类默认继承自基类 [`object`](https://docs.python.org/zh-cn/3/library/functions.html#object)。
 
 因此：
 
@@ -644,7 +672,7 @@ class Foo:
     pass
 ```
 
-等价于
+等价于：
 
 ```python
 class Foo(object):

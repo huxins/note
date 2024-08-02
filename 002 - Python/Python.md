@@ -42,7 +42,7 @@ name = "Fred"
 u_name = u"Fred"
 ```
 
-前缀为 `f` 或 `F` 的字符串称为**[格式字符串](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings)**；`f` 可与 `r` 连用，但不能与 `b` 或 `u` 连用，因此，可以使用**原始格式字符串**，但不能使用格式字节串。
+前缀为 `f` 或 `F` 的字符串称为[**格式字符串**](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings)；`f` 可与 `r` 连用，但不能与 `b` 或 `u` 连用，因此，可以使用**原始格式字符串**，但不能使用格式字节串。
 
 ```python
 name = "Fred"

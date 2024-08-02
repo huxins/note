@@ -1,10 +1,12 @@
 # Python 标准库
 
+[Python 标准库](https://docs.python.org/zh-cn/3/library/index.html)非常庞大，所提供的组件涉及范围十分广泛。
+
 ## 一、内置函数
 
-### all
+Python 解释器[内置](https://docs.python.org/zh-cn/3/library/functions.html)了很多函数和类型，任何时候都能使用。
 
-用法如下。
+### all
 
 ```python
 all(iterable)
@@ -19,15 +21,13 @@ if not all([username, password]):
 
 ### bytes
 
-用法如下。
-
 ```python
 class bytes(source=b'')
 class bytes(source, encoding)
 class bytes(source, encoding, errors)
 ```
 
-返回一个新的 `bytes` 对象，这是一个不可变序列，包含范围为 `0 <= x < 256` 的整数。
+返回一个新的 [`bytes`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytes) 对象，这是一个不可变序列，包含范围为 `0 <= x < 256` 的整数。
 
 ```python
 bytes('Hello', encoding='utf8')
@@ -35,14 +35,12 @@ bytes('Hello', encoding='utf8')
 
 ### int
 
-用法如下。
-
 ```python
 class int(number=0, /)
 class int(string, /, base=10)
 ```
 
-返回一个基于数字或字符串构造的整数对象，或者在未给出参数时返回 `0`。
+返回一个基于数字或字符串构造的[整数](https://docs.python.org/zh-cn/3/library/functions.html#int)对象，或者在未给出参数时返回 `0`。
 
 如果参数定义了 `__int__()`，`int(x)` 将返回 `x.__int__()`。
 
@@ -58,15 +56,13 @@ class int(string, /, base=10)
 
 进制为 `0` 将按照代码的字面量来精确解释，最后的结果会是 `2`、`8`、`10`、`16` 进制中的一个。所以 `int('010', 0)` 是非法的，但 `int('010')` 和 `int('010', 8)` 是合法的。
 
-二进制转十进制。
+例如，二进制转十进制。
 
 ```python
 int('0b_1111_0000', 2)
 ```
 
 ### isinstance
-
-用法如下。
 
 ```python
 isinstance(object, classinfo)
@@ -76,15 +72,13 @@ isinstance(object, classinfo)
 
 ### open
 
-用法如下。
-
 ```python
 open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
 ```
 
-打开 *file* 并返回对应的 *file object*。如果该文件不能被打开，则引发 `OSError`。
+打开 *file* 并返回对应的 *file object*，如果该文件不能被打开，则引发 [`OSError`](https://docs.python.org/zh-cn/3/library/exceptions.html#OSError)。
 
-可用模式有：
+可用模式如下：
 
 - **r**：读取，默认值。
 - **w**：写入。
@@ -96,8 +90,6 @@ open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, clo
 
 ### repr
 
-用法如下。
-
 ```python
 repr(object)
 ```
@@ -106,14 +98,12 @@ repr(object)
 
 ### str
 
-用法如下。
-
 ```python
 class str(object='')
 class str(object=b'', encoding='utf-8', errors='strict')
 ```
 
-返回一个 *str* 版本的 *object*。
+返回一个 [`str`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str) 版本的 *object*。
 
 ```python
 str(b'Hello', encoding="utf-8")
@@ -121,21 +111,15 @@ str(b'Hello', encoding="utf-8")
 
 ### \__import__
 
-用法如下。
-
 ```python
 __import__(name, globals=None, locals=None, fromlist=(), level=0)
 ```
 
-此函数会由 `import` 语句发起调用。不建议直接使用 `__import__()` 而应该用 `importlib.import_module()`。
+[`__import__`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 函数会由 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句发起调用。不建议直接使用 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 而应该用 [`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module)。
 
-本函数会导入模块 *name*，利用 *globals* 和 *locals* 来决定如何在包的上下文中解释该名称。
+本函数会导入模块 *name*，利用 *globals* 和 *locals* 来决定如何在包的上下文中解释该名称；*fromlist* 给出了应从 *name* 模块中导入的对象或子模块的名称。标准的实现代码完全不会用到 *locals* 参数，只用到了 *globals* 用于确定 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句所在的包上下文。
 
-*fromlist* 给出了应从 *name* 模块中导入的对象或子模块的名称。
-
-标准的实现代码完全不会用到 *locals* 参数，只用到了 *globals* 用于确定 `import` 语句所在的包上下文。
-
-*level* 指定是使用绝对还是相对导入。`0` 意味着仅执行绝对导入。*level* 为正数值表示相对于模块调用 `__import__()` 的目录，将要搜索的父目录层数。
+*level* 指定是使用绝对还是相对导入，`0` 意味着仅执行绝对导入，*level* 为正数值表示相对于模块调用 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的目录，将要搜索的父目录层数。
 
 当 *name* 变量的形式为 `package.module` 时，通常将会返回最高层级的包，而不是以 *name* 命名的模块。但是，当给出了非空的 *fromlist* 参数时，则将返回以 *name* 命名的模块。
 
@@ -151,9 +135,9 @@ time = __import__('time', globals(), locals(), [], 0)
 lxml = __import__('lxml.html', globals(), locals(), [], 0)
 ```
 
-请注意，在这里 `__import__()` 是返回顶层模块的，因为这是通过 `import` 语句被绑定到特定名称的对象。
+在这里 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 是返回顶层模块的，因为这是通过 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句被绑定到特定名称的对象。
 
-另一方面，语句 `from lxml.html import fromstring, document_fromstring as doc_fromstring` 的结果将为：
+语句 `from lxml.html import fromstring, document_fromstring as doc_fromstring` 的结果将为：
 
 ```python
 _temp = __import__('lxml.html', globals(), locals(), ['fromstring', 'document_fromstring'], 0)
@@ -161,23 +145,25 @@ fromstring = _temp.fromstring
 doc_fromstring = _temp.document_fromstring
 ```
 
-在这里，`lxml.html` 模块会由 `__import__()` 返回。要导入的对象将从此对象中提取并赋值给它们对应的名称。
+在这里，`lxml.html` 模块会由 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 返回，要导入的对象将从此对象中提取并赋值给它们对应的名称。
 
-如果您只想按名称导入模块，请使用 `importlib.import_module()`。
+如果只想按名称导入模块，请使用 [`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module)。
 
 ## 二、内置类型
 
+Python 解释器中[内置](https://docs.python.org/zh-cn/3/library/stdtypes.html)的标准类型涵盖了多种数据结构和对象类型，能够满足大多数编程需求。
+
 ### 数字类型
 
-共有三种不同的数字类型：
+共有三种不同的[数字类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#numeric-types-int-float-complex)：
 
-- **int**：整数。
-- **float**：浮点数。
-- **complex**：复数。
+- [**int**](https://docs.python.org/zh-cn/3/library/functions.html#int)：整数。
+- [**float**](https://docs.python.org/zh-cn/3/library/functions.html#float)：浮点数。
+- [**complex**](https://docs.python.org/zh-cn/3/library/functions.html#complex)：复数。
 
-此外，布尔值是整数的子类型。
+此外，[布尔值](https://docs.python.org/zh-cn/3/library/functions.html#bool)是[整数](https://docs.python.org/zh-cn/3/library/functions.html#int)的子类型。
 
-整数和浮点数支持下列[运算](https://docs.python.org/zh-cn/3/library/stdtypes.html#numeric-types-int-float-complex)：
+[整数](https://docs.python.org/zh-cn/3/library/functions.html#int)和[浮点数](https://docs.python.org/zh-cn/3/library/functions.html#float)支持下列[运算](https://docs.python.org/zh-cn/3/library/stdtypes.html#index-13)：
 
 | 运算           | 结果                |
 | -------------- | ------------------- |
@@ -196,9 +182,13 @@ doc_fromstring = _temp.document_fromstring
 | `pow(x, y)`    | *x* 的 *y* 次幂     |
 | `x ** y`       | *x* 的 *y* 次幂     |
 
-商数也称为整数除法。结果值是一个整数，但结果的类型不一定是 `int`。运算结果总是向负无穷的方向舍入：`1//2` 为 `0`，`(-1)//2` 为 `-1`，`1//(-2)` 为 `-1` 而 `(-1)//(-2)` 为 `0`。
+商数也称为整数除法，结果值是一个整数，但结果的类型不一定是 `int`。
+
+运算结果总是向负无穷的方向舍入：`1//2` 为 `0`，`(-1)//2` 为 `-1`，`1//(-2)` 为 `-1` 而 `(-1)//(-2)` 为 `0`。
 
 ### 序列类型
+
+有三种基本[序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#sequence-types-list-tuple-range)：[`list`](https://docs.python.org/zh-cn/3/library/stdtypes.html#list)、[`tuple`](https://docs.python.org/zh-cn/3/library/stdtypes.html#tuple) 和 [`range`](https://docs.python.org/zh-cn/3/library/stdtypes.html#range) 对象。
 
 #### 通用序列操作
 
@@ -223,13 +213,13 @@ doc_fromstring = _temp.document_fromstring
 
 #### 不可变序列类型
 
-不可变序列类型普遍实现而可变序列类型未实现的唯一操作就是对 `hash()` 内置函数的支持。
+[不可变序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#immutable-sequence-types)普遍实现而[可变序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#mutable-sequence-types)未实现的唯一操作就是对 [`hash()`](https://docs.python.org/zh-cn/3/library/functions.html#hash) 内置函数的支持。
 
-这种支持允许不可变类型，例如 `tuple` 实例被用作 `dict` 键，以及存储在 `set` 和 `frozenset` 实例中。
+这种支持允许不可变类型，例如 [`tuple`](https://docs.python.org/zh-cn/3/library/stdtypes.html#tuple) 实例被用作 [`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#dict) 键，以及存储在 [`set`](https://docs.python.org/zh-cn/3/library/stdtypes.html#set) 和 [`frozenset`](https://docs.python.org/zh-cn/3/library/stdtypes.html#frozenset) 实例中。
 
 #### 可变序列类型
 
-以下表格中的[操作](https://docs.python.org/zh-cn/3/library/stdtypes.html#mutable-sequence-types)是在可变序列类型上定义的。
+以下表格中的操作是在[可变序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#mutable-sequence-types)上定义的。
 
 表格中的 *s* 是可变序列类型的实例，*t* 是任意可迭代对象，而 *x* 是符合对 *s* 所规定类型与值限制的任何对象。
 
@@ -248,9 +238,11 @@ doc_fromstring = _temp.document_fromstring
 - 使用列表推导式：`[x for x in iterable]`
 - 使用类型的构造器：`list()` 或 `list(iterable)`
 
-列表推导式提供了一种简明扼要的方法来创建列表。
+**列表推导式**提供了一种简明扼要的方法来创建列表。
 
-它的结构是在一个中括号里包含一个表达式，然后是一个 `for` 语句，然后是 0 个或多个 `for` 或者 `if` 语句。那个表达式可以是任意的，意思是你可以在列表中放入任意类型的对象。返回结果将是一个新的列表，在这个以 `if` 和 `for` 语句为上下文的表达式运行完成之后产生。
+它的结构是在一个中括号里包含一个表达式，然后是一个 `for` 语句，再然后是零个或多个 `for` 或者 `if` 语句。
+
+返回结果将是一个新的列表，在这个以 `if` 和 `for` 语句为上下文的表达式运行完成之后产生。
 
 列表推导式的执行顺序：各语句之间是嵌套关系，左边第二个语句是最外层，依次往右进一层，左边第一条语句是最后一层。
 
@@ -285,18 +277,20 @@ for x in range(1, 5):
 
 [`range`](https://docs.python.org/zh-cn/3/library/stdtypes.html#ranges) 类型表示不可变的数字序列，通常用于在 `for` 循环中循环指定的次数。
 
-用法如下。
-
 ```python
 class range(stop)
 class range(start, stop[, step])
 ```
 
-`range` 构造器的参数必须为整数（可以是内置的 `int` 或任何实现了 `__index__()` 特殊方法的对象）。如果省略 `step` 参数，则默认为 1。如果省略 `start` 参数，则默认为 0。如果 `step` 为零，则会引发 `ValueError`。
+[`range`](https://docs.python.org/zh-cn/3/library/stdtypes.html#ranges) 构造器的参数必须为整数（可以是内置的 [`int`](https://docs.python.org/zh-cn/3/library/functions.html#int) 或任何实现了 [`__index__()`](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__index__) 特殊方法的对象）。
+
+如果省略 *step* 参数，则默认为 1。如果省略 *start* 参数，则默认为 0。如果 *step* 为零，则会引发 [`ValueError`](https://docs.python.org/zh-cn/3/library/exceptions.html#ValueError)。
 
 ### 文本序列类型
 
-在 Python 中处理文本数据是使用 `str` 对象，也称为字符串。字符串是由 Unicode 码位构成的不可变序列。字符串字面值有多种不同的写法：
+在 Python 中处理文本数据是使用 [`str`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str) 对象，也称为字符串。字符串是由 Unicode 码位构成的不可变序列。
+
+字符串字面值有多种不同的写法：
 
 - 单引号：`'允许包含有 "双" 引号'`
 - 双引号：`"允许嵌入 '单' 引号"`

@@ -48,7 +48,7 @@
 
 每个子命令都可以在其自己的部分中进行配置。这会覆盖具有相同名称的全局设置。
 
-例如，如果您想在运行 `pip freeze` 时将超时时间减少到 10 秒，并为所有其他命令使用 60 秒：
+例如，如果您想在运行 `pip freeze` 时将超时时间减少到 10 秒，并为所有其他命令使用 60 秒。
 
 ```ini
 [global]
@@ -62,7 +62,7 @@ timeout = 10
 
 设置的名称源自长命令行选项。
 
-例如，如果想使用不同的[包索引](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-i)并将 HTTP [超时](https://pip.pypa.io/en/stable/cli/pip/#cmdoption-timeout)设置为 60 秒，配置文件将如下所示：
+例如，如果想使用不同的[包索引](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-i)并将 HTTP [超时](https://pip.pypa.io/en/stable/cli/pip/#cmdoption-timeout)设置为 60 秒。
 
 ```ini
 [global]

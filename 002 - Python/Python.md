@@ -625,9 +625,9 @@ log('execute')(now)()
 
 ##### 函数签名
 
-函数也是对象，它有 `__name__` 等属性，经过 *decorator* 装饰之后的函数，它们的 `__name__` 已经从原来的 `'now'` 变成了 `'wrapper'`。
+函数也是对象，它有 `__name__` 等属性，经过 *decorator* 装饰之后的函数，它们的 `__name__` 已经从原来的 `now` 变成了 `wrapper`。
 
-因为返回的 `wrapper()` 函数名字就是 `'wrapper'`，所以，需要把原始函数的 `__name__` 等属性复制到 `wrapper()` 函数中，否则，有些依赖函数签名的代码执行就会出错。
+因为返回的 `wrapper()` 函数名字就是 `wrapper`，所以，需要把原始函数的 `__name__` 等属性复制到 `wrapper()` 函数中，否则，有些依赖函数签名的代码执行就会出错。
 
 不需要编写 `wrapper.__name__ = func.__name__` 这样的代码，Python 内置的 `functools.wraps` 就是解决这个问题的。
 

@@ -44,18 +44,6 @@
 
 每个文件读取都会覆盖从先前文件读取的任何值，因此如果在全局文件和每个用户文件中都指定了 `global timeout`，则将使用后一个值。
 
-#### 配置项命名
-
-设置的名称源自长命令行选项。
-
-例如，如果想使用不同的[包索引](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-i)并将 HTTP [超时](https://pip.pypa.io/en/stable/cli/pip/#cmdoption-timeout)设置为 60 秒，配置文件将如下所示：
-
-```ini
-[global]
-timeout = 60
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
 #### 作用域
 
 每个子命令都可以在其自己的部分中进行配置。这会覆盖具有相同名称的全局设置。
@@ -68,6 +56,18 @@ timeout = 60
 
 [freeze]
 timeout = 10
+```
+
+#### 配置项名称
+
+设置的名称源自长命令行选项。
+
+例如，如果想使用不同的[包索引](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-i)并将 HTTP [超时](https://pip.pypa.io/en/stable/cli/pip/#cmdoption-timeout)设置为 60 秒，配置文件将如下所示：
+
+```ini
+[global]
+timeout = 60
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ## 二、命令

@@ -735,6 +735,49 @@ f = io.BytesIO(b"some initial binary data: \x39\x33")
 
   在给定的秒数内[暂停](https://docs.python.org/zh-cn/3/library/time.html#time.sleep)调用线程的执行。该参数可以是一个浮点数，以指示更精确的睡眠时间。
 
+#### argparse
+
+[`argparse`](https://docs.python.org/zh-cn/3/library/argparse.html) 模块是用于命令行选项、参数和子命令的解析器。
+
+[`argparse`](https://docs.python.org/zh-cn/3/library/argparse.html) 模块对命令行接口的支持是围绕 [`argparse.ArgumentParser`](https://docs.python.org/zh-cn/3/library/argparse.html#argparse.ArgumentParser) 的实例建立的。
+
+```python
+parser = ArgumentParser(prog="ProgramName", description="What the program does")
+```
+
+[`ArgumentParser.add_argument()`](https://docs.python.org/zh-cn/3/library/argparse.html#argparse.ArgumentParser.add_argument) 方法将单个参数规格说明关联到解析器。
+
+```python
+parser.add_argument('--verbose', action='store_true', help='Enable verbose output')
+parser.add_argument('--quiet', action='store_true', help='Enable quiet output')
+```
+
+[`ArgumentParser.parse_args()`](https://docs.python.org/zh-cn/3/library/argparse.html#argparse.ArgumentParser.parse_args) 方法运行解析器并将提取的数据放入 [`argparse.Namespace`](https://docs.python.org/zh-cn/3/library/argparse.html#argparse.Namespace) 对象。
+
+```python
+args = parser.parse_args()
+print(args.filename, args.count, args.verbose)
+```
+
+根据解析的参数执行相应的操作。
+
+```python
+if args.verbose:
+    print("Verbose mode is enabled.")
+elif args.quiet:
+    print("Quiet mode is enabled.")
+else:
+    print("Default mode is enabled.")
+```
+
+[`ArgumentParser.add_mutually_exclusive_group`](https://docs.python.org/zh-cn/3/library/argparse.html#argparse.ArgumentParser.add_mutually_exclusive_group) 创建一个互斥组，[`argparse`](https://docs.python.org/zh-cn/3/library/argparse.html) 将会确保互斥组中只有一个参数在命令行中可用。
+
+```python
+main_group = parser.add_mutually_exclusive_group(required=True)
+main_group.add_argument('--verbose', action='store_true', help='Enable verbose output')
+main_group.add_argument('--quiet', action='store_true', help='Enable quiet output')
+```
+
 ### 互联网协议和支持
 
 [互联网协议和支持模块](https://docs.python.org/zh-cn/3/library/internet.html)实现了互联网协议以及相关技术支持。

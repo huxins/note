@@ -16,3 +16,10 @@
 
 - [Setuptools](https://packaging.python.org/en/latest/key_projects/#easy-install) - Python [distutils](https://docs.python.org/zh-cn/3.11/library/distutils.html) 的一系列增强功能。
 
+## 三、示例参考
+
+### CLI
+
+- [cdeil/python-cli-examples](https://github.com/cdeil/python-cli-examples) - Python 命令行界面（CLI）包的示例。
+- [houtianze/bypy](https://github.com/houtianze/bypy) - 百度网盘 Python 客户端。
+

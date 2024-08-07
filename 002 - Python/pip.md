@@ -77,6 +77,7 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 [`pip install`](https://pip.pypa.io/en/stable/cli/pip_install/) 是 Python 包管理工具 [`pip`](https://pip.pypa.io/en/stable/cli/pip/) 用来安装 Python 包的命令。
 
 - -**i**, --**index-url** *url*：Python 包索引的 Base URL，默认值为 https://pypi.org/simple。
+- -**e**, --**editable** *path/url*：从本地项目路径或 VCS url 以可编辑模式（即 [setuptools 开发模式](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)）安装项目。
 
 升级 `pip` 自身版本。
 
@@ -110,6 +111,12 @@ python -m pip install --no-index --find-links=relative/dir/ SomePackage
 
 ```sh
 python -m pip install -r requirements.txt
+```
+
+以 [setuptools 开发模式](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)安装项目。
+
+```sh
+pip install -e .
 ```
 
 ### pip config

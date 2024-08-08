@@ -16,7 +16,13 @@
 
 - [Setuptools](https://packaging.python.org/en/latest/key_projects/#easy-install) - Python [distutils](https://docs.python.org/zh-cn/3.11/library/distutils.html) 的一系列增强功能。
 
-## 三、示例参考
+### HTTP 客户端
+
+*用于处理 HTTP 的库。*
+
+- [requests](https://github.com/psf/requests) - 为人类设计的 HTTP 请求。
+
+## 三、项目
 
 ### CLI
 

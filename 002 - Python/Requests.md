@@ -1,9 +1,11 @@
 # Requests
 
-## 一、安装
+[Requests](https://github.com/psf/requests) 是一个简单而优雅的 HTTP 库。
+
+可以通过 `pip` 安装：
 
 ```sh
-$ python -m pip install requests
+python -m pip install requests
 ```
 
 ## 二、发出请求

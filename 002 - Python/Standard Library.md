@@ -778,6 +778,19 @@ main_group.add_argument('--verbose', action='store_true', help='Enable verbose o
 main_group.add_argument('--quiet', action='store_true', help='Enable quiet output')
 ```
 
+#### logging
+
+[`logging`](https://docs.python.org/zh-cn/3/library/logging.html) 模块实现了灵活的事件日志系统的函数与类。
+
+```python
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+logger.info("登录请求成功")
+```
+
 ### 互联网协议和支持
 
 [互联网协议和支持模块](https://docs.python.org/zh-cn/3/library/internet.html)实现了互联网协议以及相关技术支持。

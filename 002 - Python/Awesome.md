@@ -20,7 +20,7 @@
 
 *用于处理 HTTP 的库。*
 
-- [requests](https://github.com/psf/requests) - 为人类设计的 HTTP 请求。
+- [requests](https://github.com/psf/requests) - 为人类设计的 HTTP 请求库。
 
 ## 三、项目
 

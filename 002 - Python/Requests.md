@@ -8,15 +8,16 @@
 python -m pip install requests
 ```
 
-## 二、发出请求
+## 一、发送请求
 
-### 2.1. POST
+### POST
 
-这是发出 HTTP POST 请求的方式：
+[`requests.post`](https://requests.readthedocs.io/en/latest/api/#requests.post) 是发送 HTTP POST 请求的方式。
+
+以 `application/x-www-form-urlencoded` 编码方式提交表单数据。
 
 ```python
 r = requests.post('https://httpbin.org/post', data={'key': 'value'})
+print(r.text)
 ```
-
-- requests.**post**(*url*, *data*=*None*, *json*=*None*, ***kwargs*)
 

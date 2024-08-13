@@ -6,60 +6,54 @@
 
 ### 查找和引用
 
-#### ROW
+#### 行信息
 
-返回引用的行号。
+[`ROW`](https://support.microsoft.com/zh-cn/office/3a63b74a-c4d0-4093-b49a-e76eb49a6d8d) 函数返回引用的行号。
 
 ```sql
 =ROW(A5)
 -- Result: 5
 ```
 
-#### ROWS
-
-返回引用中包含的行数。
+[`ROWS`](https://support.microsoft.com/zh-cn/office/b592593e-3fc2-47f2-bec1-bda493811597) 函数返回引用中包含的行数。
 
 ```sql
 =ROWS(C1:E4)
 -- Result: 4
 ```
 
-#### COLUMN
+#### 列信息
 
-返回引用的列号。
+[`COLUMN`](https://support.microsoft.com/zh-cn/office/44e8c754-711c-4df3-9da4-47a55042554b) 函数返回引用的列号。
 
 ```sql
 =COLUMN(C5)
 -- Result: 3
 ```
 
-#### COLUMNS
-
-返回引用中包含的列数。
+[`COLUMNS`](https://support.microsoft.com/zh-cn/office/4e8e7b4e-e603-43e8-b177-956088fa48ca) 函数返回引用中包含的列数。
 
 ```sql
 =COLUMNS(C1:E4)
 -- Result: 3
 ```
 
-#### ADDRESS
+#### 指定引用
 
-根据指定行号和列号获得工作表中的某个单元格的地址。
+[`ADDRESS`](https://support.microsoft.com/zh-cn/office/d0c26c0d-3991-446b-8de4-ab46431d4f89) 函数根据指定行号和列号，以文本形式返回工作表中的某个单元格的地址。
 
 ```sql
 =ADDRESS(2, 3)
 -- Result: $C$2
 ```
 
-可以使用其他函数，如 `ROW` 和 `COLUMN` 函数为 `ADDRESS` 函数提供行号和列号参数。
+可以使用其他函数，如 [`ROW`](https://support.microsoft.com/zh-cn/office/3a63b74a-c4d0-4093-b49a-e76eb49a6d8d) 和 [`COLUMN`](https://support.microsoft.com/zh-cn/office/44e8c754-711c-4df3-9da4-47a55042554b) 函数为 [`ADDRESS`](https://support.microsoft.com/zh-cn/office/d0c26c0d-3991-446b-8de4-ab46431d4f89) 函数提供行号和列号参数。
 
 ```sql
 =ADDRESS(ROW(), COLUMN())
 ```
 
-#### INDIRECT
-
-返回由文本字符串指定的引用。
+[`INDIRECT`](https://support.microsoft.com/zh-cn/office/474b3a3a-8a26-4f44-b491-92b6306fa261) 函数返回由文本字符串指定的引用。
 
 ```sql
 -- A1 样式引用
@@ -69,9 +63,9 @@
 =INDIRECT("R1C1", FALSE)
 ```
 
-#### OFFSET
+可以使用其他函数，如 [`ADDRESS`](https://support.microsoft.com/zh-cn/office/d0c26c0d-3991-446b-8de4-ab46431d4f89) 函数为 [`INDIRECT`](https://support.microsoft.com/zh-cn/office/474b3a3a-8a26-4f44-b491-92b6306fa261) 函数提供参数。
 
-从给定引用中，按偏移量返回引用。
+[`OFFSET`](https://support.microsoft.com/zh-cn/office/c8de19ae-dd79-4b9b-a14e-b4d906d11b66) 函数从给定引用中，按偏移量返回引用。
 
 ```sql
 OFFSET(reference, rows, cols, [height], [width])
@@ -90,9 +84,7 @@ OFFSET(reference, rows, cols, [height], [width])
 =OFFSET($D$34, -(COLUMNS($B$5:B5) - 1), 0)
 ```
 
-#### INDEX
-
-使用索引从引用或数组中选择值。
+[`INDEX`](https://support.microsoft.com/zh-cn/office/a5dcf0dd-996d-40a4-a822-b56b061328bd) 函数使用索引从引用或数组中选择值。
 
 ```sql
 INDEX(reference, row_num, [column_num], [area_num])
@@ -104,15 +96,9 @@ INDEX(reference, row_num, [column_num], [area_num])
 =INDEX($D:$D, ROW($D$34) - COLUMNS($B$5:B5) + 1)
 ```
 
-例如，根据 MATCH 获取指定日期最大访客数的行号取出对应关键词数据。
+#### 查找引用
 
-```sql
-=INDEX(D:D, MATCH(MAXIFS(E:E, C:C, DATE(2023, 6, 1)), E:E, 0))
-```
-
-#### MATCH
-
-在引用或数组中查找值，返回该项在该区域中的相对位置。
+[`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 函数在引用或数组中查找值，返回该项在该区域中的相对位置。
 
 ```sql
 MATCH(lookup_value, lookup_array, [match_type])
@@ -126,15 +112,19 @@ MATCH(lookup_value, lookup_array, [match_type])
 =MATCH(7, A1:A3, 0)
 ```
 
-例如，E 列为访客人数，C 列为日期，通过 `MAXIFS` 筛选指定日期最大的访客数，通过 `MATCH` 获取行号。
+例如，E 列为访客人数，C 列为日期，通过 [`MAXIFS`](https://support.microsoft.com/zh-cn/office/dfd611e6-da2c-488a-919b-9b6376b28883) 筛选指定日期最大的访客数，通过 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 获取行号。
 
 ```sql
 =MATCH(MAXIFS(E:E, C:C, DATE(2023,6,1)), E:E, 0)
 ```
 
-#### VLOOKUP
+例如，根据 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 获取指定日期最大访客数的行号，配合 [`INDEX`](https://support.microsoft.com/zh-cn/office/a5dcf0dd-996d-40a4-a822-b56b061328bd) 函数，取出对应关键词数据。
 
-在数组第一列中查找，然后在行之间移动以返回单元格的值。
+```sql
+=INDEX(D:D, MATCH(MAXIFS(E:E, C:C, DATE(2023, 6, 1)), E:E, 0))
+```
+
+[`VLOOKUP`](https://support.microsoft.com/zh-cn/office/0bbc8083-26fe-4963-8ab8-93a18ad188a1) 函数在数组第一列中查找，然后在行之间移动以返回单元格的值。
 
 ```sql
 VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
@@ -148,9 +138,7 @@ VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
 =VLOOKUP(H3, B4:E13, 2, FALSE)
 ```
 
-#### FILTER
-
-基于定义的条件筛选一系列数据。
+[`FILTER`](https://support.microsoft.com/zh-cn/office/f4f7cb66-82eb-4767-8f7c-4877ad80c759) 函数基于定义的条件筛选一系列数据。
 
 ```sql
 =FILTER(array, include, [if_empty])
@@ -162,9 +150,9 @@ VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
 =FILTER(A5:D20, C5:C20=H2, "")
 ```
 
-#### SORT
+#### 排序
 
-对区域或数组的内容进行排序。
+[`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) 对区域或数组的内容进行排序。
 
 ```sql
 SORT(array, [sort_index], [sort_order], [by_col])
@@ -181,9 +169,7 @@ SORT(array, [sort_index], [sort_order], [by_col])
 
 ### 数据库函数
 
-#### DGET
-
-从数据库提取符合指定条件的单个记录。
+[`DGET`](https://exceljet.net/functions/dget-function) 函数从数据库提取符合指定条件的单个记录。
 
 ```sql
 DGET(database, field, criteria)
@@ -201,9 +187,9 @@ DGET(database, field, criteria)
 
 ### 数学函数
 
-#### SUM
+#### 求和
 
-求参数的和。将单个值、单元格引用或区域相加，或者将三者的组合相加。
+[`SUM`](https://support.microsoft.com/zh-cn/office/043e1c7d-7726-4e80-8f32-07b23e057f89) 函数用于求参数的和。将单个值、单元格引用或区域相加，或者将三者的组合相加。
 
 ```sql
 SUM(number1, [number2], ...)
@@ -215,15 +201,13 @@ SUM(number1, [number2], ...)
 =SUM(A1:A5)
 ```
 
-#### SUMIFS
-
-计算满足多个条件的全部参数的总量。
+[`SUMIFS`](https://support.microsoft.com/zh-cn/office/c9e748f5-7ea7-455d-9406-611cebce642b) 函数用于计算满足多个条件的全部参数的总量。
 
 ```sql
 SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 ```
 
-例如，获取指定条件的数据。此函数是汇总函数，但可匹配项多，可更好的替代 DGET。
+例如，获取指定条件的数据。此函数是汇总函数，但可匹配项多，可更好的替代 [`DGET`](https://exceljet.net/functions/dget-function) 函数。
 
 ```sql
 =SUMIFS($E$3:$E$2370, $C$3:$C$2370, B$2, $D$3:$D$2370, "手淘搜索")
@@ -237,9 +221,9 @@ SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 
 ### 逻辑函数
 
-#### IF
+#### 逻辑检测
 
-指定要执行的逻辑检测。
+[`IF`](https://support.microsoft.com/zh-cn/office/69aed7c9-4e8a-4755-a9bc-aa8bbff73be2) 函数指定要执行的逻辑检测。
 
 ```sql
 IF(logical_test, value_if_true, [value_if_false])
@@ -253,9 +237,9 @@ IF(logical_test, value_if_true, [value_if_false])
 
 ### 时间和日期
 
-#### DATE
+#### 生成日期
 
-采用三个单独的值并将它们合并为一个日期。
+[`DATE`](https://support.microsoft.com/zh-cn/office/e36c0c8c-4104-49da-ab83-82328b832349) 函数采用三个单独的值并将它们合并为一个日期。
 
 ```sql
 DATE(year, month, day)
@@ -267,9 +251,15 @@ DATE(year, month, day)
 =DATE(2022, 1, 1)
 ```
 
-#### YEAR
+[`TODAY`](https://support.microsoft.com/zh-cn/office/5eb3078d-a82c-4736-8930-2f51a028fdd9) 函数返回今天日期的序列号。
 
-返回对应于某个日期的年份。
+```sql
+=TODAY()
+```
+
+#### 提取日期
+
+[`YEAR`](https://support.microsoft.com/zh-cn/office/c64f017a-1354-490d-981f-578e8ec8d3b9) 函数返回对应于某个日期的年份。
 
 例如，获取指定单元格引用的年份。
 
@@ -277,9 +267,7 @@ DATE(year, month, day)
 =YEAR(A1)
 ```
 
-#### MONTH
-
-返回日期中的月份。
+[`MONTH`](https://support.microsoft.com/zh-cn/office/579a2881-199b-48b2-ab90-ddba0eba86e8) 函数返回日期中的月份。
 
 例如，获取指定单元格引用的月份。
 
@@ -287,11 +275,25 @@ DATE(year, month, day)
 =MONTH(A1)
 ```
 
+#### 比较日期
+
+[`DATEDIF`](https://support.microsoft.com/zh-cn/office/25dba1a4-2812-480b-84dd-8b32a451b35c) 函数用于计算两个日期之间相隔的天数、月数或年数。
+
+```sql
+DATEDIF(start_date, end_date, unit)
+```
+
+例如，计算[以月为单位的差值](https://support.microsoft.com/zh-cn/office/8235e7c9-b430-44ca-9425-46100a162f38#ID0EDDBBL)。
+
+```sql
+=DATEDIF(B3, TODAY(), "m")
+```
+
 ### 统计函数
 
-#### MAXIFS
+#### 最大值
 
-返回一组给定条件或标准指定的单元格中的最大值。
+[`MAXIFS`](https://support.microsoft.com/zh-cn/office/dfd611e6-da2c-488a-919b-9b6376b28883) 函数返回一组给定条件或标准指定的单元格中的最大值。
 
 ```sql
 MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
@@ -303,9 +305,9 @@ MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 =MAXIFS(E:E, C:C, DATE(2023, 6, 1))
 ```
 
-#### COUNTA
+#### 单元格数量
 
-计算单元格区域中不为空的单元格的个数。
+[`COUNTA`](https://support.microsoft.com/zh-cn/office/7dc98875-d5c1-46f1-9a82-53f3219e2509) 函数计算单元格区域中不为空的单元格的个数。
 
 ```sql
 COUNTA(value1, [value2], ...)

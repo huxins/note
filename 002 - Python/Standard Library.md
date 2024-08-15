@@ -526,6 +526,30 @@ class datetime.datetime(year, month, day, hour=0, minute=0, second=0, microsecon
   now = datetime.now()
   ftime = now.strftime("%Y-%m-%d %H:%M:%S")
   ```
+  
+- datetime.**replace**(*year*=*self.year*, *month*=*self.month*, *day*=*self.day*, *hour*=*self.hour*, *minute*=*self.minute*, *second*=*self.second*, *microsecond*=*self.microsecond*, *tzinfo*=*self.tzinfo*, *, *fold*=0)
+
+  返回一个具有同样属性值的 `datetime`，除非通过任何关键字参数为某些属性指定了新值。
+
+##### timedelta
+
+[`timedelta`](https://docs.python.org/zh-cn/3/library/datetime.html#timedelta-objects) 对象表示一段持续的时间，即两个 [`datetime`](https://docs.python.org/zh-cn/3/library/datetime.html#datetime.datetime) 或 [`date`](https://docs.python.org/zh-cn/3/library/datetime.html#datetime.date) 实例之间的差值。
+
+```python
+class datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
+```
+
+获取上一天的时间日期。
+
+```python
+from datetime import datetime, timedelta
+
+now = datetime.today()
+last_day = now - timedelta(days=1)
+
+print("当前日期:", now.strftime("%Y-%m-%d"))
+print("昨日日期:", last_day.strftime("%Y-%m-%d"))
+```
 
 ### 数字和数学模块
 

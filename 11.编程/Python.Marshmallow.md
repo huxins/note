@@ -1,94 +1,3 @@
-# Marshmallow
-
-Marshmallow 是一个与 ORM/ODM/框架无关的库，用于将复杂数据类型与本机 Python 数据类型相互转换。
-
-## 一、安装
-
-```sh
-$ pip install -U marshmallow
-```
-
-## 二、模式
-
-让我们从一个基本的用户 `model` 开始。
-
-```python
-import datetime as dt
-
-class User:
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
-        self.created_at = dt.datetime.now()
-
-    def __repr__(self):
-        return "<User(name={self.name!r})>".format(self=self)
-```
-
-### 2.1. 创建模式
-
-#### 2.1.1. 定义类
-
-通过使用变量将属性名称映射到 Field 对象来定义类来创建模式。
-
-```python
-from marshmallow import Schema, fields
-
-class UserSchema(Schema):
-    name = fields.Str()
-    email = fields.Email()
-    created_at = fields.DateTime()
-```
-
-#### 2.1.2. 定义字典
-
-通过使用 `from_dict` 方法从 `fields` 字典创建模式。
-
-```python
-from marshmallow import Schema, fields
-
-UserSchema = Schema.from_dict(
-    {
-        "name": fields.Str(),
-        "email": fields.Email(),
-        "created_at": fields.DateTime()
-    }
-)
-```
-
-`from_dict` 对于在运行时生成模式特别有用。
-
-## 三、序列化对象
-
-通过将对象传递给模式的转储方法来序列化对象，该方法返回格式化的结果。
-
-```python
-from pprint import pprint
-
-user = User(name="Monty", email="monty@python.org")
-schema = UserSchema()
-result = schema.dump(user)
-pprint(result)
-```
-
-您还可以使用 `dumps` 序列化为 JSON 编码的字符串。
-
-```python
-json_result = schema.dumps(user)
-pprint(json_result)
-```
-
-#### 3.1. 过滤输出
-
-您可能不需要在每次使用模式时都输出所有声明的字段。您可以使用 `only` 参数指定要输出的字段。
-
-```python
-summary_schema = UserSchema(only=("name", "email"))
-summary_schema.dump(user)
-```
-
-您还可以通过传入 `exclude` 参数来排除字段。
-
 或者通过 `Mate` 进行配置：
 
 ```python
@@ -96,6 +5,12 @@ class UserSchema(Schema):
     class Meta:
         exclude = ['password']
 ```
+
+
+
+
+
+
 
 ## 四、Marshmallow-Sqlalchemy
 

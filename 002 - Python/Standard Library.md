@@ -659,7 +659,7 @@ print(add.__doc__)
 
 [`io`](https://docs.python.org/zh-cn/3/library/io.html) 模块提供了 Python 用于处理各种 IO 类型的主要工具。
 
-##### 文本 IO
+##### 文本
 
 [文本 IO](https://docs.python.org/zh-cn/3/library/io.html#text-i-o) 预期生成 [`str`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str) 对象。
 
@@ -677,7 +677,7 @@ f = open("myfile.txt", "r", encoding="utf-8")
 f = io.StringIO("some initial text data")
 ```
 
-##### 二进制 IO
+##### 二进制
 
 [二进制 IO](https://docs.python.org/zh-cn/3/library/io.html#binary-i-o) 预期生成 [`bytes`](https://docs.python.org/zh-cn/3/library/stdtypes.html#bytes) 对象。
 
@@ -1077,5 +1077,31 @@ DIR\Scripts\activate     # Windows
 ```sh
 source DIR/bin/deactivate  # Linux
 DIR\Scripts\deactivate     # Windows
+```
+
+### 互联网数据处理
+
+#### json
+
+[`json`](https://docs.python.org/zh-cn/3/library/json.html) 模块是用于处理 JSON 数据的标准库。
+
+使用 [`json.dumps()`](https://docs.python.org/zh-cn/3/library/json.html#json.dumps) 方法，可以序列化 Python 对象为 JSON 字符串。
+
+```python
+import json
+
+data = {"name": "Alice", "age": 25, "is_student": False}
+json_str = json.dumps(data)
+print(json_str)
+```
+
+使用 [`json.loads()`](https://docs.python.org/zh-cn/3/library/json.html#json.loads) 方法，可以反序列化 JSON 字符串为 Python 对象。
+
+```python
+import json
+
+json_str = '{"name": "Alice", "age": 25, "is_student": false}'
+data = json.loads(json_str)
+print(data)
 ```
 

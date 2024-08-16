@@ -146,3 +146,26 @@ result = schema.load(user_data)
 print(result)
 ```
 
+#### 处理未知字段
+
+默认情况下，如果 `load` 遇到 `schema` 中[没有匹配字段](https://marshmallow.readthedocs.io/en/stable/quickstart.html#handling-unknown-fields)的键，它将引发 [`ValidationError`](https://marshmallow.readthedocs.io/en/stable/marshmallow.exceptions.html#marshmallow.exceptions.ValidationError)。
+
+可以使用 `unknown` 选项修改此行为。
+
+```python
+from marshmallow import Schema, fields, post_load, EXCLUDE
+
+class DailyReportSchema(Schema):
+    creator = fields.String(data_key='createName', required=True)
+    creation_time = fields.DateTime(data_key='createTime', format='%Y-%m-%d %H:%M', required=True)
+    work_today = fields.String(data_key='day2', required=True)
+    plan_tomorrow = fields.String(data_key='day1', required=True)
+
+    class Meta:
+        unknown = EXCLUDE
+
+    @post_load
+    def make_daily_report(self, data, **kwargs):
+        return DailyReport(**data)
+```
+

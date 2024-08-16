@@ -33,6 +33,20 @@ class bytes(source, encoding, errors)
 bytes('Hello', encoding='utf8')
 ```
 
+### filter
+
+```python
+filter(function, iterable)
+```
+
+使用 *iterable* 中 *function* 返回真值的元素构造一个迭代器。
+
+```python
+numbers = [1, 6, 3, 8, 2, 7, 4]
+filtered_numbers = list(filter(lambda x: x < 5, numbers))
+print(filtered_numbers)
+```
+
 ### int
 
 ```python

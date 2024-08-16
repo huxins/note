@@ -565,6 +565,16 @@ print("当前日期:", now.strftime("%Y-%m-%d"))
 print("昨日日期:", last_day.strftime("%Y-%m-%d"))
 ```
 
+#### calendar
+
+[`calendar`](https://docs.python.org/zh-cn/3/library/calendar.html) 模块提供了与日历相关的实用函数。
+
+静态方法：
+
+- calendar.**monthrange**(*year*, *month*)
+
+  返回指定年份的指定月份的第一天是星期几和这个月的天数。
+
 ### 数字和数学模块
 
 [数字和数学模块](https://docs.python.org/zh-cn/3/library/numeric.html)提供与数字和数学相关的函数和数据类型。

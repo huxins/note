@@ -2,6 +2,8 @@
 
 [Microsoft Excel](https://support.microsoft.com/zh-cn/excel) 是 Microsoft 为使用 Windows 和 macOS 操作系统的电脑编写的一款电子表格软件。
 
+- [Exceljet](https://exceljet.net/)
+
 ## 一、函数
 
 ### 查找和引用

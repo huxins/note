@@ -33,6 +33,22 @@ class bytes(source, encoding, errors)
 bytes('Hello', encoding='utf8')
 ```
 
+### enumerate
+
+[`enumerate`](https://docs.python.org/zh-cn/3/library/functions.html#enumerate) 函数返回一个枚举对象。里面包含一个计数值和通过迭代获得的值。
+
+```python
+enumerate(iterable, start=0)
+```
+
+获取指定可迭代对象的索引枚举。
+
+```python
+seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+headers = {value: idx for idx, value in enumerate(seasons)}
+# {'Spring': 0, 'Summer': 1, 'Fall': 2, 'Winter': 3}
+```
+
 ### filter
 
 ```python

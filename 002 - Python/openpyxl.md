@@ -23,9 +23,9 @@ workbook = load_workbook(filename='test.xlsx')
 print(workbook.sheetnames)
 ```
 
-### 读取工作表
+### 访问大量单元格
 
-需要遍历文件中的所有行和列，可以使用 [`Worksheet.rows`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.rows) 属性。
+如果需要遍历文件中的所有行和列，可以使用 [`Worksheet.rows`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.rows) 属性。
 
 ```python
 from openpyxl import load_workbook
@@ -37,7 +37,27 @@ for row in worksheet.rows:
     print(row[0].value)
 ```
 
+也可以使用 [`Worksheet.iter_rows()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.iter_rows) 方法。
+
+```python
+headers = {cell.value: idx for idx, cell in enumerate(worksheet[1])}
+
+for row in worksheet.iter_rows(min_row=2, values_only=True):
+    name = row[headers['姓名']]
+    department = row[headers['部门']]
+    position = row[headers['职位']]
+```
+
 ### 访问单元格
+
+可以直接通过[工作表的键](https://foss.heptapod.net/openpyxl/openpyxl/-/blob/5149e809daee6136cdcf95cea34072221ee7616e/openpyxl/worksheet/worksheet.py#L275)来访问单元格。
+
+```python
+worksheet = workbook['Sheet1']
+
+# 获取第一行数据
+worksheet[1]
+```
 
 可以通过 [`Worksheet.cell()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.cell) 访问单元格。
 

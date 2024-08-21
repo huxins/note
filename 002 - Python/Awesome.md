@@ -36,6 +36,13 @@
 - [holidays](https://github.com/vacanza/python-holidays) - 在 Python 中生成和处理假期。
 - [chinese-calendar](https://github.com/LKI/chinese-calendar) - 判断日期是不是法定节假日或法定工作日。
 
+### 特定格式处理
+
+*用于解析和操纵特定文本格式的库。*
+
+- Office
+  - [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - 用于读取和写入 Excel 2010 xlsx、xlsm、xltx、xltm 文件的库。
+
 ## 三、项目
 
 ### CLI

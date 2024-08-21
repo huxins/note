@@ -327,6 +327,18 @@ COUNTA(value1, [value2], ...)
 =COUNTA(A:A)
 ```
 
+[`SUBTOTAL`](https://support.microsoft.com/zh-cn/office/7b027003-f060-4ade-9040-e478765b9939) 函数返回列表或数据库中的分类汇总。
+
+```sql
+SUBTOTAL(function_num, ref1, [ref2], ...)
+```
+
+例如，生成筛选后自动重排的序号。
+
+```sql
+=SUBTOTAL(3, $B$2:B2)
+```
+
 ## 二、快捷键
 
 使用 Excel 的[键盘快捷方式](https://support.microsoft.com/zh-cn/office/1798d9d5-842a-42b8-9c99-9b7213f0040f)可以提高工作效率。
@@ -342,4 +354,12 @@ COUNTA(value1, [value2], ...)
 | 填充颜色                                                     | `Alt + H + H`           | 样式           |
 | [更改列宽以自动适合内容](https://support.microsoft.com/zh-cn/office/72f5e3cc-994d-43e8-ae58-9774a0905f46) | `Alt + H + O + I`       | 样式           |
 | [打开或关闭筛选](https://support.microsoft.com/zh-cn/office/d6ae119c-5fab-4b7f-8869-6ef02ece71f5#bkmk_keyboardshortcuts_win) | `Ctrl + Shift + L`      | 筛选           |
+
+## 三、条件格式
+
+根据公式确定要设置格式的单元格。
+
+| 公式          | 应用于   | 描述     |
+| ------------- | -------- | -------- |
+| =`$H1="离职"` | =`$A:$H` | 整行变色 |
 

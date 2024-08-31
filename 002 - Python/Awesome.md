@@ -36,6 +36,12 @@
 - [holidays](https://github.com/vacanza/python-holidays) - 在 Python 中生成和处理假期。
 - [chinese-calendar](https://github.com/LKI/chinese-calendar) - 判断日期是不是法定节假日或法定工作日。
 
+### 数据分析
+
+*数据分析库。*
+
+- [pandas](https://pandas.pydata.org/) - 一个提供高性能、易于使用的数据结构和数据分析工具的库。
+
 ### 特定格式处理
 
 *用于解析和操纵特定文本格式的库。*

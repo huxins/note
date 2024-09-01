@@ -10,7 +10,7 @@
 pip install openpyxl
 ```
 
-## 一、工作表
+## 一、工作簿
 
 ### 从文件加载
 
@@ -22,6 +22,21 @@ from openpyxl import load_workbook
 workbook = load_workbook(filename='test.xlsx')
 print(workbook.sheetnames)
 ```
+
+### 新建
+
+可以通过 [`Workbook()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.workbook.html#openpyxl.workbook.workbook.Workbook) 新建一个工作簿。
+
+```python
+from openpyxl import Workbook
+
+wb = Workbook()
+ws = wb.active
+ws.title = "New Title"
+wb.save('test.xlsx')
+```
+
+## 二、数据操作
 
 ### 访问大量单元格
 
@@ -48,9 +63,7 @@ for row in worksheet.iter_rows(min_row=2, values_only=True):
     position = row[headers['职位']]
 ```
 
-### 访问单元格
-
-可以直接通过[工作表的键](https://foss.heptapod.net/openpyxl/openpyxl/-/blob/5149e809daee6136cdcf95cea34072221ee7616e/openpyxl/worksheet/worksheet.py#L275)来访问单元格。
+还可以直接通过[工作表的键](https://foss.heptapod.net/openpyxl/openpyxl/-/blob/5149e809daee6136cdcf95cea34072221ee7616e/openpyxl/worksheet/worksheet.py#L275)来访问单元格。
 
 ```python
 worksheet = workbook['Sheet1']
@@ -58,6 +71,8 @@ worksheet = workbook['Sheet1']
 # 获取第一行数据
 worksheet[1]
 ```
+
+### 访问单元格
 
 可以通过 [`Worksheet.cell()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.cell) 访问单元格。
 
@@ -70,6 +85,8 @@ worksheet = workbook['Sheet1']
 value = worksheet.cell(row=1, column=1).value
 print(value)
 ```
+
+### 修改单元格
 
 可以通过 [`Cell.value`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html#openpyxl.cell.cell.Cell.value) 属性修改单元格的值。
 
@@ -93,5 +110,30 @@ worksheet = workbook['Sheet1']
 
 worksheet.cell(row=1, column=1, value='new value')
 workbook.save('test.xlsx')
+```
+
+### Pandas
+
+[`dataframe_to_rows()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.dataframe.html#openpyxl.utils.dataframe.dataframe_to_rows) 提供了一种使用 Pandas [`Dataframe`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame) 的简单方法。
+
+```python
+import pandas as pd
+from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.workbook import Workbook
+
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'Los Angeles', 'Chicago']
+}
+df = pd.DataFrame(data)
+
+wb = Workbook()
+ws = wb.active
+
+for r in dataframe_to_rows(df, index=False, header=True):
+    ws.append(r)
+
+wb.save("output.xlsx")
 ```
 

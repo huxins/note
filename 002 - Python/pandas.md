@@ -10,7 +10,7 @@
 
 `DataFrame` 接受许多不同类型的输入：
 
-- 字典
+- 字典中的列表
 
   如下所示，`data` 是一个字典，键是 `Name`、`Age` 和 `City`，对应的值是列表，这些列表将成为 `DataFrame` 的列。
 
@@ -44,11 +44,11 @@
   print(df)
   ```
 
-#### 访问数据
+## 二、访问数据
 
 可以将 `DataFrame` 在语义上视为字典。
 
-##### 列数据
+### 列数据
 
 [获取、设置和删除列](https://pandas.pydata.org/docs/user_guide/dsintro.html#column-selection-addition-deletion)的语法与类似的 `dict` 操作相同。
 
@@ -67,7 +67,7 @@ df = pd.DataFrame(data)
 print(df['Name'])
 ```
 
-##### 行数据
+### 行数据
 
 行数据的访问，基于[索引](https://pandas.pydata.org/docs/user_guide/dsintro.html#indexing-selection)。
 
@@ -101,9 +101,9 @@ df = pd.DataFrame(data)
 print(df.iloc[0])
 ```
 
-#### 新增数据
+## 三、新增数据
 
-##### 列数据
+### 列数据
 
 ```python
 import pandas as pd
@@ -119,7 +119,11 @@ df['Salary'] = [70000, 80000, 90000]
 print(df)
 ```
 
-#### 数据筛选
+## 四、数据处理
+
+### 数据筛选
+
+常见的操作是使用[布尔向量](https://pandas.pydata.org/docs/user_guide/indexing.html#boolean-indexing)来过滤数据。
 
 ```python
 import pandas as pd
@@ -134,7 +138,7 @@ df = pd.DataFrame(data)
 print(df[df['Age'] > 30])
 ```
 
-#### 数据统计
+### 数据统计
 
 ```python
 import pandas as pd
@@ -149,5 +153,34 @@ df = pd.DataFrame(data)
 df['Salary'] = [70000, 80000, 90000]
 
 print(df.describe())
+```
+
+### 数据排序
+
+通过创建[有序分类](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html#pandas.Categorical)数据，进行[数据排序](https://pandas.pydata.org/docs/user_guide/categorical.html#sorting-and-order)。
+
+```python
+import pandas as pd
+
+size = pd.Categorical(['small', 'medium', 'large', 'small'], categories=['small', 'medium', 'large'], ordered=True)
+print(size)
+```
+
+创建 `DataFrame`、定义分类顺序、转换为分类数据类型并进行排序。
+
+```python
+import pandas as pd
+
+data = {
+    '姓名': ['张三', '李四', '王五', '赵六'],
+    '部门': ['财务部', '销售部', 'IT部', '设计部']
+}
+df = pd.DataFrame(data)
+
+department_order = ["财务部", "设计部", "销售部", "IT部"]
+df['部门'] = pd.Categorical(df['部门'], categories=department_order, ordered=True)
+df.sort_values(by='部门', inplace=True)
+
+print(df)
 ```
 

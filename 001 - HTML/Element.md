@@ -170,47 +170,72 @@
 
 任何带有 [`checked`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#checked) 属性的复选框和单选按钮在加载时都会匹配 [`:default`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-default) 伪类，即使它们后面不再被选中。任何当前被选中的元素，都会匹配 [`:checked`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-checked) 伪类。
 
-#### text
+通过 [`type`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#type) 指定要渲染的控件的类型：
 
-单行纯文本编辑控件。
+- text
 
-```html
-<input type="text" value="I'm a text field">
-```
+  单行纯文本编辑控件。
 
-#### password
+  ```html
+  <input type="text" value="I'm a text field">
+  ```
 
-单行纯文本编辑控件，浏览器会隐藏该值，以便用户以外的其他人无法看到。
+- password
 
-```html
-<input type="password">
-```
+  单行纯文本编辑控件，浏览器会隐藏该值，以便用户以外的其他人无法看到。
 
-#### hidden
+  ```html
+  <input type="password">
+  ```
 
-不打算由用户检查或操纵的值。
+- hidden
 
-```html
-<input type="hidden" id="timestamp" name="timestamp" value="1286705410">
-```
+  不打算由用户检查或操纵的值。
 
-#### checkbox
+  ```html
+  <input type="hidden" id="timestamp" name="timestamp" value="1286705410">
+  ```
 
-```html
-<input type="checkbox" id="questionOne" name="subscribe" value="yes" checked>
-```
+- checkbox
 
-#### radio
+  ```html
+  <input type="checkbox" id="questionOne" name="subscribe" value="yes" checked>
+  ```
 
-```html
-<input type="radio" id="soup" name="meal" checked>
-```
+- radio
 
-#### file
+  ```html
+  <input type="radio" id="soup" name="meal" checked>
+  ```
 
-```html
-<input type="file" name="file" id="file" accept="image/*" multiple>
-```
+- file
+
+  ```html
+  <input type="file" name="file" id="file" accept="image/*" multiple>
+  ```
+
+在 HTML 中，IDL（Interface Definition Language）属性和方法是指在 Web API 中定义的与 DOM（Document Object Model）接口相关的属性和方法。它们用于在浏览器中操作 HTML 元素，通过 JavaScript 访问和修改 DOM 元素的属性、行为等。IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScript 来操作和使用。
+
+IDL 属性和方法：
+
+- files
+
+  [`HTMLInputElement.files`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/files) 属性允许访问使用 `<input type="file">` 元素选择的 [`FileList`](https://developer.mozilla.org/zh-CN/docs/Web/API/FileList)。
+  
+  ```html
+  <input type="file">
+  
+  <script>
+    let input = document.querySelector('input');
+  
+    input.addEventListener('change', function () {
+      let files = input.files;
+      for (let i = 0; i < files.length; i++) {
+        console.log(files[i].name);
+      }
+    });
+  </script>
+  ```
 
 ### button
 

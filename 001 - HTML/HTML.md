@@ -2,7 +2,7 @@
 
 ## 一、基本结构
 
-一个基本的 HTML 文档如下所示。
+一个[基本的 HTML 文档](https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html)如下所示。
 
 ```html
 <!DOCTYPE html>
@@ -20,15 +20,11 @@
 </html>
 ```
 
-## 二、通用基础
+## 二、语法
 
-### 2.1. 微语法
+### Boolean 属性
 
-HTML 中有许多地方可以接受特定的数据类型，例如日期或数字。
-
-#### 2.1.1. Boolean 属性
-
-元素上存在布尔属性表示真值，不存在该属性表示假值。
+元素上存在[布尔属性](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)表示真值，不存在该属性表示假值。
 
 如果存在该属性，则其值必须是空字符串或与属性的规范名称匹配的不区分大小写的 ASCII 值，并且没有前导或尾随空格。
 
@@ -46,7 +42,9 @@ HTML 中有许多地方可以接受特定的数据类型，例如日期或数字
 <input type="text" disabled>
 ```
 
-## 三、HTML API
+## 三、API
+
+
 
 ### 3.1. 元素
 

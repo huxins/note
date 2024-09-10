@@ -44,7 +44,7 @@
 
 ## 三、API
 
-### Element
+### Elements
 
 所有 HTML 元素的接口都从 [`HTMLElement`](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) 接口继承。
 
@@ -71,6 +71,58 @@
 - [***Tag omission in text/html***](https://html.spec.whatwg.org/multipage/dom.html#concept-element-tag-omission)
 
   在 `text/html` 语法中是否可以省略开始和结束标记的非规范性描述。
+
+### User prompts
+
+- *window*.[**alert**](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/alert)(*message*)
+
+  显示一个带有指定消息的模态警告框，并等待用户关闭它。
+
+### Events
+
+#### Event handlers
+
+许多对象都可以指定[事件处理程序](https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-attributes)，比如 `button`、`input`、`img` 等。这些事件处理程序针对指定的对象充当非捕获型事件监听器。
+
+```javascript
+const myButton = document.getElementById('myButton');
+
+myButton.addEventListener('click', function () {
+  console.log('Button clicked!');
+});
+```
+
+#### Event type
+
+以下是所有 HTML 元素必须支持的[事件处理程序](https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers-on-elements,-document-objects,-and-window-objects)。
+
+| 事件处理程序 | 事件类型 | 目标        | 描述                         |
+| ------------ | -------- | ----------- | ---------------------------- |
+| `onsubmit`   | `submit` | `form` 元素 | 提交表单时在表单元素上触发。 |
+
+### Storage
+
+[`Storage`](https://html.spec.whatwg.org/multipage/webstorage.html#the-storage-interface) 提供了访问特定域名下的会话存储或本地存储的功能。
+
+- *storage*.[**getItem**](https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/getItem)(*key*)
+
+  接受一个键名作为参数，并返回对应键名的值。
+
+- *storage*.[**setItem**](https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/setItem)(*key*, *value*)
+
+  接受一个键名和值作为参数，将会把键名添加到给定的 `Storage` 对象中，如果键名已存在，则更新其对应的值。
+
+- *storage*.[**removeItem**](https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/removeItem)(*key*)
+
+  接受一个键名作为参数，会从给定的 `Storage` 对象中删除该键名。
+
+#### sessionStorage
+
+存储在 [`sessionStorage`](https://html.spec.whatwg.org/multipage/webstorage.html#the-sessionstorage-attribute) 里面的数据在页面会话结束时会被清除。
+
+#### localStorage
+
+存储在 [`localStorage`](https://html.spec.whatwg.org/multipage/webstorage.html#the-localstorage-attribute) 的数据可以长期保留。
 
 ## 四、内容模型
 
@@ -105,62 +157,4 @@ HTML 标准中块级元素和行内元素至高出现在 [4.01](https://www.w3.o
 默认情况下，行内元素不会以新行开始，而块级元素会新起一行。
 
 内联元素不会导致文本换行：它通常出现在一堆文字之间，例如超链接元素 `<a>` 或者强调元素 `<em>` 和 `<strong>`。
-
-## 五、Web API
-
-### 用户提示
-
-#### 简单对话框
-
-- *window*.[**alert**](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/alert)(*message*)
-
-  显示一个带有指定消息的模态警告框，并等待用户关闭它。
-
-## 六、脚本
-
-### 事件
-
-#### 事件处理
-
-许多对象都可以指定[事件处理程序](https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-attributes)，比如 `button`、`input`、`img` 等。这些事件处理程序针对指定的对象充当非捕获型事件监听器。
-
-```javascript
-const myButton = document.getElementById('myButton');
-
-myButton.addEventListener('click', function () {
-  console.log('Button clicked!');
-});
-```
-
-##### 5.2.1.2. 事件类型
-
-| 事件处理程序 | 事件类型 | 目标        | 描述                         |
-| ------------ | -------- | ----------- | ---------------------------- |
-| `onsubmit`   | `submit` | `form` 元素 | 提交表单时在表单元素上触发。 |
-
-## 六、Web 存储
-
-### 6.1. Storage
-
-Storage 提供了访问特定域名下的会话存储或本地存储的功能。
-
-- *storage*.**getItem**(*key*)
-
-  接受一个键名作为参数，并返回对应键名的值。
-
-- *storage*.**setItem**(*key*, *value*)
-
-  接受一个键名和值作为参数，将会把键名添加到给定的 `Storage` 对象中，如果键名已存在，则更新其对应的值。
-
-- *storage*.**removeItem**(*key*)
-
-  接受一个键名作为参数，会从给定的 `Storage` 对象中删除该键名。
-
-### 6.2. sessionStorage
-
-存储在 `sessionStorage` 里面的数据在页面会话结束时会被清除。
-
-### 6.3. localStorage
-
-存储在 `localStorage` 的数据可以长期保留。
 

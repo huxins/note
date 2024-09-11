@@ -53,6 +53,32 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
 
 ## 二、节点
 
+### Node
+
+[`Node`](https://dom.spec.whatwg.org/#interface-node) 是一个接口，各种类型的 DOM API 对象会从这个接口继承。
+
+实例方法：
+
+- node.[**appendChild**](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild)()
+
+  将一个节点附加到指定父节点的子节点列表的末尾处。
+
+  ```javascript
+  let a = document.createElement('a');
+  a.textContent = 'Click here to visit example.com';
+  a.href = 'https://www.baidu.com/';
+  
+  document.body.appendChild(a);
+  ```
+
+- node.[**removeChild**](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/removeChild)()
+
+  从 DOM 中移除一个子节点，并返回移除的节点。
+
+  ```javascript
+  document.body.removeChild(a);
+  ```
+
 ### Element
 
 [`Element`](https://dom.spec.whatwg.org/#interface-element) 是最通用的基类，[`Document`](https://dom.spec.whatwg.org/#document) 中的所有元素对象都继承自它。

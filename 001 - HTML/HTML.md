@@ -48,16 +48,6 @@
 
 所有 HTML 元素的接口都从 [`HTMLElement`](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) 接口继承。
 
-实例方法：
-
-- element.[**click**](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/click)()
-
-  用来模拟鼠标左键单击一个元素。
-
-  ```javascript
-  document.getElementById("su").click();
-  ```
-
 规范中的每个元素都有一个定义，其中包括以下信息。
 
 - [***Categories***](https://html.spec.whatwg.org/multipage/dom.html#concept-element-categories)
@@ -71,6 +61,36 @@
 - [***Tag omission in text/html***](https://html.spec.whatwg.org/multipage/dom.html#concept-element-tag-omission)
 
   在 `text/html` 语法中是否可以省略开始和结束标记的非规范性描述。
+
+实例方法：
+
+- element.[**click**](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/click)()
+
+  用来模拟鼠标左键单击一个元素。
+
+  ```javascript
+  document.getElementById("su").click();
+  ```
+
+实例属性：
+
+- element.[style](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/style)
+
+  只读属性 `style` 以 [`CSSStyleDeclaration`](https://drafts.csswg.org/cssom/#the-cssstyledeclaration-interface) 对象的形式返回元素的内联样式，该对象包含该元素的所有样式属性列表，只为元素的内联 `style` 属性中定义的属性分配值。
+
+  该属性是只读的，不可以将 `CSSStyleDeclaration` 对象赋值给它。然而，可以通过直接给 `style` 属性分配一个字符串来设置内联样式。在这种情况下，这个字符串被转发到 [`CSSStyleDeclaration.cssText`](https://drafts.csswg.org/cssom/#ref-for-dom-cssstyledeclaration-csstext)。以这种方式使用 `style` 将完全覆盖该元素的所有内联样式。
+
+  ```javascript
+  let myDiv = document.getElementById('content');
+  myDiv.style = "color: red;";
+  ```
+
+  因此，要在不改变其他样式值的情况下为一个元素添加特定的样式，通常最好是在 `CSSStyleDeclaration` 对象上设置个别属性。
+
+  ```javascript
+  let myDiv = document.getElementById('content');
+  myDiv.style.backgroundColor = "red";
+  ```
 
 ### User prompts
 

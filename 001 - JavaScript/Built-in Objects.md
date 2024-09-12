@@ -130,6 +130,45 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
   `slice()` 方法提取直到但不包括 `indexEnd` 的文本。如果 `indexEnd` 被省略，则 `slice()` 提取到字符串的末尾。
 
   如果 `indexStart` 为负数，则索引从字符串末尾开始计数，即从 `str.length + indexStart` 开始。
+  
+- String.prototype.[**charAt**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/charAt)()
+
+  返回一个指定索引处的单个 UTF-16 码元构成的新字符串。
+
+  ```javascript
+  const sentence = 'The quick brown fox jumps over the lazy dog.';
+  
+  const index = 4;
+  
+  console.log(`The character at index ${index} is ${sentence.charAt(index)}`);
+  ```
+
+- String.prototype.[**charCodeAt**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt)()
+
+  返回给定索引处的 UTF-16 代码单元，其值介于 0 和 65535 之间。
+
+  ```javascript
+  const sentence = 'The quick brown fox jumps over the lazy dog.';
+  
+  const index = 4;
+  
+  console.log(
+    `Character code ${sentence.charCodeAt(index)} is equal to ${sentence.charAt(
+      index,
+    )}`,
+  );
+  ```
+
+- String.prototype.[**codePointAt**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)()
+
+  返回一个 Unicode 编码点值的非负整数。
+  
+  ```javascript
+  const icons = '😄';
+  
+  console.log(icons.codePointAt(0));
+  // Expected output: "128516"
+  ```
 
 ## 三、索引集合
 

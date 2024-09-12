@@ -1,37 +1,37 @@
 # JavaScript
 
-## 一、语句
+[JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) 是一种具有函数优先特性的轻量级、解释型的编程语言。
 
-### 声明
+## 一、语句和声明
 
-#### let
+### let
 
-`let` 允许声明一个作用域被限制在块作用域中的局部变量。`let` 声明的变量不会在作用域中被提升。
+[`let`](https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-let-and-const-declarations) 允许声明一个作用域被限制在块作用域中的局部变量。[`let`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let) 声明的变量不会在作用域中被提升。
 
 ```javascript
 let x = 1;
 
 if (x === 1) {
   let x = 2;
-  console.log(x);
+  console.log(x); // 2
 }
 
-console.log(x);
+console.log(x); // 1
 ```
 
-#### var
+### var
 
-`var` 语句用于声明一个函数范围或全局范围的变量。
+[`var`](https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-variable-statement) 语句用于声明一个函数范围或全局范围的变量。
 
 ```javascript
 var x = 1;
 
 if (x === 1) {
   var x = 2;
-  console.log(x);
+  console.log(x); // 2
 }
 
-console.log(x);
+console.log(x); // 2
 ```
 
 无论在何处声明变量，都会在执行任何代码之前进行处理。这被称为变量提升。这些变量的初始值为 `undefined`。
@@ -44,9 +44,9 @@ var x = 1;
 console.log(x);
 ```
 
-#### const
+### const
 
-`const` 声明的变量称为常量。常量是块级范围的，非常类似用 `let` 语句定义的变量。但常量的值无法改变，也不能被重新声明。
+[`const`](https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-let-and-const-declarations) 声明的变量称为常量。常量是块级范围的，非常类似用 `let` 语句定义的变量。但常量的值无法改变，也不能被重新声明。
 
 ```javascript
 const number = 42;
@@ -60,22 +60,24 @@ try {
 console.log(number);
 ```
 
+## 二、词法分析
+
 ### 字面量
 
 #### String
 
-字符串字面量是由双引号或单引号括起来的零个或多个字符。
+[字符串字面量](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E9%9D%A2%E9%87%8F)是由双引号或单引号括起来的零个或多个字符。
 
 ```javascript
 "A string primitive";
 'Also a string primitive';
 ```
 
-## 二、表达式
+### 表达式
 
-### 模板字面量
+#### 模板字面量
 
-在 ES2015 中，还提供了一种模板字面量，模板字符串提供了一些语法糖来构造字符串。这与 Perl、Python 还有其他语言中的字符串插值的特性非常相似。
+在 ES2015 中，还提供了一种[模板字面量](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Template_literals)，模板字符串提供了一些语法糖来构造字符串。这与 Perl、Python 还有其他语言中的字符串插值的特性非常相似。
 
 ```javascript
 var name = "Bob";
@@ -83,9 +85,9 @@ var time = "today";
 `Hello ${name}, how are you ${time}?`
 ```
 
-### 对象初始化
+#### 对象初始化
 
-对象初始化器是一个用大括号括起来的以逗号分隔的列表，包含了一个对象的零个或多个属性名称和相关值。
+[对象初始化器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer)是一个用大括号括起来的以逗号分隔的列表，包含了一个对象的零个或多个属性名称和相关值。
 
 ```javascript
 o = {
@@ -115,7 +117,7 @@ const o = {
 };
 ```
 
-展开语法，可以在函数调用或数组构造时，将数组表达式或者 string 在语法层面展开；还可以在构造字面量对象时，将对象表达式按 key-value 的方式展开。
+[展开语法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax)可以在构造字面量对象时，将对象表达式按 *key-value* 的方式展开。
 
 ```javascript
 const item = { id: "123", name: "zh" };
@@ -126,7 +128,7 @@ const new_item = { ...item, value: item.id, label: item.name };
 
 ES5 规范增加了新的语言特性并且修改了一些已经存在的特性。为了保证旧的功能能够使用，大部分修改是默认不生效的。需要一个特殊的指令 `use strict` 来明确地激活这些特性。
 
-### 3.1. 启用严格模式
+### 启用严格模式
 
 #### 脚本
 
@@ -151,7 +153,7 @@ function strict() {
 }
 ```
 
-### 3.2. 严格模式特性
+### 严格模式特性
 
 #### 八进制语法
 
@@ -167,6 +169,7 @@ console.log(0644 === 420);
 非严格模式下，如果在函数内部使用未声明的变量，JavaScript 会自动将其创建为全局变量；但是在严格模式下，这种行为是被禁止的。
 
 ```javascript
+"use strict";
 function myFunction() {
   x = 10;
 }
@@ -177,47 +180,23 @@ console.log(x);
 
 ## 四、数据类型
 
-### Undefined
+最新的 ECMAScript 标准定义了 8 种[数据类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)：
 
-表示变量未赋值时的属性。
+- **undefined**：表示变量未赋值时的属性。
 
-### Null
+- **null**：代表无、空或值未知的特殊值。
 
-代表 `无`、`空` 或 `值未知` 的特殊值。
+- **Boolean**：仅包含两个值，`true` 和 `false`。
 
-### Boolean
+- **Number**：代表整数和浮点数，是一种基于 IEEE 754 标准的双精度 64 位二进制格式的值。
 
-Boolean 类型仅包含两个值：`true` 和 `false`。
+- **BigInt**：表示任意大小的整数。通过将 `n` 附加到整数末尾或调用 `BigInt()` 函数来创建。
 
-### String
+- **String**：表示文本值的字符序列。内部将其编码为 `UTF-16` 的整数值序列，字符串的长度是其中的 `UTF-16` 代码单元的数量，这可能与 Unicode 字符的实际数量不符。
 
-String 类型是一串表示文本值的字符序列。内部将其编码为 `UTF-16` 的整数值序列。字符串的长度是其中的 `UTF-16` 代码单元的数量，这可能与 Unicode 字符的实际数量不符。
+- **Symbol**：用于创建对象的唯一标识符。
 
-`str.charAt()` 返回一个由给定索引处的单个 `UTF-16` 码元构成的新字符串；`charCodeAt()` 则返回给定索引处的 `UTF-16` 代码单元；`codePointAt()` 返回一个 Unicode 编码点值的非负整数。
-
-### Symbol
-
-Symbol 类型用于创建对象的唯一标识符。
-
-### Number
-
-Number 类型代表整数和浮点数，是一种基于 IEEE 754 标准的双精度 64 位二进制格式的值。
-
-它能够存储 `Number.MIN_VALUE` 和 `Number.MAX_VALUE` 之间的正浮点数，以及 `-Number.MIN_VALUE` 和 `-Number.MAX_VALUE` 之间的负浮点数，但是它仅能安全地存储在 `Number.MIN_SAFE_INTEGER` 到 `Number.MAX_SAFE_INTEGER` 范围内的整数。可以使用 `Number.isSafeInteger()` 检查一个数是否在安全的整数范围内。
-
-### BigInt
-
-BigInt 类型可以表示任意大小的整数。
-
-BigInt 是通过将 `n` 附加到整数末尾或调用 `BigInt()` 函数来创建的。
-
-```javascript
-const bigInt = 1234567890123456789012345678901234567890n;
-```
-
-### Object
-
-Object 类型是一个特殊的类型。其他所有的数据类型都被称为原始类型，因为它们的值只包含一个单独的内容。相反，Object 则用于储存数据集合和更复杂的实体。
+- **Object**：用于储存数据集合和更复杂的实体。是一个特殊的类型，其他所有的数据类型都被称为原始类型，因为它们的值只包含一个单独的内容。
 
 ## 五、函数
 

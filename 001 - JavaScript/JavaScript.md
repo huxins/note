@@ -200,9 +200,11 @@ console.log(x);
 
 ## 五、函数
 
-### 5.1. 函数声明
+[函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Functions)是 JavaScript 中的基本组件之一。
 
-函数声明定义一个具有指定参数的函数。
+### 函数声明
+
+[函数声明](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Functions#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E)定义一个具有指定参数的函数。
 
 ```javascript
 function add(a, b) {
@@ -210,9 +212,9 @@ function add(a, b) {
 }
 ```
 
-### 5.2. 函数表达式
+### 函数表达式
 
-`function` 关键字可以用来在一个表达式中定义一个函数。
+函数也可以由[函数表达式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/function)创建，`function` 关键字用来在一个表达式中定义一个函数。
 
 ```javascript
 var add = function (a, b) {
@@ -220,9 +222,9 @@ var add = function (a, b) {
 }
 ```
 
-### 5.3. 箭头函数定义
+### 箭头函数
 
-箭头函数表达式的语法比函数表达式更简洁，并且没有自己的 `this`，`arguments`，`super` 或 `new.target`。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
+[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Functions#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0)表达式的语法比函数表达式更简洁，并且没有自己的 `this`，`arguments`，`super` 或 `new.target`。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
 
 ```javascript
 (param1, param2, ..., paramN) => { statements }
@@ -237,7 +239,7 @@ singleParam => { statements }
 () => { statements }
 ```
 
-### 5.4. 构造函数
+### 构造函数
 
 构造函数是用于创建对象的模板。
 
@@ -255,7 +257,9 @@ Person.prototype.sayHello = function() {
 };
 ```
 
-### 5.5. 原型链
+### 原型链
+
+JavaScript 只有对象这一种结构。每个对象都有一个私有属性指向另一个名为[原型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)的对象。原型对象也有一个自己的原型，层层向上直到一个对象的原型为 `null`。根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节。
 
 - **prototype**
 
@@ -265,7 +269,7 @@ Person.prototype.sayHello = function() {
 
 - **\_\_proto__**
 
-  是每个对象都具有的属性，它指向对象的原型。它用于实现对象之间的原型链。
+  是每个对象都具有的属性，它指向对象的构造函数的原型。它用于实现对象之间的原型链。
 
   当访问一个对象的属性或方法时，如果对象本身没有这个属性或方法，JavaScript 引擎会沿着对象的 `__proto__` 链向上查找，直到找到为止。
 
@@ -300,9 +304,9 @@ Function.__proto__ === Function.prototype;
 
 ## 六、类
 
-类是用于创建对象的模板。实际上，类是特殊的函数，是构造函数的一种更现代、更清晰的语法糖。
+[类](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes)是用于创建对象的模板。实际上，类是特殊的函数，是构造函数的一种更现代、更清晰的语法糖。
 
-### 6.1. 类声明
+### 类声明
 
 定义类的一种方法是使用类声明。要声明一个类，可以使用带有 `class` 关键字的类名。
 
@@ -315,7 +319,7 @@ class Car {
 }
 ```
 
-### 6.2. 类表达式
+### 类表达式
 
 类表达式是定义类的另一种方法。类表达式可以命名或不命名。
 
@@ -328,13 +332,13 @@ let Car = class {
 };
 ```
 
-### 6.3. 构造函数
+### 构造函数
 
 `constructor` 方法是一个特殊的方法，这种方法用于创建和初始化一个由 `class` 创建的对象。
 
 一个构造函数可以使用 `super` 关键字来调用一个父类的构造函数。
 
-### 6.4. 原型方法
+### 原型方法
 
 原型方法是在构造函数的原型对象上定义的方法。原型方法只能通过实例对象来访问。
 
@@ -355,7 +359,7 @@ let Car = class {
 };
 ```
 
-### 6.5. 静态方法
+### 静态方法
 
 静态方法是直接在构造函数本身上定义的方法。它们并不属于构造函数的实例，而是属于构造函数本身。
 
@@ -369,7 +373,7 @@ class Point {
 }
 ```
 
-### 6.6. 方法定义
+### 方法定义
 
 #### 函数简写
 

@@ -12,7 +12,7 @@
 
 ### 模块加载
 
-*JavaScript 的模块或加载系统。*
+*JavaScript 的模块加载系统。*
 
 - [RequireJS](https://github.com/requirejs/requirejs) - JavaScript 的文件和模块加载器。
 

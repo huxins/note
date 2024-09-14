@@ -1,6 +1,8 @@
 # RequireJS
 
-[RequireJS](https://github.com/requirejs/requirejs) 可以加载普通的 JavaScript 文件以及定义明确的模块。它针对浏览器中的使用进行了优化，包括在 Web Worker 中的使用，但它也可以在其他 JavaScript 环境中使用。它实现了 Asynchronous Module API。
+[RequireJS](https://github.com/requirejs/requirejs) 可以加载普通的 JavaScript 文件以及定义明确的模块。
+
+它针对浏览器中的使用进行了优化，包括在 Web Worker 中的使用，但它也可以在其他 JavaScript 环境中使用。它实现了 Asynchronous Module API。
 
 ## 一、AMD
 
@@ -21,7 +23,7 @@ project-directory/
       util.js
 ```
 
-将 *require.js* 添加到 *scripts* 目录中，看起来如下所示：
+将 *require.js* [添加](https://requirejs.org/docs/start.html#add)到 *scripts* 目录中，看起来如下所示：
 
 ```
 project-directory/

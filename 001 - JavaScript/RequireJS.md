@@ -23,7 +23,7 @@ project-directory/
       util.js
 ```
 
-将 *require.js* [添加](https://requirejs.org/docs/start.html#add)到 *scripts* 目录中，看起来如下所示：
+将 [*require.js*](https://requirejs.org/docs/download.html#requirejs) 添加到 *scripts* 目录中，看起来如下所示：
 
 ```
 project-directory/
@@ -35,7 +35,7 @@ project-directory/
       util.js
 ```
 
-为了充分利用优化工具，将所有内联脚本都排除在 HTML 之外，并且只使用 `requirejs` 调用引用 *require.js* 来加载脚本：
+为了充分利用优化工具，将所有内联脚本都排除在 HTML 之外，并仅通过如下方式使用 [`require.js`](https://requirejs.org/docs/download.html#requirejs) 进行 [`requirejs`](https://requirejs.org/docs/api.html#config) 调用来加载脚本。
 
 ```html
 <!DOCTYPE html>
@@ -52,7 +52,9 @@ project-directory/
 
 ## 三、定义模块
 
-若一个模块不依赖其他模块，可以直接定义在 `define()` 函数中。
+### 定义函数
+
+如果模块没有依赖关系，可以直接定义在 [`define()`](https://requirejs.org/docs/api.html#deffunc) 函数中。
 
 ```javascript
 // math.js
@@ -66,7 +68,7 @@ define(function () {
 });
 ```
 
-若这个模块还依赖其他模块，那么 `define()` 函数的第一个参数，必须是一个数组，指明该模块的依赖性。当 `require()` 函数加载该模块时，就会先加载 `math.js` 模块。
+若这个模块还依赖其他模块，那么 [`define()`](https://requirejs.org/docs/api.html#defdep) 函数的第一个参数，必须是一个数组，指明该模块的依赖性。当 `require()` 函数加载该模块时，就会先加载 `math.js` 模块。
 
 ```javascript
 // dataService.js
@@ -81,22 +83,55 @@ define(['math'], function (math) {
 })
 ```
 
+### 主模块
+
 设置一个主模块，统一调度当前项目中所有依赖模块。
+
+这是一个依赖数组方式的用法示例，通过一个依赖数组和回调函数来定义模块。
+
+- `require.config` 用于配置模块加载的路径。
+- `require` 函数用于加载模块，并在加载完成后执行回调函数。
 
 ```javascript
 // main.js
-(function () {
-  require.config({
-    // baseUrl: '',
-    paths: {
-      math: './math',
-      dataService: './dataService'
-    }
-  })
-  require(['dataService'], function (dataService) {
-    dataService.doSomething()
-  });
-})();
+require.config({
+  // baseUrl: '',
+  paths: {
+    math: './math',
+    dataService: './dataService'
+  }
+})
+
+require(['dataService'], function (dataService) {
+  dataService.doSomething()
+});
+```
+
+这是一个 [CommonJS 风格](https://requirejs.org/docs/commonjs.html)的示例，使用 `require` 函数在模块内部加载依赖。
+
+```javascript
+// main.js
+require.config({
+  // baseUrl: '',
+  paths: {
+    math: './math',
+    dataService: './dataService'
+  }
+})
+
+require(['dataService']);
+
+// dataService.js
+define(function (require) {
+  var math = require('math');
+
+  function doSomething() {
+    let result = math.add(2, 9);
+    console.log(result);
+  }
+
+  doSomething();
+})
 ```
 
 在 `index.html` 中引入 `require.js`，并设置 `data-main` 入口主模块。

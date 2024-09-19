@@ -87,7 +87,7 @@ define(['math'], function (math) {
 
 设置一个主模块，统一调度当前项目中所有依赖模块。
 
-这是一个依赖数组方式的用法示例，通过一个依赖数组和回调函数来定义模块。
+这是一个[依赖数组方式](https://requirejs.org/docs/api.html#data-main)的用法示例，通过一个依赖数组和回调函数来定义模块。
 
 - `require.config` 用于配置模块加载的路径。
 - `require` 函数用于加载模块，并在加载完成后执行回调函数。
@@ -160,6 +160,32 @@ require.config({
       exports: 'Backbone'
     }
   }
+});
+```
+
+## 五、插件
+
+RequireJS 允许编写[加载器插件](https://requirejs.org/docs/plugins.html)，可以将不同类型的资源作为依赖项加载。
+
+### require-css
+
+[`require-css`](https://github.com/guybedford/require-css) 允许像加载 JavaScript 模块一样来加载 CSS 文件。
+
+在 RequireJS 配置文件中添加 `require-css` 插件的路径。
+
+```javascript
+require.config({
+  paths: {
+    css: 'path/to/require-css/css'
+  }
+});
+```
+
+现在可以在模块中加载 CSS 文件了。
+
+```javascript
+define(['css!path/to/your/styles'], function() {
+  // Your module code here
 });
 ```
 

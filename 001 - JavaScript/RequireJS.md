@@ -144,24 +144,10 @@ define(function (require) {
 
 理论上 RequireJS 加载的模块，必须是按照 AMD 规范用 `define()` 函数定义的模块。但实际上，虽然已经有一部分流行的函数库（比如 jQuery）符合 AMD 规范，更多的库并不符合。
 
-这样的模块在用 `require()` 加载之前，要先用 `require.config()` 方法，定义它们的一些特征。例如，`underscore` 和 `backbone` 这两个库，都没有采用 AMD 规范编写。如果要加载的话，必须先定义它们的特征。
+这样的模块在用 `require()` 加载之前，要先用 `require.config()` 方法的 [`shim`](https://requirejs.org/docs/api.html#config-shim)，定义它们的一些特征。
 
 - **exports**：输出的变量名，表示这个模块外部调用时的名称。
 - **deps**：数组，表示该模块的依赖项。
-
-```javascript
-require.config({
-  shim: {
-    underscore: {
-      exports: '_'
-    },
-    backbone: {
-      deps: ['underscore', 'jquery'],
-      exports: 'Backbone'
-    }
-  }
-});
-```
 
 ## 五、插件
 

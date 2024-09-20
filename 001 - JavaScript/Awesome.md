@@ -10,6 +10,7 @@
 
 - [sorrycc/awesome-javascript](https://github.com/sorrycc/awesome-javascript)
 - [jQuery Cheat Sheet](https://oscarotero.com/jquery/)
+- [jQuery Cheat Sheet | OverAPI.com](https://overapi.com/jquery)
 
 ## 二、模块和库
 

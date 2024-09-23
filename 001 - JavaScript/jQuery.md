@@ -245,7 +245,7 @@ $('h1').parent()
 $("p").eq(0)
 ```
 
-与其他过滤方法不同，[`.is()`](https://api.jquery.com/is/) 不会创建新的 jQuery 对象。相反，它允许在不进行修改的情况下测试 jQuery 对象的内容，如果这些元素中至少有一个与给定参数匹配，则返回 `true`。
+[`.is()`](https://api.jquery.com/is/) 不会创建新的 jQuery 对象。相反，它允许在不进行修改的情况下测试 jQuery 对象的内容，如果这些元素中至少有一个与给定参数匹配，则返回 `true`。
 
 ```javascript
 $("img").is( selector )
@@ -255,6 +255,22 @@ $("img").is( selector )
 
 ```javascript
 $(element).is(':checked')
+```
+
+[`.get()`](https://api.jquery.com/get/) 方法授予对每个 jQuery 对象底层 DOM 节点的访问权限。如果 *index* 的值超出界限，将返回 `undefined`。
+
+```javascript
+$(element).get( index )
+```
+
+例如，取得所有匹配的 DOM 元素集合。
+
+```javascript
+$("input[name='checkList']:checked")
+  .map(function () {
+    return $(this).val();
+  })
+  .get();
 ```
 
 [`.not()`](https://api.jquery.com/not/) 方法从匹配元素的子集构造一个新的 jQuery 对象。所提供的选择器已针对每个元素进行了测试；与选择器不匹配的元素将包含在结果中。
@@ -331,7 +347,7 @@ $("input:checked")
 
 ### 子元素
 
-[jQuery( "**:nth-child**(index/even/odd/equation)" )](https://api.jquery.com/nth-child-selector/) 选择其父级的第 n 个子级的所有元素。
+[jQuery( "**:nth-child**(index/even/odd/equation)" )](https://api.jquery.com/nth-child-selector/) 选择其父级的第 *n* 个子级的所有元素。
 
 例如，选择表格的第二行。
 
@@ -339,32 +355,21 @@ $("input:checked")
 $('#example tbody tr:nth-child(2)');
 ```
 
-## 六、核心
+## 六、属性
 
-### DOM
+### CSS
 
-- .**get**()
+[`.toggleClass()`](https://api.jquery.com/toggleClass/) 方法根据类的存在或状态参数的值，从匹配元素集中的每个元素添加或删除一个或多个类。
 
-  取得所有匹配的 DOM 元素集合。
+```javascript
+$(element).toggleClass( className )
+```
 
-  ```javascript
-  $("input[name='checkList']:checked")
-    .map(function () {
-      return $(this).val();
-    })
-    .get();
-  ```
+例如，根据类的状态参数的值，从匹配元素集中的每个元素添加或删除一个或多个类。
 
-## 七、属性
-
-- .**toggleClass**( *className*, *state* )
-
-  根据类的存在或状态参数的值，从匹配元素集中的每个元素添加或删除一个或多个类。
-
-  ```javascript
-  $("#check-all").on("click", function () {
-    $('input[name="link-checkbox"]').prop("checked", this.checked);
-    $("#link_table tbody tr").toggleClass("selected", this.checked);
-  });
-  ```
+```javascript
+$("#example").on("click", function (event) {
+  $(event.target).parent().toggleClass("selected", true);
+});
+```
 

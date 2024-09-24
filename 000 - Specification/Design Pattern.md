@@ -2,13 +2,15 @@
 
 在软件工程中，[设计模式](https://zh.wikipedia.org/zh-cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_(%E8%AE%A1%E7%AE%97%E6%9C%BA))是对软件设计中普遍存在的各种问题，所提出的解决方案。
 
+更多信息和示例，可参考以下项目。
+
 - [Refactoring](https://refactoringguru.cn/design-patterns)
 
-## 一、行为型模式
+## 一、行为型
 
 [行为型模式](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%82%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F)为设计模式的一种类型，用来识别对象之间的常用交流模式并加以实现。
 
-### 中介者模式
+### 中介者
 
 [中介者模式](https://zh.wikipedia.org/wiki/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F)定义了一个中介者对象，该对象封装了系统中对象间的交互方式，能减少对象之间混乱无序的依赖关系。该模式会限制对象之间的直接交互，迫使它们通过一个中介者对象进行合作。
 
@@ -120,7 +122,7 @@ ping = Ping(mediator)
 ping.send_request()
 ```
 
-### 策略模式
+### 策略
 
 [策略模式](https://zh.wikipedia.org/wiki/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F)是一种行为设计模式，它能让你定义一系列算法，并将每种算法分别放入独立的类中，以使算法的对象能够相互替换。
 
@@ -194,11 +196,11 @@ processor = PaymentProcessor(paypal_payment)
 processor.process_payment(150)
 ```
 
-## 二、创建型模式
+## 二、创建型
 
 [创建型模式](https://zh.wikipedia.org/wiki/%E5%89%B5%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F)是处理对象创建的设计模式，试图根据实际情况使用合适的方式创建对象，因为基本的对象创建方式可能会导致设计上的问题，或增加设计的复杂度。
 
-### 单例模式
+### 单例
 
 [单例模式](https://zh.wikipedia.org/wiki/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F)是一种创建型设计模式，让你能够保证一个类只有一个实例，并提供一个访问该实例的全局节点。
 

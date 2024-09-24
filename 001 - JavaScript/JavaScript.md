@@ -257,6 +257,44 @@ Person.prototype.sayHello = function() {
 };
 ```
 
+### 方法定义
+
+从 ECMAScript 2015 开始，在[对象初始器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer)中引入了一种更简短定义方法的语法，这是一种把方法名直接赋给函数的简写方式。
+
+```javascript
+const obj = {
+  foo() {
+    return 'bar';
+  },
+};
+```
+
+#### getter
+
+[`get`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/get) 语法将对象属性绑定到查询该属性时将被调用的函数。
+
+```javascript
+const obj = {
+  log: ['a', 'b', 'c'],
+  get latest() {
+    return this.log;
+  },
+};
+```
+
+#### setter
+
+[`set`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/set) 语法将对象属性绑定到设置该属性时将被调用的函数。
+
+```javascript
+const language = {
+  set current(name) {
+    this.log.push(name);
+  },
+  log: [],
+};
+```
+
 ### 原型链
 
 JavaScript 只有对象这一种结构。每个对象都有一个私有属性指向另一个名为[原型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)的对象。原型对象也有一个自己的原型，层层向上直到一个对象的原型为 `null`。根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节。
@@ -340,7 +378,7 @@ let Car = class {
 
 ### 原型方法
 
-原型方法是在构造函数的原型对象上定义的方法。原型方法只能通过实例对象来访问。
+原型方法是在构造函数的原型对象上定义的方法，只能通过实例对象来访问。
 
 ```javascript
 let Car = class {
@@ -371,45 +409,5 @@ class Point {
     return Math.max(a, b);
   }
 }
-```
-
-### 方法定义
-
-#### 函数简写
-
-从 ECMAScript 2015 开始，在对象初始器中引入了一种更简短定义方法的语法，这是一种把方法名直接赋给函数的简写方式。
-
-```javascript
-const obj = {
-  foo() {
-    return 'bar';
-  },
-};
-```
-
-#### getter
-
-`get` 语法将对象属性绑定到查询该属性时将被调用的函数。
-
-```javascript
-const obj = {
-  log: ['a', 'b', 'c'],
-  get latest() {
-    return this.log;
-  },
-};
-```
-
-#### setter
-
-`set` 语法将对象属性绑定到设置该属性时将被调用的函数。
-
-```javascript
-const language = {
-  set current(name) {
-    this.log.push(name);
-  },
-  log: [],
-};
 ```
 

@@ -2,10 +2,6 @@
 
 在软件工程中，[设计模式](https://zh.wikipedia.org/zh-cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_(%E8%AE%A1%E7%AE%97%E6%9C%BA))是对软件设计中普遍存在的各种问题，所提出的解决方案。
 
-更多信息和示例，可参考以下项目。
-
-- [Refactoring](https://refactoringguru.cn/design-patterns)
-
 ## 一、行为型
 
 [行为型模式](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%82%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F)为设计模式的一种类型，用来识别对象之间的常用交流模式并加以实现。
@@ -227,4 +223,8 @@ public class CreditCardPayment : IPaymentStrategy
     }
 }
 ```
+
+## Reference
+
+- [Refactoring](https://refactoringguru.cn/design-patterns)
 

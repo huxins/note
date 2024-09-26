@@ -2,13 +2,9 @@
 
 [Microsoft Excel](https://support.microsoft.com/zh-cn/excel) 是 Microsoft 为使用 Windows 和 macOS 操作系统的电脑编写的一款电子表格软件。
 
-- [Exceljet](https://exceljet.net/)
-
 ## 一、函数
 
-### 查找和引用
-
-#### 行信息
+### 引用信息
 
 [`ROW`](https://support.microsoft.com/zh-cn/office/3a63b74a-c4d0-4093-b49a-e76eb49a6d8d) 函数返回引用的行号。
 
@@ -24,8 +20,6 @@
 -- Result: 4
 ```
 
-#### 列信息
-
 [`COLUMN`](https://support.microsoft.com/zh-cn/office/44e8c754-711c-4df3-9da4-47a55042554b) 函数返回引用的列号。
 
 ```sql
@@ -40,7 +34,7 @@
 -- Result: 3
 ```
 
-#### 指定引用
+### 指定引用
 
 [`ADDRESS`](https://support.microsoft.com/zh-cn/office/d0c26c0d-3991-446b-8de4-ab46431d4f89) 函数根据指定行号和列号，以文本形式返回工作表中的某个单元格的地址。
 
@@ -98,7 +92,7 @@ INDEX(reference, row_num, [column_num], [area_num])
 =INDEX($D:$D, ROW($D$34) - COLUMNS($B$5:B5) + 1)
 ```
 
-#### 查找引用
+### 查找引用
 
 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 函数在引用或数组中查找值，返回该项在该区域中的相对位置。
 
@@ -152,7 +146,7 @@ VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
 =FILTER(A5:D20, C5:C20=H2, "")
 ```
 
-#### 排序
+### 排序
 
 [`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) 对区域或数组的内容进行排序。
 
@@ -221,9 +215,7 @@ SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 =SUMIFS(E2:AH2, E1:AH1, ">="&DATE(2023, 6, 1), E1:AH1, "<="&DATE(2023, 6, 30))
 ```
 
-### 逻辑函数
-
-#### 逻辑检测
+### 逻辑检测
 
 [`IF`](https://support.microsoft.com/zh-cn/office/69aed7c9-4e8a-4755-a9bc-aa8bbff73be2) 函数指定要执行的逻辑检测。
 
@@ -339,6 +331,26 @@ SUBTOTAL(function_num, ref1, [ref2], ...)
 =SUBTOTAL(3, $B$2:B2)
 ```
 
+### 字符串处理
+
+[`LEFT`](https://support.microsoft.com/zh-cn/office/9203d2d2-7960-479b-84c6-1ea52b99640c) 函数从文本字符串的第一个字符开始返回指定个数的字符。
+
+```sql
+LEFT(text, [num_chars])
+```
+
+例如，截取指定字符的前 15 个字符。
+
+```sql
+=LEFT(I1, 15)
+```
+
+[`CONCAT`](https://support.microsoft.com/zh-cn/office/9b1a9a3f-94ff-41af-9736-694cbd6b4ca2) 函数合并来自多个区域或字符串的文本，但它不提供分隔符参数。
+
+```sql
+CONCAT(text1, [text2], ...)
+```
+
 ## 二、快捷键
 
 使用 Excel 的[键盘快捷方式](https://support.microsoft.com/zh-cn/office/1798d9d5-842a-42b8-9c99-9b7213f0040f)可以提高工作效率。
@@ -362,4 +374,8 @@ SUBTOTAL(function_num, ref1, [ref2], ...)
 | 公式          | 应用于   | 描述     |
 | ------------- | -------- | -------- |
 | =`$H1="离职"` | =`$A:$H` | 整行变色 |
+
+## Reference
+
+- [Exceljet](https://exceljet.net/)
 

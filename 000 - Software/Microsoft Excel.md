@@ -4,7 +4,9 @@
 
 ## 一、函数
 
-### 引用信息
+### 数据引用与定位
+
+#### 获取引用信息
 
 [`ROW`](https://support.microsoft.com/zh-cn/office/3a63b74a-c4d0-4093-b49a-e76eb49a6d8d) 函数返回引用的行号。
 
@@ -34,7 +36,7 @@
 -- Result: 3
 ```
 
-### 指定引用
+#### 动态引用生成
 
 [`ADDRESS`](https://support.microsoft.com/zh-cn/office/d0c26c0d-3991-446b-8de4-ab46431d4f89) 函数根据指定行号和列号，以文本形式返回工作表中的某个单元格的地址。
 
@@ -92,7 +94,7 @@ INDEX(reference, row_num, [column_num], [area_num])
 =INDEX($D:$D, ROW($D$34) - COLUMNS($B$5:B5) + 1)
 ```
 
-### 查找引用
+#### 数据查找与引用
 
 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 函数在引用或数组中查找值，返回该项在该区域中的相对位置。
 
@@ -100,7 +102,7 @@ INDEX(reference, row_num, [column_num], [area_num])
 MATCH(lookup_value, lookup_array, [match_type])
 ```
 
-- **match_type**：`1` 完全匹配或次小，`0` 完全匹配，`-1` 完全匹配或次大。
+- *match_type*：`1` 完全匹配或次小，`0` 完全匹配，`-1` 完全匹配或次大。
 
 例如，区域 A1:A3 包含值 5、7 和 38，找出 7 是该区域中的第几个项目。
 
@@ -126,7 +128,7 @@ MATCH(lookup_value, lookup_array, [match_type])
 VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
 ```
 
-- **range_lookup**：默认为 `TRUE` 近似匹配。`FALSE` 为完全匹配。
+- *range_lookup*：默认为 `TRUE` 近似匹配。`FALSE` 为完全匹配。
 
 例如，根据 H3 的值，在 B4:E13 的范围内查找相匹配的数据，选择第二列。
 
@@ -146,34 +148,15 @@ VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
 =FILTER(A5:D20, C5:C20=H2, "")
 ```
 
-### 排序
-
-[`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) 对区域或数组的内容进行排序。
-
-```sql
-SORT(array, [sort_index], [sort_order], [by_col])
-```
-
-- **sort_order**：`1` 升序，`-1` 降序。默认为升序。
-- **by_col**：`TRUE` 按列排序。`FALSE` 按行排序。默认为 `FALSE`。
-
-例如，按分数降序排列。
-
-```sql
-=SORT(B5:C14, 2)
-```
-
-### 数据库函数
-
 [`DGET`](https://exceljet.net/functions/dget-function) 函数从数据库提取符合指定条件的单个记录。
 
 ```sql
 DGET(database, field, criteria)
 ```
 
-- **database**：构成列表或数据库的单元格区域，包括标题。
-- **field**：指定函数所使用的列名或索引。
-- **criteria**：所指定条件的单元格区域，包括标题。
+- *database*：构成列表或数据库的单元格区域，包括标题。
+- *field*：指定函数所使用的列名或索引。
+- *criteria*：所指定条件的单元格区域，包括标题。
 
 例如，获取指定条件的数据。
 
@@ -181,7 +164,40 @@ DGET(database, field, criteria)
 =DGET($C$2:$E$2370, "访客数", N2:O3)
 ```
 
-### 数学函数
+### 数据分析与处理
+
+#### 排序
+
+[`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) 对区域或数组的内容进行排序。
+
+```sql
+SORT(array, [sort_index], [sort_order], [by_col])
+```
+
+- *sort_order*：`1` 升序，`-1` 降序。默认为升序。
+- *by_col*：`TRUE` 按列排序。`FALSE` 按行排序。默认为 `FALSE`。
+
+例如，按分数降序排列。
+
+```sql
+=SORT(B5:C14, 2)
+```
+
+#### 逻辑检测
+
+[`IF`](https://support.microsoft.com/zh-cn/office/69aed7c9-4e8a-4755-a9bc-aa8bbff73be2) 函数指定要执行的逻辑检测。
+
+```sql
+IF(logical_test, value_if_true, [value_if_false])
+```
+
+例如，规避被除数为 0 的情况。
+
+```sql
+=IF(B19=0, 0, B20/B19)
+```
+
+### 数据汇总与运算
 
 #### 求和
 
@@ -215,21 +231,53 @@ SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 =SUMIFS(E2:AH2, E1:AH1, ">="&DATE(2023, 6, 1), E1:AH1, "<="&DATE(2023, 6, 30))
 ```
 
-### 逻辑检测
+#### 最大值
 
-[`IF`](https://support.microsoft.com/zh-cn/office/69aed7c9-4e8a-4755-a9bc-aa8bbff73be2) 函数指定要执行的逻辑检测。
-
-```sql
-IF(logical_test, value_if_true, [value_if_false])
-```
-
-例如，规避被除数为 0 的情况。
+[`MAXIFS`](https://support.microsoft.com/zh-cn/office/dfd611e6-da2c-488a-919b-9b6376b28883) 函数返回一组给定条件或标准指定的单元格中的最大值。
 
 ```sql
-=IF(B19=0, 0, B20/B19)
+MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 ```
 
-### 时间和日期
+例如，C 列为日期，E 列为访客数，获取指定日期的最大访客数。
+
+```sql
+=MAXIFS(E:E, C:C, DATE(2023, 6, 1))
+```
+
+#### 单元格数量
+
+[`COUNTA`](https://support.microsoft.com/zh-cn/office/7dc98875-d5c1-46f1-9a82-53f3219e2509) 函数计算单元格区域中不为空的单元格的个数。
+
+```sql
+COUNTA(value1, [value2], ...)
+```
+
+例如，获取指定单元格区域中不为空的单元格个数。
+
+```sql
+=COUNTA(B5:B15)
+```
+
+例如，获取整列中不为空的单元格个数。
+
+```sql
+=COUNTA(A:A)
+```
+
+[`SUBTOTAL`](https://support.microsoft.com/zh-cn/office/7b027003-f060-4ade-9040-e478765b9939) 函数返回列表或数据库中的分类汇总。
+
+```sql
+SUBTOTAL(function_num, ref1, [ref2], ...)
+```
+
+例如，生成筛选后自动重排的序号。
+
+```sql
+=SUBTOTAL(3, $B$2:B2)
+```
+
+### 日期与时间
 
 #### 生成日期
 
@@ -283,55 +331,9 @@ DATEDIF(start_date, end_date, unit)
 =DATEDIF(B3, TODAY(), "m")
 ```
 
-### 统计函数
+### 文本处理
 
-#### 最大值
-
-[`MAXIFS`](https://support.microsoft.com/zh-cn/office/dfd611e6-da2c-488a-919b-9b6376b28883) 函数返回一组给定条件或标准指定的单元格中的最大值。
-
-```sql
-MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
-```
-
-例如，C 列为日期，E 列为访客数，获取指定日期的最大访客数。
-
-```sql
-=MAXIFS(E:E, C:C, DATE(2023, 6, 1))
-```
-
-#### 单元格数量
-
-[`COUNTA`](https://support.microsoft.com/zh-cn/office/7dc98875-d5c1-46f1-9a82-53f3219e2509) 函数计算单元格区域中不为空的单元格的个数。
-
-```sql
-COUNTA(value1, [value2], ...)
-```
-
-例如，获取指定单元格区域中不为空的单元格个数。
-
-```sql
-=COUNTA(B5:B15)
-```
-
-例如，获取整列中不为空的单元格个数。
-
-```sql
-=COUNTA(A:A)
-```
-
-[`SUBTOTAL`](https://support.microsoft.com/zh-cn/office/7b027003-f060-4ade-9040-e478765b9939) 函数返回列表或数据库中的分类汇总。
-
-```sql
-SUBTOTAL(function_num, ref1, [ref2], ...)
-```
-
-例如，生成筛选后自动重排的序号。
-
-```sql
-=SUBTOTAL(3, $B$2:B2)
-```
-
-### 字符串处理
+#### 文本提取
 
 [`LEFT`](https://support.microsoft.com/zh-cn/office/9203d2d2-7960-479b-84c6-1ea52b99640c) 函数从文本字符串的第一个字符开始返回指定个数的字符。
 
@@ -344,6 +346,8 @@ LEFT(text, [num_chars])
 ```sql
 =LEFT(I1, 15)
 ```
+
+#### 文本转换
 
 [`CONCAT`](https://support.microsoft.com/zh-cn/office/9b1a9a3f-94ff-41af-9736-694cbd6b4ca2) 函数合并来自多个区域或字符串的文本，但它不提供分隔符参数。
 

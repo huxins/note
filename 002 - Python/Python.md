@@ -95,7 +95,7 @@ hexinteger: 0x_29a
 
 ## 二、数据模型
 
-### 特殊方法名称
+### 特殊方法
 
 一个类可以通过定义具有[特殊名称的方法](https://docs.python.org/zh-cn/3/reference/datamodel.html#special-method-names)来实现由特殊语法来发起调用的特定操作。
 

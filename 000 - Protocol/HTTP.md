@@ -92,7 +92,20 @@ b
 
 [`Content-Type`](https://tools.ietf.org/html/rfc2616#section-14.17) 头字段用于指示发送给接收者的实体主体的媒体类型，[媒体类型](https://tool.oschina.net/commons)告诉接收者如何解释和处理实体主体中的数据。
 
-#### 多部分
+#### URL Encode
+
+当以 `application/x-www-form-urlencoded` 格式发送请求时，数据会被编码为键值对的形式，并使用 `&` 连接多个键值对。键和值会用 `=` 连接，并且特殊字符会被 URL Encode。
+
+```http
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 23
+
+key1=value1&key2=value2
+```
+
+#### Multipart
 
 发送邮件时，我们可以在邮件里写入文字并添加多份附件。这是因为采用了 MIME（Multipurpose Internet Mail Extensions，多用途因特网邮件扩展）机制，它允许邮件处理文本、图片、视频等多个不同类型的数据。
 
@@ -147,6 +160,8 @@ Content-Range: bytes 380-390/398
 在 HTTP 协议通信交互中使用到的首部字段，不限于 [RFC 2616](https://tools.ietf.org/html/rfc2616#section-14) 中定义的 47 种首部字段。还有 Cookie、Set-Cookie 和 Content-Disposition 等在其他 RFC 中定义的首部字段，它们的使用频率也很高。这些非正式的首部字段统一归纳在 [RFC 4229](https://tools.ietf.org/html/rfc4229) 中。
 
 [RFC 2616](https://tools.ietf.org/html/rfc2616#section-4.2) 和 [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2) 规定字段名称不区分大小写。[RFC 7540](https://tools.ietf.org/html/rfc7540#section-8.1.2) 也规定不区分大小写，但字段名称必须先转换为小写，才能使用在 HTTP/2 中编码。
+
+HTTP 允许字段内容[使用 ISO-8859-1](https://tools.ietf.org/html/rfc7230#page-26) 字符集中的文本，并且仅通过使用 [RFC 2047](https://tools.ietf.org/html/rfc2047) 编码来支持其他字符集。在实践中，大多数 HTTP 头字段的值仅使用 ASCII 字符集。
 
 Header Fields 大致分为 [General Header Fields](https://tools.ietf.org/html/rfc2616#section-4.5)、[Request Header Fields](https://tools.ietf.org/html/rfc2616#section-5.3)、[Response Header Fields](https://tools.ietf.org/html/rfc2616#section-6.2) 和 [Entity Header Fields](https://tools.ietf.org/html/rfc2616#section-7.1)。
 

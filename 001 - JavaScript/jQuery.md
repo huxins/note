@@ -123,7 +123,7 @@ jQuery.ajax(url[, settings])
   
 - **contentType** (*boolean* or *string*)
   
-  向服务器发送数据时，使用此内容类型。如 `application/x-www-form-urlencoded`。
+  向服务器发送数据时，使用此内容类型。默认为 `application/x-www-form-urlencoded`。
   
 - **success** (*function*)
   
@@ -132,6 +132,10 @@ jQuery.ajax(url[, settings])
 - **async** (*boolean*)
   
   默认情况下，所有请求都是异步发送的，即默认情况下设置为 `true`。
+  
+- **dataType** (*string*)
+  
+  期望从服务器返回的数据类型。
   
 - **beforeSend** (*function*)
   
@@ -148,6 +152,26 @@ $.ajax({
   success: function (msg) {
     console.log(msg);
   },
+});
+```
+
+例如，发送 `application/x-www-form-urlencoded` 格式的数据到服务器。
+
+```javascript
+$.ajax({
+  type: "POST",
+  url: "https://httpbin.org/post",
+  data: {
+    key1: "value1",
+    key2: "value2"
+  },
+  dataType: "json",
+  success: function (data) {
+    console.log(data);
+  },
+  error: function (error) {
+    console.log(error);
+  }
 });
 ```
 

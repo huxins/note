@@ -349,7 +349,7 @@ class range(start, stop[, step])
 
   [`str.upper`](https://docs.python.org/zh-cn/3/library/stdtypes.html#str.upper) 返回原字符串的副本，其中所有区分大小写的字符均转换为大写。
 
-#### printf
+#### printf format
 
 字符串具有一种特殊的[内置操作](https://docs.python.org/zh-cn/3/library/stdtypes.html#printf-style-string-formatting)：使用 `%` 运算符。这也被称为字符串的格式化或插值运算符。
 

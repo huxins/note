@@ -157,7 +157,7 @@ print(df.describe())
 
 ### 数据排序
 
-通过创建[有序分类](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html#pandas.Categorical)数据，进行[数据排序](https://pandas.pydata.org/docs/user_guide/categorical.html#sorting-and-order)。
+可以通过创建[有序分类](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html#pandas.Categorical)数据，进行[数据排序](https://pandas.pydata.org/docs/user_guide/categorical.html#sorting-and-order)。
 
 ```python
 import pandas as pd
@@ -166,7 +166,7 @@ size = pd.Categorical(['small', 'medium', 'large', 'small'], categories=['small'
 print(size)
 ```
 
-创建 `DataFrame`、定义分类顺序、转换为分类数据类型并进行排序。
+例如，通过定义分类顺序，将 `DataFrame` 中的排序列转换为分类数据类型，并进行排序。
 
 ```python
 import pandas as pd

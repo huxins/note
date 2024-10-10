@@ -12,7 +12,7 @@ pip install python-dateutil
 
 [`relativedelta`](https://dateutil.readthedocs.io/en/stable/relativedelta.html) 类型可以表示时间间隔。
 
-使用 `relativedelta` 获取上个月的同一天。
+例如，使用 `relativedelta` 获取上个月的同一天。
 
 ```python
 from datetime import datetime

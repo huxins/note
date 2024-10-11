@@ -137,6 +137,25 @@ for r in dataframe_to_rows(df, index=False, header=True):
 wb.save("output.xlsx")
 ```
 
+## 三、样式处理
+
+### 背景颜色
+
+可以通过 [`PatternFill`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html#openpyxl.styles.fills.PatternFill) 配置背景颜色。
+
+```python
+fill = PatternFill(start_color='FFF2CC', end_color='FFF2CC', fill_type="solid")
+ws.cell(row=1, column=1).fill = fill
+```
+
+### 合并单元格
+
+可以使用 [`merge_cells`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.merge_cells) 合并单元格，并通过改变左上单元格来定义值和样式。
+
+```python
+ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
+```
+
 ## Reference
 
 - [renmu123/openpyxl-chinese-docs](https://openpyxl-chinese-docs.readthedocs.io/zh-cn/latest/)

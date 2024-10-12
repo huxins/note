@@ -21,7 +21,7 @@ workbook = load_workbook(filename='test.xlsx')
 print(workbook.sheetnames)
 ```
 
-### 新建
+### 生成文件
 
 可以通过 [`Workbook()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.workbook.html#openpyxl.workbook.workbook.Workbook) 新建一个工作簿。
 
@@ -147,6 +147,27 @@ wb.save("output.xlsx")
 fill = PatternFill(start_color='FFF2CC', end_color='FFF2CC', fill_type="solid")
 ws.cell(row=1, column=1).fill = fill
 ```
+
+### 更改列宽
+
+可以通过 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 修改单个列的属性，例如宽度。
+
+```python
+column_dimension = ws.column_dimensions['A']
+column_dimension.width = 20
+```
+
+其中 `column_dimensions` 是 [`Worksheet`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet) 对象的一个属性，它用于访问工作表的 [`DimensionHolder`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.DimensionHolder) 对象。可以把它看作是一个专门用于保存 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 或 [`RowDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.RowDimension) 的字典。
+
+通常通过 `ws.column_dimensions[col_letter]` 来访问或设置某一列的属性。
+
+可以通过 [`Cell.column_letter`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html#openpyxl.cell.cell.Cell.column_letter) 属性，获取指定单元格的列号。
+
+```python
+col_letter = ws.cell(row=1, column=1).column_letter
+```
+
+需要注意的是，设置的宽度和实际生成的列宽，存在 0.62 的误差。
 
 ### 合并单元格
 

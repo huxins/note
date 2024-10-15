@@ -51,6 +51,12 @@
 - Office
   - [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - 用于读取和写入 Excel 2010 xlsx、xlsm、xltx、xltm 文件的库。
 
+### HTML 操作
+
+*用于处理 HTML 和 XML 的库。*
+
+- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/) - 提供 Python 风格的习惯用法，用于迭代、搜索和修改 HTML 或 XML。
+
 ## 三、项目
 
 ### CLI

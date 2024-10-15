@@ -139,6 +139,15 @@ wb.save("output.xlsx")
 
 ## 三、样式处理
 
+### 字体
+
+可以通过 [`Font`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fonts.html#openpyxl.styles.fonts.Font) 配置字体大小、颜色等。
+
+```python
+font = Font(name='Arial', bold=True, color='FF0000', size=12)
+ws.cell(row=1, column=1).font = font
+```
+
 ### 背景颜色
 
 可以通过 [`PatternFill`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html#openpyxl.styles.fills.PatternFill) 配置背景颜色。
@@ -146,6 +155,30 @@ wb.save("output.xlsx")
 ```python
 fill = PatternFill(start_color='FFF2CC', end_color='FFF2CC', fill_type="solid")
 ws.cell(row=1, column=1).fill = fill
+```
+
+### 单元格边框
+
+可以通过 [`Border`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.borders.html#openpyxl.styles.borders.Border) 配置单元格边框。
+
+```python
+thin_border = Border(
+    left=Side(style='thin'),
+    right=Side(style='thin'),
+    top=Side(style='thin'),
+    bottom=Side(style='thin')
+)
+
+ws.cell(row=1, column=1).border = thin_border
+```
+
+### 单元格对齐
+
+可以通过 [`Alignment`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.alignment.html#openpyxl.styles.alignment.Alignment) 配置单元格对齐方式。
+
+```python
+alignment = Alignment(horizontal='center', vertical='center')
+ws.cell(row=1, column=1).alignment = alignment
 ```
 
 ### 更改列宽

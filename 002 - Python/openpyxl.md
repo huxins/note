@@ -181,6 +181,15 @@ alignment = Alignment(horizontal='center', vertical='center')
 ws.cell(row=1, column=1).alignment = alignment
 ```
 
+### 单元格格式
+
+可以使用 [`NumberFormat`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.numbers.html#openpyxl.styles.numbers.NumberFormat) 属性来设置单元格的格式。
+
+```python
+cell.number_format = 'yyyy-mm-dd'
+cell.number_format = '#,##0'
+```
+
 ### 更改列宽
 
 可以通过 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 修改单个列的属性，例如宽度。
@@ -208,6 +217,20 @@ col_letter = ws.cell(row=1, column=1).column_letter
 
 ```python
 ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
+```
+
+### 冻结和筛选
+
+可以通过 [`freeze_panes`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.freeze_panes) 配置冻结区域，例如冻结首行。
+
+```python
+ws.freeze_panes = ws['A2']
+```
+
+可以通过 `auto_filter` 开启筛选。
+
+```python
+ws.auto_filter.ref = ws.dimensions
 ```
 
 ## Reference

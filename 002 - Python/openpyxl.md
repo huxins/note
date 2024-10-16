@@ -190,6 +190,18 @@ cell.number_format = 'yyyy-mm-dd'
 cell.number_format = '#,##0'
 ```
 
+### 条件格式
+
+可以通过 [`ConditionalFormatting`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.formatting.html#openpyxl.formatting.formatting.ConditionalFormatting) 来使用条件格式。
+
+例如，在表格中设置斑马条纹。
+
+```python
+zebra_fill = PatternFill(start_color="DCE6F1", end_color="DCE6F1", fill_type="solid")
+zebra_rule = FormulaRule(formula=['ISODD(ROW())'], fill=zebra_fill)
+ws.conditional_formatting.add(f"A2:{ws.dimensions.split(':')[1]}", zebra_rule)
+```
+
 ### 更改列宽
 
 可以通过 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 修改单个列的属性，例如宽度。

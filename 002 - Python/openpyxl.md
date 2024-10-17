@@ -194,12 +194,29 @@ cell.number_format = '#,##0'
 
 可以通过 [`ConditionalFormatting`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.formatting.html#openpyxl.formatting.formatting.ConditionalFormatting) 来使用条件格式。
 
-例如，在表格中设置斑马条纹。
+例如，通过 [`FormulaRule`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html#openpyxl.formatting.rule.FormulaRule) 在表格中设置斑马条纹。
 
 ```python
 zebra_fill = PatternFill(start_color="DCE6F1", end_color="DCE6F1", fill_type="solid")
 zebra_rule = FormulaRule(formula=['ISODD(ROW())'], fill=zebra_fill)
 ws.conditional_formatting.add(f"A2:{ws.dimensions.split(':')[1]}", zebra_rule)
+```
+
+例如，通过 [`DataBar`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html#openpyxl.formatting.rule.DataBar) 将百分比展示为数据条。在设置数据条时，默认的颜色是渐变的。
+
+```python
+min_val = FormatObject(type='min')
+max_val = FormatObject(type='max')
+data_bar = DataBar(cfvo=[min_val, max_val], color="63C384", minLength=0, maxLength=100)
+rule = Rule(type='dataBar', dataBar=data_bar)
+ws.conditional_formatting.add('P2:P{}'.format(ws.max_row), rule)
+```
+
+可以通过 [`DataBarRule`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html#openpyxl.formatting.rule.DataBarRule) 函数快捷创建数据条规则。
+
+```python
+rule = DataBarRule(start_type='min', end_type='max', color='63C384', minLength=0, maxLength=100)
+ws.conditional_formatting.add('P2:P{}'.format(ws.max_row), rule)
 ```
 
 ### 更改列宽

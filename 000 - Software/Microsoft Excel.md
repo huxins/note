@@ -371,13 +371,32 @@ CONCAT(text1, [text2], ...)
 | [更改列宽以自动适合内容](https://support.microsoft.com/zh-cn/office/72f5e3cc-994d-43e8-ae58-9774a0905f46) | `Alt + H + O + I`       | 样式           |
 | [打开或关闭筛选](https://support.microsoft.com/zh-cn/office/d6ae119c-5fab-4b7f-8869-6ef02ece71f5#bkmk_keyboardshortcuts_win) | `Ctrl + Shift + L`      | 筛选           |
 
-## 三、条件格式
+## 三、样式
+
+### 条件格式
 
 根据公式确定要设置格式的单元格。
 
 | 公式          | 应用于   | 描述     |
 | ------------- | -------- | -------- |
 | =`$H1="离职"` | =`$A:$H` | 整行变色 |
+
+### 单元格格式
+
+单元格格式功能非常强大，用于控制数据在单元格中的显示方式。
+
+例如，用于显示数字，可以指定小数位数和千位分隔符。
+
+```
+#,##0
+#,##0.00
+```
+
+可以通过具体限制数字的正负数、零、文本的显示格式，来[隐藏零值](https://support.microsoft.com/zh-cn/office/3ec7a433-46b8-4516-8085-a00e9e476b03)。
+
+```python
+0;-0;;@
+```
 
 ## Reference
 

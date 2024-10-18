@@ -219,6 +219,8 @@ rule = DataBarRule(start_type='min', end_type='max', color='63C384', minLength=0
 ws.conditional_formatting.add('P2:P{}'.format(ws.max_row), rule)
 ```
 
+数据条[仅支持渐变填充](https://foss.heptapod.net/openpyxl/openpyxl/-/issues/891)，不支持实心填充。这与微软自 OOXML 规范发布以来添加的格式扩展有关。
+
 ### 更改列宽
 
 可以通过 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 修改单个列的属性，例如宽度。

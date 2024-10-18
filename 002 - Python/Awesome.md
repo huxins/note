@@ -44,6 +44,12 @@
 
 - [pandas](https://pandas.pydata.org/) - 一个提供高性能、易于使用的数据结构和数据分析工具的库。
 
+### 数据验证
+
+*用于验证数据的库，在许多情况下用于表单。*
+
+- [pydantic](https://github.com/pydantic/pydantic) - 使用 Python 类型提示进行数据验证。
+
 ### 特定格式处理
 
 *用于解析和操纵特定文本格式的库。*

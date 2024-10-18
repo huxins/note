@@ -54,9 +54,7 @@ UserSchema = Schema.from_dict(
 )
 ```
 
-## 二、输入输出
-
-### 序列化
+## 二、序列化
 
 通过将对象传递给 `Schema` 的 [`dump`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.dump) 方法来[序列化](https://marshmallow.readthedocs.io/en/stable/quickstart.html#serializing-objects-dumping)对象，该方法将对象格式化为字典。
 
@@ -105,9 +103,9 @@ summary_schema = UserSchema(exclude=("created_at",))
 summary_schema.dump(user)
 ```
 
-### 反序列化
+## 三、反序列化
 
-[`load`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.load) 方法验证输入字典，并将其反序列化为，一个映射到反序列化值的字段名字典。
+[`load`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.load) 方法用于验证输入字典，并将其反序列化为一个字典，其中包含字段名称及其对应的反序列化值。
 
 ```python
 from pprint import pprint
@@ -122,7 +120,7 @@ result = schema.load(user_data)
 pprint(result)
 ```
 
-为了反序列化为自定义对象，定义 `Schema` 的方法并用 `post_load` 装饰它。
+为了反序列化为自定义对象，定义 `Schema` 的方法并用 [`post_load`](https://marshmallow.readthedocs.io/en/stable/marshmallow.decorators.html#marshmallow.decorators.post_load) 装饰它。
 
 ```python
 from marshmallow import Schema, fields, post_load
@@ -167,5 +165,23 @@ class DailyReportSchema(Schema):
     @post_load
     def make_daily_report(self, data, **kwargs):
         return DailyReport(**data)
+```
+
+### 预处理
+
+[`pre_load`](https://marshmallow.readthedocs.io/en/stable/marshmallow.decorators.html#marshmallow.decorators.pre_load) 是一个装饰器，用于在数据进入 [`load`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.load) 方法进行验证和反序列化之前对其进行预处理。
+
+可以在 `Schema` 类中定义一个带有 `@pre_load` 装饰器的方法，以便在数据加载前执行一些自定义的逻辑操作，比如数据清理或格式转换。
+
+```python
+from marshmallow import Schema, fields, pre_load
+
+class MySchema(Schema):
+    name = fields.String()
+
+    @pre_load
+    def process_data(self, data, **kwargs):
+        data['name'] = data['name'].strip().title()
+        return data
 ```
 

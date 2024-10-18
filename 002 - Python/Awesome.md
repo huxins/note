@@ -56,6 +56,7 @@
 
 - Office
   - [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - 用于读取和写入 Excel 2010 xlsx、xlsm、xltx、xltm 文件的库。
+  - [XlsxWriter](https://github.com/jmcnamara/XlsxWriter) - 用于创建 Excel XLSX 文件的 Python 模块。
 
 ### HTML 操作
 

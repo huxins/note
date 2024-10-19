@@ -137,6 +137,30 @@ for r in dataframe_to_rows(df, index=False, header=True):
 wb.save("output.xlsx")
 ```
 
+### 公式
+
+直接输入公式文本，创建一个包含公式的工作簿。
+
+```python
+from openpyxl import Workbook
+
+wb = Workbook()
+ws = wb.active
+
+ws['A1'] = 10
+ws['A2'] = 20
+ws['A3'] = '=SUM(A1:A2)'
+
+wb.save('formula_example.xlsx')
+```
+
+当需要动态录入每一行时，可以通过 [`ws.max_row`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.max_row) 获取当前已写入的最大行索引。
+
+```python
+last_row = ws.max_row
+ws[f'O{last_row}'] = f"=L{last_row}+N{last_row}-M{last_row}"
+```
+
 ## 三、样式处理
 
 ### 字体
@@ -221,7 +245,7 @@ ws.conditional_formatting.add('P2:P{}'.format(ws.max_row), rule)
 
 数据条[仅支持渐变填充](https://foss.heptapod.net/openpyxl/openpyxl/-/issues/891)，不支持实心填充。这与微软自 OOXML 规范发布以来添加的格式扩展有关。
 
-### 更改列宽
+### 列宽行高
 
 可以通过 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 修改单个列的属性，例如宽度。
 
@@ -232,7 +256,13 @@ column_dimension.width = 20
 
 其中 `column_dimensions` 是 [`Worksheet`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet) 对象的一个属性，它用于访问工作表的 [`DimensionHolder`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.DimensionHolder) 对象。可以把它看作是一个专门用于保存 [`ColumnDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.ColumnDimension) 或 [`RowDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.RowDimension) 的字典。
 
-通常通过 `ws.column_dimensions[col_letter]` 来访问或设置某一列的属性。
+通常通过 `ws.column_dimensions[col_letter]` 来访问或设置某一列的属性。设置的宽度和实际生成的列宽，存在 0.62 的误差。
+
+```python
+column_widths = [12.75, 37.25, 16.75, 10]
+for i, width in enumerate(column_widths, 1):
+    ws.column_dimensions[chr(64 + i)].width = width + 0.62
+```
 
 可以通过 [`Cell.column_letter`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html#openpyxl.cell.cell.Cell.column_letter) 属性，获取指定单元格的列号。
 
@@ -241,6 +271,12 @@ col_letter = ws.cell(row=1, column=1).column_letter
 ```
 
 需要注意的是，设置的宽度和实际生成的列宽，存在 0.62 的误差。
+
+可以通过 [`RowDimension`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html#openpyxl.worksheet.dimensions.RowDimension) 修改单个行的属性，例如高度。
+
+```python
+ws.row_dimensions[1].height = 30
+```
 
 ### 合并单元格
 

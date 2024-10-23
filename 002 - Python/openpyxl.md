@@ -38,7 +38,19 @@ wb.save('test.xlsx')
 
 ### 访问单元格
 
-#### 批量
+可以通过 [`Worksheet.cell()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.cell) 访问单元格。
+
+```python
+from openpyxl import load_workbook
+
+workbook = load_workbook(filename='test.xlsx')
+worksheet = workbook['Sheet1']
+
+value = worksheet.cell(row=1, column=1).value
+print(value)
+```
+
+### 批量访问单元格
 
 如果需要遍历文件中的所有行和列，可以使用 [`Worksheet.rows`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.rows) 属性。
 
@@ -70,20 +82,6 @@ worksheet = workbook['Sheet1']
 
 # 获取第一行数据
 worksheet[1]
-```
-
-#### 单个
-
-可以通过 [`Worksheet.cell()`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.cell) 访问单元格。
-
-```python
-from openpyxl import load_workbook
-
-workbook = load_workbook(filename='test.xlsx')
-worksheet = workbook['Sheet1']
-
-value = worksheet.cell(row=1, column=1).value
-print(value)
 ```
 
 ### 修改单元格

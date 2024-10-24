@@ -91,6 +91,12 @@ worksheet.write('A1', 'Hello', bold)
 workbook.close()
 ```
 
+可以使用 `worksheet.hide_gridlines()` 方法来隐藏网格线。
+
+```python
+ws.hide_gridlines(2)
+```
+
 ### 列宽行高
 
 可以通过 [`worksheet.set_column()`](https://xlsxwriter.readthedocs.io/worksheet.html#set_column) 和 [`worksheet.set_row()`](https://xlsxwriter.readthedocs.io/worksheet.html#set_row) 方法设置列宽和行高。
@@ -123,12 +129,14 @@ workbook.close()
 可以通过 [`worksheet.autofilter()`](https://xlsxwriter.readthedocs.io/worksheet.html#autofilter) 开启筛选。
 
 ```python
-ws.autofilter(0, 0, 0, ws.dim_rowmax)
+ws.autofilter(0, 0, ws.dim_rowmax, ws.dim_colmax)
 ```
 
 ### 条件格式
 
 可以通过 [`worksheet.conditional_format()`](https://xlsxwriter.readthedocs.io/worksheet.html#conditional_format) 设置[条件格式](https://xlsxwriter.readthedocs.io/working_with_conditional_formats.html#type)。
+
+数据条[支持实心填充](https://github.com/jmcnamara/XlsxWriter/issues/502)。这与微软自 OOXML 规范发布以来添加的格式扩展有关。
 
 ```python
 ws.conditional_format(
@@ -141,6 +149,30 @@ ws.conditional_format(
         'max_value': 1,
         'bar_color': '#63C384',
         'bar_solid': True
+    }
+)
+```
+
+可以使用 [`blanks`](https://xlsxwriter.readthedocs.io/working_with_conditional_formats.html#type-blanks) 条件，设置首行单元格为空值的背景颜色。
+
+```python
+blank_format = workbook.add_format()
+blank_format.set_bg_color('white')
+ws.conditional_format(f'A1:{xl_col_to_name(ws.xls_colmax - 1)}1',
+                      {'type': 'blanks', 'format': blank_format})
+```
+
+可以使用 [`formula`](https://xlsxwriter.readthedocs.io/working_with_conditional_formats.html#type-formula) 条件，自动设置边框。
+
+```python
+border_format = workbook.add_format()
+border_format.set_border(1)
+ws.conditional_format(
+    f'A1:P{ws.dim_rowmax + 1}',
+    {
+        'type': 'formula',
+        'criteria': '=NOT(ISBLANK($A1))',
+        'format': border_format
     }
 )
 ```

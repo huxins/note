@@ -177,3 +177,30 @@ ws.conditional_format(
 )
 ```
 
+可以使用 [`cell`](https://xlsxwriter.readthedocs.io/working_with_conditional_formats.html#type-cell) 条件，当利润亏损时，设置明显提示。
+
+```python
+profit_format = workbook.add_format({
+    'bg_color': '#FFC7CE',   # 浅红色填充
+    'font_color': '#9C0006'  # 深红色文本
+})
+ws.conditional_format(
+    f'V3:V{ws.dim_rowmax + 1}',
+    {
+        'type': 'cell',
+        'criteria': '<',
+        'value': 0,
+        'format': profit_format
+    }
+)
+```
+
+### 合并单元格
+
+可以使用 [`worksheet.merge_range()`](https://xlsxwriter.readthedocs.io/worksheet.html#worksheet-merge-range) 合并单元格，并写入单元格数据和样式。
+
+```python
+ws.merge_range(f'A1:{xl_col_to_name(col_num - 1)}1', title_text, title_format)
+ws.set_row(0, 42)
+```
+

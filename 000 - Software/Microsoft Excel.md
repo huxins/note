@@ -347,6 +347,42 @@ LEFT(text, [num_chars])
 =LEFT(I1, 15)
 ```
 
+[`MID`](https://support.microsoft.com/zh-cn/office/2eba57be-0c05-4bdc-bf81-5ecf4421eb8a) 函数返回文本字符串中从指定位置开始的特定数目的字符。
+
+```sql
+MID(text, start_num, num_chars)
+```
+
+例如，从字符串中第一个字符开始，返回五个字符。
+
+```sql
+=MID("Fluid Flow", 1, 5)
+```
+
+[`FIND`](https://support.microsoft.com/zh-cn/office/c7912941-af2a-4bdf-a553-d0d89b0a0628) 函数用于在第二个文本串中定位第一个文本串，并返回第一个文本串的起始位置的值，该值从第二个文本串的第一个字符算起。
+
+```sql
+FIND(find_text, within_text, [start_num])
+```
+
+例如，查找单元格 A2 中第一个 "M" 的位置。
+
+```sql
+=FIND("M", A2)
+```
+
+[`SEARCH`](https://support.microsoft.com/zh-cn/office/9ab04538-0e55-4719-a72e-b6f54513b495) 函数可在第二个文本字符串中查找第一个文本字符串，并返回第一个文本字符串的起始位置的编号，该编号从第二个文本字符串的第一个字符算起。
+
+```sql
+SEARCH(find_text, within_text, [start_num])
+```
+
+例如，查找对应字符串的位置，且不区分大小写。
+
+```sql
+=SEARCH("apple", "I have an Apple")
+```
+
 #### 文本转换
 
 [`CONCAT`](https://support.microsoft.com/zh-cn/office/9b1a9a3f-94ff-41af-9736-694cbd6b4ca2) 函数合并来自多个区域或字符串的文本，但它不提供分隔符参数。
@@ -396,6 +432,77 @@ CONCAT(text1, [text2], ...)
 
 ```python
 0;-0;;@
+```
+
+## 四、公式
+
+### 数组公式
+
+[数组公式](https://support.microsoft.com/zh-cn/office/7d94a64e-3ff3-4686-9372-ecfd5caa57c7)是可以对数组中的一个或多个项执行多个计算的公式。它可以同时处理多个数据，并返回一个或多个结果。
+
+数组公式通常用大括号 `{}` 包围，表示这是一个数组公式。不过，你不能直接输入大括号，而是需要通过按 `Ctrl + Shift + Enter` 来输入数组公式，Excel 会自动为你添加大括号。
+
+具体步骤如下：
+
+```
+1、选择你希望显示结果的单元格区域（例如，B1:B6）。
+2、输入公式 =A1:A6^2。
+3、按 Ctrl + Shift + Enter，而不是仅按 Enter。
+```
+
+数组公式有两种主要类型：
+
+- **单元格数组公式**：返回多个结果，并且这些结果会填充到多个单元格中。
+
+  例如，可以使用数组公式来计算一列或一行中的每个元素的平方。
+
+  ```sql
+  =A1:A5^2
+  ```
+
+- **单元格内数组公式**：返回单个结果，即使它是基于多个值计算的。
+
+  例如，可以使用数组公式来计算两个数组内对应元素的乘积之和。
+
+  ```sql
+  =SUM({1,2,3} * {4,5,6})
+  ```
+
+  例如，查找数组中的最大值。
+  
+    ```sql
+    =MAX({1,2,3} * {4,5,6})
+    ```
+
+在 Excel 365 和 Excel 2019 中，微软引入了[动态数组](https://support.microsoft.com/zh-cn/office/205c6b06-03ba-4151-89a1-87a7eb36e531)功能，这使得数组公式的使用更加直观和简单，例如不再需要使用 `Ctrl + Shift + Enter`，可以直接输入公式并获得结果。在旧版 Excel 中打开包含动态数组公式的工作簿时，有一些[兼容性注意事项](https://support.microsoft.com/zh-cn/office/696e164e-306b-4282-ae9d-aa88f5502fa2)。
+
+例如，计算从指定范围内所有包含 "上班迟到" 的文本中提取的分钟数的总和。
+
+```sql
+=SUM(
+    IF(
+        ISNUMBER(SEARCH("上班迟到", F10:AM10)),
+        VALUE(
+            MID(F10:AM10, SEARCH("上班迟到", F10:AM10) + 4,
+                SEARCH("分钟", F10:AM10) - SEARCH("上班迟到", F10:AM10) - 4)
+        ),
+        0
+    )
+)
+```
+
+可以通过 `IFERROR` 函数，优化逻辑结构。
+
+```sql
+=SUM(
+    IFERROR(
+        VALUE(
+            MID(F10:AM10, SEARCH("上班迟到", F10:AM10) + 4,
+                SEARCH("分钟", F10:AM10) - SEARCH("上班迟到", F10:AM10) - 4)
+        ), 
+        0
+    )
+)
 ```
 
 ## Reference

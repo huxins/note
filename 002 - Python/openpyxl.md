@@ -194,6 +194,12 @@ thin_border = Border(
 ws.cell(row=1, column=1).border = thin_border
 ```
 
+可以使用 `ws.sheet_view.showGridLines` 属性来隐藏网格线。
+
+```python
+ws.sheet_view.showGridLines = False
+```
+
 ### 单元格对齐
 
 可以通过 [`Alignment`](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.alignment.html#openpyxl.styles.alignment.Alignment) 配置单元格对齐方式。

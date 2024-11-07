@@ -46,9 +46,11 @@
 
 ## 二、访问数据
 
-可以将 `DataFrame` 在语义上视为字典。
+`DataFrame` 可以在语义上被视为一个字典，其中每个键对应于一个列名，而每个值对应于一个具有相同索引的 `Series` 对象。
 
 ### 列数据
+
+在 `DataFrame` 中，每一列都是一个 `Series` 对象。`DataFrame` 是由多个 `Series` 组成的二维数据结构，其中每个 `Series` 代表一列数据，并且这些列共享相同的索引。
 
 [获取、设置和删除列](https://pandas.pydata.org/docs/user_guide/dsintro.html#column-selection-addition-deletion)的语法与类似的 `dict` 操作相同。
 
@@ -99,6 +101,24 @@ data = [
 df = pd.DataFrame(data)
 
 print(df.iloc[0])
+```
+
+还可以通过 [`df.iterrows()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows) 获取一个生成器。这个生成器会生成一系列的元组，每个元组对应 `DataFrame` 中的一行数据。
+
+```python
+for _, row in df.iterrows():
+    name = row['姓名']
+    times_raw = row.iloc[6]
+```
+
+### Excel
+
+可以通过 [`pd.read_excel()`](https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html#pandas.read_excel) 方法，将 Excel 文件转换为 `DataFrame`。
+
+例如，读取第三行为表头的 Excel 文件。
+
+```python
+df = pd.read_excel(file_path, header=2)
 ```
 
 ## 三、新增数据

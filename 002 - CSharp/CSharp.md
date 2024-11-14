@@ -1,38 +1,40 @@
 # CSharp
 
+[C#](https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/overview) 语言是适用于 [.NET](https://learn.microsoft.com/zh-cn/dotnet/) 平台的最流行语言。
+
 ## 一、类型
 
 CSharp 是一种强[类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/)语言。每个变量和常量都有一个类型，每个求值的表达式也是如此。
 
-### 1.1. 内置类型
+### 内置类型
 
 CSharp 提供了一组标准的[内置类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/built-in-types)。
 
 #### char
 
-`char` 类型表示 Unicode UTF-16 字符。
+[`char`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/char) 类型表示 Unicode UTF-16 字符。
 
 ```c#
 char firstLetter = 'C';
 ```
 
-#### integer
+#### int
 
-所有的整型数值类型均为值类型。
+[`int`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) 类型表示整数。所有的整型数值类型均为值类型。
 
-| C#    | Size                  | .NET           |
-| ----- | --------------------- | -------------- |
-| `int` | Signed 32-bit integer | `System.Int32` |
+| C#    | Size               | .NET                                                         |
+| ----- | ------------------ | ------------------------------------------------------------ |
+| `int` | 带符号的 32 位整数 | [`System.Int32`](https://learn.microsoft.com/zh-cn/dotnet/api/system.int32) |
 
 #### float
 
-所有的浮点型数值类型均为值类型。
+[`float`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types) 类型表示实数。所有浮点型数值类型均为值类型。
 
-| C#        | Size      | .NET             |
-| --------- | --------- | ---------------- |
-| `float`   | 4 个字节  | `System.Single`  |
-| `double`  | 8 个字节  | `System.Double`  |
-| `decimal` | 16 个字节 | `System.Decimal` |
+| C#        | Size    | .NET                                                         |
+| --------- | ------- | ------------------------------------------------------------ |
+| `float`   | 4 字节  | [`System.Single`](https://learn.microsoft.com/zh-cn/dotnet/api/system.single) |
+| `double`  | 8 字节  | [`System.Double`](https://learn.microsoft.com/zh-cn/dotnet/api/system.double) |
+| `decimal` | 16 字节 | [`System.Decimal`](https://learn.microsoft.com/zh-cn/dotnet/api/system.decimal) |
 
 若要创建 `float` 类型，请在数字后面追加字母 `F`。
 
@@ -54,6 +56,8 @@ Console.WriteLine(12.39816M.GetType());
 
 #### bool
 
+[`bool`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/bool) 类型关键字是 .NET [`System.Boolean`](https://learn.microsoft.com/zh-cn/dotnet/api/system.boolean) 结构类型的别名，它表示一个布尔值，可为 `true` 或 `false`。
+
 ```c#
 Console.WriteLine(true);
 Console.WriteLine(false);
@@ -61,37 +65,38 @@ Console.WriteLine(false);
 
 #### string
 
-转义字符序列以反斜杠 `\` 开头，后跟要转义的字符。例如，`\n` 序列将添加一个新行，而 `\t` 序列将添加一个制表符。
+[`string`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/reference-types#the-string-type) 类型表示零个或多个 Unicode 字符的序列。`string` 是 [`System.String`](https://learn.microsoft.com/zh-cn/dotnet/api/system.string) 在 .NET 中的别名。
+
+字符串文本可包含任何字符文本，包括转义序列。
+
+例如，下面的示例使用转义序列 `\\` 表示反斜杠，使用 `\u0066` 表示字母 f，以及使用 `\n` 表示换行符。
 
 ```c#
 Console.WriteLine("Hello\nWorld!");
 Console.WriteLine("Hello\tWorld!");
+Console.WriteLine("\\\u0066\n F");
 ```
 
-逐字字符串将保留所有空格和字符，而无需转义反斜杠。要创建逐字字符串，请在文本字符串的前面使用 `@` 指令。
+[逐字字符串](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/verbatim)将保留所有空格和字符，而无需转义反斜杠。要创建逐字字符串，请在文本字符串的前面使用 `@` 指令。
 
 ```c#
 Console.WriteLine(@"    c:\source\repos    
         (this is where your code goes)");
 ```
 
-还可使用 `\u` 转义序列在文本字符串中添加编码字符。
-
-```c#
-Console.WriteLine("\u3053\u3093\u306B\u3061\u306F World!");
-```
-
-字符串模板可以将多个值合并为单个文本字符串。
+[字符串模板](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/interpolated)可以将多个值合并为单个文本字符串。
 
 ```c#
 string message = $"{greeting} {firstName}!";
 ```
 
-### 1.2. 引用类型
+### 引用类型
 
-#### 1.2.1. 数组
+C# 中有两种类型：[引用类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/reference-types)和[值类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/value-types)。引用类型的变量存储对其数据（对象）的引用，而值类型的变量直接包含其数据。
 
-可以将同一类型的多个变量存储在一个数组数据结构中。
+#### 数组
+
+可以将同一类型的多个变量存储在一个[数组](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/arrays)数据结构中。
 
 ```c#
 int[] array1 = new int[5];
@@ -100,9 +105,9 @@ int[] array2 = [1, 2, 3, 4, 5, 6];
 
 ## 二、语句
 
-### 2.1. 选择语句
+### 选择语句
 
-`if`、`if-else` 和 `switch` 语句根据表达式的值从多个可能的语句选择要执行的路径。
+[`if`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement)、`if-else` 和 [`switch`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement) 语句根据表达式的值从多个可能的语句选择要执行的路径。
 
 ```c#
 if (total > 14)
@@ -130,9 +135,11 @@ switch (fruit)
 }
 ```
 
-### 2.2. 迭代语句
+### 迭代语句
 
-在指定的布尔表达式的计算结果为 `true` 时，`for` 语句会执行一条语句或一个语句块。
+[迭代语句](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/statements/iteration-statements)重复执行语句或语句块。
+
+[`for`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/statements/iteration-statements#the-for-statement) 语句在指定的布尔表达式的计算结果为 `true` 时，会执行一条语句或一个语句块。
 
 ```c#
 for (int i = 0; i < 3; i++)
@@ -141,7 +148,7 @@ for (int i = 0; i < 3; i++)
 }
 ```
 
-`foreach` 语句提供一种简单、明了的方法来循环访问数组的元素。
+[`foreach`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/statements/iteration-statements#the-foreach-statement) 语句提供一种简单、明了的方法来循环访问数组的元素。
 
 ```c#
 string[] names = ["Rowena", "Robin", "Bao"];
@@ -153,7 +160,7 @@ foreach (string name in names)
 
 ## 三、LINQ
 
-语言集成查询 [LINQ](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/) 是一系列直接将查询功能集成到 C# 语言的技术统称。
+语言集成查询 [LINQ](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/) 是一系列直接将查询功能集成到 C# 语言的技术统称，提供[语言级查询](https://learn.microsoft.com/zh-cn/dotnet/standard/linq/#language-level-query-syntax)功能和高阶函数 API。
 
 [语言级查询](https://learn.microsoft.com/zh-cn/dotnet/standard/linq/#language-level-query-syntax)语法如下：
 
@@ -171,9 +178,9 @@ var parts = salesOrderItems
     .ToList();
 ```
 
-### 3.1. 排序
+### 排序
 
-排序操作基于一个或多个属性对序列的元素进行排序。第一个排序条件对元素执行主要排序。通过指定第二个排序条件，可以对每个主要排序组内的元素进行排序。
+[排序](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/standard-query-operators/sorting-data)操作基于一个或多个属性对序列的元素进行排序。第一个排序条件对元素执行主要排序。通过指定第二个排序条件，可以对每个主要排序组内的元素进行排序。
 
 ```c#
 var salesOrderItems = salesOrderItems
@@ -183,7 +190,7 @@ var salesOrderItems = salesOrderItems
     .ToList();
 ```
 
-### 3.2. 分组
+### 分组
 
 [分组](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/standard-query-operators/grouping-data)是指将数据分到不同的组，使每组中的元素拥有公共的属性。
 
@@ -198,11 +205,11 @@ var parts = salesOrderItems
 
 ## 四、异步
 
-异步编程的核心是 `Task` 和 `Task<T>` 对象，这两个对象对异步操作建模。它们受关键字 `async` 和 `await` 的支持。
+[异步编程](https://learn.microsoft.com/zh-cn/dotnet/csharp/asynchronous-programming/)的核心是 [`Task`](https://learn.microsoft.com/zh-cn/dotnet/api/system.threading.tasks.task) 和 [`Task<T>`](https://learn.microsoft.com/zh-cn/dotnet/api/system.threading.tasks.task-1) 对象，这两个对象对异步操作建模。它们受关键字 `async` 和 `await` 的支持。
 
-### 4.1. I/O 绑定
+### IO 绑定
 
-主要指的是那些需要等待外部资源的操作，如文件系统、数据库、网络请求等。
+[IO 绑定](https://learn.microsoft.com/zh-cn/dotnet/csharp/asynchronous-programming/async-scenarios#io-bound-example-download-data-from-a-web-service)主要指的是那些需要等待外部资源的操作，如文件系统、数据库、网络请求等。
 
 ```c#
 // 异步调用并等待异步方法执行完成
@@ -213,7 +220,7 @@ Console.ReadLine();
 static async Task MyAsyncMethod()
 {
     // 模拟异步操作，比如网络请求或者文件读取
-    await Task.Delay(2000); // 两秒钟的延迟
+    await Task.Delay(2000);  // 两秒钟的延迟
     Console.WriteLine("异步方法执行完成。");
 }
 ```
@@ -224,9 +231,9 @@ static async Task MyAsyncMethod()
 
 等待结束后，当 `Task.Delay(2000)` 完成时，控制权返回到 `MyAsyncMethod` 并继续执行后面的代码。
 
-### 4.2. CPU 绑定
+### CPU 绑定
 
-主要指的是那些需要大量计算的操作，比如复杂的数学计算、数据处理等。
+[CPU 绑定](https://learn.microsoft.com/zh-cn/dotnet/csharp/asynchronous-programming/async-scenarios#cpu-bound-example-perform-a-calculation-for-a-game)主要指的是那些需要大量计算的操作，比如复杂的数学计算、数据处理等。
 
 ```c#
 // 异步调用并等待异步方法执行完成
@@ -251,7 +258,7 @@ static int CalculateFactorial(int number)
 }
 ```
 
-### 4.3. 异常处理
+### 异常处理
 
 在异步编程中，`async` 方法通常返回 `Task` 或 `Task<T>`，这使得调用方可以等待它们完成并处理可能的异常。
 
@@ -297,7 +304,9 @@ async Task DoSomethingAsync()
 }
 ```
 
-### 4.4. 异步机制
+### 异步机制
 
-`await` 内部维护了一个状态机。当主线程运行到 `await` 时，如果等待的任务尚未完成，方法会返回一个未完成的任务，并释放当前线程。状态机保存当前的执行位置。当异步操作完成时，状态机会尝试在捕获的同步上下文中恢复执行后续代码。如果没有特定的同步上下文，代码将在线程池线程中继续执行。
+[`await`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/operators/await) 内部维护了一个状态机，当主线程运行到 `await` 时，如果等待的任务尚未完成，方法会返回一个未完成的任务，并释放当前线程。状态机保存当前的执行位置。
+
+当异步操作完成时，状态机会尝试在捕获的同步上下文中恢复执行后续代码。如果没有特定的同步上下文，代码将在线程池线程中继续执行。
 

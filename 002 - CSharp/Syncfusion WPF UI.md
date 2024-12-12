@@ -1,14 +1,12 @@
-# Syncfusion
-
-[社区许可证](https://www.syncfusion.com/products/communitylicense)为个人开发人员和小企业提供了对所有 [Syncfusion](https://www.syncfusion.com/) 产品的免费访问。
-
-## 一、WPF
+# Syncfusion WPF UI
 
 [Syncfusion Essential Studio for WPF](https://help.syncfusion.com/wpf/welcome-to-syncfusion-essential-wpf) 是一个由超过 90 种基本 WPF 控件组成的综合集合，用于更快地构建强大的业务线 Windows 应用程序。
 
-### Theme
+[社区许可证](https://www.syncfusion.com/products/communitylicense)为个人开发人员和小企业提供了对所有 [Syncfusion](https://www.syncfusion.com/) 产品的免费访问。
 
-SfSkinManager 可帮助应用 Syncfusion 和 Framework 控件的主题。
+## 一、主题
+
+[`SfSkinManager`](https://help.syncfusion.com/cr/wpf/Syncfusion.SfSkinManager.SfSkinManager.html) 可帮助应用 Syncfusion 和 Framework 控件的主题。
 
 通过 XAML 代码进行添加：
 

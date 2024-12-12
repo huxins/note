@@ -1,6 +1,8 @@
 # WPF
 
-.NET 与 .NET Framework 上的 WPF 之间具有一些[差异](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/migration/differences-from-net-framework)。
+[WPF for .NET](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/overview/) 是一个[开放源代码框架](https://github.com/dotnet/wpf)，它从原始 [WPF for .NET Framework](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/getting-started/) 源代码派生而来。
+
+[.NET](https://dotnet.microsoft.com/zh-cn/download) 与 [.NET Framework](https://dotnet.microsoft.com/zh-cn/download/dotnet-framework) 上的 WPF 之间具有一些[差异](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/migration/differences-from-net-framework)。
 
 ## 一、创建应用
 
@@ -10,13 +12,13 @@
 
 [数据绑定](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/data/?view=netdesktop-8.0)为应用呈现数据并与数据交互提供了一种简单而一致的方法。
 
-### 2.1. 绑定模式
+### 绑定模式
 
-`Binding` 有一个重要的属性 `Mode`，实现绑定中的数据流向。
+[`Binding`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 有一个重要的属性 [`Mode`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.mode#system-windows-data-binding-mode)，实现绑定中的[数据流向](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/data/#direction-of-the-data-flow)。
 
 #### OneTime
 
-当应用程序启动或 `DataContext` 更改时，更新绑定目标。此绑定类型实质上是 `OneWay` 绑定的简化形式，在源值不更改的情况下可以提供更好的性能。
+当应用程序启动或 [`DataContext`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement.datacontext) 更改时，更新绑定目标。此绑定类型实质上是 `OneWay` 绑定的简化形式，在源值不更改的情况下可以提供更好的性能。
 
 #### OneWay
 
@@ -93,78 +95,78 @@
 </StackPanel>
 ```
 
-### 2.2. 绑定对象
+### 绑定对象
 
 在数据驱动的应用程序中，更常见的情况是创建从一个对象中提起数据的绑定表达式。绑定的信息必须存储在一个公有属性中。因为 WPF 绑定不能获取私有信息或公有字段。
 
-下面演示如何使用 `DataContext` 属性来绑定一个自定义对象的属性。
+下面演示如何在 [XAML](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/data/binding-declarations-overview#declare-a-binding-in-xaml) 中使用 `DataContext` 属性来绑定一个自定义对象的属性。
 
-1. 先创建一个视图模型，命名为 `YourViewModel`。
+第一步，先创建一个视图模型，命名为 `YourViewModel`。
 
-   ```c#
-   public class YourViewModel : INotifyPropertyChanged
-   {
-       private string _username;
-       public string Username
-       {
-           get { return _username; }
-           set
-           {
-               if (_username != value)
-               {
-                   _username = value;
-                   OnPropertyChanged(nameof(Username));
-               }
-           }
-       }
-   
-       public event PropertyChangedEventHandler PropertyChanged;
-       protected void OnPropertyChanged(string propertyName)
-       {
-           PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-       }
-   }
-   ```
+```c#
+public class YourViewModel : INotifyPropertyChanged
+{
+    private string _username;
+    public string Username
+    {
+        get { return _username; }
+        set
+        {
+            if (_username != value)
+            {
+                _username = value;
+                OnPropertyChanged(nameof(Username));
+            }
+        }
+    }
 
-2. 源数据对象以准备好了，接下来设计 WPF 界面来让控件绑定源对象，具体的 XAML 代码如下所示。
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+```
 
-   ```xaml
-   <StackPanel Margin="50">
-       <StackPanel Margin="10" Orientation="Horizontal">
-           <TextBlock Text="姓名：" />
-           <TextBlock Width="100" Text="{Binding Path=Username}" />
-       </StackPanel>
-       <StackPanel Margin="10" Orientation="Horizontal">
-           <Button Click="changeName_Click" Content="改变姓名" />
-       </StackPanel>
-   </StackPanel>
-   ```
+第二步，源数据对象已准备好了，接下来设计 WPF 界面来让控件绑定源对象，具体的 XAML 代码如下所示。
 
-3. 对应的后台代码逻辑如下所示。
+```xaml
+<StackPanel Margin="50">
+    <StackPanel Margin="10" Orientation="Horizontal">
+        <TextBlock Text="姓名：" />
+        <TextBlock Width="100" Text="{Binding Path=Username}" />
+    </StackPanel>
+    <StackPanel Margin="10" Orientation="Horizontal">
+        <Button Click="changeName_Click" Content="改变姓名" />
+    </StackPanel>
+</StackPanel>
+```
 
-   ```c#
-   public partial class MainWindow : Window
-   {
-       private readonly YourViewModel YourVM;
-       public MainWindow()
-       {
-           InitializeComponent();
-           YourVM = new YourViewModel() { Username = "SYY"};
-           this.DataContext = YourVM;
-       }
-   
-       private void changeName_Click(object sender, RoutedEventArgs e)
-       {
-           YourVM.Username = "Learning";
-       }
-   }
-   ```
+最后，对应的后台代码逻辑如下所示。
 
-### 2.3. 格式化
+```c#
+public partial class MainWindow : Window
+{
+    private readonly YourViewModel YourVM;
+    public MainWindow()
+    {
+        InitializeComponent();
+        YourVM = new YourViewModel() { Username = "SYY"};
+        this.DataContext = YourVM;
+    }
+
+    private void changeName_Click(object sender, RoutedEventArgs e)
+    {
+        YourVM.Username = "Learning";
+    }
+}
+```
+
+### 字符串格式化
 
 [StringFormat](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.data.bindingbase.stringformat?view=windowsdesktop-8.0) 获取或设置一个字符串，该字符串指定在绑定值显示为字符串时如何[格式化](https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/formatting-types)绑定。
 
-日期格式化：
+日期格式：
 
 ```xaml
 <syncfusion:GridTextColumn
@@ -173,7 +175,7 @@
     MappingName="OrderDate" />
 ```
 
-定点小数格式化：
+定点小数格式：
 
 ```xaml
 <syncfusion:GridTextColumn
@@ -182,7 +184,7 @@
     MappingName="OrderQuantity" />
 ```
 
-货币格式化：
+货币格式：
 
 ```xaml
 <syncfusion:GridTextColumn
@@ -191,7 +193,7 @@
     MappingName="SalesUnitPrice" />
 ```
 
-百分比格式化：
+百分比格式：
 
 ```xaml
 <syncfusion:GridTextColumn
@@ -200,13 +202,13 @@
     MappingName="GrossMargin" />
 ```
 
-## 二、命令
+## 三、命令
 
 [命令](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8)是 WPF 中的一种输入机制。
 
-WPF 命令模型具有 4 个重要元素，`命令`、`命令源`、`命令目标`和`命令绑定`。
+WPF 命令模型具有四个重要元素，分别为[命令](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8#commands)、[命令源](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8#command-sources)、[命令目标](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8#command-target)和[命令绑定](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/commanding-overview?view=netframeworkdesktop-4.8#commandbinding)。
 
-WPF 命令模型的核心在于 `ICommand` 接口，该接口定义命令的工作原理。
+WPF 命令模型的核心在于 [`ICommand`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand) 接口，该接口定义命令的工作原理。
 
 ```c#
 public interface ICommand
@@ -217,15 +219,15 @@ public interface ICommand
 }
 ```
 
-`ICommand` 公开了两种方法 `Execute` 和 `CanExecute`，以及一个事件 `CanExecuteChanged`。
+[`ICommand`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand) 公开了两种方法 [`Execute`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand.execute#system-windows-input-icommand-execute(system-object)) 和 [`CanExecute`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand.canexecute#system-windows-input-icommand-canexecute(system-object))，以及一个事件 [`CanExecuteChanged`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand.canexecutechanged#system-windows-input-icommand-canexecutechanged)。
 
-`Execute` 执行与该命令关联的操作。
+[`Execute`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand.execute#system-windows-input-icommand-execute(system-object)) 执行与该命令关联的操作。
 
-`CanExecute` 确定是否可以在当前命令目标上执行该命令。例如，文本框中没有选择任何文本，此时 `Copy` 命令是不可用的，`CanExecute` 则返回 `false`。
+[`CanExecute`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand.canexecute#system-windows-input-icommand-canexecute(system-object)) 确定是否可以在当前命令目标上执行该命令。例如，文本框中没有选择任何文本，此时 [`Copy`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.applicationcommands.copy#system-windows-input-applicationcommands-copy) 命令是不可用的，[`CanExecute`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.icommand.canexecute#system-windows-input-icommand-canexecute(system-object)) 则返回 `false`。
 
-实际上，`Execute` 和 `CanExecute` 方法并没有包含命令的处理逻辑，而是将触发遍历元素树的事件来查找具有 `CommandBinding` 的对象，真正命令的处理程序包含在 `CommandBinding` 的事件处理程序中。
+实际上，`Execute` 和 `CanExecute` 方法并没有包含命令的处理逻辑，而是将触发遍历元素树的事件来查找具有 [`CommandBinding`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.commandbinding) 的对象，真正命令的处理程序包含在 `CommandBinding` 的事件处理程序中。
 
-执行过程如下。
+执行过程如下：
 
 ```
 1、按钮点击：当用户点击按钮时，按钮的 Command 属性（ApplicationCommands.New）被触发。
@@ -236,11 +238,11 @@ public interface ICommand
 6、显示消息：NewCommandExecuted 方法执行，显示消息框。
 ```
 
-### 2.1. 内置命令
+### 内置命令
 
 在 WPF 中，`CommandBinding` 和 `Command` 是实现命令模式的一部分，用于将用户界面操作与命令逻辑分离。这使得代码更模块化和更容易维护。
 
-#### 2.1.1. 命令绑定
+#### 命令绑定
 
 在 XAML 中创建命令绑定。
 
@@ -262,9 +264,9 @@ public MainWindow()
 }
 ```
 
-#### 2.1.2. 绑定执行方法
+#### 绑定执行方法
 
-`ApplicationCommands.New` 是 WPF 提供的一个预定义命令，表示`新建`操作。`Executed="NewCommand"` 用于指定当命令被执行时应该调用的方法。
+[`ApplicationCommands.New`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.input.applicationcommands.new#system-windows-input-applicationcommands-new) 是 WPF 提供的一个预定义命令，表示新建操作。`Executed="NewCommand"` 用于指定当命令被执行时应该调用的方法。
 
 ```c#
 private void NewCommand(object sender, ExecutedRoutedEventArgs e)
@@ -273,7 +275,7 @@ private void NewCommand(object sender, ExecutedRoutedEventArgs e)
 }
 ```
 
-#### 2.1.3. 命令源
+#### 命令源
 
 在 XAML 中，设置命令源。
 
@@ -294,7 +296,7 @@ private void NewCommand(object sender, ExecutedRoutedEventArgs e)
 </StackPanel>
 ```
 
-#### 2.1.4. 事件调用
+#### 事件调用
 
 除了在 XAML 中设置命令源，还可以绑定事件方法，手动调用命令。
 
@@ -320,11 +322,11 @@ private void DoCommand_Click(object sender, RoutedEventArgs e)
 </StackPanel>
 ```
 
-### 2.2. 自定义命令
+### 自定义命令
 
-#### 2.2.1. 实现命令
+#### 实现命令
 
-自定义实现一个命令，如 `RelayCommand`。
+自定义实现一个命令，如 [`RelayCommand`](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/relaycommand)。
 
 ```c#
 public class RelayCommand : ICommand
@@ -356,7 +358,7 @@ public class RelayCommand : ICommand
 }
 ```
 
-#### 2.2.2. 命令绑定
+#### 命令绑定
 
 在 `ViewModel` 中实例化命令。
 
@@ -383,7 +385,7 @@ public class YourViewModel
 }
 ```
 
-在 `XAML` 中绑定命令。
+在 XAML 中绑定命令。
 
 ```xaml
 <Window
@@ -403,13 +405,13 @@ public class YourViewModel
 
 ## 三、异常
 
-### 3.1. 编译错误
+### 编译错误
 
 - 当前上下文中不存在名称 `InitializeComponent`
 
-  在 VS 中，如果 XAML 的后台代码提示不存在 `InitializeComponent`，尝试将 XAML 的属性从 `页` 更改为其他，再更改回 `页`，会自动选择 `MSBuild:Compile`。
+  在 VS 中，如果 XAML 的后台代码提示不存在 `InitializeComponent`，尝试将 XAML 的属性从**页**更改为其他，再更改回**页**，会自动选择 `MSBuild:Compile`。
 
-### 3.2. 运行错误
+### 运行错误
 
 #### 查看事件日志
 
@@ -427,13 +429,13 @@ Windows 事件查看器是排查应用程序崩溃问题的一个重要工具。
 
 [生成和部署](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/app-development/building-and-deploying-wpf-applications?view=netframeworkdesktop-4.8)模型提供在本地和远程生成和部署应用程序的功能。
 
-### 4.1. Windows Installer
+### Windows Installer
 
 [Windows Installer](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/app-development/deploying-a-wpf-application-wpf?view=netframeworkdesktop-4.8#windows-installer) 允许应用程序打包为可轻松分发到客户端并运行的自包含可执行文件。
 
 如果需要比 ClickOnce 提供的更为复杂的桌面应用程序安装，则可以创建 [Windows Installer](https://learn.microsoft.com/zh-cn/visualstudio/deployment/deploying-applications-services-and-components?view=vs-2022#create-an-installer-package-windows-desktop-1) 包或自定义引导程序。
 
-#### 4.1.1. Visual Studio Installer
+#### Visual Studio Installer
 
 可以使用 [vdproj](https://aka.ms/vdproj-docs) 创建 MSI 或 EXE 安装程序包。
 

@@ -100,7 +100,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ### 配置连接
 
-可以按照常规的 .NET 方式[构造 `DbContext`](https://learn.microsoft.com/zh-cn/ef/core/dbcontext-configuration/#simple-dbcontext-initialization-with-new) 实例。
+可以按照常规的 .NET 方式构造 [`DbContext`](https://learn.microsoft.com/zh-cn/ef/core/dbcontext-configuration/#simple-dbcontext-initialization-with-new) 实例。
 
 例如，通过重写 `OnConfiguring` 方法来执行配置。
 

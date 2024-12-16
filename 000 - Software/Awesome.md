@@ -13,9 +13,3 @@
 
 - [Microsoft Excel](https://support.microsoft.com/zh-cn/excel) - Microsoft 为使用 Windows 和 macOS 操作系统的电脑编写的一款电子表格软件。
 
-## 三、自开发
-
-### 数据处理
-
-- [muzi-stat](https://huxins.coding.net/p/muzi/d/muzi-stat/git) - 该命令行工具用于处理沐志 ERP、OA 相关数据，以便形成相关报表。
-

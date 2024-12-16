@@ -197,6 +197,12 @@ Content-Disposition: attachment; filename*=UTF-8''%E6%96%87%E4%BB%B6.txt
 Content-MD5: ti4QvKtVqIJAvZxDbP/c+Q==
 ```
 
+## 五、安全
+
+### 内容安全策略
+
+内容安全策略（[CSP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)）是一个额外的安全层，用于检测并削弱某些特定类型的攻击，包括跨站脚本（XSS）和数据注入攻击等。
+
 ## Reference
 
 - [HTTP 协议各版本特性 - *Jiandong*](https://mjd507.github.io/2018/01/20/HTTP-Versions/)

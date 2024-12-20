@@ -2,39 +2,7 @@
 
 ## 一、文本处理
 
-### vim
 
-在 Debian 中，默认安装的是 [Vim](https://vimdoc.sourceforge.net/htmldoc/usr_toc.html) 的 [Tiny](https://vimdoc.sourceforge.net/htmldoc/various.html#+feature-list) 版本。
-
-```sh
-$ vi --version
-$ update-alternatives --display vi
-```
-
-启动 Vim 后，Vim 处于 *Normal* 模式下。需要进入 *Insert* 模式时，请按下键 `i`，此时，可以输入文本了。需要返回 *Normal* 模式，请按 `ESC` 键。
-
-*Normal* 模式下的命令。
-
->`i` → *Insert* 模式。
->
->`x` → 删除光标下的字符。
->
->`:wq` → 保存并退出。
->
->`dd` → 删除并复制当前行。
->
->`p` → 粘贴。
->
->`u` → 撤销上次操作。
->
->`:%d` → 删除文件中的所有行。
->
->`ggVGd` → 删除文件中的所有行。
->
->- `gg` → `1G` 的快捷方式，跳转到文件的开头。
->- `V` → 进入 Visual 模式，选择整行。
->- `G` → 将光标移到文件的最后一行。
->- `d` → 删除选择的内容。
 
 ### tr
 

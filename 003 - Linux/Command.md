@@ -1,30 +1,6 @@
 # Command
 
-## 一、文本处理
 
-
-
-### tr
-
-[`tr`](https://www.gnu.org/software/coreutils/manual/html_node/tr-invocation.html) 通过替换或删除选定字符将标准输入复制到标准输出。由 [Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) 提供。
-
-将 CRLF 转为 LF。
-
-```sh
-$ cat -v test.txt | tr -d "^M"
-```
-
-### truncate
-
-[`truncate`](https://www.gnu.org/software/coreutils/manual/html_node/truncate-invocation.html) 将文件缩小或扩展到指定大小。由 [Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) 提供。
-
-- -**s** *SIZE*：根据 *SIZE* 设置或调整每个文件的大小。
-
-清空文件的内容。
-
-```sh
-$ truncate -s 0 filename
-```
 
 ## 二、账户管理
 

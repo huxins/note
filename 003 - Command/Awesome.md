@@ -16,3 +16,7 @@
 
 - [vim](https://github.com/vim/vim) - 无处不在的文本编辑器。
 
+### 实用程序
+
+- [GNU Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) - 包含许多基本的命令行工具，用于文件操作、文本处理和系统管理等任务。
+

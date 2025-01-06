@@ -74,7 +74,7 @@ json_result = schema.dumps(user)
 pprint(json_result)
 ```
 
-#### 集合
+### 集合
 
 在处理对象的可迭代集合时，将 `many` 设置为 `True`。
 
@@ -87,7 +87,7 @@ result = schema.dump(users)
 print(result)
 ```
 
-#### 过滤输出
+### 过滤输出
 
 可以使用 `only` 参数指定要输出的字段，从而避免输出所有声明的字段。
 
@@ -144,7 +144,7 @@ result = schema.load(user_data)
 print(result)
 ```
 
-#### 处理未知字段
+### 处理未知字段
 
 默认情况下，如果 `load` 遇到 `schema` 中[没有匹配字段](https://marshmallow.readthedocs.io/en/stable/quickstart.html#handling-unknown-fields)的键，它将引发 [`ValidationError`](https://marshmallow.readthedocs.io/en/stable/marshmallow.exceptions.html#marshmallow.exceptions.ValidationError)。
 

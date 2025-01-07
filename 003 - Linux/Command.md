@@ -2,67 +2,7 @@
 
 
 
-## 二、账户管理
 
-### useradd
-
-[`useradd`](https://manpages.debian.org/bookworm/passwd/useradd.8.en.html) 命令用于建立用户帐号。由 [shadow-utils](https://github.com/shadow-maint/shadow) 提供。
-
-- -**d** *HOME_DIR*：指定用户登录目录。
-- -**g** *GROUP*：用户初始登录组的组名或编号。必须存在。
-- -**m**：如果用户的主目录不存在，则创建该目录。
-- -**s** *SHELL*：用户的登录 Shell 的名称。
-- -**r**, --**system**：创建系统帐户。
-
-可以运行以下命令查看用户及其组的信息。
-
-```sh
-$ id username
-```
-
-也可以查看 `/etc/passwd`，是一个文本文件，描述系统的用户登录帐户。
-
-```
-sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
-```
-
-密码已经用 `x` 替换掉了，基于安全考虑，密码的密文存储在 `/etc/shadow` 中。
-
-### adduser
-
-[`adduser`](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html) 是一个在后端使用 `useradd` 二进制文件的 *perl* 脚本。
-
-- --**system**：创建一个动态分配的系统用户和组。
-- --**shell** *shell*：使用 *shell* 作为用户的登录 Shell。
-- --**comment** *comment*：为生成的新条目设置注释字段。
-- --**group**：在 `adduser --system` 中使用该选项表示新用户应获得一个相同名称的组作为其主要组。如果还没有相同名称的组，则会创建该组。
-- --**disabled-login**, --**disabled-password**：请勿运行 `passwd` 设置密码。
-- --**home** *dir*：使用 *dir* 作为用户的主目录。如果目录不存在，则会创建该目录。
-
-### groupadd
-
-[`groupadd`](https://manpages.debian.org/bookworm/passwd/groupadd.8.en.html) 命令用于创建一个新的工作组。
-
-- -**r**, --**system**：创建系统组。
-
-可以通过 `/etc/group` 查看工作组详情，它是一个文本文件，用于定义系统上的组。
-
-```
-sshd:x:74:
-```
-
-### usermod
-
-[`usermod`](https://manpages.debian.org/bookworm/passwd/usermod.8.en.html) 命令用于修改用户帐号。
-
-- -**a**：将用户添加到补充组。仅与 `-G` 选项一起使用。
-- -**G** *GROUP1* [,*GROUP2*, ... [,*GROUPN*]]]：补充组列表。
-
-添加用户到附加组。
-
-```sh
-$ usermod -aG additional_group username
-```
 
 ## 三、权限管理
 

@@ -6,17 +6,7 @@
 
 ## 三、权限管理
 
-### chown
 
-[`chown`](https://www.gnu.org/software/coreutils/manual/html_node/chown-invocation.html) 命令用于更改文件所有者和组。
-
-- -**R**：递归操作文件和目录。
-
-更改文件的所有者和组。
-
-```sh
-$ chown new_owner:new_group file.txt
-```
 
 ### sudo
 

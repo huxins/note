@@ -95,3 +95,25 @@ echo -e "Line1\nLine2"       # 输出包含换行的字符串
 truncate -s 0 filename
 ```
 
+## 三、文件属性
+
+### 所有者和组
+
+[`chown`](https://www.gnu.org/software/coreutils/manual/html_node/chown-invocation.html) 是一个用于更改文件或目录的所有者和所属组的命令。
+
+**常用选项：**
+
+- -**R**：递归更改目录下的所有文件和子目录。
+
+例如，更改文件的所有者。
+
+```sh
+chown alice file.txt
+```
+
+例如，更改文件的所有者和所属组。
+
+```sh
+chown new_owner:new_group file.txt
+```
+

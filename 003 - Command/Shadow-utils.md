@@ -111,3 +111,24 @@ sshd:x:74:
 groupadd mygroup
 ```
 
+### 管理组
+
+[`gpasswd`](https://manpages.debian.org/bookworm/passwd/gpasswd.1.en.html) 命令用于管理组的密码以及组成员，通常用来对 `/etc/group` 文件进行管理。
+
+`gpasswd` 修改的主要文件是：
+
+- `/etc/group`：记录组信息，包括组名、组密码（如果设置）、GID 和组成员。
+- `/etc/gshadow`：组影子文件，存储组的密码和组管理员信息。
+
+例如，添加用户到组。
+
+```sh
+gpasswd -a username groupname
+```
+
+例如，从组中删除用户。
+
+```sh
+gpasswd -d username groupname
+```
+

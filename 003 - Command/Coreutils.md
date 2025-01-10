@@ -117,3 +117,28 @@ chown alice file.txt
 chown new_owner:new_group file.txt
 ```
 
+## 四、用户信息
+
+### 打印用户身份
+
+[`id`](https://www.gnu.org/software/coreutils/manual/html_node/id-invocation.html) 命令用于查询当前用户或指定用户的 UID、GID 以及所属组信息。
+
+**常用选项：**
+
+- -**u**：显示用户的 UID。
+- -**g**：显示用户的 GID。
+- -**G**：显示用户所属的所有组的 GID。
+- -**n**：以名称形式显示信息（与 `-u`、`-g` 或 `-G` 一起使用）。
+
+例如，查看当前用户的 ID 信息。
+
+```sh
+id
+```
+
+例如，查看指定用户的 ID 信息。
+
+```sh
+id alice
+```
+

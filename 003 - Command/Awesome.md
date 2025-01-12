@@ -15,6 +15,7 @@
 ### 文本编辑
 
 - [vim](https://github.com/vim/vim) - 无处不在的文本编辑器。
+- [sed](https://www.gnu.org/software/sed/manual/html_node/index.html) - 一种流编辑器，用于对文本文件进行解析和编辑操作。
 
 ### 实用程序
 

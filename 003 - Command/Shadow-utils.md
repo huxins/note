@@ -89,6 +89,12 @@ useradd -r -s /sbin/nologin system_user
 usermod -aG additional_group username
 ```
 
+例如，使用 `usermod` 命令移除辅助组。
+
+```sh
+sudo usermod -G $(id -nG username | tr ' ' '\n' | grep -v group_name | tr '\n' ',' | sed 's/,$//') username
+```
+
 ## 二、组账户
 
 ### 新增组

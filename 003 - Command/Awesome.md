@@ -12,6 +12,10 @@
 
 - [curl](https://curl.se/docs/manpage.html) - 使用 URL 在服务器之间传输数据的工具。
 
+### Search
+
+- [grep](https://www.gnu.org/software/grep/manual/html_node/index.html) - 从文件或标准输入中查找匹配特定模式（通常是正则表达式）的行。
+
 ### 文本编辑
 
 - [vim](https://github.com/vim/vim) - 无处不在的文本编辑器。

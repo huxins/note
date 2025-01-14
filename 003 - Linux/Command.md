@@ -8,10 +8,6 @@
 
 
 
-### sudo
-
-[`sudo`](https://www.sudo.ws/docs/man/sudo.man/) 用于以超级用户的身份执行特定的命令。
-
 ## 四、进程管理
 
 ### nohup

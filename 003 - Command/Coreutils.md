@@ -142,3 +142,9 @@ id
 id alice
 ```
 
+[`groups`](https://www.gnu.org/software/coreutils/manual/html_node/groups-invocation.html) 命令用于显示当前用户所属的用户组，或者显示指定用户所属的用户组。
+
+```sh
+groups [username]
+```
+

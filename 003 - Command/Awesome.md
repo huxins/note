@@ -19,6 +19,7 @@
 ### 文本编辑
 
 - [vim](https://github.com/vim/vim) - 无处不在的文本编辑器。
+- [nano](https://www.nano-editor.org/) - 一种轻量级的文本编辑器，主要用于在终端中编辑文本文件。
 - [sed](https://www.gnu.org/software/sed/manual/html_node/index.html) - 一种流编辑器，用于对文本文件进行解析和编辑操作。
 
 ### 实用程序

@@ -26,4 +26,5 @@
 
 - [GNU Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) - 包含许多基本的命令行工具，用于文件操作、文本处理和系统管理等任务。
 - [Shadow-utils](https://github.com/shadow-maint/shadow) - 管理 Linux 系统用户和组的工具，包括 `useradd`, `groupadd`, `usermod`, `groupmod` 等。
+- [libc-bin](https://packages.debian.org/sid/libc-bin) - 与 GNU C Library（glibc）相关的软件包，它包含了与 C 标准库相关的实用工具和程序。
 

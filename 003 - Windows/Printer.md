@@ -12,3 +12,9 @@
 
 将打印机连接到电脑，或者添加到局域网络后，安装对应的[打印机驱动程序](https://support.microsoft.com/zh-cn/windows/4ff66446-a2ab-b77f-46f4-a6d3fe4bf661)，通常就可以立即开始打印。
 
+## 三、打印机驱动
+
+| 品牌 | 型号                                                         | 类型 | 驱动                                                         |
+| ---- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 佳博 | [GP-3120TUC](https://www.gprinter.net/default.php/3cxl/296.html) | 标签 | [Seagull](https://www.seagullscientific.com/cn/downloads/printer-drivers/gprinter-gp-3120tuc/) |
+

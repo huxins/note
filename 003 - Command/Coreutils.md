@@ -148,3 +148,30 @@ id alice
 groups [username]
 ```
 
+## 五、命令调用
+
+### 忽略挂起信号
+
+[`nohup`](https://www.gnu.org/software/coreutils/manual/html_node/nohup-invocation.html) 命令用于在用户注销或终端关闭后，继续运行某个命令或程序。它的作用是防止进程因为挂起信号（SIGHUP）而被终止。
+
+默认情况下，如果一个进程的父终端被关闭（例如用户注销或终端被关闭），系统会发送一个挂起信号（SIGHUP）给该终端启动的所有进程，导致它们被终止。而通过使用 `nohup` 命令，可以让这些进程忽略挂起信号，从而继续运行。
+
+例如，运行一个程序并忽略挂起信号。
+
+```sh
+nohup python my_script.py &
+```
+
+默认情况下，`nohup` 会将命令的标准输出和标准错误重定向到 `nohup.out` 文件（如果没有指定其他输出文件）。可以通过查看该文件来检查程序的输出。
+
+如果不想使用默认的 `nohup.out` 文件，可以手动重定向输出。
+
+```sh
+nohup python my_script.py > my_output.log 2>&1 &
+nohup command </dev/null >/dev/null 2>&1 &
+```
+
+在命令后加 `&` 只是将进程放入后台运行，但如果终端关闭，进程仍然会被挂起或终止。
+
+结合 `nohup` 和 `&` 使用，可以确保后台进程在终端关闭后继续运行。
+

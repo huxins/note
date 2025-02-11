@@ -1,22 +1,8 @@
 # Command
 
-
-
-
-
-## 三、权限管理
-
-
-
 ## 四、进程管理
 
-### nohup
 
-运行一个不受挂起影响的命令，并将输出发送到非终端。
-
-```sh
-$ nohup command </dev/null >/dev/null 2>&1 &
-```
 
 ### ps
 

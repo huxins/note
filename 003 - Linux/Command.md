@@ -5,44 +5,7 @@
 
 
 
-### ufw
 
-[ufw](https://manpages.ubuntu.com/manpages/noble/en/man8/ufw.8.html) 是用于管理 *netfilter* 防火墙的程序。
-
-设置默认规则。
-
-```sh
-ufw default deny incoming
-ufw default allow outgoing
-```
-
-添加规则。
-
-```sh
-ufw allow ssh
-ufw allow http
-ufw allow https
-ufw allow 3000
-ufw deny 3306
-```
-
-检查 UFW 的状态，了解哪些规则是活动的。
-
-```sh
-ufw status
-```
-
-重新加载防火墙并在启动时启用防火墙。
-
-```sh
-ufw enable
-```
-
-卸载防火墙并在启动时禁用防火墙。
-
-```sh
-ufw disable
-```
 
 ## 六、文件管理
 

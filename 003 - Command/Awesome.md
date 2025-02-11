@@ -29,6 +29,10 @@
 - [sed](https://www.gnu.org/software/sed/manual/html_node/index.html) - 流编辑器，用于对文本文件进行解析和编辑操作。
 - [awk](https://www.gnu.org/software/gawk/manual/html_node/index.html) - 强大的文本处理工具和编程语言，专门用于处理和分析文本数据。
 
+### 网络管理
+
+- [ufw](https://manpages.ubuntu.com/manpages/noble/en/man8/ufw.8.html) - 简单易用的防火墙管理工具。
+
 ### 实用程序
 
 - [GNU Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) - 包含许多基本的命令行工具，用于文件操作、文本处理和系统管理等任务。

@@ -13,6 +13,11 @@
 - [curl](https://curl.se/docs/manpage.html) - 使用 URL 在服务器之间传输数据的工具。
 - [wget](https://www.gnu.org/software/wget/manual/html_node/index.html) - 从网络上非交互式地下载文件。
 
+### Email
+
+- [bsd-mailx](https://packages.debian.org/bookworm/bsd-mailx) - 命令行邮件客户端工具，主要提供用户接口和命令行邮件管理功能。
+- [msmtp](https://packages.debian.org/bookworm/msmtp) - 轻量级的 SMTP 客户端，主要用于发送电子邮件。
+
 ### Search
 
 - [grep](https://www.gnu.org/software/grep/manual/html_node/index.html) - 从文件或标准输入中查找匹配特定模式（通常是正则表达式）的行。

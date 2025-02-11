@@ -5,53 +5,6 @@
 
 
 
-### bsd-mailx
-
-[`bsd-mailx`](https://packages.debian.org/bookworm/bsd-mailx) 是传统的简单命令行模式的邮件客户端。
-
-在 Debian 12 上进行安装。
-
-```sh
-apt install bsd-mailx
-```
-
-#### msmtp
-
-需要往外部发送邮件的话，需要配置 MTA，常用的有 `msmtp`。
-
-```sh
-apt install msmtp
-```
-
-配置 `msmtp`，创建或编辑 *~/.msmtprc* 文件。
-
-```
-defaults
-tls on
-tls_trust_file /etc/ssl/certs/ca-certificates.crt
-logfile ~/.msmtp.log
-
-account default
-host smtp.example.com
-port 587
-auth on
-user your-email@example.com
-password your-email-password
-from your-email@example.com
-```
-
-配置 `bsd-mailx` 使用 `msmtp`，创建或编辑 *~/.mailrc* 文件，添加以下内容：
-
-```sh
-set sendmail="/usr/bin/msmtp"
-```
-
-发送邮件。使用 `-v` 参数，可以显示发送过程。使用 `-a` 可以发送附件。
-
-```sh
-echo "This is the body of the email." | mailx -s "Subject of the Email" recipient@example.com
-```
-
 ### ufw
 
 [ufw](https://manpages.ubuntu.com/manpages/noble/en/man8/ufw.8.html) 是用于管理 *netfilter* 防火墙的程序。

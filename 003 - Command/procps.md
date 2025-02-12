@@ -57,3 +57,45 @@ kill -SIGSTOP 1234 # 发送 SIGSTOP 信号，暂停 PID 为 1234 的进程
   killall -15 python  # 向所有 python 进程发送 SIGTERM 信号
   ```
 
+## 二、内核
+
+### sysctl
+
+[`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html) 命令用于在运行时查看和修改内核参数。通过 `sysctl` 命令，系统管理员可以调整内核的行为，优化系统性能，或改变系统的某些特性。
+
+`sysctl` 命令作用的参数来自于 Linux 内核的 `/proc/sys` 虚拟文件系统。这个文件系统暴露了许多内核参数，允许用户通过文件系统接口来读写这些参数。
+
+- **查看参数**：可以使用 `sysctl -a` 来查看所有可用的内核参数及其当前值。
+- **修改参数**：可以使用 `sysctl -w parameter=value` 来修改某个特定参数的值。
+- **配置文件**：可以通过编辑 `/etc/sysctl.conf` 文件来永久更改参数设置，然后执行 `sysctl -p` 以应用更改。
+
+查看所有参数及其值。
+
+```sh
+sysctl -a
+```
+
+修改某个参数，例如调整最大文件句柄数。
+
+```sh
+sysctl -w fs.file-max=100000
+```
+
+查看某个特定参数的值。
+
+```sh
+sysctl net.ipv4.ip_forward
+```
+
+- **禁用 IPv6**
+
+  ```sh
+  sysctl -w net.ipv6.conf.all.disable_ipv6=1 >> /etc/sysctl.d/disable-ipv6.conf
+  sysctl -w net.ipv6.conf.default.disable_ipv6=1 >> /etc/sysctl.d/disable-ipv6.conf
+  sysctl -w net.ipv6.conf.lo.disable_ipv6=1 >> /etc/sysctl.d/disable-ipv6.conf
+  sysctl -w net.ipv6.conf.eth0.disable_ipv6=1 >> /etc/sysctl.d/disable-ipv6.conf
+  sysctl -p /etc/sysctl.d/disable-ipv6.conf
+  ```
+
+  如果使用 `ip a` 命令，在输出中没有发现 IPv6 地址，则说明成功关闭了 IPv6 功能。
+

@@ -40,4 +40,5 @@
 - [libc-bin](https://packages.debian.org/sid/libc-bin) - 与 GNU C Library（glibc）相关的软件包，它包含了与 C 标准库相关的实用工具和程序。
 - [procps](https://gitlab.com/procps-ng/procps) - 一组用于监控和管理系统进程的命令行工具。
 - [findutils](https://www.gnu.org/software/findutils/manual/html_node/find_html/index.html) - 在文件系统中查找文件并对其执行操作。
+- [debianutils](https://packages.debian.org/sid/debianutils) - 包含了一些由 Debian 项目开发并广泛用于 Debian 系统的实用工具。
 

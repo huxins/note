@@ -25,7 +25,7 @@
 
 `sudo` 的行为由 `/etc/sudoers` 文件控制，该文件定义了哪些用户可以执行哪些命令。
 
-**编辑 `sudoers` 文件：**使用专用命令 `visudo` 编辑。
+**编辑 `sudoers` 文件**：使用专用命令 `visudo` 编辑。
 
 ```sh
 sudo visudo

@@ -23,4 +23,5 @@
 ### 包管理工具
 
 - [RPM](https://rpm.org/) - 基于 Red Hat Enterprise Linux 的发行版中流行的包管理工具。
+- [YUM](http://yum.baseurl.org/) - 在 Red Hat Enterprise Linux 中安装、更新、删除和管理软件包的主要包管理工具。
 

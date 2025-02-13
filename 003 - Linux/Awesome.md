@@ -20,3 +20,7 @@
 
 - [Sudo](https://www.sudo.ws/docs/man/sudo.man/) - 允许用户以其他用户（通常是超级用户 `root`）的身份执行命令的工具。
 
+### 包管理工具
+
+- [RPM](https://rpm.org/) - 基于 Red Hat Enterprise Linux 的发行版中流行的包管理工具。
+

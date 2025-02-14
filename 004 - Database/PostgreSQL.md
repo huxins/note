@@ -1,6 +1,6 @@
 # PostgreSQL
 
-PostgreSQL 是一个强大的开源对象关系数据库系统，它使用并扩展了 SQL 语言，并结合了许多功能，可以安全地存储和扩展最复杂的数据工作负载。
+[PostgreSQL](https://www.postgresql.org/docs/current/index.html) 是一个强大的开源对象关系数据库系统，它使用并扩展了 SQL 语言，并结合了许多功能，可以安全地存储和扩展最复杂的数据工作负载。
 
 ## 一、安装
 
@@ -8,33 +8,33 @@ PostgreSQL 是一个强大的开源对象关系数据库系统，它使用并扩
 
 #### Red Hat
 
-要使用 PostgreSQL Yum Repository，请按以下步骤操作。
+要使用 PostgreSQL [Yum Repository](https://www.postgresql.org/download/linux/redhat/)，请按以下步骤操作。
 
 ```sh
-$ yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-$ yum install -y postgresql12-server
+yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+yum install -y postgresql12-server
 ```
 
 切换腾讯镜像源进行网络加速。
 
 ```sh
-$ sed -i 's|download.postgresql.org/pub|mirrors.cloud.tencent.com/postgresql|g' /etc/yum.repos.d/pgdg-redhat-all.repo
+sed -i 's|download.postgresql.org/pub|mirrors.cloud.tencent.com/postgresql|g' /etc/yum.repos.d/pgdg-redhat-all.repo
 ```
 
 初始化数据库并启动服务。
 
 ```sh
-$ /usr/pgsql-12/bin/postgresql-12-setup initdb
-$ systemctl enable postgresql-12
-$ systemctl start postgresql-12
+/usr/pgsql-12/bin/postgresql-12-setup initdb
+systemctl enable postgresql-12
+systemctl start postgresql-12
 ```
 
 #### Debian
 
-Debian 默认包含 PostgreSQL。
+[Debian](https://www.postgresql.org/download/linux/debian/) 默认包含 PostgreSQL。
 
 ```sh
-$ apt install postgresql
+apt install postgresql
 ```
 
 #### Docker
@@ -50,13 +50,13 @@ docker run -d -p 5432:5432 --name postgres \
   postgres:10.7-alpine
 ```
 
-*PGDATA* 在 [Docker](https://hub.docker.com/_/postgres) 中的默认路径为 */var/lib/postgresql/data*。需要持久化数据时，请将此目录挂载到宿主机。
+`PGDATA` 在 [Docker](https://hub.docker.com/_/postgres) 中的默认路径为 `/var/lib/postgresql/data`，需要持久化数据时，请将此目录挂载到宿主机。
 
 ## 二、约束条件
 
 ### 检查约束
 
-检查约束是最通用的约束类型。它允许我们指定特定列中的值必须满足布尔表达式。
+[检查约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS)是最通用的约束类型。它允许我们指定特定列中的值必须满足布尔表达式。
 
 例如，为了要求正值的产品价格，我们可以使用：
 
@@ -68,7 +68,7 @@ CREATE TABLE products (
 );
 ```
 
-可以给约束一个独立的名称。这会使错误消息更为清晰，同时也允许我们在需要更改约束时能引用它：
+可以给约束一个独立的名称，这会使错误消息更为清晰，同时也允许我们在需要更改约束时能引用它。
 
 ```sql
 CREATE TABLE products (
@@ -78,7 +78,7 @@ CREATE TABLE products (
 );
 ```
 
-一个检查约束也可以引用多个列。例如我们存储一个普通价格和一个打折后的价格，而我们希望保证打折后的价格低于普通价格：
+一个检查约束也可以引用多个列。例如我们存储一个普通价格和一个打折后的价格，而我们希望保证打折后的价格低于普通价格。
 
 ```sql
 CREATE TABLE products (
@@ -94,7 +94,7 @@ CREATE TABLE products (
 
 ### 非空约束
 
-一个非空约束仅仅指定一个列中不会有空值：
+一个[非空约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-NOT-NULL)仅仅指定一个列中不会有空值。
 
 ```sql
 CREATE TABLE products (
@@ -106,7 +106,7 @@ CREATE TABLE products (
 
 ### 唯一约束
 
-唯一约束保证在一列或一组列中保存的数据在表中所有行间是唯一的：
+[唯一约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS)保证在一列或一组列中保存的数据在表中所有行间是唯一的。
 
 ```sql
 CREATE TABLE products (
@@ -116,7 +116,7 @@ CREATE TABLE products (
 );
 ```
 
-为一组列定义一个唯一约束，把它写作一个表级约束，列名用逗号分隔：
+为一组列定义一个唯一约束，把它写作一个表级约束，列名用逗号分隔。
 
 ```sql
 CREATE TABLE products (
@@ -142,7 +142,7 @@ CREATE TABLE products (
 
 ### 主键
 
-主键约束保证在一列或一组列中可以用作表中行的唯一标识符。这要求值既是唯一的又是非空的。因此，以下两个表定义接受相同的数据：
+[主键约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-PRIMARY-KEYS)保证在一列或一组列中可以用作表中行的唯一标识符。这要求值既是唯一的又是非空的。因此，以下两个表定义接受相同的数据。
 
 ```sql
 CREATE TABLE products (
@@ -160,7 +160,7 @@ CREATE TABLE products (
 );
 ```
 
-主键也可以包含多于一个列，其语法和唯一约束相似：
+主键也可以包含多于一个列，其语法和唯一约束相似。
 
 ```sql
 CREATE TABLE products (
@@ -170,13 +170,13 @@ CREATE TABLE products (
 );
 ```
 
-增加一个主键将自动在主键中列出的列或列组上创建一个唯一 *B-tree* 索引。并且会强制这些列被标记为 `NOT NULL`。
+增加一个主键将自动在主键中列出的列或列组上创建一个唯一 *B-tree* 索引，并且会强制这些列被标记为 `NOT NULL`。
 
-一个表最多只能有一个主键。关系数据库理论要求每一个表都要有一个主键。但 PostgreSQL 中并未强制要求这一点，但是最好能够遵循它。
+一个表最多只能有一个主键。关系数据库理论要求每一个表都要有一个主键，但 PostgreSQL 中并未强制要求这一点，但是最好能够遵循它。
 
 ### 外键
 
-外键约束指定一列或一组列中的值必须匹配出现在另一个表中某些行的值。
+[外键约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-FK)指定一列或一组列中的值必须匹配出现在另一个表中某些行的值。
 
 ```sql
 CREATE TABLE products (
@@ -194,11 +194,13 @@ CREATE TABLE orders (
 
 ## 三、函数
 
-### 序列操作函数
+### 序列操作
 
-[序列](https://www.postgresql.org/docs/12/functions-sequence.html)是一个数据库对象，本质上是一个自增器。序列在其他同类型数据库软件中以 `AUTO_INCREMENT` 值的形式存在。序列对象中包含当前值，和一些独特属性，例如如何递增或递减。序列不能直接访问，需要通过 PostgreSQL 中的相关函数来操作它们。
+[序列](https://www.postgresql.org/docs/12/functions-sequence.html)是一个数据库对象，本质上是一个自增器。序列在其他同类型数据库软件中以 `AUTO_INCREMENT` 值的形式存在。
 
-本节描述用于操作序列对象的函数，也称为序列生成器或序列。序列对象是使用 `CREATE SEQUENCE` 创建的特殊单行表。序列对象通常用于为表的行生成唯一标识符。
+序列对象中包含当前值，和一些独特属性，例如如何递增或递减。序列不能直接访问，需要通过 PostgreSQL 中的相关函数来操作它们。
+
+以下为用于操作序列对象的函数，也称为序列生成器或序列。序列对象是使用 [`CREATE SEQUENCE`](https://www.postgresql.org/docs/12/sql-createsequence.html) 创建的特殊单行表，序列对象通常用于为表的行生成唯一标识符。
 
 - **nextval**(*regclass*) → `bigint`
 
@@ -232,7 +234,7 @@ CREATE SEQUENCE sequence_name MINVALUE 0;
 
 #### 查看序列
 
-`psql` 的 `\d` 命令输出一个数据库对象，包括序列，表，视图和索引。你还可以使用 `\ds` 命令只查看当前数据库的所有序列。
+[`psql`](https://www.postgresql.org/docs/17/app-psql.html) 的 [`\d`](https://www.postgresql.org/docs/17/app-psql.html#APP-PSQL-META-COMMAND-D) 命令输出一个数据库对象，包括序列，表，视图和索引，还可以使用 [`\ds`](https://www.postgresql.org/docs/17/app-psql.html#APP-PSQL-META-COMMAND-DE) 命令只查看当前数据库的所有序列。
 
 序列就像表和视图一样，拥有自己的结构，只不过它的结构是固定的。
 
@@ -248,7 +250,7 @@ SELECT last_value FROM sequence_name;
 DROP SEQUENCE sequence_name;
 ```
 
-如果该序列无法直接删除，可以查询是否被数据库中的其他对象引用：
+如果该序列无法直接删除，可以查询是否被数据库中的其他对象引用。
 
 ```sql
 SELECT p.relname, a.adsrc FROM pg_class p
@@ -260,19 +262,19 @@ SELECT p.relname, a.adsrc FROM pg_class p
 
 ### 服务器配置
 
-设置参数的最基本方法是[编辑](https://www.postgresql.org/docs/12/config-setting.html#CONFIG-SETTING-CONFIGURATION-FILE) `postgresql.conf` 文件，该文件通常保存在数据目录中。
+[设置参数](https://www.postgresql.org/docs/12/config-setting.html)的最基本方法是编辑 [`postgresql.conf`](https://www.postgresql.org/docs/12/config-setting.html#CONFIG-SETTING-CONFIGURATION-FILE) 文件，该文件通常保存在数据目录中。
 
 通过 SQL 查询配置文件和数据目录位置。
 
 ```sh
-$ psql -U postgres -c "SHOW config_file"
-$ psql -U postgres -c "SHOW data_directory"
+psql -U postgres -c "SHOW config_file"
+psql -U postgres -c "SHOW data_directory"
 ```
 
-通过 `pg_config` 可以查询执行文件所在目录。
+通过 [`pg_config`](https://www.postgresql.org/docs/17/app-pgconfig.html) 可以查询执行文件所在目录。
 
 ```sh
-$ pg_config --bindir
+pg_config --bindir
 ```
 
 #### 连接设置
@@ -285,9 +287,9 @@ $ pg_config --bindir
 
 ### 客户端认证
 
-#### `pg_hba.conf` 文件
+#### 配置文件
 
-客户端身份验证由一个[配置文件](https://www.postgresql.org/docs/12/auth-pg-hba-conf.html)控制，该文件通常名为 `pg_hba.conf` 并存储在数据库集簇的数据目录中。
+客户端身份验证由一个配置文件控制，该文件通常名为 [`pg_hba.conf`](https://www.postgresql.org/docs/12/auth-pg-hba-conf.html) 并存储在数据库集簇的数据目录中。
 
 `pg_hba.conf` 文件的格式是一组记录，每行一个。空白行将被忽略，`#` 注释字符之后的任何文本也是如此。
 
@@ -304,8 +306,8 @@ host    database        user            address                 auth-method  [au
 
 PostgreSQL 提供了多种[验证](https://www.postgresql.org/docs/12/auth-methods.html)用户的方法：
 
-- **Trust authentication**，简单的信任用户声称的身份。
-- **Password authentication**，需要用户提供密码。
+- [**Trust authentication**](https://www.postgresql.org/docs/12/auth-trust.html)，简单的信任用户声称的身份。
+- [**Password authentication**](https://www.postgresql.org/docs/current/auth-password.html)，需要用户提供密码。
 
 #### 密码认证
 
@@ -313,11 +315,11 @@ PostgreSQL 提供了多种[验证](https://www.postgresql.org/docs/12/auth-metho
 
 - **scram-sha-256**
 
-  `scram-sha-256` 方法执行 SCRAM-SHA-256 身份验证。它是一种质询 - 响应方案，可防止在不受信任的连接上嗅探密码，并支持以被认为安全的加密散列形式将密码存储在服务器上。
+  `scram-sha-256` 方法执行 SCRAM-SHA-256 身份验证。它是一种*质询 - 响应*方案，可防止在不受信任的连接上嗅探密码，并支持以被认为安全的加密散列形式将密码存储在服务器上。
   
 - **md5**
 
-  `md5` 方法使用自定义的安全性较低的质询 - 响应机制。
+  `md5` 方法使用自定义的安全性较低的*质询 - 响应*机制。
   
 - **password**
 
@@ -330,14 +332,14 @@ PostgreSQL 提供了多种[验证](https://www.postgresql.org/docs/12/auth-metho
 通过 SQL 修改用户密码。
 
 ```sh
-$ psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'new-password'"
+psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'new-password'"
 ```
 
 ## 五、命令行程序
 
 ### initdb
 
-[initdb](https://www.postgresql.org/docs/12/app-initdb.html) 用于创建一个新的 PostgreSQL 数据库集簇。
+[`initdb`](https://www.postgresql.org/docs/12/app-initdb.html) 用于创建一个新的 PostgreSQL 数据库集簇。
 
 语法如下：
 
@@ -348,7 +350,7 @@ initdb [option...] [ --pgdata | -D ] directory
 安装完成后，可以进行初始化操作。
 
 ```sh
-$ /usr/pgsql-10/bin/initdb \
+/usr/pgsql-10/bin/initdb \
     --pgdata=/var/lib/pgsql/10/data \
     --auth=trust \
     --username=postgres \
@@ -357,15 +359,15 @@ $ /usr/pgsql-10/bin/initdb \
 
 - --**auth**=*authmethod*
 
-  为本地用户指定在 *pg_hba.conf* 中使用的默认认证方法。
+  为本地用户指定在 `pg_hba.conf` 中使用的默认认证方法。
 
 - --**auth-host**=*authmethod*
 
-  为通过 TCP/IP 连接的本地用户指定在 *pg_hba.conf* 中使用的认证方法。
+  为通过 TCP/IP 连接的本地用户指定在 `pg_hba.conf` 中使用的认证方法。
 
 - --**auth-local**=*authmethod*
 
-  为通过 Unix 域套接字连接的本地用户指定在 *pg_hba.conf* 中使用的认证方法。
+  为通过 Unix 域套接字连接的本地用户指定在 `pg_hba.conf` 中使用的认证方法。
 
 - -**D** *directory*
 
@@ -387,7 +389,7 @@ $ /usr/pgsql-10/bin/initdb \
 
 ### createuser
 
-[createuser](https://www.postgresql.org/docs/12/app-createuser.html) 用于定义一个新的 PostgreSQL 用户帐户。
+[`createuser`](https://www.postgresql.org/docs/12/app-createuser.html) 用于定义一个新的 PostgreSQL 用户帐户。
 
 - -**P**, --**pwprompt**：如果给定，`createuser` 将提示输入新用户的密码。
 - -**s**, --**superuser**：新用户将是超级用户。
@@ -400,7 +402,7 @@ createuser -P -s -e sonar;
 
 ### psql
 
-[psql](https://www.postgresql.org/docs/12/app-psql.html) 是 PostgreSQL 的一个基于终端的前端。
+[`psql`](https://www.postgresql.org/docs/12/app-psql.html) 是 PostgreSQL 的一个基于终端的前端。
 
 - -**U** *username*, --**username**=*username*：以指定用户名连接到数据库。
 - -**d** *dbname*, --**dbname**=*dbname*：指定要连接到的数据库的名称。
@@ -413,7 +415,7 @@ createuser -P -s -e sonar;
 psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432
 ```
 
-Meta 命令：
+[Meta 命令](https://www.postgresql.org/docs/12/app-psql.html#APP-PSQL-META-COMMANDS)：
 
 - \\**l**：列出服务器中的数据库，并显示它们的名称、所有者、字符集编码和访问权限。
 - \\**c** *dbname*：建立到 PostgreSQL 服务器的新连接。
@@ -457,11 +459,11 @@ cat mydb.pgsql.gz* | gunzip | psql -U postgres -d mydb
 
 ### pg_controldata
 
-显示 PostgreSQL 数据库集群的控制信息。
+[`pg_controldata`](https://www.postgresql.org/docs/15/app-pgcontroldata.html) 用于显示 PostgreSQL 数据库集群的控制信息。
 
-控制文件 *global/pg_control* 包含了关于数据库集群的信息，包括版本号。
+控制文件 `global/pg_control` 包含了关于数据库集群的信息，包括版本号。
 
-可以使用 `pg_controldata` 工具来读取这个文件的信息：
+可以使用 `pg_controldata` 工具来读取这个文件的信息。
 
 ```sh
 /usr/pgsql-12/bin/pg_controldata /path/to/data/directory

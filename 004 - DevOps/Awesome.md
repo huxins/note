@@ -1,16 +1,27 @@
-# Awesome
+# Awesome DevOps
 
-## 一、Web 服务器
+## 一、资源
 
-### Nginx
+### Cheat sheet
 
-## 二、自动化
+- [wmariuss/awesome-devops](https://github.com/wmariuss/awesome-devops)
+- [awesome-soft/awesome-devops](https://github.com/awesome-soft/awesome-devops)
 
-### GitHub Actions
+## 二、DevOps
 
-## 三、文件管理
+### Web Servers
 
-### Gitea
+*Web 服务器和反向代理。*
+
+- [Nginx](https://nginx.org/)
+
+### CI & CD
+
+- [GitHub Actions](https://docs.github.com/en/actions)
+
+### SCM
+
+- [Gitea](https://gitea.io/)
 
 ### s5cmd
 

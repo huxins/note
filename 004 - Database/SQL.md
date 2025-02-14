@@ -4,7 +4,7 @@
 
 ### SELECT
 
-`SELECT` 用于检索从一个或多个表中选择的行。
+[`SELECT`](https://dev.mysql.com/doc/refman/5.7/en/select.html) 用于检索从一个或多个表中选择的行。
 
 ```sql
 SELECT * FROM users;
@@ -47,7 +47,7 @@ FROM ( SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 ) AS digit
 
 #### EXISTS
 
-如果子查询返回任何行，则 `EXISTS` 子查询为 `TRUE`，`NOT EXISTS` 子查询为 `FALSE`。
+如果子查询返回任何行，则 [`EXISTS`](https://dev.mysql.com/doc/refman/5.7/en/exists-and-not-exists-subqueries.html) 子查询为 `TRUE`，`NOT EXISTS` 子查询为 `FALSE`。
 
 ```sql
 SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
@@ -59,7 +59,7 @@ SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
 
 #### 创建数据库
 
-`CREATE DATABASE` 创建一个具有给定名称的数据库。
+[`CREATE DATABASE`](https://dev.mysql.com/doc/refman/5.7/en/create-database.html) 创建一个具有给定名称的数据库。
 
 ```sql
 CREATE DATABASE db_name;
@@ -73,17 +73,17 @@ CREATE DATABASE db_name CHARACTER SET utf8mb4;
 
 #### 销毁数据库
 
-使用命令 `DROP DATABASE` 销毁数据库：
+使用命令 [`DROP DATABASE`](https://dev.mysql.com/doc/refman/5.7/en/drop-database.html) 销毁数据库。
 
 ```sql
 DROP DATABASE name;
 ```
 
-### 表
+### 数据表
 
 #### 创建表
 
-`CREATE TABLE` 创建一个具有给定名称的表。
+[`CREATE TABLE`](https://dev.mysql.com/doc/refman/5.7/en/create-table.html) 创建一个具有给定名称的表。
 
 ```sql
 CREATE TABLE users (
@@ -133,7 +133,7 @@ CREATE TABLE products (
 
 #### 删除表
 
-如果不再需要某个表，可以通过 `DROP TABLE` 命令来移除它。
+如果不再需要某个表，可以通过 [`DROP TABLE`](https://dev.mysql.com/doc/refman/5.7/en/drop-table.html) 命令来移除它。
 
 ```sql
 DROP TABLE my_first_table;
@@ -175,11 +175,11 @@ ALTER TABLE products ADD COLUMN description text DEFAULT '';
 ALTER TABLE products DROP COLUMN description;
 ```
 
-列中的任何数据都会消失。涉及该列的表约束也被删除。
+列中的任何数据都会消失，涉及该列的表约束也被删除。
 
 ##### 添加约束
 
-要添加约束，请使用表约束语法。例如：
+要添加约束，请使用表约束语法。
 
 ```sql
 ALTER TABLE products ADD CHECK (name <> '');
@@ -195,7 +195,7 @@ ALTER TABLE products ALTER COLUMN product_no SET NOT NULL;
 
 ##### 删除约束
 
-要删除约束，您需要知道它的名称。移除非空约束之外的所有约束：
+要删除约束，需要知道它的名称。移除非空约束之外的所有约束：
 
 ```sql
 ALTER TABLE products DROP CONSTRAINT some_name;
@@ -207,7 +207,7 @@ ALTER TABLE products DROP CONSTRAINT some_name;
 ALTER TABLE products ALTER COLUMN product_no DROP NOT NULL;
 ```
 
-##### 更改列的默认值
+##### 更改默认值
 
 要为列设置新的默认值，请使用如下命令：
 
@@ -223,7 +223,7 @@ ALTER TABLE products ALTER COLUMN description SET DEFAULT '';
 ALTER TABLE products ALTER COLUMN description DROP DEFAULT;
 ```
 
-##### 更改列的数据类型
+##### 更改数据类型
 
 要将列转换为不同的数据类型，请使用如下命令：
 
@@ -251,9 +251,9 @@ ALTER TABLE products RENAME TO items;
 
 ### 更新数据
 
-#### 更新表数据
+#### 表数据
 
-`UPDATE` 可以修改表中行数据。
+[`UPDATE`](https://dev.mysql.com/doc/refman/5.7/en/update.html) 可以修改表中行数据。
 
 ```sql
 UPDATE users SET username = 'sky';
@@ -270,7 +270,7 @@ UPDATE users
     SET users.password = tests.password;
 ```
 
-PostgreSQL 不支持在联表更新中使用 `JOIN`。使用以下的形式进行联表更新。
+PostgreSQL 不支持在联表更新中使用 `JOIN`，使用以下的形式进行联表更新。
 
 ```postgresql
 UPDATE products ps SET price = po.number FROM productionorder po
@@ -292,7 +292,7 @@ CREATE TABLE products (
 );
 ```
 
-插入一行，数据的值按照这些列在表中出现的顺序列出的，并且用逗号分隔：
+插入一行，数据的值按照这些列在表中出现的顺序列出的，并且用逗号分隔。
 
 ```sql
 INSERT INTO products VALUES (1, 'Cheese', 9.99);
@@ -332,9 +332,9 @@ INSERT INTO products (product_no, name, price)
 
 ### 删除数据
 
-使用 `DELETE` 命令删除行；语法与 `UPDATE` 命令非常相似。
+使用 [`DELETE`](https://dev.mysql.com/doc/refman/5.7/en/delete.html) 命令删除行，语法与 `UPDATE` 命令非常相似。
 
-例如，要从产品表中删除价格为 10 的所有行，请使用：
+例如，要从产品表中删除价格为 `10` 的所有行，请使用：
 
 ```sql
 DELETE FROM products WHERE price = 10;

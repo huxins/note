@@ -1,8 +1,10 @@
 # Gitea
 
+[Gitea](https://docs.gitea.com/) 是一个轻量级的开源 Git 代码托管平台，类似于 GitHub、GitLab 和 Bitbucket，但 Gitea 更加注重简单性和资源的高效利用。它允许开发团队和个人在自己的服务器上搭建代码托管服务，提供类似 GitHub 的功能，支持 Git 仓库的管理、代码协作和版本控制等。
+
 ## 一、安装
 
-### 二进制安装
+### 二进制
 
 使用[二进制文件](https://docs.gitea.com/zh-cn/installation/install-from-binary)安装，从[下载页面](https://dl.gitea.io/gitea/)中选择与目标平台匹配的文件，复制 URL 并在以下命令中替换 URL。
 
@@ -71,8 +73,8 @@ WantedBy=multi-user.target
 设置自启并启动 Gitea。
 
 ```sh
-$ systemctl enable gitea
-$ systemctl start gitea
+systemctl enable gitea
+systemctl start gitea
 ```
 
 ### 数据库
@@ -100,17 +102,15 @@ CREATE DATABASE giteadb WITH OWNER gitea TEMPLATE template0 ENCODING UTF8 LC_COL
 测试与数据库的连接。
 
 ```sh
-# 本地数据库
-psql -U gitea -d giteadb
-# 远程数据库
-psql "postgres://gitea@127.0.0.1/giteadb"
+psql -U gitea -d giteadb                    # 本地数据库
+psql "postgres://gitea@127.0.0.1/giteadb"   # 远程数据库
 ```
 
 ### 反向代理
 
 #### Nginx
 
-创建 */etc/nginx/conf.d/gitea*，配置如下 *server*。
+创建 `/etc/nginx/conf.d/gitea`，配置如下 *server*。
 
 ```nginx
 server {
@@ -137,13 +137,13 @@ server {
 
 ### 备份
 
-为了确保 Gitea 实例的一致性，在备份期间必须关闭它。
+为了确保 Gitea 实例的一致性，在[备份](https://docs.gitea.com/zh-cn/administration/backup-and-restore)期间必须关闭它。
 
 ```sh
 systemctl stop gitea
 ```
 
-使用 `dump` 命令备份所有需要的文件到一个 *zip* 压缩文件中。
+使用 [`dump`](https://docs.gitea.com/zh-cn/administration/command-line#dump) 命令备份所有需要的文件到一个 `zip` 压缩文件中。
 
 ```sh
 su gitea -c "/usr/local/bin/gitea dump --config /etc/gitea/app.ini"

@@ -15,13 +15,17 @@
 
 - [Nginx](https://nginx.org/)
 
+### SCM
+
+- [Gitea](https://gitea.io/)
+
 ### CI & CD
 
 - [GitHub Actions](https://docs.github.com/en/actions)
 
-### SCM
+### Container
 
-- [Gitea](https://gitea.io/)
+- [Docker](https://www.docker.com/) - 使用容器创建、部署和运行应用程序。
 
 ### s5cmd
 

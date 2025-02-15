@@ -1,5 +1,7 @@
 # Nginx
 
+[Nginx](https://nginx.org/) 是一个高性能的 HTTP 和反向代理服务器，广泛用于 Web 服务器、负载均衡、反向代理和 HTTP 缓存等多种场景。
+
 ## 一、安装
 
 ### CentOS
@@ -12,13 +14,13 @@ yum info nginx
 yum install nginx
 ```
 
-## 二、基本模块
+## 二、模块
 
 ### ngx_http_core_module
 
-#### 内置变量
+**嵌入式变量：**
 
-- [$**http_name**](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_http_)：任意请求头字段；变量名的最后一部分是转换为小写的字段名，用下划线替换短划线。例如，*$http_host* 代表 *host* 请求头。
+- $[**http**](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_http_) _*name*：任意请求头字段；变量名的最后一部分是转换为小写的字段名，用下划线替换短划线。例如，*$http_host* 代表 *host* 请求头。
 
 ### ngx_http_ssl_module
 
@@ -70,7 +72,7 @@ location / {
 }
 ```
 
-如果 *proxy_pass* 指令是用 *URI* 指定的，那么当请求传递到服务器时，请求 *URI* 中与 *location* 匹配的部分将被 *proxy_pass* 指令中指定的 *URI* 替换：
+如果 `proxy_pass` 指令是用 *URI* 指定的，那么当请求传递到服务器时，请求 *URI* 中与 `location` 匹配的部分将被 `proxy_pass` 指令中指定的 *URI* 替换：
 
 ```nginx
 # http://www.wandouduoduo.com/wddd/index.html
@@ -91,7 +93,7 @@ location /wddd/ {
 }
 ```
 
-如果指定 *proxy_pass* 时没有 *URI*，则在处理原始请求时，请求 *URI* 将以客户端发送的相同形式传递给服务器：
+如果指定 `proxy_pass` 时没有 *URI*，则在处理原始请求时，请求 *URI* 将以客户端发送的相同形式传递给服务器：
 
 ```nginx
 # http://www.wandouduoduo.com/wddd/index.html

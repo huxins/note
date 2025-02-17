@@ -6,64 +6,6 @@
 
 
 
-### route
-
-查看路由表。
-
-```powershell
-route print -4
-```
-
-添加路由。
-
-```powershell
-route add 192.168.11.0 mask 255.255.255.0 192.168.10.245 -p
-```
-
-删除路由。
-
-```powershell
-route delete 192.168.11.0 mask 255.255.255.0
-```
-
-
-
-
-
-### netsh
-
-- netsh **interface**
-
-  查找网络接口的名称或索引。
-
-  ```powershell
-  netsh interface show interface
-  netsh interface ipv4 show interfaces
-  ```
-
-  禁用或启用有线连接。
-
-  ```powershell
-  netsh interface set interface "YourInterfaceName" admin=disable
-  netsh interface set interface "YourInterfaceName" admin=enable
-  ```
-
-- netsh **wlan**
-
-  断开与无线网络的连接。
-
-  ```powershell
-  netsh wlan disconnect
-  ```
-
-### tracert
-
-向目标发送 ICMP 请求，并以递增的 TTL 字段值来确定到达目标的路径。
-
-```powershell
-tracert 1.1.1.1
-```
-
 ### diskpart
 
 `diskpart` 可帮助管理计算机的驱动器（磁盘、分区、卷或虚拟硬盘）。

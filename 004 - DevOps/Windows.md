@@ -4,15 +4,7 @@
 
 ## 二、命令
 
-### reg
 
-- reg **add**
-
-  将新的子项或项添加到注册表中。
-
-  ```powershell
-  reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v IPEnableRouter /t REG_DWORD /d 1 /f
-  ```
 
 ### route
 
@@ -34,19 +26,9 @@ route add 192.168.11.0 mask 255.255.255.0 192.168.10.245 -p
 route delete 192.168.11.0 mask 255.255.255.0
 ```
 
-### sc
 
-配置服务启动方式。
 
-```powershell
-sc config RemoteAccess start= auto
-```
 
-启动服务。
-
-```powershell
-sc start RemoteAccess
-```
 
 ### netsh
 

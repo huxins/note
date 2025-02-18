@@ -14,6 +14,8 @@
 
 - **连接数**：可在实例详情页左侧，选择监控与报警，查看会话连接指标。
 
+- **引擎限制**：RDS MySQL 不支持 [MyISAM](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/why-does-apsaradb-rds-for-mysql-not-support-the-myisam-storage-engine) 引擎。如果导入表、新建表是 MyISAM 引擎，会自动修改为 [Innodb](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/the-myisam-engine-is-disabled-for-apsaradb-rds-for-mysql-instances-by-default) 引擎。
+
 - **自动启停**：
 
   计算节点可以开启自动启停功能，如果实例在 10 分钟内无连接，实例自动暂停。
@@ -44,6 +46,7 @@ PolarDB 采用计算与存储分离的架构，共享存储的一写多读，提
 - **计算单位**：计算节点以 PCU 为计费单位，1 个 PCU 约等于 1 核 2GB 的资源。
 - **资源限制**：Serverless 的计算节点包括主节点和只读节点，只读节点个数可以为 0，主节点 PCU 配置最小为 1。
 - **存储空间**：PolarDB MySQL Serverless 存储空间最小为 20GB。
+- **引擎限制**：创建表的时候，会自动将非 InnoDB 引擎（如 MyISAM、Memory、CSV 等）转换为 InnoDB 引擎。
 
 | 收费项   | 标准单价    | 优惠单价  |
 | -------- | ----------- | --------- |
@@ -58,7 +61,8 @@ PolarDB 采用计算与存储分离的架构，共享存储的一写多读，提
 
 [Serverless](https://cloud.tencent.com/document/product/1003/50853) 服务的计算和存储独立计费：计算按 CCU 个数计费，存储按使用量 GB 计费，计费系统按秒计费，按小时结算。
 
-TDSQL-C MySQL 版 Serverless 服务无最小存储空间要求。
+- **存储空间**：TDSQL-C MySQL 版 Serverless 服务无最小存储空间要求。
+- **引擎限制**：TDSQL-C MySQL 版 5.7 及以上版本[不支持](https://cloud.tencent.com/document/product/1003/102545#.E6.B3.A8.E6.84.8F.E4.BA.8B.E9.A1.B92) MyISAM 引擎和 Memory 引擎。
 
 | 收费项   | 标准单价    | 优惠单价 |
 | -------- | ----------- | -------- |

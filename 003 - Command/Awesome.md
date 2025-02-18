@@ -33,6 +33,11 @@
 
 - [ufw](https://manpages.ubuntu.com/manpages/noble/en/man8/ufw.8.html) - 简单易用的防火墙管理工具。
 
+### 文件管理
+
+- [s5cmd](https://github.com/peak/s5cmd) - 非常快速的 S3 和本地文件系统执行工具。
+- [restic](https://github.com/restic/restic) - 快速、高效、安全的备份程序。
+
 ### 实用程序
 
 - [GNU Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) - 包含许多基本的命令行工具，用于文件操作、文本处理和系统管理等任务。

@@ -4,7 +4,7 @@
 
 ## 一、安装
 
-### 下载应用程序
+### 二进制
 
 ```sh
 wget -O s5cmd.tar.gz https://github.com/peak/s5cmd/releases/download/v2.2.2/s5cmd_2.2.2_Linux-64bit.tar.gz
@@ -12,15 +12,17 @@ tar zxvf s5cmd.tar.gz
 cp s5cmd /usr/local/bin/s5cmd
 ```
 
-### 指定凭据
+## 二、配置
 
-`s5cmd` 使用 AWS 官方 SDK 访问 S3。SDK 需要凭据来签署向 AWS 发出的请求。提供凭据的方式有多种：
+`s5cmd` 使用 AWS 官方 SDK 访问 S3，SDK 需要凭据来签署向 AWS 发出的请求。
 
-- 命令行选项
+提供[凭据](https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/cli-chap-configure.html)的方式有多种：
 
-  像 AWS CLI 一样，设置[配置文件](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)。
+- **凭证文件**
 
-  新建 *~/.aws/credentials* 文件。
+  像 AWS CLI 一样，设置[凭证文件](https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/cli-configure-files.html)。
+
+  新建 `~/.aws/credentials` 文件。
 
   ```ini
   [default]
@@ -28,7 +30,7 @@ cp s5cmd /usr/local/bin/s5cmd
   aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
   ```
 
-  新建 *~/.aws/config* 文件。
+  新建 `~/.aws/config` 文件。
 
   ```ini
   [default]
@@ -42,7 +44,7 @@ cp s5cmd /usr/local/bin/s5cmd
   s5cmd --endpoint-url http://s3.us-north-1.qiniucs.com ls s3://my-company-bucket/
   ```
 
-- 环境变量
+- **环境变量**
 
   ```sh
   export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
@@ -52,7 +54,7 @@ cp s5cmd /usr/local/bin/s5cmd
   s5cmd ls s3://my-company-bucket/
   ```
 
-## 二、使用
+## 三、使用
 
 ### 上传文件
 

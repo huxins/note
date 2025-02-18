@@ -2,9 +2,9 @@
 
 ## 一、腾讯云
 
-腾讯云 [SCF](https://cloud.tencent.com/document/product/583) 支持 [Python](https://cloud.tencent.com/document/product/583/55592)、Node.js、Golang、PHP、Java 等语言。可选地区列表可参考[支持地域](https://cloud.tencent.com/document/product/583/17299#.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F)。
+腾讯云 [SCF](https://cloud.tencent.com/document/product/583) 支持 [Python](https://cloud.tencent.com/document/product/583/55592)、Node.js、Golang、PHP、Java 等语言，可选地区列表可参考[支持地域](https://cloud.tencent.com/document/product/583/17299#.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F)。
 
-SCF 将在函数接收到触发请求时执行函数。SCF 平台负责所有函数的[生命周期](https://cloud.tencent.com/document/product/583/9694)。
+SCF 将在函数接收到触发请求时执行函数，SCF 平台负责所有函数的[生命周期](https://cloud.tencent.com/document/product/583/9694)。
 
 API 网关触发器将[下线](https://cloud.tencent.com/document/product/583/107631)，替代方案为[函数 URL](https://cloud.tencent.com/document/product/583/96099)。
 
@@ -92,7 +92,7 @@ Plugin 部署方式仅支持 Event 函数。
 
 [serverless-cloud-framework](https://github.com/Serverlesstencent/serverless-cloud-framework) 是 [serverless-tencent](https://github.com/Serverlesstencent/serverless-tencent/tree/v3.21.6) 的继任[版本](https://www.npmjs.com/package/serverless-cloud-framework)。
 
-[安装](https://cloud.tencent.com/document/product/583/44753) `serverless-cloud-framework`：
+安装 [`serverless-cloud-framework`](https://cloud.tencent.com/document/product/583/44753)：
 
 ```sh
 npm i -g serverless-cloud-framework

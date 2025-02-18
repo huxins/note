@@ -1,9 +1,8 @@
+# Email
 
-## 四、通知
+## Lark
 
-### Lark 邮件
-
-Lark 企业邮箱[标准版](https://www.larksuite.com/hc/zh-CN/articles/360048487724)是免费的，[额度](https://www.larksuite.com/hc/zh-CN/articles/360048488497)如下。
+[Lark](https://www.larksuite.com) 企业邮箱[标准版](https://www.larksuite.com/hc/zh-CN/articles/360048487724)是免费的，[额度](https://www.larksuite.com/hc/zh-CN/articles/360048488497)如下。
 
 - 用户数量：50。
 - [云⽂档](https://www.larksuite.com/hc/zh-CN/articles/230210240259#tabs0|lineguid-1VUGs)存储空间：100 GB。

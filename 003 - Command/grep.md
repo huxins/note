@@ -20,7 +20,7 @@
 
 - -**c**：仅显示匹配的行数。
 - -**n**：显示匹配行的行号。
-- -**o**：仅输出匹配的部分。
+- -[**o**](https://www.gnu.org/software/grep/manual/html_node/General-Output-Control.html#index-_002do)：仅输出匹配的部分。
 - -**q**：安静模式，不输出任何信息，只返回退出状态码。
 - --**color**：为匹配到的部分加上高亮颜色。
 - -**L**：列出未匹配模式的文件名。
@@ -38,4 +38,28 @@
 - -**A** *num*：显示匹配行及其后面 N 行。
 - -**B** *num*：显示匹配行及其前面 N 行。
 - -**C** *num*：显示匹配行及其前后 N 行（相当于 `-A N -B N`）。
+
+## 二、示例
+
+### 字符串次数
+
+可以使用 `grep`、`awk` 或 `sed` 等工具来查询文件中某个字符串出现的次数。
+
+使用 `grep -o` 和 `wc -l`。
+
+```sh
+echo "strstrstr" | grep -o "str" | wc -l
+```
+
+使用 [`awk`](https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html#index-gsub_0028_0029-function-1)。
+
+```sh
+echo "strstrstr" | awk '{ count += gsub(/str/, "") } END { print count }'
+```
+
+使用 `perl`。
+
+```sh
+echo "strstrstr" | perl -lne '$count += () = /str/g; END {print $count}'
+```
 

@@ -493,6 +493,46 @@ awk -v threshold=50 '{if ($1 > threshold) print $1}' data.txt
 awk -v min=30 -v max=70 '{if ($1 >= min && $1 <= max) print $1}' data.txt
 ```
 
+## 六、正则表达式
+
+### 括号表达式
+
+[括号表达式](https://www.gnu.org/software/gawk/manual/html_node/Bracket-Expressions.html)匹配在开始和结束方括号之间列出的任何字符。
+
+例如，通过 [`split`](https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html#index-split_0028_0029-function) 按指定分隔符，把一行字符串分割成多个字段。
+
+```sh
+echo 123 | awk '{ split($0, arr, /[2]+/); for (i=1; i<=length(arr); i++) print arr[i] }'
+echo 123 | awk '{ n=split($0, arr, /[2]+/); for(i=1; i<=n; i++) print arr[i] }'
+```
+
+[字符类](https://www.gnu.org/software/gawk/manual/html_node/Bracket-Expressions.html#table_002dchar_002dclasses)由表示类的关键字 `[:` 和 `:]` 组成。
+
+例如，空格字符作为分隔符，把一行字符串分割成多个字段（`for...in` 遍历数组时，元素的顺序是不确定的，通常按哈希表顺序遍历）。
+
+```sh
+cat <<-EOF | awk '{ split($0, arr, /[[:space:]]+/); for (i in arr) print arr[i] }'
+apple  banana    cherry
+dog    elephant   fox
+EOF
+```
+
+### 扩展正则
+
+处理正则表达式的 GNU 软件提供了许多额外的正则表达式[运算符](https://www.gnu.org/software/gawk/manual/html_node/GNU-Regexp-Operators.html)。
+
+在 `awk` 的正则表达式中，`[[:space:]]+` 和 `\s+` 在大多数环境下作用相同，但 `\s+` 需要 `awk` 支持[扩展正则表达式](https://www.gnu.org/software/gawk/manual/html_node/GNU-Regexp-Operators.html)（ERE），比如使用 `gawk`：
+
+```sh
+awk 'BEGIN { if ("a b  c" ~ /\s+/) print "match" }'
+```
+
+但 `\s+` 可能在某些 `awk` 版本（如 POSIX `awk`）中不被识别，因此 `[[:space:]]+` 更通用。
+
+```sh
+awk 'BEGIN { if ("a b  c" ~ /[[:space:]]+/) print "match" }'
+```
+
 ## Reference
 
 - [AWK 简明教程 - 酷壳](https://coolshell.cn/articles/9070.html)

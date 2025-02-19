@@ -200,6 +200,10 @@ mysql --user=user_name --password db_name
 - `status`, `\s`
 
   从服务器获取状态信息。
+  
+- `\u` *db_name*
+
+  使用 `db_name` 作为默认数据库。
 
 ### mysqladmin
 
@@ -483,4 +487,120 @@ salary DECIMAL(5, 2)
 SET GLOBAL general_log_file = 'general_log.log';
 SET GLOBAL general_log = 'ON';
 ```
+
+## 十、存储引擎
+
+### MyISAM
+
+#### 自增列
+
+[MyISAM](https://dev.mysql.com/doc/refman/8.4/en/myisam-storage-engine.html) 引擎支持[复合主键](https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html)包含自增列，而 [InnoDB](https://dev.mysql.com/doc/refman/8.4/en/innodb-storage-engine.html) 引擎不支持，因此 MyISAM 引擎[转换](https://cloud.tencent.com/document/product/236/45043)为 InnoDB 引擎后，创建表时会报错，报错信息为 [ERROR 1075](https://dev.mysql.com/doc/refman/8.4/en/mysql-cluster-limitations-syntax.html)。
+
+MyISAM 允许自增列作为复合主键的非首列。
+
+```sql
+CREATE TABLE `ec_pdf` (
+  `co` varchar(10) NOT NULL DEFAULT '',
+  `ii` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`co`,`ii`)  -- MyISAM允许自增列作为复合主键的非首列
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+```
+
+InnoDB 中，自增列必须是键。
+
+```sql
+CREATE TABLE `ec_pdf` (
+  `co` varchar(10) NOT NULL DEFAULT '',
+  `ii` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`co`,`ii`),  -- MyISAM允许自增列作为复合主键的非首列
+  KEY `ii` (`ii`)           -- 为自增列创建索引
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+如果是复合主键，应位于复合主键的首位。
+
+```sql
+CREATE TABLE `ec_pdf` (
+  `co` varchar(10) NOT NULL DEFAULT '',
+  `ii` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ii`, `co`) -- 自增列作为主键首列
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+**原始数据分析：**
+
+查询原始文件有多少自增参数。
+
+```sh
+grep -o "AUTO_INCREMENT" data.sql | wc -l
+
+sed 's/ENGINE=MyISAM/ENGINE=InnoDB/g' data.sql | awk '
+  BEGIN { RS=";"; ORS=";"; FS="\n"; OFS="\n"; count=0 }
+  {
+    for (i = 1; i <= NF; i++) {  # 遍历每个字段（即行）
+      while ($i ~ /AUTO_INCREMENT/) {  # 如果当前字段包含 AUTO_INCREMENT
+        sub(/AUTO_INCREMENT/, "", $i); # 移除第一个匹配项，避免无限循环
+        count++;  # 递增计数
+      }
+    }
+  }
+  END { print count }'
+```
+
+查询原始文件中，有多少包含自增参数的行（一行可能包含多个自增参数，避免重复统计）。
+
+```sh
+grep "AUTO_INCREMENT" data.sql | wc -l
+
+sed 's/ENGINE=MyISAM/ENGINE=InnoDB/g' data.sql | awk '
+  BEGIN { RS=";"; ORS=";"; FS="\n"; OFS="\n"; count=0 }
+  {
+    for (i = 1; i <= NF; i++) {  # 遍历每个字段（即行）
+      if ($i ~ /AUTO_INCREMENT/)  # 如果当前字段包含 AUTO_INCREMENT
+        count++;  # 递增计数
+    }
+  }
+  END { print count }'
+```
+
+查询原始文件中，有多少包含自增参数的 SQL 语句。
+
+```sh
+awk 'BEGIN { RS=";"; IGNORECASE=1 }
+{
+  gsub(/\n/, " ", $0);
+  if ($0 ~ /CREATE[[:space:]]+TABLE/ && $0 ~ /AUTO_INCREMENT/)
+    count++
+}
+END { print count }' data.sql
+
+sed 's/ENGINE=MyISAM/ENGINE=InnoDB/g' data.sql | awk '
+  BEGIN { RS=";"; ORS=";"; FS="\n" }
+  $0 ~ /CREATE TABLE/ && $0 ~ /AUTO_INCREMENT/ { count++ }
+  END { print count }'
+```
+
+查询原始文件中，有多少包含自增参数，且包含复合主键的 SQL 语句（匹配 `PRIMARY KEY`，且括号内至少一个逗号，以确保主键包含两个或更多字段）。
+
+```sh
+awk 'BEGIN { RS=";"; FS="\n"; IGNORECASE=1 }
+{
+  if ($0 ~ /CREATE[[:space:]]+TABLE/ && $0 ~ /AUTO_INCREMENT/ && $0 ~ /PRIMARY[[:space:]]+KEY[[:space:]]*\([^)]*,[^)]*\)/)
+    count++
+}
+END { print count }' data.sql
+```
+
+通过命令修改 SQL 语句。
+
+```sh
+/cygdrive/d/Hotchpotch/SYY/dump_20240602.sql   730
+
+PRIMARY KEY (`co`,`ii`)
+
+
+
+
+```
+
 

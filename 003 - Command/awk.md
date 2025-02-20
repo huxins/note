@@ -533,6 +533,16 @@ awk 'BEGIN { if ("a b  c" ~ /\s+/) print "match" }'
 awk 'BEGIN { if ("a b  c" ~ /[[:space:]]+/) print "match" }'
 ```
 
+## 七、示例
+
+### 查看文件
+
+查看文件的指定行数范围。
+
+```sh
+awk 'NR >= 10 && NR <= 50 { print NR, $0 }' data.txt
+```
+
 ## Reference
 
 - [AWK 简明教程 - 酷壳](https://coolshell.cn/articles/9070.html)

@@ -591,16 +591,113 @@ awk 'BEGIN { RS=";"; FS="\n"; IGNORECASE=1 }
 END { print count }' data.sql
 ```
 
-通过命令修改 SQL 语句。
+查询需要修改的语句数量（自增列作为复合主键的非首列）。
 
 ```sh
-/cygdrive/d/Hotchpotch/SYY/dump_20240602.sql   730
+awk 'BEGIN { RS = ";"; IGNORECASE = 1 }
+{
+    if ($0 ~ /CREATE[[:space:]]+TABLE/ && $0 ~ /AUTO_INCREMENT/) {
+        pk_match = match($0, /PRIMARY[[:space:]]+KEY[[:space:]]*\([^)]+\)/);
+        if (pk_match) {
+            pk_def = substr($0, RSTART, RLENGTH);  # 提取主键定义
 
-PRIMARY KEY (`co`,`ii`)
+            # 提取主键字段列表
+            split(pk_def, arr, /[(),]/);
+            first_pk_field = arr[2];
 
-
-
-
+            # 检查自增列是否为首字段
+            if ($0 !~ first_pk_field"[^,]*AUTO_INCREMENT") {
+                count++;
+            }
+        }
+    }
+}
+END { print count }' data.sql
 ```
 
+通过命令修改 SQL 语句，让自增列作为复合主键的首列（`gawk` 版本）。
+
+```sh
+sed 's/ENGINE=MyISAM/ENGINE=InnoDB/g' data.sql | awk '
+BEGIN { RS = ";"; ORS = ";" }
+{
+    if ($0 ~ /CREATE[[:space:]]+TABLE/ && $0 ~ /AUTO_INCREMENT/) {
+        ai_col = "";
+        pk_fields = "";
+        
+        # 提取自增列名
+        if (match($0, /`([^`]+)`[^,`]*AUTO_INCREMENT/, m))
+            ai_col = m[1]
+    
+        # 提取主键字段列表
+        if (match($0, /PRIMARY[[:space:]]+KEY[[:space:]]*\(([^)]+)\)/, pk)) {
+            split(pk[1], arr, /,[[:space:]]*/)
+            # 清洗字段名并检查顺序
+            new_pk = ""
+            for (i=1; i<=length(arr); i++) {
+                gsub(/[`[:space:]]/, "", arr[i])  # 去除反引号和空格
+                if (arr[i] == ai_col && new_pk == "") {
+                    new_pk = ai_col  # 自增列置顶
+                } else if (arr[i] != ai_col) {
+                    pk_fields = (pk_fields == "" ? arr[i] : pk_fields "," arr[i])
+                }
+            }
+            # 重组主键（仅当需要调整时）
+            if (ai_col != "" && arr[1] != ai_col && new_pk != "") {
+                new_pk = "PRIMARY KEY (`" ai_col "`" (pk_fields != "" ? ",`" pk_fields "`" : "") ")";
+                gsub(/,/, "`,`", new_pk)  # 处理字段分隔符
+                sub(/PRIMARY[[:space:]]+KEY[[:space:]]*\([^)]+\)/, new_pk, $0)
+            }
+        }
+    }
+    print $0
+}' | sed '/PRIMARY KEY/s/``,``/`,`/g'  # 修复异常替换
+```
+
+[`mawk`](https://invisible-island.net/mawk/) 版本不支持 `match()` 函数的第三个参数（捕获组数组）。请使用以下兼容性改写方案：
+
+```sh
+sed 's/ENGINE=MyISAM/ENGINE=InnoDB/g' data.sql | awk '
+BEGIN {
+    RS = ";\n*";
+    ORS = ";\n";
+    IGNORECASE = 1
+}
+{
+    if ($0 ~ /CREATE[[:space:]]+TABLE/ && $0 ~ /AUTO_INCREMENT/) {
+        ai_col = ""; pk_fields = ""
+        # 兼容性提取自增列名
+        if (match($0, /`[^`]+`[^,]*AUTO_INCREMENT/)) {
+            col_part = substr($0, RSTART, RLENGTH)
+            if (match(col_part, /`([^`]+)`/, parts))  # 如果支持GNU扩展
+                ai_col = parts[1]
+            else {  # 兼容模式提取
+                ai_col = substr(col_part, 2, index(col_part, "`")-2)
+            }
+        }
+        
+        # 提取主键字段（兼容写法）
+        if (match($0, /PRIMARY[[:space:]]+KEY[[:space:]]*$[^)]+$/)) {
+            pk_start = RSTART
+            pk_end = RSTART + RLENGTH
+            pk_str = substr($0, pk_start+13, pk_end - pk_start -14)
+            gsub(/[`[:space:]]/, "", pk_str)  # 清理特殊字符
+            split(pk_str, pk_arr, ",")
+            
+            # 重组主键顺序
+            if (ai_col != "" && pk_arr[1] != ai_col) {
+                new_pk = ai_col
+                for (i=1; i<=length(pk_arr); i++) {
+                    if (pk_arr[i] != ai_col) 
+                        new_pk = new_pk "," pk_arr[i]
+                }
+                # 替换主键定义
+                sub(/PRIMARY[[:space:]]+KEY[[:space:]]*$[^)]+$/, 
+                    "PRIMARY KEY (`" gensub(/,/, "`,`", "g", new_pk) "`)", $0)
+            }
+        }
+    }
+    print $0
+}'
+```
 

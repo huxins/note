@@ -56,6 +56,24 @@ systemctl start mysqld
 grep 'temporary password' /var/log/mysqld.log
 ```
 
+#### APT
+
+从 Debian 9（Stretch）开始，Debian 官方库中的 [MySql](https://wiki.debian.org/MySql) 被 MariaDB 替代。
+
+将 [MySQL APT](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/) 存储库添加到系统的软件存储库列表中。
+
+```sh
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.33-1_all.deb
+dpkg -i mysql-apt-config_0.8.33-1_all.deb
+```
+
+安装 MySQL。
+
+```sh
+apt update
+apt install mysql-server
+```
+
 ## 二、账户管理
 
 ### 修改账户

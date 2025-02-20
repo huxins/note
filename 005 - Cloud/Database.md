@@ -12,13 +12,13 @@
 
 - **存储空间**：存储空间最小为 20 GB，最大 32 TB。
 
-- **连接数**：可在实例详情页左侧，选择监控与报警，查看会话连接指标。
-
 - **引擎限制**：RDS MySQL 不支持 [MyISAM](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/why-does-apsaradb-rds-for-mysql-not-support-the-myisam-storage-engine) 引擎。如果导入表、新建表是 MyISAM 引擎，会自动修改为 [Innodb](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/the-myisam-engine-is-disabled-for-apsaradb-rds-for-mysql-instances-by-default) 引擎。
+
+- **连接数**：可在实例详情页左侧，选择监控与报警，查看会话连接指标。
 
 - **自动启停**：
 
-  计算节点可以开启自动启停功能，如果实例在 10 分钟内无连接，实例自动暂停。
+  计算节点可以开启[自动启停](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/rds-mysql-serverless#d3f0d44127cfy)功能，如果实例在 10 分钟内无连接，实例自动暂停。
 
   有任何连接请求时，实例自动启动，启动过程约 6 ~ 40 秒，根据不同的实例库表状态会有浮动。
 
@@ -26,16 +26,30 @@
 
 - **外网访问**：
 
-  RDS 支持外网地址访问，只需要为 RDS 设置外网地址，外部服务器可通过公网 IP 地址访问 RDS。申请外网地址和后续产生的公网流量[暂不收费](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/how-to-access-alibaba-cloud-rds-from-external-servers)。
+  RDS 支持外网地址访问，只需要为 RDS 设置外网地址，外部服务器可通过公网 IP 地址访问 RDS。
 
-  如果申请了公网地址且白名单全放开，可能会被外部恶意扫描导致不会自动暂停。建议释放公网地址或修改白名单。
+  申请外网地址和后续产生的公网流量[暂不收费](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/how-to-access-alibaba-cloud-rds-from-external-servers)。
+  
+  如果申请了公网地址且白名单全放开，可能会被外部恶意扫描导致不会自动暂停，建议释放公网地址或修改白名单。
+  
+- **Data API**：
 
-[RDS Data API Service](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/introduction-to-data-api-features) 提供了数据库操作接口，用户可以通过 HTTPS 请求或 SDK 的方式与数据库进行交互，从而实现对 RDS Serverless 实例 Web 服务接口的使用。
+  [RDS Data API Service](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/introduction-to-data-api-features) 提供了数据库操作接口，用户可以通过 HTTPS 请求或 SDK 的方式与数据库进行交互，从而实现对 RDS Serverless 实例 Web 服务接口的使用。
+
+[计费单价](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/rds-mysql-serverless#57d9ce6007dl4)如下：
 
 | 收费项   | 标准单价    | 优惠单价    |
 | -------- | ----------- | ----------- |
 | RCU      | 0.33 RCU/H  | 0.17 RCU/H  |
 | 存储空间 | 0.0017 GB/H | 0.0009 GB/H |
+
+[备份单价](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/billable-items-and-pricing-for-the-backup-storage-of-an-apsaradb-rds-for-mysql-instance)如下：
+
+| 实例类型                                                     | 收费项             | 标准单价     |
+| ------------------------------------------------------------ | ------------------ | ------------ |
+| Serverless                                                   | 通用云盘           | 0.00025 GB/H |
+| 云盘免费额度                                                 | 实例存储空间 * 2   |              |
+| [已删除实例备份](https://help.aliyun.com/zh/rds/apsaradb-rds-for-mysql/manage-the-backup-files-of-a-deleted-rds-instance) | 云盘（7 天内免费） | 0.006 GB/天  |
 
 ### PolarDB MySQL
 
@@ -47,6 +61,8 @@ PolarDB 采用计算与存储分离的架构，共享存储的一写多读，提
 - **资源限制**：Serverless 的计算节点包括主节点和只读节点，只读节点个数可以为 0，主节点 PCU 配置最小为 1。
 - **存储空间**：PolarDB MySQL Serverless 存储空间最小为 20GB。
 - **引擎限制**：创建表的时候，会自动将非 InnoDB 引擎（如 MyISAM、Memory、CSV 等）转换为 InnoDB 引擎。
+
+计费单价如下：
 
 | 收费项   | 标准单价    | 优惠单价  |
 | -------- | ----------- | --------- |
@@ -63,6 +79,8 @@ PolarDB 采用计算与存储分离的架构，共享存储的一写多读，提
 
 - **存储空间**：TDSQL-C MySQL 版 Serverless 服务无最小存储空间要求。
 - **引擎限制**：TDSQL-C MySQL 版 5.7 及以上版本[不支持](https://cloud.tencent.com/document/product/1003/102545#.E6.B3.A8.E6.84.8F.E4.BA.8B.E9.A1.B92) MyISAM 引擎和 Memory 引擎。
+
+计费单价如下：
 
 | 收费项   | 标准单价    | 优惠单价 |
 | -------- | ----------- | -------- |

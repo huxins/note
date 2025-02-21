@@ -38,6 +38,10 @@
 - [s5cmd](https://github.com/peak/s5cmd) - 非常快速的 S3 和本地文件系统执行工具。
 - [restic](https://github.com/restic/restic) - 快速、高效、安全的备份程序。
 
+### 磁盘管理
+
+- [gdisk](https://www.rodsbooks.com/gdisk/) - GPT fdisk 是一组用于 Linux、FreeBSD、macOS 和 Windows 的文本模式分区工具。
+
 ### 实用程序
 
 - [GNU Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html) - 包含许多基本的命令行工具，用于文件操作、文本处理和系统管理等任务。

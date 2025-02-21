@@ -40,6 +40,7 @@
 
 ### 磁盘管理
 
+- [fdisk](https://man7.org/linux/man-pages/man8/fdisk.8.html) - 用于创建和操作分区表，归属于 [util-linux](https://launchpad.net/ubuntu/plucky/+package/fdisk)。
 - [gdisk](https://www.rodsbooks.com/gdisk/) - GPT fdisk 是一组用于 Linux、FreeBSD、macOS 和 Windows 的文本模式分区工具。
 
 ### 实用程序

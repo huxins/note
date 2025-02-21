@@ -51,4 +51,5 @@
 - [findutils](https://www.gnu.org/software/findutils/manual/html_node/find_html/index.html) - 在文件系统中查找文件并对其执行操作。
 - [debianutils](https://packages.debian.org/sid/debianutils) - 包含了一些由 Debian 项目开发并广泛用于 Debian 系统的实用工具。
 - [lsb-release](https://wiki.linuxfoundation.org/lsb/start) - 识别正在使用的 Linux 发行版，以及它们对 Linux 标准基础的兼容性。
+- [util-linux](https://packages.debian.org/sid/util-linux) - util-linux 是 Linux 实用程序的随机集合。
 

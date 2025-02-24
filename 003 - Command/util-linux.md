@@ -81,3 +81,61 @@ mkfs -t ext4 /dev/vdb1
 mke2fs -t ext4 /dev/vdb1
 ```
 
+### mount
+
+[`mount`](https://man7.org/linux/man-pages/man8/mount.8.html) 用于挂载文件系统。
+
+传统 `mount` 需要 `root` 权限，但现在支持 `sudo` 或者 `/etc/fstab` 中的 `user` 选项，使普通用户可以挂载特定设备。
+
+`systemd` 也引入了 `automount` 功能，提供自动挂载功能，减少手动干预。
+
+**命令行选项**：
+
+- -**t** *fstype*：指示文件系统类型。
+- -**a**：挂载 `fstab` 中提到的所有文件系统（给定类型）（行中包含 `noauto` 关键字的除外）。
+
+查看当前已挂载的文件系统。
+
+```sh
+mount | column -t
+cat /proc/mounts | column -t
+```
+
+将硬盘驱动器的第一个分区挂载到现有目录。
+
+```sh
+mount -t ext4 /dev/vdb1 /media/data
+```
+
+参考物理磁盘分区卸载。
+
+```sh
+umount /dev/vdb1
+```
+
+参照挂载点卸载。
+
+```sh
+umount /media/data
+```
+
+没有指定文件系统类型 `-t` 时，`mount` 会自动检测 `/dev/sdb1` 的文件系统类型并进行挂载。
+
+`mount` 会尝试读取 `/dev/sdb1` 的超级块（superblock），检查其文件系统类型。这通常使用 `blkid` 或 `fstype` 机制来探测。
+
+```sh
+blkid /dev/vdb1
+```
+
+**挂载选项**：
+
+- `rw`：以读写模式挂载。
+- `relatime`：相对访问时间（减少 `atime` 更新，提高性能）。
+
+查看 `mount` 具体使用的选项，可以运行：
+
+```sh
+mount | grep /media/data
+findmnt /media/data
+```
+

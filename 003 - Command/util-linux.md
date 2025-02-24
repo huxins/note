@@ -59,3 +59,25 @@ fdisk /dev/vdb
 - 输入 **`t`** 更改分区类型。
 - 输入 **`q`** 退出而不保存更改。
 
+### mkfs
+
+[`mkfs`](https://man7.org/linux/man-pages/man8/mkfs.8.html) 是用于格式化具有特定文件系统的块存储设备的命令。
+
+`mkfs` 是一个通用命令，用于创建文件系统。它是一个前端工具，可以调用具体的文件系统创建程序。
+
+**命令行选项**：
+
+- -**t** *type*：指定要构建的文件系统的类型。如果未指定，则使用默认文件系统类型（当前为 `ext2`）。
+
+例如，创建一个 `ext4` 文件系统，实际调用的程序可能是 `mke2fs`。
+
+```sh
+mkfs -t ext4 /dev/vdb1
+```
+
+`mkfs.ext4`、`mkfs.ext3`、`mkfs.ext2` 实际上是 `mke2fs` 的不同调用方式。
+
+```sh
+mke2fs -t ext4 /dev/vdb1
+```
+

@@ -67,7 +67,7 @@ echo -e "Line1\nLine2"       # 输出包含换行的字符串
 - **Shell 内建命令**：在大多数 Shell 中，[`echo`](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html#index-echo) 是一个内建命令，直接由 Shell 解析和执行。
 - **外部命令**：在 Linux 系统中，[`echo`](https://www.gnu.org/software/coreutils/manual/html_node/echo-invocation.html) 也可以是来自 GNU Coreutils 的一个独立二进制程序。
 
-## 二、文件操作
+## 二、文件系统
 
 ### 调整文件大小
 
@@ -93,6 +93,28 @@ echo -e "Line1\nLine2"       # 输出包含换行的字符串
 
 ```sh
 truncate -s 0 filename
+```
+
+### 空间使用情况
+
+[`stat`](https://www.gnu.org/software/coreutils/manual/html_node/stat-invocation.html) 命令用于显示文件或文件系统状态。
+
+例如，查看文件详细信息。
+
+```sh
+stat file.txt
+```
+
+格式化输出：可以使用 `-c` 选项（或 `--format`）指定格式。
+
+```sh
+stat -c "Size: %s, Inode: %i, Permissions: %A" file.txt
+```
+
+例如，查看文件系统信息。
+
+```sh
+stat -f /
 ```
 
 ## 三、文件属性

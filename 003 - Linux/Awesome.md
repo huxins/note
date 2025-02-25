@@ -11,6 +11,7 @@
 ### 开发
 
 - [Bash](https://www.gnu.org/software/bash/) - Bash（Bourne Again Shell）是一种广泛使用的 Linux 命令行解释器和脚本语言。
+- [crontab](https://man7.org/linux/man-pages/man1/crontab.1.html) - 安装、移除或列出用于驱动 `cron` *daemon* 表的程序。
 
 ### 安全
 
@@ -23,6 +24,7 @@
 ### 系统管理
 
 - [Systemd](https://systemd.io/) - 引导系统、启动和管理服务、处理系统状态的核心组件之一。
+- [lvm2](https://github.com/lvmteam/lvm2) - 对 Linux 逻辑卷管理器的重写。
 
 ### 包管理工具
 

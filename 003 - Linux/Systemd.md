@@ -390,3 +390,38 @@ systemctl get-default
 systemctl set-default multi-user.target
 ```
 
+## 四、Service
+
+### systemd-resolved
+
+[`systemd-resolved`](https://www.freedesktop.org/software/systemd/man/latest/systemd-resolved.service.html) 主要用于管理 DNS 解析和域名解析[配置](https://www.linuxtricks.fr/wiki/systemd-la-resolution-de-nom-avec-systemd-resolved)。
+
+```sh
+resolvectl status
+```
+
+- **DNS 解析管理**：
+  - 统一管理不同网络接口（如以太网、Wi-Fi、VPN）的 DNS 配置，支持按接口优先级动态切换 DNS 服务器。
+  - 通过 `/etc/resolv.conf` 的符号链接（默认指向 `/run/systemd/resolve/resolv.conf` 或 `/run/systemd/resolve/stub-resolv.conf`）为应用程序提供 DNS 配置。
+- **DNS 缓存**：提供本地 DNS 缓存，加速重复查询的响应速度，减少外部 DNS 服务器的请求压力。
+- **高级功能支持**：
+  - **DNSSEC 验证**：自动验证 DNS 记录的完整性，防止域名劫持。
+  - **DNS over TLS (DoT)**：支持加密的 DNS 查询，提升隐私和安全性。
+  - LLMNR（本地链路多播名称解析）和 mDNS（多播 DNS）：用于局域网内的主机名解析（类似 Avahi）。
+
+如需使用其他 DNS 工具（如 `dnsmasq`、`unbound`），或需要手动管理 `/etc/resolv.conf`，可以关闭 `systemd-resolved`。
+
+```sh
+systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+rm -f /etc/resolv.conf
+echo "nameserver 100.100.2.136" | tee /etc/resolv.conf
+```
+
+`systemd-resolved` 不会监听标准的 `127.0.0.1:53`，而是使用 `127.0.0.53:53` 和 `127.0.0.54:53` 作为其默认监听地址。
+
+```sh
+nslookup example.com 127.0.0.53
+nslookup example.com 127.0.0.54
+```
+

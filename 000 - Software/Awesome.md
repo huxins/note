@@ -5,8 +5,9 @@
 ### 代码编辑
 
 - [Visual Studio Code](https://code.visualstudio.com/) - 轻量级但功能强大的源代码编辑器。
-- [Visual Studio](https://visualstudio.microsoft.com/) - 一个创意启动板，可用于编辑、调试和生成代码，然后发布应用。
+- [Visual Studio](https://visualstudio.microsoft.com/) - 创意启动板，可用于编辑、调试和生成代码，然后发布应用。
 - [IntelliJ IDEA](https://www.jetbrains.com/zh-cn/idea/) - 面向专业开发的 IDE，适用于 Java 和 Kotlin。
+- [Sublime Text 3](https://www.sublimetext.com/3) - 为代码、标记语言和纯文本而生的文本编辑器。
 
 ## 二、办公
 

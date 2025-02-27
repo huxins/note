@@ -2,9 +2,10 @@
 
 ## 阿里云
 
-云服务器 [ECS](https://help.aliyun.com/zh/ecs/product-overview/terms) 的[计费方式](https://help.aliyun.com/zh/ecs/overview-of-billing-methods)为包年包月、按量付费和抢占式实例。除包年包月外，均支持[节省停机模式](https://help.aliyun.com/zh/ecs/product-overview/economical-mode)。
-
 阿里云的云产品[定价策略](https://help.aliyun.com/zh/user-center/support/billing-faqs#a1bb44f088vn1)是到小数点后 12 位，但是采取的结算策略是在商品粒度按一系列出账规则汇总结算并出账，结算过程中将 12 位小数位[抹零](https://www.alibabacloud.com/help/zh/user-center/bill-overview#h5-sf3-pjq-tk7)减少到 2 位小数后和客户进行结算。目前是按计费周期进行抹零，可能改为[按月抹零](https://help.aliyun.com/zh/user-center/product-overview/updates-on-the-bill-settlement-policy)。
+
+- **计费方式**：云服务器 [ECS](https://help.aliyun.com/zh/ecs/product-overview/terms) 的[计费方式](https://help.aliyun.com/zh/ecs/overview-of-billing-methods)为包年包月、按量付费和抢占式实例。除包年包月，计费周期为秒级。
+- **节省停机**：除包年包月外，均支持[节省停机模式](https://help.aliyun.com/zh/ecs/product-overview/economical-mode)。
 
 [定价详情](https://www.aliyun.com/price/ecs/ecs-pricing/zh)如下。
 
@@ -14,7 +15,8 @@
 
 ## 腾讯云
 
-云服务器 [CVM](https://cloud.tencent.com/document/product/213/495) 的[计费方式](https://cloud.tencent.com/document/product/213/2180)为包年包月、按量计费和竞价实例。仅按量计费实例支持[关机不收费](https://cloud.tencent.com/document/product/213/19918)。
+- **计费方式**：云服务器 [CVM](https://cloud.tencent.com/document/product/213/495) 的[计费方式](https://cloud.tencent.com/document/product/213/2180)为包年包月、按量计费和竞价实例。除包年包月，计费周期为秒级。
+- **节省停机**：仅按量计费实例支持[关机不收费](https://cloud.tencent.com/document/product/213/19918)。
 
 产品定价：[云服务器](https://buy.cloud.tencent.com/price/cvm)、[云硬盘](https://buy.cloud.tencent.com/price/cbs)。
 

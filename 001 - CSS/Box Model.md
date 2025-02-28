@@ -1,10 +1,10 @@
 # CSS Box Model
 
-## 一、Box Sizing
+[Box Model](https://www.w3.org/TR/css-box-3/) 模块描述了 [`margin`](https://www.w3.org/TR/css-box-3/#margins) 和 [`padding`](https://www.w3.org/TR/css-box-3/#paddings) 属性，这些属性用于在 CSS 盒模型内部及周围创建间距。
 
-[Box Sizing](https://www.w3.org/TR/css-sizing-3/) 模块通过关键字扩展了 CSS 尺寸属性，这些关键字代表基于内容的 *intrinsic* 尺寸和基于上下文的 *extrinsic* 尺寸，使 CSS 更容易描述适合其内容或适应特定布局上下文的框。
+[Box Sizing](https://www.w3.org/TR/css-sizing-3/) 模块通过引入基于内容的 [`intrinsic`](https://www.w3.org/TR/css-sizing-3/#intrinsic) 尺寸和基于上下文的 [`extrinsic`](https://www.w3.org/TR/css-sizing-3/#extrinsic) 尺寸，扩展了 CSS 的尺寸属性。这使得 CSS 能够更轻松地描述那些适应自身内容或融入特定布局上下文的盒子。
 
-### Box 尺寸
+## 一、尺寸
 
 控制 Box 尺寸的属性有 [`width`](https://www.w3.org/TR/css-sizing-3/#propdef-width)、[`height`](https://www.w3.org/TR/css-sizing-3/#propdef-height)、[`min-width`](https://www.w3.org/TR/css-sizing-3/#propdef-min-width)、[`min-height`](https://www.w3.org/TR/css-sizing-3/#propdef-min-height)、[`max-width`](https://www.w3.org/TR/css-sizing-3/#propdef-max-width) 和 [`max-height`](https://www.w3.org/TR/css-sizing-3/#propdef-max-height)。
 

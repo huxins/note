@@ -1,6 +1,8 @@
 # CSS Text
 
-[Text](https://www.w3.org/TR/css-text-3/) 模块定义了用于文本操作的属性，并规定了其处理模型。其内容包括换行规则、两端对齐与对齐方式、空白符处理以及文本转换机制。
+[Text](https://www.w3.org/TR/css-text-3/) 模块定义了用于文本操作的属性，并规定了其处理模型。
+
+其内容包括换行规则、两端对齐与对齐方式、空白符处理以及文本转换机制。
 
 ## 一、对齐
 
@@ -18,7 +20,14 @@ Alignment（对齐）和 Justification（两端对齐）的区别主要在于它
 
 ### text-align
 
-[`text-align`](https://www.w3.org/TR/css-text-3/#propdef-text-align) 属性设置块级元素内部内容的水平对齐方式，主要影响行内内容（如文本、图片、行内块元素）的对齐。
+[`text-align`](https://www.w3.org/TR/css-text-3/#propdef-text-align) 属性设置块级元素内部内容的水平对齐方式（作用于行内轴），主要影响行内内容（如文本、图片、行内块元素）的对齐。
+
+**书写模式决定轴方向**：在默认的水平书写模式（如拉丁语系）中：
+
+- 行内轴（Inline Axis）是水平方向（→）。
+- 块轴（Block Axis）是垂直方向（↓）。
+
+因此，`text-align` 在默认情况下表现为水平对齐，但它实际是行内轴对齐。如果使用竖排书写模式（如中文竖排），`text-align` 会变成垂直对齐。
 
 例如，两端对齐段落。
 

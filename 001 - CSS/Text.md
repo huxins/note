@@ -67,3 +67,10 @@ p {
 }
 ```
 
+## Reference
+
+- 竖版排版的网页
+  - [直排诗文网](https://poet.imaiko.com/)
+  - [HIROKA KISHIMOTO | 岸本浩加 | 着物](https://hirokakishimoto.jp/)
+  - [たてよこWebアワード](https://tategaki.github.io/awards/)
+

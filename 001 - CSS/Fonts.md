@@ -1,10 +1,10 @@
 # CSS Fonts
 
-## 一、字体
-
 [Fonts](https://www.w3.org/TR/css-fonts-3/) 模块描述了如何指定字体属性以及如何动态加载字体资源。
 
-### 设置字体
+[Font Loading](https://drafts.csswg.org/css-font-loading-3/) 模块描述了用于动态加载字体资源的事件和接口。
+
+## 一、字体属性
 
 [`font-family`](https://www.w3.org/TR/css-fonts-3/#propdef-font-family) 属性通过给定一个有先后顺序的，由字体名或者字体族名组成的列表来为选定的元素设置字体。
 
@@ -22,59 +22,13 @@ h1 {
 }
 ```
 
-### 字体资源
+## 二、字体资源
 
-[`@font-face`](https://www.w3.org/TR/css-fonts-3/#at-font-face-rule) [at-rule](https://www.w3.org/TR/css-syntax-3/#ref-for-at-rule%E2%91%A0%E2%91%A0) 指定一个用于显示文本的自定义字体。
+[`@font-face`](https://www.w3.org/TR/css-fonts-3/#at-font-face-rule) [At-Rule](https://www.w3.org/TR/css-syntax-3/#ref-for-at-rule%E2%91%A0%E2%91%A0) 指定一个用于显示文本的自定义字体。
 
-通过 `@font-face` 从服务器上下载字体。
+例如，通过 `@font-face` 从服务器上下载字体。
 
 ```html
 <link rel="stylesheet" href="https://fonts.font.im/css?family=Open+Sans" />
-```
-
-## 二、文字排版
-
-[Text](https://www.w3.org/TR/css-text-3/) 模块定义了文本操作的属性，并指定了它们的处理模型。它涵盖了换行、对齐、空格处理和文本转换。
-
-### 对齐
-
-[`text-align`](https://www.w3.org/TR/css-text-3/#propdef-text-align) 属性设置块元素的行内内容的水平对齐。
-
-```css
-p {
-  text-align: center;
-}
-```
-
-### 间距
-
-[`letter-spacing`](https://www.w3.org/TR/css-text-3/#propdef-letter-spacing) 属性用于设置文本字符的额外间距。
-
-```css
-p {
-  letter-spacing: 1px;
-}
-```
-
-[`word-spacing`](https://www.w3.org/TR/css-text-3/#propdef-word-spacing) 属性用于设置标签、单词之间的额外间距。
-
-```css
-p {
-  word-spacing: 4px;
-}
-```
-
-## 三、颜色
-
-CSS 是一种用于描述 HTML 和 XML 文档在屏幕、纸张、语音等媒介上渲染的语言。它使用与颜色相关的属性和值来为文档中的文本、背景、边框和其他部分着色。[Color](https://www.w3.org/TR/css-color-3/) 模块描述了前景色和不透明度的颜色值和属性。
-
-### 不透明度
-
-[`opacity`](https://www.w3.org/TR/css-color-3/#opacity) 属性指定了一个元素的不透明度。换言之，`opacity` 属性指定了一个元素后面的背景的被覆盖程度。
-
-```css
-img {
-  opacity: 0.6;
-}
 ```
 

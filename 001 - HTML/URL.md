@@ -11,7 +11,7 @@ let baseUrl = 'https://www.baidu.com';
 let rootUrl = new URL('/', baseUrl);
 ```
 
-静态方法：
+**静态方法**：
 
 - URL.[**createObjectURL**](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL_static)(*object*)
 

@@ -28,7 +28,7 @@ IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScrip
 
 ## 二、语法
 
-### Boolean 属性
+### 布尔属性
 
 元素上存在[布尔属性](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)表示真值，不存在该属性表示假值。
 
@@ -68,7 +68,7 @@ IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScrip
 
   在 `text/html` 语法中是否可以省略开始和结束标记的非规范性描述。
 
-实例方法：
+**实例方法**：
 
 - element.[**click**](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/click)()
 
@@ -78,9 +78,9 @@ IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScrip
   document.getElementById("su").click();
   ```
 
-实例属性：
+**实例属性**：
 
-- element.[style](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/style)
+- element.[**style**](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/style)
 
   只读属性 `style` 以 [`CSSStyleDeclaration`](https://drafts.csswg.org/cssom/#the-cssstyledeclaration-interface) 对象的形式返回元素的内联样式，该对象包含该元素的所有样式属性列表，只为元素的内联 `style` 属性中定义的属性分配值。
 

@@ -12,8 +12,21 @@
 
 ### Web API
 
+- [HTML DOM API](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API)
+
+  - [HTMLElement](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement)
+
+  - [Web Storage](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API)
+
 - [DOM](https://dom.spec.whatwg.org/)
+
+- [URL](https://url.spec.whatwg.org/)
+
+- [XMLHttpRequest](https://xhr.spec.whatwg.org/)
+
 - [File API](https://www.w3.org/TR/FileAPI/)
+
+- [User-Agent Client Hints](https://wicg.github.io/ua-client-hints/)
 
 ### CDN
 

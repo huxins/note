@@ -37,6 +37,10 @@
 <link rel="stylesheet" href="index.css">
 ```
 
+### style
+
+[`style`](https://html.spec.whatwg.org/multipage/semantics.html#the-style-element) 元素允许作者在他们的文档中嵌入 CSS 样式表。
+
 ### meta
 
 [`meta`](https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element) 元素表示无法使用 `title`，`base`，`link`，`style` 和 `script` 元素表示的各种元数据。
@@ -49,17 +53,11 @@
   <meta charset="utf-8">
   ```
 
-### style
-
-[`style`](https://html.spec.whatwg.org/multipage/semantics.html#the-style-element) 元素允许作者在他们的文档中嵌入 CSS 样式表。
-
-## 二、Sections
+## 二、块级元素
 
 ### body
 
 [`body`](https://html.spec.whatwg.org/multipage/sections.html#the-body-element) 元素表示文档的内容。
-
-## 三、内容分组
 
 ### p
 
@@ -111,7 +109,7 @@
 </dl>
 ```
 
-## 四、文本级语义
+## 三、行内元素
 
 ### a
 
@@ -131,7 +129,7 @@
 
 [`span`](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element) 元素本身没有任何意义。
 
-## 五、表单
+## 四、表单
 
 ### form
 
@@ -162,17 +160,19 @@
 <input type="text" value="by default this element is filled with this text">
 ```
 
-所有文本框都有一些通用规范：
+**所有文本框都有一些通用规范**：
 
 - 可以被标记为 [`readonly`](https://html.spec.whatwg.org/multipage/input.html#the-input-element:attr-input-readonly-3)，用户不能修改输入值；甚至是 [`disabled`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#disabled)，输入值永远不会与表单数据的其余部分一起发送。
 - 可以有一个 [`placeholder`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#placeholder)，这是文本输入框中出现的文本，用来简略描述输入框的目的。
 - 可以使用 [`size`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#size)（框的物理尺寸）和 [`maxlength`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#maxlength)（可以输入的最大字符数）进行限制。
 
-任何带有 [`checked`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#checked) 属性的复选框和单选按钮在加载时都会匹配 [`:default`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-default) 伪类，即使它们后面不再被选中。任何当前被选中的元素，都会匹配 [`:checked`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-checked) 伪类。
+任何带有 [`checked`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#checked) 属性的复选框和单选按钮在加载时都会匹配 [`:default`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-default) 伪类，即使它们后面不再被选中。
 
-通过 [`type`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#type) 指定要渲染的控件的类型：
+任何当前被选中的元素，都会匹配 [`:checked`](https://html.spec.whatwg.org/multipage/semantics-other.html#selector-checked) 伪类。
 
-- text
+**通过 [`type`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#type) 指定要渲染的控件的类型**：
+
+- **text**
 
   单行纯文本编辑控件。
 
@@ -180,7 +180,7 @@
   <input type="text" value="I'm a text field">
   ```
 
-- password
+- **password**
 
   单行纯文本编辑控件，浏览器会隐藏该值，以便用户以外的其他人无法看到。
 
@@ -188,7 +188,7 @@
   <input type="password">
   ```
 
-- hidden
+- **hidden**
 
   不打算由用户检查或操纵的值。
 
@@ -196,29 +196,27 @@
   <input type="hidden" id="timestamp" name="timestamp" value="1286705410">
   ```
 
-- checkbox
+- **checkbox**
 
   ```html
   <input type="checkbox" id="questionOne" name="subscribe" value="yes" checked>
   ```
 
-- radio
+- **radio**
 
   ```html
   <input type="radio" id="soup" name="meal" checked>
   ```
 
-- file
+- **file**
 
   ```html
   <input type="file" name="file" id="file" accept="image/*" multiple>
   ```
 
-在 HTML 中，IDL（Interface Definition Language）属性和方法是指在 Web API 中定义的与 DOM（Document Object Model）接口相关的属性和方法。它们用于在浏览器中操作 HTML 元素，通过 JavaScript 访问和修改 DOM 元素的属性、行为等。IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScript 来操作和使用。
+**IDL 属性和方法**：
 
-IDL 属性和方法：
-
-- files
+- **files**
 
   [`HTMLInputElement.files`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/files) 属性允许访问使用 `<input type="file">` 元素选择的 [`FileList`](https://developer.mozilla.org/zh-CN/docs/Web/API/FileList)。
   
@@ -247,7 +245,9 @@ IDL 属性和方法：
 
 `button` 元素接受一个 [`type`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#type) 属性，它接受 `submit`、`reset` 或者 `button` 三个值中的任一个。
 
-还可以使用相应类型的 `input` 元素来生成一个按钮，如 `<input type="submit">`。`button` 元素的主要优点是，`input` 元素只允许纯文本作为其标签，而 `button` 元素允许完整的 HTML 内容，允许更复杂、更有创意的按钮内容。
+还可以使用相应类型的 `input` 元素来生成一个按钮，如 `<input type="submit">`。
+
+`button` 元素的主要优点是，`input` 元素只允许纯文本作为其标签，而 `button` 元素允许完整的 HTML 内容，允许更复杂、更有创意的按钮内容。
 
 ### select
 
@@ -263,7 +263,9 @@ IDL 属性和方法：
 
 如果需要的话，选择框的默认值可以由要指定默认值的 `option` 元素中的 `selected` 属性设置，这样在页面加载后，该选项可以预先选中。
 
-如果一个 `option` 元素明确设置了 `value` 属性，当表单提交时会提交那个选项对应的值。如果像上面的例子那样省略了 `value` 属性，`option` 元素的内容会作为提交的值。
+如果一个 `option` 元素明确设置了 `value` 属性，当表单提交时会提交那个选项对应的值。
+
+如果像上面的例子那样省略了 `value` 属性，`option` 元素的内容会作为提交的值。
 
 ```html
 <select id="simple" name="simple">
@@ -311,11 +313,15 @@ IDL 属性和方法：
 </select>
 ```
 
-在 [`optgroup`](https://html.spec.whatwg.org/multipage/form-elements.html#the-optgroup-element) 元素中，[`label`](https://html.spec.whatwg.org/multipage/form-elements.html#attr-optgroup-label) 属性的值在嵌套选项之前显示。浏览器往往在视觉上将它们与选项分开，以避免它们与实际选项混淆。
+在 [`optgroup`](https://html.spec.whatwg.org/multipage/form-elements.html#the-optgroup-element) 元素中，[`label`](https://html.spec.whatwg.org/multipage/form-elements.html#attr-optgroup-label) 属性的值在嵌套选项之前显示。
+
+浏览器往往在视觉上将它们与选项分开，以避免它们与实际选项混淆。
 
 ### datalist
 
-[`datalist`](https://html.spec.whatwg.org/multipage/form-elements.html#the-datalist-element) 元素代表一组 [`option`](https://html.spec.whatwg.org/multipage/form-elements.html#the-option-element) 元素，这些元素代表其他控件的预定义选项。在渲染中，`datalist` 元素不代表任何内容，它及其子元素应该被隐藏。
+[`datalist`](https://html.spec.whatwg.org/multipage/form-elements.html#the-datalist-element) 元素代表一组 [`option`](https://html.spec.whatwg.org/multipage/form-elements.html#the-option-element) 元素，这些元素代表其他控件的预定义选项。
+
+在渲染中，`datalist` 元素不代表任何内容，它及其子元素应该被隐藏。
 
 ```html
 <label for="myFruit">What's your favorite fruit?</label>
@@ -334,7 +340,7 @@ IDL 属性和方法：
 
 ### textarea
 
-[`textarea`](https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element) 元素表示元素原始值的多行纯文本编辑控件。控件的内容代表控件的默认值。
+[`textarea`](https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element) 元素表示元素原始值的多行纯文本编辑控件，控件的内容代表控件的默认值。
 
 ```html
 <textarea>
@@ -366,7 +372,7 @@ by default this element is filled with this text
   </form>
   ```
 
-## 六、脚本
+## 五、脚本
 
 脚本允许作者将交互性添加到文档中。
 

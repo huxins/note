@@ -11,7 +11,7 @@ const form = document.getElementById("tagForm");
 const formData = new FormData(form);
 ```
 
-实例方法：
+**实例方法**：
 
 - formData.[**append**](https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append)(*name*, *value*)
 

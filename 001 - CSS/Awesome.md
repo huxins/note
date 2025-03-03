@@ -21,4 +21,6 @@
 - [Text](https://www.w3.org/TR/css-text-3/)
 - [Color](https://www.w3.org/TR/css-color-3/)
 - [Inline Layout](https://www.w3.org/TR/css-inline/)
+- [Display](https://www.w3.org/TR/css-display/)
+- [Overflow](https://www.w3.org/TR/css-overflow-3/)
 

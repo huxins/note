@@ -13,11 +13,13 @@
 ### Web API
 
 - [DOM](https://dom.spec.whatwg.org/)
+- [File API](https://www.w3.org/TR/FileAPI/)
 
 ### CDN
 
 - [SRI Hash Generator](https://www.srihash.org/)
 - [Google Hosted Libraries](https://developers.google.com/speed/libraries?hl=zh-cn)
+- [Microsoft Ajax CDN](https://www.asp.net/ajaxlibrary/cdn.ashx)
 - [jsDelivr](https://www.jsdelivr.com/) - 支持 NPM、GitHub。
 - [cdnjs.com](https://cdnjs.com/)
   - [cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/)

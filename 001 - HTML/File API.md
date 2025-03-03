@@ -1,4 +1,4 @@
-# File
+# File API
 
 [File](https://www.w3.org/TR/FileAPI/) 规范提供了一个 API，用于表示 Web 应用程序中的文件对象，以及以编程方式选择它们和访问它们的数据。
 
@@ -37,7 +37,7 @@ const blob = new Blob([file], { type: file.type });
 
 [`FileReader`](https://www.w3.org/TR/FileAPI/#dfn-filereader) 接口允许 Web 应用程序异步读取存储在用户计算机上的文件的内容，使用 `File` 或 `Blob` 对象指定要读取的文件或数据。
 
-实例方法：
+**实例方法**：
 
 - reader.[**readAsDataURL**](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL)(*blob*)
 

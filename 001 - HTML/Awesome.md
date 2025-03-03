@@ -10,6 +10,10 @@
 
 - [Can I use](https://caniuse.com/)
 
+### Web API
+
+- [DOM](https://dom.spec.whatwg.org/)
+
 ### CDN
 
 - [SRI Hash Generator](https://www.srihash.org/)

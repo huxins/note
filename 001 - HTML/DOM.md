@@ -1,26 +1,28 @@
 # DOM
 
-[DOM](https://dom.spec.whatwg.org/) 是 HTML 和 XML 文档的编程接口。它提供了对文档的结构化表述，并定义了一种方式从程序中对该结构进行访问，从而改变文档的结构，样式和内容。
+[DOM](https://dom.spec.whatwg.org/) 是 HTML 和 XML 文档的编程接口。
+
+[文档对象模型](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model)提供了对文档的结构化表述，并定义了一种方式从程序中对该结构进行访问，从而改变文档的结构，样式和内容。
 
 ## 一、事件
 
 在整个 Web 中，[事件](https://dom.spec.whatwg.org/#introduction-to-dom-events)被分派到对象以表示事件的发生，例如网络活动或用户交互。
 
-这些对象实现了 [`EventTarget`](https://dom.spec.whatwg.org/#eventtarget) 接口，因此可以通过调用 [`addEventListener()`](https://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener) 来添加事件监听器来观察事件。
+这些对象实现了 [`EventTarget`](https://dom.spec.whatwg.org/#eventtarget) 接口，因此可以通过调用 [`addEventListener()`](https://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener) 添加事件监听器来观察事件。
 
 ### Event
 
 [`Event`](https://dom.spec.whatwg.org/#event) 接口表示在 DOM 中出现的事件，它允许发出发生了什么的信号，例如，图像已完成下载。
 
-实例属性：
+**实例属性**：
 
 - event.[**target**](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target)
 
   只读属性，对事件分派到的对象的引用。
 
-实例方法：
+**实例方法**：
 
-- event.[**preventDefault**()](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/preventDefault)
+- event.[**preventDefault**](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/preventDefault)()
 
   通知浏览器，取消此事件的默认动作。
 
@@ -28,11 +30,13 @@
 
 [`EventTarget`](https://dom.spec.whatwg.org/#eventtarget) 接口由可以接收事件、并且可以创建侦听器的对象实现。
 
-DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget) 接口。所有节点对象都实现了这个接口，其他一些需要事件通信的浏览器内置对象，比如，`XMLHttpRequest`、`AudioNode`、`AudioContext` 也实现了这个接口。
+DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget) 接口。
 
-每个 [`EventTarget`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget) 对象都有一个关联的事件侦听器列表。它最初是空列表。
+所有节点对象都实现了这个接口，其他一些需要事件通信的浏览器内置对象，比如，`XMLHttpRequest`、`AudioNode`、`AudioContext` 也实现了这个接口。
 
-实例方法：
+每个 [`EventTarget`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget) 对象都有一个关联的事件侦听器列表，它最初是空列表。
+
+**实例方法**：
 
 - target.[**addEventListener**](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)(*type*, *listener*)
 
@@ -57,7 +61,7 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
 
 [`Node`](https://dom.spec.whatwg.org/#interface-node) 是一个接口，各种类型的 DOM API 对象会从这个接口继承。
 
-实例方法：
+**实例方法**：
 
 - node.[**appendChild**](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild)()
 
@@ -83,7 +87,7 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
 
 [`Element`](https://dom.spec.whatwg.org/#interface-element) 是最通用的基类，[`Document`](https://dom.spec.whatwg.org/#document) 中的所有元素对象都继承自它。
 
-实例方法：
+**实例方法**：
 
 - element.[**getAttribute**](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getAttribute)(*attributeName*)
 
@@ -105,7 +109,7 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
 
 [`Document`](https://dom.spec.whatwg.org/#interface-document) 接口表示浏览器中加载的任何网页，并充当进入 DOM 树的入口。
 
-实例方法：
+**实例方法**：
 
 - document.[**createElement**](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElement)(*tagName*)
 
@@ -115,15 +119,17 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
   const textarea = document.createElement('textarea');
   ```
 
-### 节点树
+### ParentNode
 
-#### ParentNode
+在 DOM 中，[`ParentNode`](https://dom.spec.whatwg.org/#interface-parentnode) 是一个混入（mixin），它包含了一些方法和属性，这些方法和属性对所有可以拥有子节点的 Node 对象都是通用的。
 
-在 DOM 中，[`ParentNode`](https://dom.spec.whatwg.org/#interface-parentnode) 是一个混入（mixin），它包含了一些方法和属性，这些方法和属性对所有可以拥有子节点的 Node 对象都是通用的。具体来说，[`ParentNode`](http://udn.realityripple.com/docs/Web/API/ParentNode) 由三个对象实现：`Element` 对象、`Document` 对象和 `DocumentFragment` 对象。
+具体来说，[`ParentNode`](http://udn.realityripple.com/docs/Web/API/ParentNode) 由三个对象实现：`Element` 对象、`Document` 对象和 `DocumentFragment` 对象。
 
-任何可以包含子节点的对象都会具有 `ParentNode` 中定义的那些方法和属性。例如，像 [`children`](https://dom.spec.whatwg.org/#dom-parentnode-children)、[`firstElementChild`](https://dom.spec.whatwg.org/#dom-parentnode-firstelementchild)、[`lastElementChild`](https://dom.spec.whatwg.org/#dom-parentnode-lastelementchild) 这样的属性，以及像 [`append`](https://dom.spec.whatwg.org/#dom-parentnode-append)、[`prepend`](https://dom.spec.whatwg.org/#dom-parentnode-prepend) 这样的操作子节点的方法，都是 `ParentNode` 提供的。
+任何可以包含子节点的对象都会具有 `ParentNode` 中定义的那些方法和属性。
 
-实例方法：
+例如，像 [`children`](https://dom.spec.whatwg.org/#dom-parentnode-children)、[`firstElementChild`](https://dom.spec.whatwg.org/#dom-parentnode-firstelementchild)、[`lastElementChild`](https://dom.spec.whatwg.org/#dom-parentnode-lastelementchild) 这样的属性，以及像 [`append`](https://dom.spec.whatwg.org/#dom-parentnode-append)、[`prepend`](https://dom.spec.whatwg.org/#dom-parentnode-prepend) 这样的操作子节点的方法，都是 `ParentNode` 提供的。
+
+**实例方法**：
 
 - node.[**querySelector**](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/querySelector)(*selectors*)
 

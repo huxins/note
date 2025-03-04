@@ -241,4 +241,5 @@ public class CreditCardPayment : IPaymentStrategy
 ## Reference
 
 - [Refactoring](https://refactoringguru.cn/design-patterns)
+- [Patterns.dev](https://www.patterns.dev/)
 

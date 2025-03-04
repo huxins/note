@@ -2,37 +2,7 @@
 
 JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)、以及它们的方法和属性。
 
-## 一、基本对象
-
-### Function
-
-[`Function`](https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-function-objects) 对象提供了用于处理函数的方法。在 JavaScript 中，每个函数实际上都是一个 `Function` 对象。
-
-**原型方法**：
-
-- Function.prototype.[**call**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)()
-
-  使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
-  
-  ```javascript
-  call(thisArg, arg1, arg2, /* ..., */ argN)
-  ```
-  
-  示例如下。
-  
-  ```javascript
-  function Product(name, price) {
-    this.name = name;
-    this.price = price;
-  }
-  
-  function Food(name, price) {
-    Product.call(this, name, price);
-    this.category = 'food';
-  }
-  
-  console.log(new Food('cheese', 5).name);
-  ```
+## 一、基础对象
 
 ### Object
 
@@ -90,7 +60,37 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
   });
   ```
 
-## 二、字符串
+### Function
+
+[`Function`](https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-function-objects) 对象提供了用于处理函数的方法。在 JavaScript 中，每个函数实际上都是一个 `Function` 对象。
+
+**原型方法**：
+
+- Function.prototype.[**call**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)()
+
+  使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
+  
+  ```javascript
+  call(thisArg, arg1, arg2, /* ..., */ argN)
+  ```
+  
+  示例如下。
+  
+  ```javascript
+  function Product(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+  
+  function Food(name, price) {
+    Product.call(this, name, price);
+    this.category = 'food';
+  }
+  
+  console.log(new Food('cheese', 5).name);
+  ```
+
+## 二、文本处理
 
 ### String
 
@@ -100,20 +100,24 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
 
 - String.prototype.[**replace**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace)()
 
-  返回一个新字符串，其中一个、多个或所有匹配的 `pattern` 被替换为 `replacement`。`pattern` 可以是字符串或 `RegExp`，`replacement` 可以是字符串或一个在每次匹配时调用的函数。如果 `pattern` 是字符串，则仅替换第一个匹配项。
-  
+  返回一个新字符串，其中一个、多个或所有匹配的 `pattern` 被替换为 `replacement`。
+
+  `pattern` 可以是字符串或 `RegExp`，`replacement` 可以是字符串或一个在每次匹配时调用的函数。
+
+  如果 `pattern` 是字符串，则仅替换第一个匹配项。
+
   ```javascript
   replace(pattern, replacement)
   ```
-  
+
   例如，替换单个字符串。
-  
+
   ```javascript
   '你的唯一'.replace('你', '我');
   ```
-  
+
   例如，Camel case 转 Snake case。
-  
+
   ```javascript
   const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
   ```
@@ -127,8 +131,10 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
   slice(indexStart, indexEnd)
   ```
 
-  `slice()` 方法提取直到但不包括 `indexEnd` 的文本。如果 `indexEnd` 被省略，则 `slice()` 提取到字符串的末尾。
+  `slice()` 方法提取直到但不包括 `indexEnd` 的文本。
 
+  如果 `indexEnd` 被省略，则 `slice()` 提取到字符串的末尾。
+  
   如果 `indexStart` 为负数，则索引从字符串末尾开始计数，即从 `str.length + indexStart` 开始。
   
 - String.prototype.[**charAt**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/charAt)()
@@ -170,7 +176,7 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
   // Expected output: "128516"
   ```
 
-## 三、索引集合
+## 三、集合对象
 
 ### Array
 
@@ -239,11 +245,15 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
 
 ### TypedArray
 
-一个 [`TypedArray`](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-typedarray-objects) 对象描述了底层二进制数据缓冲区的类数组视图。没有称为 `TypedArray` 的全局属性，也没有直接可用的 `TypedArray` 构造函数。
+一个 [`TypedArray`](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-typedarray-objects) 对象描述了底层二进制数据缓冲区的类数组视图。
+
+没有称为 `TypedArray` 的全局属性，也没有直接可用的 `TypedArray` 构造函数。
 
 #### Uint8Array
 
-[`Uint8Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) 数组类型表示一个 8 位无符号整型数组，创建时内容被初始化为 0。创建完后，可以以对象的方式或使用数组下标索引的方式引用数组中的元素。
+[`Uint8Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) 数组类型表示一个 `8` 位无符号整型数组，创建时内容被初始化为 `0`。
+
+创建完后，可以以对象的方式或使用数组下标索引的方式引用数组中的元素。
 
 ```javascript
 const uint8 = new Uint8Array(5);
@@ -272,7 +282,6 @@ console.log(uint8FromArr); // 输出: Uint8Array(5) [ 5, 10, 15, 20, 25 ]
 const buffer = new ArrayBuffer(8);
 const uint8FromBuffer = new Uint8Array(buffer);
 
-
 uint8FromBuffer[0] = 100;
 uint8FromBuffer[1] = 200;
 
@@ -288,7 +297,9 @@ console.log(uint8FromBuffer.buffer); // 输出: ArrayBuffer(8)
 
 [`ArrayBuffer`](https://tc39.es/ecma262/multipage/structured-data.html#sec-arraybuffer-objects) 对象用来表示通用的、固定长度的原始二进制数据缓冲区。
 
-它是一个字节数组，通常在其他语言中称为 `byte array`。不能直接操作 `ArrayBuffer` 中的内容；而是要通过 `TypedArray` 或 `DataView` 对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
+它是一个字节数组，通常在其他语言中称为 `byte array`。
+
+不能直接操作 `ArrayBuffer` 中的内容，而是要通过 `TypedArray` 或 `DataView` 对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
 
 ```javascript
 let buffer = new ArrayBuffer(8);
@@ -349,7 +360,7 @@ new Date().toLocaleString();
   const str = date.toLocaleDateString("zh-CN", { timeZone: 'Asia/Shanghai' })
   ```
 
-## 六、反射
+## 六、反射机制
 
 ### Proxy
 

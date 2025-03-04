@@ -4,65 +4,83 @@
 
 ## 一、惰性函数
 
-惰性函数表示函数执行的分支，只会在函数第一次调用的时候执行，在第一次调用过程中，该函数会被覆盖为另一个按照合适方式执行的函数。
+惰性函数（Lazy Function）是一种通过自覆盖机制实现动态优化的编程技术。
 
-### 普通方法
+其核心机制是在首次调用时执行初始化逻辑，并在此过程中将函数自身替换为优化后的版本。
 
-普通方法有两个问题，一是污染了全局变量，二是每次调用的时候都需要进行一次判断。
+该技术通过消除重复的条件判断，有效提升后续调用时的执行效率。
+
+### 全局变量版
+
+**问题**：
+
+- 全局变量污染
+- 每次调用都进行条件检查
 
 ```javascript
-var t;
+var t;  // 污染全局命名空间
 function foo() {
-  if (t) return t;
+  if (t) return t;  // 每次调用都需判断
   t = new Date()
   return t;
 }
 ```
 
-### 闭包
+### 闭包封装版
 
-闭包可以避免污染全局变量，然而还是没有解决调用时都必须进行一次判断的问题。
+**改进**：
+
+- ✅解决全局污染问题
+- ❌保留重复判断缺陷
 
 ```javascript
 var foo = (function () {
-  var t;
+  var t;  // 闭包存储状态
   return function () {
-    if (t) return t;
+    if (t) return t;  // 判断仍在每次调用时执行
     t = new Date();
     return t;
   }
 })();
 ```
 
-### 函数对象
+### 函数属性版
 
 函数也是一种对象，利用这个特性，我们也可以解决这个问题。
 
+**特点**：
+
+- ✅避免全局污染
+- ❌仍然需要重复判断
+
 ```javascript
 function foo() {
-  if (foo.t) return foo.t;
+  if (foo.t) return foo.t;  // 使用函数自身属性
   foo.t = new Date();
   return foo.t;
 }
 ```
 
-依旧没有解决调用时都必须进行一次判断的问题。
+### 惰性函数版
 
-### 惰性函数
+惰性函数通过自覆盖机制动态优化执行逻辑，其核心原理是在首次调用时完成条件判断并重写自身，从而消除后续调用中的重复检测，提升执行效率。
 
-惰性函数就是解决每次都要进行判断的这个问题，解决原理很简单，重写函数。
+**核心机制**：
+
+- ✅**函数自更新**：首次调用后函数被替换为优化版本。
+- ✅**单次判断**：后续调用直接返回缓存值。
 
 ```javascript
-var foo = function () {
-  var t = new Date();
-  foo = function () {
-    return t;
-  };
-  return foo();
+var foo = () => {
+  const t = new Date();    // 初始化操作
+  foo = () => t;           // 重写函数体
+  return foo();            // 返回结果
 };
 ```
 
 ## Reference
 
 - [JavaScript 专题之惰性函数 - *mqyqingfeng/Blog*](https://github.com/mqyqingfeng/Blog/issues/44)
+- [MostlyAdequate/mostly-adequate-guide](https://github.com/MostlyAdequate/mostly-adequate-guide)
+  - [函数式编程指南中文版](https://github.com/llh911001/mostly-adequate-guide-chinese)
 

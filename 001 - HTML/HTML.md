@@ -231,6 +231,16 @@ function handleClick() {
 </script>
 ```
 
+在 HTML 的属性中，必须使用函数调用。
+
+这是浏览器解析事件属性时的核心机制决定的，具体原理如下：
+
+```javascript
+button.onclick = function(event) {
+  handleClick(); // 实际执行的是函数调用
+};
+```
+
 #### DOM 监听器方式
 
 ```html

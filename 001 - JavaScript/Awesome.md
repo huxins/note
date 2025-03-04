@@ -28,3 +28,8 @@
   - [camsong/You-Dont-Need-jQuery](https://github.com/camsong/You-Dont-Need-jQuery)
   - [HubSpot/YouMightNotNeedjQuery](https://github.com/HubSpot/YouMightNotNeedjQuery)
 
+### 特定格式处理
+
+- PDF
+  - [PDF.js](https://github.com/mozilla/pdf.js)
+

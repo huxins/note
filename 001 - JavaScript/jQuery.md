@@ -1,6 +1,8 @@
 # jQuery
 
-[jQuery](https://jquery.com/) 是一个快速、小巧、功能丰富的 JavaScript 库。它通过一个易于使用的 API 使 HTML 文档遍历和操作、事件处理、动画和 Ajax 等操作变得更加简单，该 API 可在多种浏览器中工作。
+[jQuery](https://jquery.com/) 是一个快速、小巧、功能丰富的 JavaScript 库。
+
+它通过一个易于使用的 API 使 HTML 文档遍历和操作、事件处理、动画和 Ajax 等操作变得更加简单，该 API 可在多种浏览器中工作。
 
 在没有 jQuery 的 Web 页面中，可以直接添加脚本。
 
@@ -18,7 +20,9 @@ importJs("https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js");
 
 ### 页面载入
 
-[`.ready()`](https://api.jquery.com/ready/) 方法提供了一种在页面的 DOM 变得可以安全操作时，立即运行 JavaScript 代码的方法。大多数浏览器以 [`DOMContentLoaded`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/DOMContentLoaded_event) 事件的形式提供类似的功能。
+[`.ready()`](https://api.jquery.com/ready/) 方法提供了一种在页面的 DOM 变得可以安全操作时，立即运行 JavaScript 代码的方法。
+
+大多数浏览器以 [`DOMContentLoaded`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/DOMContentLoaded_event) 事件的形式提供类似的功能。
 
 ```javascript
 $(document).ready(handler)
@@ -54,7 +58,11 @@ $('#table').on('click', 'tbody tr', function () {
 });
 ```
 
-当相应的事件发生时，任何附加了 [`.on()`](https://api.jquery.com/on/) 或其快捷方式之一的事件处理程序都会被触发。然而，它们可以通过 [`.trigger()`](https://api.jquery.com/trigger/) 方法手动触发。调用 [`.trigger()`](https://api.jquery.com/trigger/) 以与用户自然触发事件时相同的顺序执行处理程序。
+当相应的事件发生时，任何附加了 [`.on()`](https://api.jquery.com/on/) 或其快捷方式之一的事件处理程序都会被触发。
+
+也可以通过 [`.trigger()`](https://api.jquery.com/trigger/) 方法手动触发。
+
+调用 [`.trigger()`](https://api.jquery.com/trigger/) 以与用户自然触发事件时相同的顺序执行处理程序。
 
 ```javascript
 $("p").trigger(eventType[, extraParameters])
@@ -78,7 +86,9 @@ $(".videoListItem").trigger("click");
 $("form").serialize();
 ```
 
-[`.serializeArray()`](https://api.jquery.com/serializeArray/) 方法创建一个 JavaScript 对象数组。它对 jQuery 表单或表单控件集合进行操作。
+[`.serializeArray()`](https://api.jquery.com/serializeArray/) 方法创建一个 JavaScript 对象数组。
+
+它对 jQuery 表单或表单控件集合进行操作。
 
 ```javascript
 $("form").serializeArray();
@@ -101,7 +111,11 @@ function getFormData($form) {
 
 ### 底层接口
 
-[`$.ajax()`](https://api.jquery.com/jQuery.ajax/) 函数是 jQuery 发送的所有 *ajax* 请求的基础。通常不需要直接调用此函数，因为有几个更高级的替代方法，如 [`$.get()`](https://api.jquery.com/jQuery.get/) 和 [`.load()`](https://api.jquery.com/load/)，它们更容易使用。不过，如果需要不太常见的选项，可以更灵活地使用 [`$.ajax()`](https://api.jquery.com/jQuery.ajax/)。
+[`$.ajax()`](https://api.jquery.com/jQuery.ajax/) 函数是 jQuery 发送的所有 *ajax* 请求的基础。
+
+通常不需要直接调用此函数，因为有几个更高级的替代方法，如 [`$.get()`](https://api.jquery.com/jQuery.get/) 和 [`.load()`](https://api.jquery.com/load/)，它们更容易使用。
+
+不过，如果需要不太常见的选项，可以更灵活地使用 [`$.ajax()`](https://api.jquery.com/jQuery.ajax/)。
 
 ```javascript
 jQuery.ajax(url[, settings])
@@ -263,13 +277,17 @@ $('h1').parent()
 
 ### 过滤
 
-[`.eq()`](https://api.jquery.com/eq/) 方法从 jQuery 集合中的一个元素构建一个新的 jQuery 对象。提供的索引标识了该元素在集合中的位置。
+[`.eq()`](https://api.jquery.com/eq/) 方法从 jQuery 集合中的一个元素构建一个新的 jQuery 对象。
+
+提供的索引标识了该元素在集合中的位置。
 
 ```javascript
 $("p").eq(0)
 ```
 
-[`.is()`](https://api.jquery.com/is/) 不会创建新的 jQuery 对象。相反，它允许在不进行修改的情况下测试 jQuery 对象的内容，如果这些元素中至少有一个与给定参数匹配，则返回 `true`。
+[`.is()`](https://api.jquery.com/is/) 不会创建新的 jQuery 对象。
+
+相反，它允许在不进行修改的情况下测试 jQuery 对象的内容，如果这些元素中至少有一个与给定参数匹配，则返回 `true`。
 
 ```javascript
 $("img").is( selector )
@@ -281,7 +299,9 @@ $("img").is( selector )
 $(element).is(':checked')
 ```
 
-[`.get()`](https://api.jquery.com/get/) 方法授予对每个 jQuery 对象底层 DOM 节点的访问权限。如果 *index* 的值超出界限，将返回 `undefined`。
+[`.get()`](https://api.jquery.com/get/) 方法授予对每个 jQuery 对象底层 DOM 节点的访问权限。
+
+如果 `index` 的值超出界限，将返回 `undefined`。
 
 ```javascript
 $(element).get( index )
@@ -297,7 +317,9 @@ $("input[name='checkList']:checked")
   .get();
 ```
 
-[`.not()`](https://api.jquery.com/not/) 方法从匹配元素的子集构造一个新的 jQuery 对象。所提供的选择器已针对每个元素进行了测试；与选择器不匹配的元素将包含在结果中。
+[`.not()`](https://api.jquery.com/not/) 方法从匹配元素的子集构造一个新的 jQuery 对象。
+
+所提供的选择器已针对每个元素进行了测试；与选择器不匹配的元素将包含在结果中。
 
 ```javascript
 $(element).not( selector )
@@ -309,7 +331,9 @@ $(element).not( selector )
 $('li').not(':first').not(':last').css('color', 'red');
 ```
 
-[`.filter()`](https://api.jquery.com/filter/) 方法从匹配元素的子集构造一个新的 jQuery 对象。所提供的选择器已针对每个元素进行了测试；与选择器匹配的所有元素都将包含在结果中。
+[`.filter()`](https://api.jquery.com/filter/) 方法从匹配元素的子集构造一个新的 jQuery 对象。
+
+所提供的选择器已针对每个元素进行了测试；与选择器匹配的所有元素都将包含在结果中。
 
 ```javascript
 $(element).filter( selector )

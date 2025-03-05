@@ -1,14 +1,12 @@
-# Crypto
-
-## 一、CryptoJS
+# CryptoJS
 
 CryptoJS 的积极开发已经停止。[NodeJS](https://nodejs.org/docs/v20.9.0/api/crypto.html) 和[现代浏览器](https://developer.mozilla.org/zh-CN/docs/Web/API/Crypto)都有一个原生的 `Crypto` 模块。
 
 ```sh
-$ npm install crypto-js
+npm install crypto-js
 ```
 
-### 1.1. MD5
+### MD5
 
 计算文件的 MD5。
 
@@ -60,7 +58,7 @@ function calculateFileMd5(file: File): Promise<ReturnType<typeof CryptoJS.MD5>> 
 }
 ```
 
-### 1.2. WordArray
+### WordArray
 
 Utf8 字符串转 WordArray。
 

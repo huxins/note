@@ -3,7 +3,7 @@
 ## 一、安装
 
 ```sh
-$ npm install --save-dev parcel
+npm install --save-dev parcel
 ```
 
 ## 二、配置

@@ -1,20 +1,20 @@
 # HAProxy
 
-## 入门
+## 一、入门
 
 ### 安装
 
 ```sh
 # CentOS 7
-$ yum install haproxy
+yum install haproxy
 ```
 
-## 配置 HAProxy
+## 二、配置
 
 在 Shell 中测试配置：
 
 ```sh
-$ haproxy -f /etc/haproxy/haproxy.cfg -c
+haproxy -f /etc/haproxy/haproxy.cfg -c
 ```
 
 ### 例子
@@ -56,7 +56,7 @@ listen  admin_status
     stats admin if TRUE
 ```
 
-## Proxies
+## 三、Proxies
 
 代理配置可以位于一组 *sections* 中：
 
@@ -75,9 +75,7 @@ listen  admin_status
 
 所有代理名称必须由大、小写字母、数字、`-`、`_`、`.` 和 `:` 组成。
 
-## 参见
+## Reference
 
 - [HAProxy Configuration Manual 1.5](https://cbonte.github.io/haproxy-dconv/1.5/configuration.html)
-
-
 

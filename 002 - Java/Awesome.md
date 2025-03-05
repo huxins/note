@@ -1,6 +1,10 @@
-# Awesome Backend Engineer
+# Awesome Java
 
-## Java
+## 一、资源
+
+- [TFdream/awesome-backend-architecture](https://github.com/TFdream/awesome-backend-architecture)
+
+## 二、模块
 
 ### 正则表达式
 
@@ -9,8 +13,4 @@
 ### GUI
 
 - [SWT](https://www.eclipse.org/swt/) - SWT 是一个用于 Java 的开源小部件工具包。
-
-## 参考文献
-
-- [TFdream/awesome-backend-architecture](https://github.com/TFdream/awesome-backend-architecture)
 

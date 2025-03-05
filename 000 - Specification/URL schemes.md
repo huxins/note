@@ -36,7 +36,7 @@
 | 核酸码     | shaismy://platformapi/startapp?code=HSM       | ✅          |
 | 核酸采样点 | shaismy://platformapi/startapp?code=HSJCD     | ✅          |
 
-## 参考文献
+## Reference
 
 - [JdaieLin/health-code-url-scheme](https://github.com/JdaieLin/health-code-url-scheme)
 

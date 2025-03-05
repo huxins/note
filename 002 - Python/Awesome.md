@@ -65,6 +65,19 @@
 
 - [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/) - 提供 Python 风格的习惯用法，用于迭代、搜索和修改 HTML 或 XML。
 
+### 云服务
+
+- [Boto3](https://github.com/boto/boto3)
+
+### RESTful API
+
+- Flask
+  - Flask-SQLAlchemy
+  - Flask-Marshmallow
+  - marshmallow-sqlalchemy
+  - Flask-JWT-Extended
+  - Flask-RESTful
+
 ## 三、项目
 
 ### CLI

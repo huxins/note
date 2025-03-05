@@ -2,7 +2,7 @@
 
 ## 一、Utility
 
-### 1.1. Out-File
+### Out-File
 
 将管道输出发送到文件。
 
@@ -13,14 +13,14 @@
   - `ascii`：使用 ASCII（7 位）字符集。
   
     ```sh
-    $ pip freeze | Out-File -Encoding ascii requirements.txt
+    pip freeze | Out-File -Encoding ascii requirements.txt
     ```
 
 ## 二、Core
 
-### 2.1. About
+### About
 
-#### 2.1.1. 版本
+#### 版本
 
 通过 `$PSVersionTable` 变量查询。
 
@@ -28,7 +28,7 @@
 > $PSVersionTable
 ```
 
-#### 2.1.2. 执行策略
+#### 执行策略
 
 - **RemoteSigned**
 
@@ -48,7 +48,7 @@
 
 ## 三、Management
 
-### 3.1. Set-ItemProperty
+### Set-ItemProperty
 
 可以使用 `Set-ItemProperty` 来创建和更改注册表值和数据。
 

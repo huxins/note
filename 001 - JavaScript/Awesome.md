@@ -33,7 +33,7 @@
 - PDF
   - [PDF.js](https://github.com/mozilla/pdf.js)
 
-### 加密
+### 加密哈希
 
 - CryptoJS
 

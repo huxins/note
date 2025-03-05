@@ -6,7 +6,7 @@ CryptoJS 的积极开发已经停止。[NodeJS](https://nodejs.org/docs/v20.9.0/
 npm install crypto-js
 ```
 
-### MD5
+## MD5
 
 计算文件的 MD5。
 
@@ -58,7 +58,7 @@ function calculateFileMd5(file: File): Promise<ReturnType<typeof CryptoJS.MD5>> 
 }
 ```
 
-### WordArray
+## WordArray
 
 Utf8 字符串转 WordArray。
 

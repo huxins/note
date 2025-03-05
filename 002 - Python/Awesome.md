@@ -89,6 +89,11 @@
 - MySQL
   - PyMySQL
 
+### ORM
+
+- 关系型数据库
+  - SQLAlchemy
+
 ## 三、项目
 
 ### CLI

@@ -3,14 +3,14 @@
 ## 一、安装
 
 ```sh
-$ pip install SQLAlchemy
+pip install SQLAlchemy
 ```
 
 ## 二、引擎和连接
 
-### 2.1. 引擎配置
+### 引擎配置
 
-#### 2.1.1. 数据库 URL
+#### 数据库 URL
 
 `create_engine()` 函数根据 URL 生成一个 `Engine` 对象。URL 的格式通常遵循 [RFC1738](https://tools.ietf.org/html/rfc1738)。URL 通常包括用户名、密码、主机名、数据库名称字段，以及用于其他配置的可选关键字参数。数据库 URL 的典型形式是：
 
@@ -20,11 +20,11 @@ dialect+driver://username:password@host:port/database
 
 `dialect` 包括 SQLAlchemy 方言的标识名称，例如 `sqlite`、`mysql`、`postgresql`、`oracle` 或 `mssql`。`driver` 是用于连接到数据库的 DBAPI 的名称，全部使用小写字母。如果未指定，则将导入默认 DBAPI，此默认值通常是该后端可用的最广为人知的驱动程序。
 
-##### 2.1.1.1. 密码转义
+##### 密码转义
 
 在构建完整格式的 URL 字符串以传递给 `create_engine()` 时，需要对可能在用户和密码中使用的特殊字符进行 URL 编码才能正确解析。
 
-#### 2.1.2. 引擎创建 API
+#### 引擎创建 API
 
 - **create_engine**(*url*, ***kwargs*)
 
@@ -40,9 +40,9 @@ dialect+driver://username:password@host:port/database
 
 ## 三、Session
 
-### 3.1. 基本使用
+### 基本使用
 
-#### 3.1.1. 开始和结束会话
+#### 开始和结束会话
 
 `Session` 可以自己构建，也可以使用 `sessionmaker` 类构建。它通常通过单个引擎作为前端连接源。
 
@@ -74,7 +74,7 @@ with Session() as session:
     session.commit()
 ```
 
-#### 3.1.2. 查询
+#### 查询
 
 查询的主要方式是利用 `select()` 构造一个 `Select` 对象，然后使用 `Session.execute()` 和 `Session.scalars()` 等方法执行该对象以返回 `Result`。然后根据 `Result` 对象返回结果，包括 `ScalarResult` 等子变体。
 
@@ -100,7 +100,7 @@ with Session(engine) as session:
 session.query(User).filter(User.id == '5').one()
 ```
 
-#### 3.1.3. 新增
+#### 新增
 
 `Session.add()` 用于在会话中新增实例。对于全新实例，将在下一次刷新时对这些实例进行 INSERT。
 
@@ -115,7 +115,7 @@ session.commit()
 
 ## 四、ORM 映射
 
-### 4.1. 声明式映射
+### 声明式映射
 
 声明式映射是现代 SQLAlchemy 中构建映射的典型方式。最常见的模式是首先使用 `declarative_base()` 函数构造一个基类，这会将声明映射过程应用于从它派生的所有子类。
 
@@ -163,7 +163,7 @@ class User(Base):
     nickname: Mapped[Optional[str]]
 ```
 
-#### 4.1.1. 表配置
+#### 表配置
 
 对于声明性基类，映射的典型形式包括一个属性 `__tablename__`，它指示应与映射一起生成的表的名称：
 
@@ -182,7 +182,7 @@ class User(Base):
     nickname = Column(String)
 ```
 
-##### 4.1.1.1. 访问表和元数据
+##### 访问表和元数据
 
 声明式映射的类将始终包含一个名为 `__table__` 的属性；当使用 `__tablename__` 的上述配置完成后，声明过程通过 `__table__` 属性使表可用：
 
@@ -199,7 +199,7 @@ engine = create_engine("sqlite://")
 Base.metadata.create_all(engine)
 ```
 
-### 4.2. 列字段
+### 列字段
 
 `Column` 表示数据库表中的列。
 
@@ -239,7 +239,7 @@ Base.metadata.create_all(engine)
 
     表示此列默认值的标量。
 
-### 4.3. 驼峰数据类型
+### 驼峰数据类型
 
 驼峰类型在最大程度上与数据库无关，可以在任何数据库后端上使用，它们将以适合该后端的方式运行以产生所需的行为。
 
@@ -257,7 +257,7 @@ Base.metadata.create_all(engine)
 
 ## 五、查询数据
 
-### 5.1. SELECT 语句
+### SELECT 语句
 
 SELECT 语句由返回 `Select` 对象的 `select()` 函数生成：
 
@@ -267,7 +267,7 @@ from sqlalchemy import select
 stmt = select(User).where(User.name == "spongebob")
 ```
 
-### 5.2. Query 对象
+### Query 对象
 
 `Query` 是根据给定 `Session` 生成的，使用 `Session.query()` 方法：
 
@@ -346,7 +346,7 @@ q = session.query(SomeMappedClass)
   q = session.query(Entity).order_by(Entity.id, Entity.name)
   ```
 
-### 5.3. 表达式
+### 表达式
 
 `sqlalchemy.sql.expression` 提供了一些辅助函数。
 

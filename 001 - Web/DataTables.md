@@ -1,5 +1,7 @@
 # DataTables
 
+[DataTables](https://datatables.net/manual/) 是一个 Javascript HTML 表增强库。
+
 ## 一、介绍
 
 ```html
@@ -17,17 +19,21 @@ $(document).ready(function() {
 
 ## 二、数据
 
-### 2.1. 数据源类型
+### 数据源类型
 
-用于 DataTable 的数据源必须是一个数组。该数组中的每个项目都将定义要显示的行，DataTables 可以使用三种基本的 JavaScript 数据类型作为行的数据源。
+用于 DataTable 的数据源必须是一个数组。
+
+该数组中的每个项目都将定义要显示的行，DataTables 可以使用三种基本的 JavaScript 数据类型作为行的数据源。
 
 - Arrays `[]`
 - Objects `{}`
 - Instances `new MyClass()`
 
-#### 2.1.1. Arrays
+#### Arrays
 
-数组很容易在 DataTable 中使用，因为数组元素到数据所在列的映射只需通过读取该位置的数组元素值的列索引来执行。因此，当使用数组作为数据源时，每个数组中的元素数必须等于表中的列数。
+数组很容易在 DataTable 中使用，因为数组元素到数据所在列的映射只需通过读取该位置的数组元素值的列索引来执行。
+
+因此，当使用数组作为数据源时，每个数组中的元素数必须等于表中的列数。
 
 基于数组的数据可能如下所示：
 
@@ -53,9 +59,11 @@ $("#table_id").DataTable({
 });
 ```
 
-#### 2.1.2. Objects
+#### Objects
 
-对象非常适合直观地使用，其方式与数组略有不同。如果您通过 API 处理数据，对象可以使获取特定数据变得非常容易，因为您只需要使用属性名称，而不是记住数据所在的数组索引。
+对象非常适合直观地使用，其方式与数组略有不同。
+
+如果您通过 API 处理数据，对象可以使获取特定数据变得非常容易，因为您只需要使用属性名称，而不是记住数据所在的数组索引。
 
 对象还可以包含比 DataTable 显示所需的更多信息，这对于操作数据非常有用。
 
@@ -96,7 +104,7 @@ $("#table_id").DataTable({
 });
 ```
 
-### 2.2. 数据源
+### 数据源
 
 DataTables 在表中显示的数据有三个基本来源。
 
@@ -104,7 +112,7 @@ DataTables 在表中显示的数据有三个基本来源。
 - JavaScript
 - Ajax
 
-#### 2.2.1. JavaScript
+#### JavaScript
 
 可以使用数据初始化选项指示 DataTables 使用提供给它的 `data`。
 
@@ -114,7 +122,7 @@ $("#table_id").DataTable({
 });
 ```
 
-#### 2.2.2. Ajax
+#### Ajax
 
 Ajax 来源数据与 JavaScript 来源数据非常相似，但 DataTables 会进行 Ajax 调用来为您获取数据。
 
@@ -137,7 +145,7 @@ $("#table_id").DataTable({
 
 ## 三、选项
 
-### 3.1. Columns
+### Columns
 
 - *columns*.**data**
 
@@ -254,7 +262,7 @@ $("#table_id").DataTable({
   ]
   ```
 
-### 3.2. Callbacks
+### Callbacks
 
 - **initComplete**
 
@@ -269,7 +277,7 @@ $("#table_id").DataTable({
   }
   ```
 
-### 3.3. Options
+### Options
 
 - **order**
 
@@ -332,7 +340,7 @@ $("#table_id").DataTable({
 
 ## 四、API
 
-### 4.1. Core
+### Core
 
 - *ajax*.**reload**()
 
@@ -361,7 +369,7 @@ $("#table_id").DataTable({
   });
   ```
 
-### 4.2. Columns
+### Columns
 
 - **column**()
 
@@ -379,7 +387,7 @@ $("#table_id").DataTable({
   $('#table').DataTable().column(0).visible(true);
   ```
 
-### 4.3. Rows
+### Rows
 
 - **row**()
 
@@ -415,7 +423,7 @@ $("#table_id").DataTable({
 
 ## 五、服务器分页
 
-### 5.1. 请求数据
+### 请求数据
 
 向服务器发出请求时，DataTables 将发送以下数据，以便让服务器知道需要什么数据。
 
@@ -445,7 +453,7 @@ $("#example").DataTable({
 });
 ```
 
-### 5.2. 响应数据
+### 响应数据
 
 - **data** (*array*)
 

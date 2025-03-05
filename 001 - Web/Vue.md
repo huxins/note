@@ -1,26 +1,20 @@
 # Vue
 
-## 〇、奇淫技巧
+查询所使用 [Vue](https://cn.vuejs.org/) 版本，可以借助根节点的属性。
 
-### 0.1. Vue 版本
-
-查询所使用 Vue 的版本，可以借助根节点的属性。
-
-- 查询 Vue 2，如果 `__vue__` 属性存在，则为 Vue 2。
+- 查询 [Vue 2](https://v2.cn.vuejs.org/)，如果 `__vue__` 属性存在，则为 Vue 2。
   
   ```javascript
   console.dir(document.querySelector('#app').__vue__)
   ```
 
-- 查询 Vue 3 的具体版本。
+- 查询 [Vue 3](https://cn.vuejs.org/) 的具体版本。
 
   ```javascript
   console.dir(document.querySelector('#app').__vue_app__.version)
   ```
 
-## 一、基础
-
-### 1.1. Vue 实例
+## 一、Vue 实例
 
 每个 Vue 应用都是通过用 `Vue` 函数创建一个新的 Vue 实例开始的。
 
@@ -30,16 +24,18 @@ var vm = new Vue({
 })
 ```
 
-#### 1.1.1. Vue 实例选项
+### Vue 实例选项
 
-##### 1.1.1.1. DOM
+#### DOM
 
 - **el**
 
-  提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
+  提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。
+
+  可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
 
   在实例挂载之后，元素可以用 `vm.$el` 访问。
-
+  
   ```javascript
   const vm = new Vue({
     el: '#app'
@@ -47,12 +43,12 @@ var vm = new Vue({
   ```
 
   如果在实例化时存在这个选项，实例将立即进入编译过程，否则，需要显式调用 `vm.$mount()` 手动开启编译。
-
+  
   ```javascript
   vm.$mount('#app')
   ```
 
-##### 1.1.1.2. 数据
+#### 数据
 
 - **data**
 
@@ -174,13 +170,13 @@ var vm = new Vue({
   </template>
   ```
 
-##### 1.1.1.3. 生命周期
+#### 生命周期
 
 - **mounted**
 
   Vue 完成模板的解析并把真实的初始 DOM 元素放入页面后，调用 `mounted`。
 
-##### 1.1.1.4. 资源
+#### 资源
 
 - **filters**
 
@@ -224,7 +220,7 @@ var vm = new Vue({
   })
   ```
 
-##### 1.1.1.5. 组合
+#### 组合
 
 - **mixins**
 
@@ -241,9 +237,9 @@ var vm = new Vue({
   })
   ```
 
-#### 1.1.2. Vue 实例方法
+### Vue 实例方法
 
-##### 1.1.2.1. 数据
+#### 数据
 
 - vm.**$watch**()
 
@@ -261,7 +257,7 @@ var vm = new Vue({
     })
     ```
 
-##### 1.1.2.2. 生命周期
+#### 生命周期
 
 - vm.**$nextTick**()
 
@@ -280,7 +276,7 @@ var vm = new Vue({
   })
   ```
 
-#### 1.1.3. Vue 静态方法
+### Vue 静态方法
 
 - Vue.**filter**()
 
@@ -330,7 +326,7 @@ var vm = new Vue({
   Vue.component('school', school)
   ```
 
-#### 1.1.4. Vue 特殊属性
+### Vue 特殊属性
 
 - **ref**
 
@@ -349,9 +345,9 @@ var vm = new Vue({
   }
   ```
 
-### 1.2. 插值
+## 二、插值
 
-#### 1.2.1. 文本
+### 文本
 
 数据绑定最常见的形式就是使用双大括号的文本插值。
 
@@ -359,7 +355,7 @@ var vm = new Vue({
 <span>Message: {{ msg }}</span>
 ```
 
-#### 1.2.2. JavaScript 表达式
+### JavaScript 表达式
 
 对于所有的数据绑定，Vue 都提供了完全的 JavaScript 表达式支持。
 
@@ -371,7 +367,7 @@ var vm = new Vue({
 {{ message.split('').reverse().join('') }}
 ```
 
-#### 1.2.3. 元素属性
+### 元素属性
 
 Mustache 语法不能作用在 HTML 属性上，应该使用 `v-bind` 指令。
 
@@ -385,9 +381,9 @@ Mustache 语法不能作用在 HTML 属性上，应该使用 `v-bind` 指令。
 <a :href="dynamicUrl">传送门</a>
 ```
 
-### 1.3. 指令
+## 三、指令
 
-#### 1.3.1. 表单绑定
+### 表单绑定
 
 - **v-model**
 
@@ -395,16 +391,16 @@ Mustache 语法不能作用在 HTML 属性上，应该使用 `v-bind` 指令。
 
   `v-model` 在内部为不同的输入元素使用不同的 property 并抛出不同的事件。
 
-  - text 和 textarea 元素使用 `value` property 和 `input` 事件；
-  - checkbox 和 radio 元素使用 `checked` property 和 `change` 事件；
-  - select 元素使用 `value` property 和 `change` 事件。
+  - `text` 和 `textarea` 元素使用 `value` property 和 `input` 事件；
+  - `checkbox` 和 `radio` 元素使用 `checked` property 和 `change` 事件；
+  - `select` 元素使用 `value` property 和 `change` 事件。
 
   ```html
   <input v-model="message" placeholder="edit me">
   <p>Message is: {{ message }}</p>
   ```
 
-#### 1.3.2. 事件处理
+### 事件处理
 
 - **v-on**
 
@@ -438,7 +434,7 @@ Mustache 语法不能作用在 HTML 属性上，应该使用 `v-bind` 指令。
   </div>
   ```
 
-##### 1.3.2.1. 内联处理器
+#### 内联处理器
 
 除了直接绑定到一个方法，也可以在内联 JavaScript 语句中调用方法。
 
@@ -482,7 +478,7 @@ const vm = new Vue({
 })
 ```
 
-##### 1.3.2.2. 事件修饰符
+#### 事件修饰符
 
 在事件处理程序中调用 `event.preventDefault()` 或 `event.stopPropagation()` 是非常常见的需求。为了解决这个问题，Vue 为 `v-on` 提供了事件修饰符。
 
@@ -494,7 +490,7 @@ const vm = new Vue({
   <form v-on:submit.prevent="onSubmit"></form>
   ```
 
-##### 1.3.2.3. 按键修饰符
+#### 按键修饰符
 
 在监听键盘事件时，经常需要检查详细的按键。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符。
 
@@ -502,7 +498,7 @@ const vm = new Vue({
 <input @keyup.enter="submit">
 ```
 
-#### 1.3.3. 条件渲染
+### 条件渲染
 
 - **v-show**
 
@@ -520,7 +516,7 @@ const vm = new Vue({
   <h2 v-if="flase">欢迎来到 {{address}}</h2>
   ```
 
-#### 1.3.4. 列表渲染
+### 列表渲染
 
 - **v-for**
 
@@ -534,13 +530,13 @@ const vm = new Vue({
   </ul>
   ```
 
-##### 1.3.4.1. 数组更新检测
+#### 数组更新检测
 
 Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法如下。
 
 - `push()`
 
-### 1.4. 组件
+## 四、组件
 
 `VueComponent` 构造函数和 `Vue` 构造函数之间存在以下关系。
 
@@ -549,9 +545,9 @@ VueComponent.__proto__ === Function.prototype;
 VueComponent.prototype.__proto__ === Vue.prototype;
 ```
 
-#### 1.4.1. 组件注册
+### 组件注册
 
-##### 1.4.1.1. 全局注册
+#### 全局注册
 
 全局注册可以通过 `Vue.component()` 的方式进行。
 
@@ -568,7 +564,7 @@ const school = Vue.extend({
 Vue.component('school', school)
 ```
 
-##### 1.4.1.2. 局部注册
+#### 局部注册
 
 局部注册可通过在实例中的 `components` 选项进行配置。
 
@@ -590,7 +586,7 @@ new Vue({
 })
 ```
 
-#### 1.4.2. 单文件组件
+### 单文件组件
 
 简单的单文件组件如下所示：
 
@@ -654,7 +650,7 @@ new Vue({
 }).$mount('#app')
 ```
 
-#### 1.4.3. 自定义事件
+### 自定义事件
 
 在子组件标签上绑定自定义事件：
 
@@ -688,144 +684,9 @@ export default {
 
 通过自定义事件，也能实现子组件向父组件传递信息。不同的是，`props` 是父组件将回调函数先传递到子组件，而自定义事件是直接触发事件。
 
-## 二、Vue CLI
-
-### 2.1. 常用命令
-
-- vue **create**
-
-  创建一个新项目。
-
-  ```sh
-  $ vue create hello-world
-  ```
-
-- vue **inspect**
-
-  审查 webpack 配置。
-
-  ```sh
-  $ vue inspect > output.js
-  ```
-
-## 三、Vuex
-
-### 3.1. 安装
-
-安装 Vuex 之后，创建一个 `store`，供后续调用。
-
-```javascript
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
-```
-
-## 四、Vue Router
-
-### 4.1. VueRouter
-
-#### 4.1.1. 构建选项
-
-将组件映射到路由：
-
-```javascript
-const router = new VueRouter({
-  routes: [
-    { path: '/foo', component: Foo },
-    { path: '/bar', component: Bar }
-  ]
-})
-```
-
-### 4.2. 路由对象
-
-一个路由对象表示当前激活的路由的状态信息，包含了当前 URL 解析得到的信息，还有 URL 匹配到的路由记录。
-
-#### 4.2.1. 路由组件传参
-
-- $route.**query**
-
-  一个对象，URL `/search?q=vue` 会将 `{query: 'vue'}` 作为属性传递给组件，在组件内通过 `$route.query` 可以获取。
-
-- $route.**params**
-
-  一个对象，如果没有路由参数，就是一个空对象。
-
-  需要配合动态路由获取参数，在组件内通过 `$route.params` 可以获取。
-
-  ```javascript
-  const router = new VueRouter({
-    routes: [
-      { path: '/user/:id', component: User }
-    ]
-  })
-  ```
-
-### 4.3. 路由守卫
-
-#### 4.3.1. 全局前置守卫
-
-可以使用 `router.beforeEach` 注册一个全局前置守卫。
-
-```javascript
-const router = new VueRouter({ ... })
-
-router.beforeEach((to, from, next) => {
-  // ...
-})
-```
-
-#### 4.3.2. 全局后置钩子
-
-可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 `next` 函数也不会改变导航本身。
-
-```javascript
-router.afterEach((to, from) => {
-  // ...
-})
-```
-
-#### 4.3.3. 路由独享守卫
-
-可以在路由配置上直接定义 `beforeEnter` 守卫。
-
-```javascript
-const router = new VueRouter({
-  routes: [
-    {
-      path: '/foo',
-      component: Foo,
-      beforeEnter: (to, from, next) => {
-        // ...
-      }
-    }
-  ]
-})
-```
-
-#### 4.3.4. 组件内的守卫
-
-可以在路由组件内直接定义以下路由导航守卫。
-
-- `beforeRouteEnter`
-- `beforeRouteUpdate`
-- `beforeRouteLeave`
-
 ## 五、组合式 API
 
-### 5.1. setup()
+### setup()
 
 `setup()` 钩子是在组件中使用组合式 API 的入口。
 

@@ -8,6 +8,12 @@
 
 ## 二、组件
 
+### Vue
+
+- Vue CLI
+- Vue Router
+- Vuex
+
 ### 表格
 
 - [DataTables](https://datatables.net/) - DataTables 是 jQuery Javascript 库的插件。用于创建定制的、可编辑的表格。

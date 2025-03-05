@@ -14,6 +14,10 @@
 
 - [pip](https://pip.pypa.io/en/stable/) - Python 的包安装程序。
 
+### 环境管理
+
+- Pyenv
+
 ### 打包工具
 
 - [Setuptools](https://packaging.python.org/en/latest/key_projects/#easy-install) - Python [distutils](https://docs.python.org/zh-cn/3.11/library/distutils.html) 的一系列增强功能。
@@ -58,6 +62,8 @@
   - [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - 用于读取和写入 Excel 2010 xlsx、xlsm、xltx、xltm 文件的库。
   - [XlsxWriter](https://github.com/jmcnamara/XlsxWriter) - 用于创建 Excel XLSX 文件的 Python 模块。
   - [xlwings](https://github.com/xlwings/xlwings) - 一个 BSD 许可的 Python 库，可以轻松地从 Excel 调用 Python，反之亦然。
+- YAML
+  - PyYAML
 
 ### HTML 操作
 
@@ -77,6 +83,11 @@
   - marshmallow-sqlalchemy
   - Flask-JWT-Extended
   - Flask-RESTful
+
+### 数据库驱动
+
+- MySQL
+  - PyMySQL
 
 ## 三、项目
 

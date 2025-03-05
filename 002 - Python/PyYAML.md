@@ -3,7 +3,7 @@
 ## 一、安装
 
 ```sh
-$ pip install pyyaml
+pip install pyyaml
 ```
 
 ## 二、加载 YAML

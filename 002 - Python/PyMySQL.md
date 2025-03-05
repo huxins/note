@@ -3,7 +3,7 @@
 ## 一、安装
 
 ```sh
-$ python -m pip install PyMySQL
+python -m pip install PyMySQL
 ```
 
 ## 二、数据库连接

@@ -15,7 +15,7 @@ qemu-img [standard options] command [command options]
 对磁盘映像 *FILENAME* 执行一致性检查。
 
 ```sh
-$ qemu-img check openwrt.qcow2
+qemu-img check openwrt.qcow2
 ```
 
 ### Convert
@@ -33,10 +33,10 @@ $ qemu-img check openwrt.qcow2
 将 VMware .vmdk 磁盘映像转换为 KVM .qcow2 磁盘映像：
 
 ```sh
-$ qemu-img convert -f vmdk -O qcow2 path/to/file/foo.vmdk path/to/file/foo.qcow2
+qemu-img convert -f vmdk -O qcow2 path/to/file/foo.vmdk path/to/file/foo.qcow2
 ```
 
-## 参见
+## Reference
 
 - [QEMU disk image utility - QEMU documentation](https://www.qemu.org/docs/master/tools/qemu-img.html)
 

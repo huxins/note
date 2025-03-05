@@ -5,13 +5,13 @@
 CentOS 7
 
 ```sh
-$ wget https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20231115204325.0.0.x86_64.rpm -O minio.rpm
-$ yum install minio.rpm
+wget https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20231115204325.0.0.x86_64.rpm -O minio.rpm
+yum install minio.rpm
 ```
 
 ## 二、Systemd
 
-### 2.1. minio.service
+### minio.service
 
 创建 `/usr/lib/systemd/system/minio.service` 文件。
 
@@ -50,7 +50,7 @@ SendSIGKILL=no
 WantedBy=multi-user.target
 ```
 
-### 2.2. 配置文件
+### 配置文件
 
 创建 `/etc/default/minio` 文件。
 
@@ -62,25 +62,25 @@ MINIO_ROOT_PASSWORD=Root-Password
 MINIO_CONFIG_ENV_FILE=/etc/default/minio
 ```
 
-### 2.3. 配置用户
+### 配置用户
 
 新增用户组。
 
 ```sh
-$ groupadd -r minio-user
+groupadd -r minio-user
 ```
 
 新增用户。
 
 ```sh
-$ useradd -m -d /home/minio-user -r -g minio-user minio-user
+useradd -m -d /home/minio-user -r -g minio-user minio-user
 ```
 
 新增数据目录并更改所有权。
 
 ```sh
-$ mkdir /mnt/data
-$ chown minio-user:minio-user /mnt/data
+mkdir /mnt/data
+chown minio-user:minio-user /mnt/data
 ```
 
 ## 三、MinIO Client
@@ -88,12 +88,12 @@ $ chown minio-user:minio-user /mnt/data
 安装 `mc`。
 
 ```sh
-$ curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
-$ chmod +x mc
-$ mv mc /usr/local/bin/mc
+curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+mv mc /usr/local/bin/mc
 ```
 
-### 3.1. mc alias
+### mc alias
 
 `mc alias` 命令为管理 `mc` 可以连接并执行操作的 S3 兼容主机列表提供了便捷的接口。
 
@@ -102,38 +102,38 @@ $ mv mc /usr/local/bin/mc
   `mc alias set` 命令用于向本地 `mc` 配置添加或更新别名。
 
   ```sh
-  $ mc alias set myminio http://127.0.0.1:9199 Root-User Root-Password
+  mc alias set myminio http://127.0.0.1:9199 Root-User Root-Password
   ```
 
-### 3.2. mc ls
+### mc ls
 
 `mc ls` 命令列出 MinIO 或其他与 S3 兼容的服务上的存储桶和对象。
 
 ```sh
-$ mc ls myminio
+mc ls myminio
 ```
 
 列出 `ALIAS` 中每个存储桶或目录的内容。
 
 ```sh
-$ mc ls -r myminio
+mc ls -r myminio
 ```
 
 ## 四、MinIO Admin Client
 
-### 4.1. mc admin info
+### mc admin info
 
 `mc admin info` 命令显示 MinIO 服务器上的信息。对于分布式 MinIO 部署，`mc admin info` 显示部署中每个 MinIO 服务器的信息。
 
 ```sh
-$ mc admin info myminio
+mc admin info myminio
 ```
 
-### 4.2. mc admin service
+### mc admin service
 
 `mc admin service` 命令可以重新启动或停止 MinIO 服务器。
 
 ```sh
-$ mc admin service restart myminio
+mc admin service restart myminio
 ```
 

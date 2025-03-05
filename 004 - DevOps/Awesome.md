@@ -29,6 +29,10 @@
 
 - Rsyslog
 
+### Storage
+
+- MinIO
+
 ### Container
 
 - [Docker](https://www.docker.com/) - 使用容器创建、部署和运行应用程序。

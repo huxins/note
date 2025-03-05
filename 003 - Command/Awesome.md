@@ -43,6 +43,7 @@
 - [fdisk](https://man7.org/linux/man-pages/man8/fdisk.8.html) - 用于创建和操作分区表，归属于 [util-linux](https://launchpad.net/ubuntu/plucky/+package/fdisk)。
 - [gdisk](https://www.rodsbooks.com/gdisk/) - GPT fdisk 是一组用于 Linux、FreeBSD、macOS 和 Windows 的文本模式分区工具。
 - [mkfs](https://man7.org/linux/man-pages/man8/mkfs.8.html) - 构建 Linux 文件系统，归属于 [util-linux](https://packages.debian.org/sid/amd64/util-linux/filelist)。
+- qemu-img
 
 ### 实用程序
 

@@ -31,3 +31,7 @@
 
 - [Dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) - 轻量级的 DNS 缓存服务器，同时也支持 DHCP、TFTP 和 PXE 相关功能。
 
+### 虚拟化
+
+- [Proxmox VE](https://www.proxmox.com/en/products/proxmox-virtual-environment/overview) - 完整的、开源的企业虚拟化服务器管理平台。
+

@@ -18,12 +18,9 @@
 // ==/UserScript==
 ```
 
-## 参考文献
+## Reference
 
 - [GM 开发手册](https://jixunmoe.github.io/gmDevBook)
-
-## 参见
-
 - [Tampermonkey 文档](https://www.tampermonkey.net/documentation.php)
 - [Greasemonkey 文档](https://wiki.greasespot.net/Greasemonkey_Manual:API)
 

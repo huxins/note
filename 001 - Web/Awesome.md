@@ -12,3 +12,7 @@
 
 - [DataTables](https://datatables.net/) - DataTables 是 jQuery Javascript 库的插件。用于创建定制的、可编辑的表格。
 
+### Icon
+
+- [Font Awesome](https://fontawesome.com/) - 互联网上的图标库和工具包，被数百万设计师、开发人员和内容创作者使用。
+

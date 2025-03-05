@@ -1,8 +1,10 @@
 # Service Worker
 
-Service Worker 是浏览器和网络间的代理。通过拦截文档中发出的请求，可以达到离线运行的目的。
+Service Worker 是浏览器和网络间的代理。
 
-## 入门
+通过拦截文档中发出的请求，可以达到离线运行的目的。
+
+## 一、入门
 
 ### 注册
 
@@ -36,7 +38,7 @@ window.addEventListener('install', function(event) {
 });
 ```
 
-## 接口
+## 二、接口
 
 ### FetchEvent
 
@@ -50,27 +52,24 @@ this.addEventListener('fetch', function(event) {
 });
 ```
 
-#### 属性
+**属性**：
 
-##### request
+- **request**
 
-`FetchEvent` 接口的 `request` 属性是只读的，返回触发事件处理程序的 `Request`。
+  `FetchEvent` 接口的 `request` 属性是只读的，返回触发事件处理程序的 `Request`。
 
-#### 方法
+**方法**：
 
-##### respondWith()
+- **respondWith**()
 
-`FetchEvent` 接口的 `respondWith()` 方法阻止浏览器默认的 `fetch` 操作。
+  `FetchEvent` 接口的 `respondWith()` 方法阻止浏览器默认的 `fetch` 操作。
+  
+  ```javascript
+  respondWith(response)
+  ```
 
-```javascript
-respondWith(response)
-```
-
-## 参考文献
+## Reference
 
 - [Service Worker API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
-
-## 参见
-
 - [Service Workers - W3C](https://www.w3.org/TR/service-workers/)
 

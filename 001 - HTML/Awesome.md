@@ -20,6 +20,8 @@
 - [XMLHttpRequest](https://xhr.spec.whatwg.org/)
 - [File API](https://www.w3.org/TR/FileAPI/)
 - [User-Agent Client Hints](https://wicg.github.io/ua-client-hints/)
+- [Service Worker](https://www.w3.org/TR/service-workers/) - 浏览器和网络间的代理。通过拦截文档中发出的请求，可以达到离线运行的目的。
+- [Fetch](https://fetch.spec.whatwg.org/)
 
 ### CDN
 

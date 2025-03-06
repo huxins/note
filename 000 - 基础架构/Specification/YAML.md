@@ -94,127 +94,59 @@ description: |
   multiline
   string
 
-# 折叠换行
+# 多行字符串：折叠换行
 summary: >
   This will
   become single line
 
-# 保留换行控制
+# 保留末尾换行控制
 content: |+
+  Keep trailing newlines
+
+# 删除末尾换行控制
+content: |-
   Keep trailing newlines
 ```
 
+## 三、高级特性
 
-
-
-
-
-
-
-
-多行字符串可以使用 `|` 保留换行符，也可以使用 `>` 折叠换行。
-
-```yaml
-this: |
-  Foo
-  Bar
-that: >
-  Foo
-  Bar
-```
-
-`+` 表示保留文字块末尾的换行，`-` 表示删除字符串末尾的换行。
-
-```yaml
-s1: |
-  Foo
-
-s2: |+
-  Foo
-
-
-s3: |-
-  Foo
-```
-
-### 布尔值
-
-布尔值用 `true` 和 `false` 表示。
-
-### 整数
-
-### 浮点数
-
-数值直接以字面量的形式表示。
-
-```yaml
-number: 12.30
-```
-
-### Null
-
-`null` 用 `~` 表示。
-
-### 时间
-
-时间采用 ISO 8601 格式。
-
-```yaml
-iso8601: 2001-12-14t21:59:43.10-05:00
-```
-
-### 日期
-
-日期采用 ISO 8601 格式的年、月、日表示。
-
-```yaml
-date: 1976-07-31
-```
-
-### 类型转换
+### 数据类型转换
 
 YAML 允许使用两个感叹号，强制转换数据类型。
 
 ```yaml
-e: !!str 123
-f: !!str true
+num_str: !!str 123
+bool_str: !!str true
 ```
 
-## 五、引用
+### 锚点与引用
 
 锚点 `&` 和别名 `*`，可以用来引用。
 
 ```yaml
-defaults: &defaults
-  adapter:  postgres
-  host:     localhost
+defaults: &DEFAULTS
+  host: localhost
+  port: 5432
 
 development:
-  database: myapp_development
-  <<: *defaults
+  <<: *DEFAULTS
+  db: dev_db
 
-test:
-  database: myapp_test
-  <<: *defaults
+production:
+  <<: *DEFAULTS
+  db: prod_db
 ```
 
-等同于下面的代码。
+### 时间格式
+
+时间采用 ISO 8601 格式。
 
 ```yaml
-defaults:
-  adapter:  postgres
-  host:     localhost
-
-development:
-  database: myapp_development
-  adapter:  postgres
-  host:     localhost
-
-test:
-  database: myapp_test
-  adapter:  postgres
-  host:     localhost
+iso_date: 2023-08-20
+iso_datetime: 2023-08-20T15:30:00+08:00
 ```
 
-`&` 用来建立锚点，`<<` 表示合并到当前数据，`*` 用来引用锚点。
+## Reference
+
+- [YAML JavaScript parser](https://nodeca.github.io/js-yaml/)
 

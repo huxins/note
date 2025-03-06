@@ -128,6 +128,27 @@ HTML 中的每个元素都属于零个或多个类别，这些类别将具有相
 <input type="text" disabled>
 ```
 
+### 转义字符
+
+当处理用户输入或动态内容时，需对特殊字符（如 `<`, `>`, `&`, `"`, `'`）进行 [HTML 转义](https://html.spec.whatwg.org/multipage/parsing.html#escapingString)，以避免内容被解析为代码或破坏文档结构。
+
+- **文本内容中**：将 `<` 转义为 `&lt;`，`>` 转义为 `&gt;`。
+- **属性值中**：使用 `&quot;` 转义双引号，确保属性闭合正确。
+
+HTML [实体](https://developer.mozilla.org/zh-CN/docs/Glossary/Entity)是一段以连字号（&）开头、以分号（;）结尾的文本（字符串）。
+
+- `&` + ASCII 字符
+
+  如 `&Acirc;`。[HTML5 参照表](https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references)
+
+- `&#` + 10 进制数字
+
+  如 `&#67;`, `&#128522;`。参考 Unicode 十进制表
+
+- `&#x` + 16 进制数字
+
+  如 `&#x1F60A;`。参考 Unicode 十六进制表
+
 ## 三、DOM 编程接口
 
 ### 核心对象模型
@@ -341,4 +362,8 @@ delegate(document.body, 'click', '.dynamic-item', function() {
 | 事件处理程序 | 事件类型 | 目标     | 描述 |
 | ------------ | -------- | -------- | ---- |
 | `onclick`    | `click`  | Elements |      |
+
+## Reference
+
+- [在 HTML 和 CSS 中转义特殊字符 - *Harttle*](https://harttle.land/2018/05/15/html-css-escape.html)
 

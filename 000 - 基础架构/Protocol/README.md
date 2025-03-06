@@ -1,4 +1,2 @@
 # Protocol
 
-- [HTTP](./HTTP.md)
-

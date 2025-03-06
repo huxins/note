@@ -1,4 +1,4 @@
-# Awesome Hardware
+# Hardware
 
 ## 一、数据存储
 

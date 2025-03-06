@@ -19,7 +19,9 @@ HTTP 协议于 20 世纪 90 年代初期被[规范](https://developer.mozilla.or
 
 ## 二、报文
 
-用于 HTTP 协议交互的信息被称为 [HTTP 报文](https://tools.ietf.org/html/rfc2616#section-4)，是 HTTP 通信中的基本单位。报文本身是由多行（用 CR+LF 作换行符）数据构成的字符串文本，通过 HTTP 通信传输时，序列化为八位组字节流。
+用于 HTTP 协议交互的信息被称为 [HTTP 报文](https://tools.ietf.org/html/rfc2616#section-4)，是 HTTP 通信中的基本单位。
+
+报文本身是由多行（用 CR+LF 作换行符）数据构成的字符串文本，通过 HTTP 通信传输时，序列化为八位组字节流。
 
 请求端的 HTTP 报文叫做请求报文，响应端的叫做响应报文。
 
@@ -53,7 +55,9 @@ Content-Length: 18
 
 [实体](https://tools.ietf.org/html/rfc2616#section-7)作为请求或响应的有效载荷数据（补充项）被传输，其内容由实体首部和实体主体组成。
 
-[HTTP 报文](https://tools.ietf.org/html/rfc2616#section-4)的[主体](https://tools.ietf.org/html/rfc2616#section-4.3)用于传输请求或响应的[实体主体](https://tools.ietf.org/html/rfc2616#section-7.2)。通常，[报文主体](https://tools.ietf.org/html/rfc2616#section-4.3)等于[实体主体](https://tools.ietf.org/html/rfc2616#section-7.2)。只有当传输中进行编码操作时，实体主体的内容发生变化，才导致它和报文主体产生差异。
+[HTTP 报文](https://tools.ietf.org/html/rfc2616#section-4)的[主体](https://tools.ietf.org/html/rfc2616#section-4.3)用于传输请求或响应的[实体主体](https://tools.ietf.org/html/rfc2616#section-7.2)。
+
+通常，[报文主体](https://tools.ietf.org/html/rfc2616#section-4.3)等于[实体主体](https://tools.ietf.org/html/rfc2616#section-7.2)。只有当传输中进行编码操作时，实体主体的内容发生变化，才导致它和报文主体产生差异。
 
 ### 内容编码
 
@@ -63,14 +67,16 @@ Content-Length: 18
 
 常用的[内容编码](https://tools.ietf.org/html/rfc2616#section-3.5)有以下几种：
 
-- **gzip**
-- **compress**
-- **deflate**
-- **identity**
+- gzip
+- compress
+- deflate
+- identity
 
 ### 传输编码
 
-在 HTTP 通信过程中，请求的编码实体资源尚未全部传输完成之前，浏览器无法显示请求页面。在传输大容量数据时，通过 [Transfer-Encoding](https://tools.ietf.org/html/rfc2616#section-14.41) 把数据分割成多块，能够让浏览器逐步显示页面。这种把实体主体分块的功能称为[分块传输编码](https://tools.ietf.org/html/rfc2616#section-3.6.1)（Chunked Transfer Coding）。
+在 HTTP 通信过程中，请求的编码实体资源尚未全部传输完成之前，浏览器无法显示请求页面。
+
+在传输大容量数据时，通过 [Transfer-Encoding](https://tools.ietf.org/html/rfc2616#section-14.41) 把数据分割成多块，能够让浏览器逐步显示页面。这种把实体主体分块的功能称为[分块传输编码](https://tools.ietf.org/html/rfc2616#section-3.6.1)（Chunked Transfer Coding）。
 
 分块传输编码会将实体主体分成多个块，每一块都会用十六进制来标记块的大小，而实体主体的最后一块会使用 `0\r\n` 来标记。
 
@@ -94,7 +100,9 @@ b
 
 #### URL Encode
 
-当以 `application/x-www-form-urlencoded` 格式发送请求时，数据会被编码为键值对的形式，并使用 `&` 连接多个键值对。键和值会用 `=` 连接，并且特殊字符会被 URL Encode。
+当以 `application/x-www-form-urlencoded` 格式发送请求时，数据会被编码为键值对的形式，并使用 `&` 连接多个键值对。
+
+键和值会用 `=` 连接，并且特殊字符会被 URL Encode。
 
 ```http
 POST /post HTTP/1.1
@@ -161,7 +169,7 @@ Content-Range: bytes 380-390/398
 
 [RFC 2616](https://tools.ietf.org/html/rfc2616#section-4.2) 和 [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2) 规定字段名称不区分大小写。[RFC 7540](https://tools.ietf.org/html/rfc7540#section-8.1.2) 也规定不区分大小写，但字段名称必须先转换为小写，才能使用在 HTTP/2 中编码。
 
-HTTP 允许字段内容[使用 ISO-8859-1](https://tools.ietf.org/html/rfc7230#page-26) 字符集中的文本，并且仅通过使用 [RFC 2047](https://tools.ietf.org/html/rfc2047) 编码来支持其他字符集。在实践中，大多数 HTTP 头字段的值仅使用 ASCII 字符集。
+HTTP 允许字段内容使用 [ISO-8859-1](https://tools.ietf.org/html/rfc7230#page-26) 字符集中的文本，并且仅通过使用 [RFC 2047](https://tools.ietf.org/html/rfc2047) 编码来支持其他字符集。在实践中，大多数 HTTP 头字段的值仅使用 ASCII 字符集。
 
 Header Fields 大致分为 [General Header Fields](https://tools.ietf.org/html/rfc2616#section-4.5)、[Request Header Fields](https://tools.ietf.org/html/rfc2616#section-5.3)、[Response Header Fields](https://tools.ietf.org/html/rfc2616#section-6.2) 和 [Entity Header Fields](https://tools.ietf.org/html/rfc2616#section-7.1)。
 

@@ -1,4 +1,12 @@
-```
+```text
+note/
+├── 基础架构 (000)
+│   ├── API                  // 已完成
+│   ├── Protocol             // 已完成
+│   ├── Hardware
+│   ├── Software
+│   ├── Methodology          // 已完成
+│   └── Specification        // 进行中
 ├── 前端开发 (001)
 │   ├── HTML
 │   ├── CSS
@@ -16,14 +24,7 @@
 │   └── DevOps
 ├── 云计算 (005)
 │   └── Cloud
-├── 数据库 (004)
-│   └── Database
-└── 基础架构 (000)
-    ├── API
-    ├── Protocol
-    ├── Hardware
-    ├── Software
-    ├── Methodology
-    └── Specification
+└── 数据库 (004)
+    └── Database
 ```
 

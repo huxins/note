@@ -1,4 +1,4 @@
-# Awesome JavaScript
+# JavaScript
 
 ## 一、资源
 

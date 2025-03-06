@@ -1,4 +1,4 @@
-# Awesome CSS
+# CSS
 
 ## 一、资源
 

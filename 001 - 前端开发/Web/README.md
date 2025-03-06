@@ -1,4 +1,4 @@
-# Awesome Web
+# Web
 
 ## 一、管理模板
 
@@ -30,4 +30,10 @@
 ## 三、资源
 
 - [Frontend Developer Roadmap](https://roadmap.sh/frontend)
+
+## 四、参考项目
+
+### 多页面应用
+
+- [emn178/online-tools](https://github.com/emn178/online-tools) - 在线工具，原始多页面应用。
 

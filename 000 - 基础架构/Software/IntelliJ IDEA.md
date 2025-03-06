@@ -2,28 +2,29 @@
 
 [IntelliJ IDEA](https://www.jetbrains.com/zh-cn/idea/) 是一个面向专业开发的 IDE，适用于 Java 和 Kotlin。
 
-## 一、配置
+## 一、环境配置
 
-### 高级配置
+### 基础设置
 
-除了 IDE 设置中可用的标准选项外，IntelliJ IDEA 还能够执行底层平台和 Java 运行时的[低级配置](https://www.jetbrains.com/help/idea/tuning-the-ide.html)。
+#### 通知管理
 
-#### JVM 选项
+- **路径**：Settings | Appearance & Behavior | Notifications
+- **禁用系统通知**：隐藏 Windows 系统托盘图标
 
-IntelliJ IDEA 在 Java 虚拟机（JVM）上运行，它具有控制其性能的[各种选项](https://www.jetbrains.com/help/idea/tuning-the-ide.html#configure-jvm-options)。
+### 性能调优
 
-用于运行 IntelliJ IDEA 的默认选项在 IDE 安装目录中指定：
+#### JVM 参数配置
 
-- **Windows**: `<IDE_HOME>\bin\idea64.exe.vmoptions`
+- **配置文件路径**
+  - [**Windows**](https://www.jetbrains.com/help/idea/tuning-the-ide.html#configure-jvm-options)：`<IDE_HOME>\bin\idea64.exe.vmoptions`
 
-### Notifications
 
-```
-Settings | Appearance and Behavior | Notifications
 
-Enable system notifications：
-在 Windows 上，禁用此选项以隐藏系统托盘中的 IntelliJ IDEA 图标。
-```
+
+
+
+
+
 
 ## 二、编辑源代码
 

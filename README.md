@@ -1,17 +1,17 @@
 ```text
 note/
 ├── 基础架构 (000)
-│   ├── API                  // 已完成
-│   ├── Protocol             // 已完成
+│   ├── API
+│   ├── Protocol
 │   ├── Hardware
 │   ├── Software
-│   ├── Methodology          // 已完成
-│   └── Specification        // 进行中
+│   ├── Methodology
+│   └── Specification
 ├── 前端开发 (001)
 │   ├── HTML
 │   ├── CSS
 │   ├── JavaScript
-│   └── Web综合
+│   └── Web
 ├── 后端开发 (002)
 │   ├── Python
 │   ├── Java

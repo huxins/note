@@ -1,4 +1,4 @@
-# Awesome Node.js
+# Node.js
 
 ## 一、资源
 

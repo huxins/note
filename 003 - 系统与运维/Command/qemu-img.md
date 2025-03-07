@@ -22,15 +22,10 @@ qemu-img check openwrt.qcow2
 
 将磁盘映像 *FILENAME* 或快照 *SNAPSHOT_PARAM* 转换为 *OUTPUT_FMT* 格式的磁盘映像 *OUTPUT_FILENAME*。
 
-- **-f**
+- -**f**：源磁盘映像格式。
+- -**O**：目标磁盘映像格式。
 
-源磁盘映像格式。
-
-- **-O**
-
-目标磁盘映像格式。
-
-将 VMware .vmdk 磁盘映像转换为 KVM .qcow2 磁盘映像：
+将 VMware `.vmdk` 磁盘映像转换为 KVM `.qcow2` 磁盘映像。
 
 ```sh
 qemu-img convert -f vmdk -O qcow2 path/to/file/foo.vmdk path/to/file/foo.qcow2

@@ -1,4 +1,4 @@
-# Awesome Database
+# Database
 
 ## 一、资源
 

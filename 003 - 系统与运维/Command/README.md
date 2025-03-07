@@ -1,4 +1,4 @@
-# Awesome CLI
+# CLI
 
 ## 一、资源
 

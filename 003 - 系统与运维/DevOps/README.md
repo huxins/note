@@ -1,4 +1,4 @@
-# Awesome DevOps
+# DevOps
 
 ## 一、资源
 

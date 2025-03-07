@@ -1,4 +1,4 @@
-# Awesome Linux
+# Linux
 
 ## 一、资源
 

@@ -1,4 +1,4 @@
-# Awesome CSharp
+# CSharp
 
 ## 一、资源
 

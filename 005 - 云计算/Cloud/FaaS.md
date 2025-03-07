@@ -1,4 +1,4 @@
-# Serverless
+# FaaS
 
 ## 一、腾讯云
 

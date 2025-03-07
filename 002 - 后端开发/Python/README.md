@@ -1,4 +1,4 @@
-# Awesome Python
+# Python
 
 ## 一、资源
 
@@ -94,7 +94,7 @@
 - 关系型数据库
   - SQLAlchemy
 
-## 三、项目
+## 三、参考项目
 
 ### CLI
 

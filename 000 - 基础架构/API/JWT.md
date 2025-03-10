@@ -2,17 +2,22 @@
 
 [JWT](https://datatracker.ietf.org/doc/html/rfc7519) 是一种用于在网络应用间传递信息的简洁标准，是目前较为流行的身份验证和授权解决方案之一。
 
-## 一、背景与核心价值
+## 一、背景
 
-### 传统身份认证的挑战
+### 传统身份认证
 
 - **Session-Cookie 模式流程**
-  - 用户提交用户名和密码
-  - 服务端保存 Session 数据（用户角色、登录时间等）
-  - 返回 Session ID 至客户端 Cookie
-  - 后续请求需携带 Session ID
-  - 服务端通过 Session ID 验证身份
+
+  ```mermaid
+  graph LR
+  A[用户提交用户名和密码] --> B[服务端保存 Session 数据\n（用户角色、登录时间等）]
+  B --> C[返回 Session ID 至客户端 Cookie]
+  C --> D[后续请求需携带 Session ID]
+  D --> E[服务端通过 Session ID 验证身份]
+  ```
+
 - **扩展性问题**
+
   - 集群部署需共享 Session（如数据库持久化），存在单点故障风险
   - 跨域服务架构中维护 Session 复杂度高
 
@@ -30,9 +35,9 @@
 
 ```mermaid
 graph LR
-A[用户登录] --> B[服务端生成JWT]
-B --> C[返回JWT至客户端]
-C --> D[客户端携带JWT发起请求]
+A[用户登录] --> B[服务端生成 JWT]
+B --> C[返回 JWT 至客户端]
+C --> D[客户端携带 JWT 发起请求]
 D --> E[服务端验证签名/数据]
 E --> F[授权访问资源]
 ```

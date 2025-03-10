@@ -1,4 +1,4 @@
-# pdf.js
+# PDF.js
 
 [PDF.js](https://github.com/mozilla/pdf.js) 是一个基于 HTML5 构建的可移植文档格式（PDF）查看器。
 

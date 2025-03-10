@@ -1,38 +1,38 @@
 # Python
 
-## 一、资源
+## 一、核心资源
 
-### Cheat sheet
+### 速查手册
 
 - [vinta/awesome-python](https://github.com/vinta/awesome-python)
 
-## 二、模块
+## 二、开发环境管理
 
-### 包管理
+### 包管理工具
 
 *用于包和依赖关系管理的库。*
 
-- [pip](https://pip.pypa.io/en/stable/) - Python 的包安装程序。
+- [pip](https://pip.pypa.io/en/stable/) - Python 官方包管理器。
+- [Pyenv](https://github.com/pyenv/pyenv) - 多版本 Python 环境管理。
 
-### 环境管理
-
-- Pyenv
-
-### 打包工具
+### 打包与分发
 
 - [Setuptools](https://packaging.python.org/en/latest/key_projects/#easy-install) - Python [distutils](https://docs.python.org/zh-cn/3.11/library/distutils.html) 的一系列增强功能。
 
-### HTTP
+## 三、核心开发库
+
+### 网络请求
 
 *用于处理 HTTP 的库。*
 
-- [requests](https://github.com/psf/requests) - 为人类设计的 HTTP 请求库。
+- [requests](https://github.com/psf/requests) - 人性化 HTTP 客户端库。
 
-### 序列化
+### 序列化处理
 
 *用于序列化复杂数据类型的库。*
 
-- [marshmallow](https://github.com/marshmallow-code/marshmallow) - 一个轻量级的库，用于将复杂对象转换为简单的 Python 数据类型。
+- [marshmallow](https://github.com/marshmallow-code/marshmallow) - 对象序列化/反序列化框架。
+- [pydantic](https://github.com/pydantic/pydantic) - 基于类型提示的数据验证。
 
 ### 时间日期
 
@@ -40,30 +40,24 @@
 
 - [dateutil](https://github.com/dateutil/dateutil) - [datetime](https://docs.python.org/zh-cn/3/library/datetime.html) 模块的扩展。
 - [holidays](https://github.com/vacanza/python-holidays) - 在 Python 中生成和处理假期。
-- [chinese-calendar](https://github.com/LKI/chinese-calendar) - 判断日期是不是法定节假日或法定工作日。
+- [chinese-calendar](https://github.com/LKI/chinese-calendar) - 中国节假日计算。
+
+## 四、数据处理与格式
 
 ### 数据分析
 
-*数据分析库。*
+- [pandas](https://pandas.pydata.org/) - 表格数据处理框架。
 
-- [pandas](https://pandas.pydata.org/) - 一个提供高性能、易于使用的数据结构和数据分析工具的库。
+### 文件格式处理
 
-### 数据验证
+#### Excel
+- [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - 读取和写入 Excel 2010 xlsx、xlsm、xltx、xltm 文件的库。
+- [XlsxWriter](https://github.com/jmcnamara/XlsxWriter) - 创建 Excel XLSX 文件的 Python 模块。
+- [xlwings](https://github.com/xlwings/xlwings) - 轻松地从 Excel 调用 Python，反之亦然。
 
-*用于验证数据的库，在许多情况下用于表单。*
+#### 结构化数据
 
-- [pydantic](https://github.com/pydantic/pydantic) - 使用 Python 类型提示进行数据验证。
-
-### 特定格式处理
-
-*用于解析和操纵特定文本格式的库。*
-
-- Office
-  - [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - 用于读取和写入 Excel 2010 xlsx、xlsm、xltx、xltm 文件的库。
-  - [XlsxWriter](https://github.com/jmcnamara/XlsxWriter) - 用于创建 Excel XLSX 文件的 Python 模块。
-  - [xlwings](https://github.com/xlwings/xlwings) - 一个 BSD 许可的 Python 库，可以轻松地从 Excel 调用 Python，反之亦然。
-- YAML
-  - PyYAML
+- PyYAML - YAML 文件处理。
 
 ### HTML 操作
 
@@ -71,33 +65,35 @@
 
 - [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/) - 提供 Python 风格的习惯用法，用于迭代、搜索和修改 HTML 或 XML。
 
-### 云服务
+## 五、Web 开发
 
-- [Boto3](https://github.com/boto/boto3)
-
-### RESTful API
+### Web 框架
 
 - Flask
-  - Flask-SQLAlchemy
+  - Flask-SQLAlchemy - ORM 集成。
   - Flask-Marshmallow
   - marshmallow-sqlalchemy
   - Flask-JWT-Extended
   - Flask-RESTful
 
+## 六、数据库相关
+
 ### 数据库驱动
 
-- MySQL
-  - PyMySQL
+- PyMySQL
 
 ### ORM
 
-- 关系型数据库
-  - SQLAlchemy
+- SQLAlchemy
 
-## 三、参考项目
+## 七、云服务集成
 
-### CLI
+### 云服务集成
 
-- [cdeil/python-cli-examples](https://github.com/cdeil/python-cli-examples) - Python 命令行界面（CLI）包的示例。
+- [Boto3](https://github.com/boto/boto3) - AWS SDK Python 版。
+
+## 参考项目
+
+- [cdeil/python-cli-examples](https://github.com/cdeil/python-cli-examples) - Python CLI 项目的示例。
 - [houtianze/bypy](https://github.com/houtianze/bypy) - 百度网盘 Python 客户端。
 

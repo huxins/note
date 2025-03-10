@@ -10,7 +10,7 @@
 
   ```mermaid
   graph LR
-  A[用户提交用户名和密码] --> B[服务端保存 Session 数据\n（用户角色、登录时间等）]
+  A[用户提交用户名和密码] --> B[服务端保存 Session 数据（用户角色、登录时间等）]
   B --> C[返回 Session ID 至客户端 Cookie]
   C --> D[后续请求需携带 Session ID]
   D --> E[服务端通过 Session ID 验证身份]

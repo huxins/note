@@ -1,4 +1,4 @@
-# JSON Web Token
+# JWT
 
 [JWT](https://datatracker.ietf.org/doc/html/rfc7519) 是一种用于在网络应用间传递信息的简洁标准，是目前较为流行的身份验证和授权解决方案之一。
 

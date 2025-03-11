@@ -1,7 +1,6 @@
 # IntelliJ IDEA
 
-- **官网链接**：[IntelliJ IDEA](https://www.jetbrains.com/zh-cn/idea/)
-- **定位**：面向专业开发者的全能型 IDE，深度支持 Java/Kotlin 开发
+[IntelliJ IDEA](https://www.jetbrains.com/zh-cn/idea/) 是面向专业开发者的全能型 IDE，深度支持 Java/Kotlin 开发。
 
 ## 一、环境配置
 
@@ -52,7 +51,7 @@
   - 自定义作用域筛选
 - [高阶用法](https://www.jetbrains.com/help/idea/find-highlight-usages.html)
 
-## 四、插件生态增强
+## 四、插件生态
 
 ### 效率工具
 

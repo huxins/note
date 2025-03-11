@@ -38,7 +38,7 @@ Package Control 由命令面板驱动。
 
 - **Install Package**：显示可安装的所有可用软件包的列表。这将包括默认频道中的所有包，以及您添加的存储库中的任何包。
 
-## 三、Package（扩展）
+## 三、Package
 
 ### Emmet
 

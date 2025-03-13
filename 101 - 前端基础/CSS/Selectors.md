@@ -1,12 +1,8 @@
 # CSS Selectors
 
-[选择器](https://www.w3.org/TR/selectors-3/#abstract)是一种用于匹配树中元素的模式，是多种选择 XML 文档节点技术中的一种。
+[选择器](https://www.w3.org/TR/selectors-3/#abstract)是一种用于匹配树中元素的模式，是多种选择 XML 文档节点技术中的一种。选择器经过优化，适用于 HTML 和 XML，并设计为可在性能关键的代码中使用。
 
-选择器经过优化，适用于 HTML 和 XML，并设计为可在性能关键的代码中使用。
-
-[选择器](https://www.w3.org/TR/selectors-3/#selector)是由一个或多个[简单选择器序列](https://www.w3.org/TR/selectors-3/#sequence)组成的链，这些简单选择器序列由[组合器](https://www.w3.org/TR/selectors-3/#combinators)分隔。
-
-一个[伪元素](https://www.w3.org/TR/selectors-3/#pseudo-elements)可以附加到选择器中的最后一个简单选择器序列。
+[选择器](https://www.w3.org/TR/selectors-3/#selector)是由一个或多个[简单选择器序列](https://www.w3.org/TR/selectors-3/#sequence)组成的链，这些简单选择器序列由[组合器](https://www.w3.org/TR/selectors-3/#combinators)分隔。一个[伪元素](https://www.w3.org/TR/selectors-3/#pseudo-elements)可以附加到选择器中的最后一个简单选择器序列。
 
 ## 一、选择器组
 

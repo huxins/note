@@ -20,7 +20,7 @@
 - [XMLHttpRequest](https://xhr.spec.whatwg.org/)
 - [File API](https://www.w3.org/TR/FileAPI/)
 - [User-Agent Client Hints](https://wicg.github.io/ua-client-hints/)
-- [Service Worker](https://www.w3.org/TR/service-workers/) - 浏览器和网络间的代理。通过拦截文档中发出的请求，可以达到离线运行的目的。
+- [Service Worker](https://www.w3.org/TR/service-workers/)
 - [Fetch](https://fetch.spec.whatwg.org/)
 
 ### CDN
@@ -29,7 +29,8 @@
 - [Google Hosted Libraries](https://developers.google.com/speed/libraries?hl=zh-cn)
 - [Microsoft Ajax CDN](https://www.asp.net/ajaxlibrary/cdn.ashx)
 - [jsDelivr](https://www.jsdelivr.com/) - 支持 NPM、GitHub。
-- [cdnjs.com](https://cdnjs.com/)
+- [CDNJS](https://github.com/cdnjs/cdnjs)
+  - [cdnjs.com](https://cdnjs.com/)
   - [cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/)
   - [SUSTech CDNJS Mirrors](https://mirrors.sustech.edu.cn/help/cdnjs.html)
 - [UNPKG](https://www.unpkg.com/) - 支持 NPM。
@@ -39,12 +40,4 @@
 - [字节跳动静态资源公共库](https://cdn.bytedance.com/)
 - [75 CDN](https://lib.baomitu.com/)
 - [Web 缓存网](https://www.webcache.cn/)
-
-## 二、组件
-
-### Material
-
-*Google 针对不同框架的 [Material Design](https://en.wikipedia.org/wiki/Material_Design) 库。*
-
-- [material-design-lite](https://github.com/google/material-design-lite) - HTML/CSS/JS 中的 Material Design 组件。
 

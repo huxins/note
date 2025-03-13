@@ -118,6 +118,14 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
   ```javascript
   const textarea = document.createElement('textarea');
   ```
+  
+- document.[**getElementsByTagName**](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/getElementsByTagName)(*qualifiedName*)
+
+  返回一个包括所有给定标签名称的动态 [`HTMLCollection`](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCollection)。
+
+  ```javascript
+  const divList = document.getElementsByTagName("div");
+  ```
 
 ### ParentNode
 
@@ -137,5 +145,13 @@ DOM 节点的事件操作，都定义在 [`EventTarget`](https://developer.mozil
 
   ```javascript
   const form = document.querySelector("form");
+  ```
+
+- node.[**querySelectorAll**](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/querySelectorAll)(*selectors*)
+
+  返回与指定的选择器组匹配的静态 [`NodeList`](https://developer.mozilla.org/zh-CN/docs/Web/API/NodeList)。
+
+  ```javascript
+  const divList = document.querySelectorAll("div");
   ```
 

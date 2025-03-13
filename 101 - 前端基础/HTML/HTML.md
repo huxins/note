@@ -34,17 +34,11 @@
 
 ### 传统块级元素
 
-[块级元素](https://developer.mozilla.org/zh-CN/docs/Glossary/Block-level_content)占据其父元素的整个水平空间，垂直空间等于其内容高度，因此创建了一个块。
+[块级元素](https://developer.mozilla.org/zh-CN/docs/Glossary/Block-level_content)占据其父元素的整个水平空间，垂直空间等于其内容高度，因此创建了一个块。默认情况下，块级元素会新起一行。
 
-默认情况下，块级元素会新起一行。
+一般块级元素可以包含行内元素和其他块级元素。这种结构上的包含继承区别可以使块级元素创建比行内元素更大型的结构。
 
-一般块级元素可以包含行内元素和其他块级元素。
-
-这种结构上的包含继承区别可以使块级元素创建比行内元素更大型的结构。
-
-HTML 标准中块级元素和行内元素至高出现在 [4.01](https://www.w3.org/TR/html401/struct/global.html#h-7.5.3) 标准中。
-
-在 HTML5 中，这种区别被一个更复杂的 [Element content categories](https://html.spec.whatwg.org/multipage/indices.html#element-content-categories) 代替。
+HTML 标准中块级元素和行内元素至高出现在 [4.01](https://www.w3.org/TR/html401/struct/global.html#h-7.5.3) 标准中。在 HTML5 中，这种区别被一个更复杂的 [Element content categories](https://html.spec.whatwg.org/multipage/indices.html#element-content-categories) 代替。
 
 块级类别大致相当于 HTML5 中的 [Flow content](https://html.spec.whatwg.org/multipage/dom.html#flow-content) 类别，而行内类别相当于 HTML5 中的 [Phrasing content](https://html.spec.whatwg.org/multipage/dom.html#phrasing-content) 类别，不过除了这两个还有其他类别。
 
@@ -72,13 +66,13 @@ HTML 标准中块级元素和行内元素至高出现在 [4.01](https://www.w3.o
 
 HTML 元素的内容必须符合元素内容模型中描述的要求。
 
-元素的内容是它在 DOM 中的子元素。
+- 元素的内容是它在 DOM 中的子元素。
 
-元素之间始终允许使用 ASCII 空格。
+- 元素之间始终允许使用 ASCII 空格。
 
-*User agents* 将源标记中元素之间的这些字符表示为 DOM 中的文本节点。
+- *User agents* 将源标记中元素之间的这些字符表示为 DOM 中的文本节点。
 
-空文本节点和仅由这些字符序列组成的文本节点被视为元素间空白。
+- 空文本节点和仅由这些字符序列组成的文本节点被视为元素间空白。
 
 在确定元素的内容是否与元素的内容模型匹配时，必须忽略元素间的空白、注释节点和处理指令节点，并且在遵循定义文档和元素语义的算法时必须忽略。
 
@@ -135,7 +129,7 @@ HTML 中的每个元素都属于零个或多个类别，这些类别将具有相
 - **文本内容中**：将 `<` 转义为 `&lt;`，`>` 转义为 `&gt;`。
 - **属性值中**：使用 `&quot;` 转义双引号，确保属性闭合正确。
 
-HTML [实体](https://developer.mozilla.org/zh-CN/docs/Glossary/Entity)是一段以连字号（&）开头、以分号（;）结尾的文本（字符串）。
+HTML [实体](https://developer.mozilla.org/zh-CN/docs/Glossary/Entity)是一段以连字号（`&`）开头、以分号（`;`）结尾的文本（字符串）。
 
 - `&` + ASCII 字符
 

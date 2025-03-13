@@ -446,13 +446,9 @@ by default this element is filled with this text
 <script src="app.js" async defer></script>
 ```
 
-[`integrity`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#integrity) 属性表示该元素负责的请求的完整性元数据，值为文本。
+[`integrity`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#integrity) 属性表示该元素负责的请求的完整性元数据，值为文本。未指定 `src` 属性时，不得指定 `integrity` 属性。
 
-未指定 `src` 属性时，不得指定 `integrity` 属性。
-
-[`integrity`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#integrity) 是用来解决由于 CDN 资源被污染而导致的 XSS。
-
-当浏览器检测加载脚本签名与给定的签名不一致时，会拒绝执行该脚本。
+[`integrity`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#integrity) 是用来解决由于 CDN 资源被污染而导致的 XSS。当浏览器检测加载脚本签名与给定的签名不一致时，会拒绝执行该脚本。
 
 启用 SRI 策略后，浏览器会对资源进行 CORS 校验，这就要求被请求的资源必须同域，或者配置了 `Access-Control-Allow-Origin` 响应头。
 

@@ -99,7 +99,7 @@ self.addEventListener('fetch', event => {
 
 Service Worker 版本更新遵循浏览器端生命周期管控机制：当检测到新版本时，后台完成安装后进入待激活状态，此时旧版本仍保持控制权；新版本需在所有关联页面终止对旧实例的引用并满足激活条件后，方可自动激活并接管控制权。
 
-Service Worker 的全局方法 [`skipWaiting()`](https://developer.mozilla.org/zh-CN/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting) 可在检测到更新时直接激活新实例，跳过默认的等待阶段，从而更快地接管页面控制权。
+Service Worker 的全局方法 [`skipWaiting()`](https://developer.mozilla.org/zh-CN/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting) 可在检测到新版本时立即激活更新，绕过默认的等待阶段实现快速版本切换，并自动接管当前页面及所有受控客户端的控制权。
 
 ```javascript
 self.addEventListener('install', event => {
@@ -119,9 +119,9 @@ self.addEventListener('install', event => {
 });
 ```
 
-在用户首次访问时，Service Worker 安装并激活后，不会立即控制已存在的页面，除非页面重新加载。
+在用户首次访问时，Service Worker 安装并激活后，不会立即接管现有页面控制权，需页面刷新后生效。该机制影响范围包含所有现有同源客户端页面，包括首次注册 Service Worker 的页面及其他未受控的同源标签页。
 
-可以通过使用 [`clients.claim()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Clients/claim) 立即控制页面，使得后续请求能通过 Service Worker 处理。
+可以通过使用 [`clients.claim()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Clients/claim) 立即接管所有未被控制的同源客户端，实现无需刷新页面的全域控制权同步，使得后续请求能通过 Service Worker 处理。
 
 ```javascript
 self.addEventListener('activate', event => {

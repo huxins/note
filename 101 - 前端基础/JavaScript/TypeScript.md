@@ -244,6 +244,37 @@
 - [**outDir**](https://www.typescriptlang.org/tsconfig/#outDir)：输出目录
 - [**declaration**](https://www.typescriptlang.org/tsconfig/#declaration)：生成 `.d.ts`
 
+## 三、开发环境
+
+Node.js 默认不支持直接执行 `.ts` 文件，需要配置开发环境进行转译执行。
+
+### ts-node
+
+可以使用 `ts-node` 直接运行。
+
+- **安装依赖**：[`ts-node`](https://www.npmjs.com/package/ts-node), [`typescript`](https://www.npmjs.com/package/typescript)
+
+  ```sh
+  npm install -g ts-node typescript
+  
+  # 对于项目级使用，建议本地安装
+  npm install --save-dev ts-node typescript
+  ```
+
+- **配置编译规则**
+
+  在项目根目录初始化 `tsconfig.json`。
+
+  ```sh
+  tsc --init
+  ```
+
+- **执行 TypeScript 文件**
+
+  ```sh
+  ts-node test.ts
+  ```
+
 ## Reference
 
 - [TypeScript 入门教程 - *xcatliu*](https://ts.xcatliu.com/)

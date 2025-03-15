@@ -1,18 +1,22 @@
 # TypeScript
 
+[TypeScript](https://www.typescriptlang.org/) 是具有类型语法的 JavaScript。
 
+## 一、类型系统
 
-## 一、类型
+[JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Data_structures) 定义了 8 种内置类型，[TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#built-in-types) 为内置类型提供了相应的基元类型。
 
 ### 基础类型
 
-- **boolean**
+#### 原始类型
+
+- [**boolean**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean)
 
   ```typescript
   let isDone: boolean = false;
   ```
 
-- **number**
+- [**number**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean)
 
   ```typescript
   let decLiteral: number = 6;
@@ -21,13 +25,27 @@
   let octalLiteral: number = 0o744;
   ```
 
-- **string**
+- [**string**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean)
 
   ```typescript
   let name: string = "bob";
   ```
 
-- **any**
+- [**void**](https://www.typescriptlang.org/docs/handbook/2/functions.html#void)
+
+  `void` 类型表示没有任何类型，常用于表示函数没有返回值。
+
+  ```typescript
+  function warnUser(): void {
+    console.log("This is my warning message");
+  }
+  ```
+
+- [**null/undefined**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined)
+
+#### 特殊类型
+
+- [**any**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any)
 
   TypeScript 中的一个逃逸类型，可以绕过类型检查系统，因此不会对值进行任何类型检查。
 
@@ -37,11 +55,11 @@
   notSure = false;
   ```
 
-- **unknown**
+- [**unknown**](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown)
 
   `unknown` 类型也表示不确定的类型，但与 `any` 不同，它是类型安全的。
 
-  当你将一个值声明为 `unknown` 类型时，必须在使用它之前先进行类型检查或类型断言，以告诉 TypeScript 它的确切类型。
+  当一个值声明为 `unknown` 类型时，必须在使用它之前先进行类型检查或类型断言，以告诉 TypeScript 它的确切类型。
 
   ```typescript
   let notSure: unknown = 4;
@@ -49,19 +67,11 @@
   notSure = false;
   ```
 
-- **void**
+#### 空类型
 
-  `void` 类型表示没有任何类型。常用于表示函数没有返回值。
+- [**never**](https://www.typescriptlang.org/docs/handbook/2/functions.html#never)
 
-  ```typescript
-  function warnUser(): void {
-    console.log("This is my warning message");
-  }
-  ```
-
-- **never**
-
-  `never` 类型表示永不存在的值的类型。常用于表示会抛出异常的函数的返回值。
+  `never` 类型表示永不存在的值的类型，常用于表示会抛出异常的函数的返回值。
 
   ```typescript
   function error(message: string): never {
@@ -69,7 +79,11 @@
   }
   ```
 
-- **object**
+### 对象类型
+
+#### 基础对象
+
+- [**object**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types)
 
   `object` 表示非原始类型，也就是除 `number`，`string`，`boolean`，`symbol`，`null` 或 `undefined` 之外的类型。
 
@@ -83,130 +97,155 @@
   let person: { name: string; age: number } = { name: "John", age: 30 };
   ```
 
-### 联合类型
+#### 结构化对象
 
-联合类型表示取值可以为多种类型中的一种。
+- [**Array**](https://www.typescriptlang.org/docs/handbook/2/objects.html#the-array-type)
 
-```typescript
-let myFavoriteNumber: string | number;
-myFavoriteNumber = 'seven';
-myFavoriteNumber = 7;
-```
+  ```typescript
+  // 使用「类型 + 方括号」来表示数组
+  let fibonacci: number[] = [1, 1, 2, 3, 5];
+  
+  // 使用数组泛型来表示数组
+  let fibonacci: Array<number> = [1, 1, 2, 3, 5];
+  ```
 
-### 字面量类型
+- [**Tuple**](https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types)
 
-字符串字面量类型：
+  `Array` 合并相同类型的对象，而 `Tuple` 合并不同类型的对象。`Tuple` 有固定的长度，一旦创建，其长度不能更改。
+  
+  ```typescript
+  let tom: [string, number] = ['Tom', 25];
+  ```
 
-```typescript
-let myFavoriteString: "abc" | "def";
-```
+#### 枚举对象
 
-### 函数类型
+- [**enum**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#enums)
 
-函数声明的类型定义：
+  枚举类型用于取值被限定在一定范围内的场景，比如一周只能有七天，颜色限定为红绿蓝等。
+  
+  ```typescript
+  enum Days { Sun, Mon, Tue, Wed, Thu, Fri, Sat };
+  let day: Days = Days.Mon;
+  ```
+  
+### 高级类型
 
-```typescript
-function sum(x: number, y: number): number {
-  return x + y;
+#### 类型组合
+
+- [**Union Types**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
+
+  联合类型表示取值可以为多种类型中的一种。
+  
+  ```typescript
+  let myFavoriteNumber: string | number;
+  myFavoriteNumber = 'seven';
+  myFavoriteNumber = 7;
+  ```
+  
+- **Intersection Types**
+
+  除了[联合](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#unions)之外，TypeScript 还有[交集](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#intersections)。
+
+#### 类型抽象
+
+- [**Type Aliases**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases)
+
+  类型复用机制。
+
+  ```typescript
+  type Point = {
+    x: number;
+    y: number;
+  };
+  let pt = { x: 100, y: 100 };
+  
+  type Easing = "ease-in" | "ease-out" | "ease-in-out";
+  let easing: Easing = "ease-in";
+  ```
+
+- [**Literal Types**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types)
+
+  精确值类型约束。
+
+  ```typescript
+  let myFavoriteString: "abc" | "def";
+  ```
+
+#### 函数类型
+
+- [**函数声明**](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-type-expressions)
+
+  ```typescript
+  function sum(x: number, y: number): number {
+    return x + y;
+  }
+  ```
+
+- [**函数表达式**](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-type-expressions)
+
+  ```typescript
+  let mySum: (x: number, y: number) => number = function (x: number, y: number): number {
+    return x + y;
+  };
+  ```
+
+### 类型操作
+
+#### 类型推断
+
+- [变量初始化推断](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-inference)
+- [函数返回值推断](https://www.typescriptlang.org/docs/handbook/2/functions.html#inference)
+
+#### 类型断言
+
+- [**`as` 语法**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
+- [**尖括号语法**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
+
+## 二、工程配置
+
+[`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) 是 TypeScript 项目的配置文件，用于配置 TypeScript 编译器的行为以及项目的类型检查选项。
+
+### 配置文件结构
+
+```json
+{
+  "compilerOptions": { ... },
+  "include": [ ... ],
+  "exclude": [ ... ]
 }
 ```
 
-函数表达式的类型定义：
+### 编译选项
 
-```typescript
-let mySum: (x: number, y: number) => number = function (x: number, y: number): number {
-  return x + y;
-};
-```
+#### 核心编译策略
 
-### 数组类型
+- [**target**](https://www.typescriptlang.org/tsconfig/#target)：指定 TS 编译为 ES 的版本
+- [**module**](https://www.typescriptlang.org/tsconfig/#module)：指定使用的模块化规范
+- [**strict**](https://www.typescriptlang.org/tsconfig/#strict)：严格模式总开关
+- [**allowJs**](https://www.typescriptlang.org/tsconfig/#allowJs)：允许在项目中导入 JavaScript 文件，而不仅仅是 `.ts` 和 `.tsx` 文件
+- [**include**](https://www.typescriptlang.org/tsconfig/#include)：指定需要编译的 TS 文件
+- [**exclude**](https://www.typescriptlang.org/tsconfig/#exclude)：指定解析 `include` 时应跳过的文件
 
-使用「类型 + 方括号」来表示数组：
+#### 类型检查策略
 
-```typescript
-let fibonacci: number[] = [1, 1, 2, 3, 5];
-```
+- [**noImplicitAny**](https://www.typescriptlang.org/tsconfig/#noImplicitAny)：禁止隐式 `any`
+- [**strictNullChecks**](https://www.typescriptlang.org/tsconfig/#strictNullChecks)：空值检查
+- [**lib**](https://www.typescriptlang.org/tsconfig/#lib)：TypeScript 包含一组内置 JS API 的默认类型定义，以及浏览器环境中（如文档）的类型定义
 
-使用数组泛型来表示数组：
+#### 模块解析策略
 
-```typescript
-let fibonacci: Array<number> = [1, 1, 2, 3, 5];
-```
+- [**baseUrl**](https://www.typescriptlang.org/tsconfig/#baseUrl)：基准路径
+- [**paths**](https://www.typescriptlang.org/tsconfig/#paths)：路径映射
+- [**typeRoots**](https://www.typescriptlang.org/tsconfig/#typeRoots)：类型声明位置
 
-### 元组类型
+#### 产出物控制
 
-数组合并相同类型的对象，而元组合并不同类型的对象。元组有固定的长度，一旦创建，其长度不能更改。
+- [**sourceMap**](https://www.typescriptlang.org/tsconfig/#sourceMap)：调试映射
+- [**outDir**](https://www.typescriptlang.org/tsconfig/#outDir)：输出目录
+- [**declaration**](https://www.typescriptlang.org/tsconfig/#declaration)：生成 `.d.ts`
 
-```typescript
-let tom: [string, number] = ['Tom', 25];
-```
+## Reference
 
-### 枚举类型
-
-枚举类型用于取值被限定在一定范围内的场景，比如一周只能有七天，颜色限定为红绿蓝等。
-
-```typescript
-enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
-```
-
-### 类型别名
-
-类型别名用来给一个类型起个新名字。
-
-```typescript
-type Easing = "ease-in" | "ease-out" | "ease-in-out";
-let easing: Easing = "ease-in";
-```
-
-## 二、项目配置
-
-### tsconfig.json
-
-`tsconfig.json` 是 TypeScript 项目的配置文件，用于配置 TypeScript 编译器的行为以及项目的类型检查选项。
-
-- **include**
-
-  指定需要编译的 TS 文件。这些文件是相对于包含 `tsconfig.json` 文件的目录进行解析的。
-
-  ```json
-  {
-    "include": ["src/**/*.ts", "src/**/*.vue"]
-  }
-  ```
-
-- **exclude**
-
-  指定解析 `include` 时应跳过的文件。
-
-  ```json
-  {
-    "exclude": ["node_modules", "dist"]
-  }
-  ```
-
-- **compilerOptions**
-
-  此选项构成了 TypeScript 配置的大部分，并且涵盖了语言应该如何工作。
-
-#### 语言与环境
-
-- **target**
-
-  指定 TS 编译为 ES 的版本。默认为 `es3`，可选 `esnext`，表示最新版。
-
-- **lib**
-
-  TypeScript 包含一组内置 JS API 的默认类型定义，以及浏览器环境中（如文档）的类型定义。
-
-#### 模块化
-
-- **module**
-
-  指定使用的模块化规范。可选 `esnext`，表示 ES Modules 最新版。
-
-#### JavaScript 支持
-
-- **allowJs**
-
-  允许在项目中导入 JavaScript 文件，而不仅仅是 `.ts` 和 `.tsx` 文件。
+- [TypeScript 入门教程 - *xcatliu*](https://ts.xcatliu.com/)
+- [TypeScript 使用手册（中文版）翻译 - *zhongsp*](https://github.com/zhongsp/TypeScript)
 

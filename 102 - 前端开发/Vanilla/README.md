@@ -1,26 +1,12 @@
-# JavaScript
+# Vanilla
 
-## 一、资源
-
-### Tutorial
-
-- [JavaScript - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
-
-### Cheat sheet
-
-- [sorrycc/awesome-javascript](https://github.com/sorrycc/awesome-javascript)
-- [jQuery Cheat Sheet](https://oscarotero.com/jquery/)
-- [jQuery Cheat Sheet | OverAPI.com](https://overapi.com/jquery)
-
-## 二、模块和库
-
-### 模块加载
+## 模块加载
 
 *JavaScript 的模块加载系统。*
 
 - [RequireJS](https://github.com/requirejs/requirejs) - JavaScript 的文件和模块加载器。
 
-### DOM
+## DOM
 
 *操作 DOM 更加简便和高效。*
 
@@ -28,12 +14,11 @@
   - [camsong/You-Dont-Need-jQuery](https://github.com/camsong/You-Dont-Need-jQuery)
   - [HubSpot/YouMightNotNeedjQuery](https://github.com/HubSpot/YouMightNotNeedjQuery)
 
-### 特定格式处理
+## 特定格式处理
 
-- PDF
-  - [PDF.js](https://github.com/mozilla/pdf.js)
+- [PDF.js](https://github.com/mozilla/pdf.js) - 基于 HTML5 构建的 PDF 查看器。
 
-### 加密哈希
+## 加密哈希
 
-- CryptoJS
+- [CryptoJS](https://github.com/brix/crypto-js)
 

@@ -421,3 +421,8 @@ $("#example").on("click", function (event) {
 });
 ```
 
+## Reference
+
+- [jQuery Cheat Sheet](https://oscarotero.com/jquery/)
+- [jQuery Cheat Sheet | OverAPI.com](https://overapi.com/jquery)
+

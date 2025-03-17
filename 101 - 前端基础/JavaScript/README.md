@@ -12,4 +12,6 @@
 - [sorrycc/awesome-javascript](https://github.com/sorrycc/awesome-javascript)
 - [ECMAScript 6 兼容表](https://compat-table.github.io/compat-table/es6/)
 - [ES 6 新特性列表](https://fangyinghang.com/es-6-tutorials/)
+- [plainJS](https://plainjs.com/)
+- [Vanilla JS](https://vanilla.js.org/)
 

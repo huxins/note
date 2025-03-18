@@ -4,6 +4,9 @@
 
 *JavaScript 的模块化开发解决方案。*
 
+- [Webpack](https://github.com/webpack/webpack) - 功能强大的模块打包工具，支持代码分割、懒加载、资源优化，适配多种模块规范。
+- [Rollup](https://github.com/rollup/rollup) - 基于 ES Module 的下一代打包工具，通过 Tree-shaking 优化生成更小体积的代码，尤其适合库开发。
+- [Browserify](https://github.com/browserify/browserify) - 将 Node.js 风格的 CommonJS 模块编译为浏览器可用的代码，支持 `require()` 语法和 npm 生态模块的直接调用。
 - [RequireJS](https://github.com/requirejs/requirejs) - 异步模块加载器，支持 AMD 规范，实现前端代码的模块化组织与管理。
 
 ## DOM 操作

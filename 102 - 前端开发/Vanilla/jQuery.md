@@ -423,6 +423,8 @@ $("#example").on("click", function (event) {
 
 ## Reference
 
-- [jQuery Cheat Sheet](https://oscarotero.com/jquery/)
-- [jQuery Cheat Sheet | OverAPI.com](https://overapi.com/jquery)
+- [jQuery Cheat Sheet - *Oscar Otero*](https://oscarotero.com/jquery/)
+- [jQuery Cheat Sheet - *OverAPI*](https://overapi.com/jquery)
+- [camsong/You-Dont-Need-jQuery](https://github.com/camsong/You-Dont-Need-jQuery)
+- [HubSpot/YouMightNotNeedjQuery](https://github.com/HubSpot/YouMightNotNeedjQuery)
 

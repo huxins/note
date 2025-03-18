@@ -1,24 +1,32 @@
-# Vanilla
+# Vanilla 生态库
 
 ## 模块加载
 
-*JavaScript 的模块加载系统。*
+*JavaScript 的模块化开发解决方案。*
 
-- [RequireJS](https://github.com/requirejs/requirejs) - JavaScript 的文件和模块加载器。
+- [RequireJS](https://github.com/requirejs/requirejs) - 异步模块加载器，支持 AMD 规范，实现前端代码的模块化组织与管理。
 
-## DOM
+## DOM 操作
 
 *操作 DOM 更加简便和高效。*
 
-- [jQuery](https://jquery.com/) - 易于使用的 JavaScript 库，用于 DOM 操作。
-  - [camsong/You-Dont-Need-jQuery](https://github.com/camsong/You-Dont-Need-jQuery)
-  - [HubSpot/YouMightNotNeedjQuery](https://github.com/HubSpot/YouMightNotNeedjQuery)
+- [jQuery](https://jquery.com/) - 经典 DOM 操作库，提供跨浏览器兼容性和链式语法，简化事件处理/动画/AJAX 交互。
 
-## 特定格式处理
+## 文档处理
 
-- [PDF.js](https://github.com/mozilla/pdf.js) - 基于 HTML5 构建的 PDF 查看器。
+*专业格式解析与渲染方案。*
 
-## 加密哈希
+- [PDF.js](https://github.com/mozilla/pdf.js) - Mozilla 开源的 HTML5 PDF 渲染器，支持浏览器端直接预览 PDF 文档。
 
-- [CryptoJS](https://github.com/brix/crypto-js)
+## 安全加密
+
+- [CryptoJS](https://github.com/brix/crypto-js) - 支持 SHA/MD5/AES 等算法的加密库，提供多种哈希加密与解密功能。
+
+## UI 组件库
+
+### Material Design
+
+*基于 Google [Material Design](https://en.wikipedia.org/wiki/Material_Design) 设计规范的组件体系。*
+
+- [Material Design Lite](https://github.com/google/material-design-lite) - 轻量级 Material Design 实现方案，包含按钮/卡片/菜单等 40+ 组件，无框架依赖。
 

@@ -1,47 +1,36 @@
 # RequireJS
 
-[RequireJS](https://github.com/requirejs/requirejs) 可以加载普通的 JavaScript 文件以及定义明确的模块。
+[RequireJS](https://github.com/requirejs/requirejs) 支持加载普通的 JavaScript 文件以及定义明确的模块。
 
-它针对浏览器中的使用进行了优化，包括在 Web Worker 中的使用，但它也可以在其他 JavaScript 环境中使用。
+- 专为浏览器环境优化（支持 Web Worker）
+- 实现了 AMD 异步模块规范
 
-它实现了 Asynchronous Module API。
+**AMD 规范特点**：
 
-## 一、AMD
+- 异步加载机制（不阻塞页面渲染）
+- 依赖前置声明
+- 模块延迟执行
 
-AMD 采用异步方式加载模块，模块的加载不影响它后面语句的运行。
+## 一、快速开始
 
-所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。
+### 项目初始化
 
-RequireJS 是目前 AMD 规范最热门的一个实现。
+#### 推荐目录结构
 
-RequireJS 推崇依赖前置，默认在声明时执行。
-
-## 二、目录结构
-
-如果有一个项目，它有一个 `project.html` 页面，带有一些脚本，则目录布局可能如下所示：
-
-```
-project-directory/
-  project.html
-  scripts/
-    main.js
-    helper/
-      util.js
-```
-
-将 [*require.js*](https://requirejs.org/docs/download.html#requirejs) 添加到 `scripts` 目录中，看起来如下所示：
-
-```
-project-directory/
-  project.html
-  scripts/
-    main.js
-    require.js
-    helper/
-      util.js
+```text
+project/
+├─ index.html
+└─ scripts/
+   ├─ main.js       # 入口文件
+   ├─ require.js    # 框架核心
+   └─ modules/      # 模块目录
+      ├─ math.js
+      └─ dataService.js
 ```
 
-为了充分利用优化工具，将所有内联脚本都排除在 HTML 之外，并仅通过如下方式使用 [`require.js`](https://requirejs.org/docs/download.html#requirejs) 进行 [`requirejs`](https://requirejs.org/docs/api.html#config) 调用来加载脚本。
+#### HTML 入口配置
+
+使用 [`require.js`](https://requirejs.org/docs/download.html#requirejs) 进行 [`requirejs`](https://requirejs.org/docs/api.html#config) 调用来加载脚本。
 
 ```html
 <!DOCTYPE html>
@@ -56,46 +45,9 @@ project-directory/
 </html>
 ```
 
-## 三、定义模块
+### 基础配置
 
-### 定义函数
-
-如果模块没有依赖关系，可以直接定义在 [`define()`](https://requirejs.org/docs/api.html#deffunc) 函数中。
-
-```javascript
-// math.js
-define(function () {
-  var add = function (x, y) {
-    return x + y;
-  };
-  return {
-    add
-  };
-});
-```
-
-若这个模块还依赖其他模块，那么 [`define()`](https://requirejs.org/docs/api.html#defdep) 函数的第一个参数，必须是一个数组，指明该模块的依赖性。
-
-当 `require()` 函数加载该模块时，就会先加载 `math.js` 模块。
-
-```javascript
-// dataService.js
-define(['math'], function (math) {
-  function doSomething() {
-    let result = math.add(2, 9);
-    console.log(result);
-  }
-  return {
-    doSomething
-  };
-})
-```
-
-### 主模块
-
-设置一个主模块，统一调度当前项目中所有依赖模块。
-
-这是一个[依赖数组方式](https://requirejs.org/docs/api.html#data-main)的用法示例，通过一个依赖数组和回调函数来定义模块。
+设置一个[主模块](https://requirejs.org/docs/api.html#data-main)，统一调度当前项目中所有依赖模块。
 
 - `require.config` 用于配置模块加载的路径。
 - `require` 函数用于加载模块，并在加载完成后执行回调函数。
@@ -103,67 +55,101 @@ define(['math'], function (math) {
 ```javascript
 // main.js
 require.config({
-  // baseUrl: '',
+  baseUrl: 'scripts',
   paths: {
-    math: './math',
-    dataService: './dataService'
+    math: 'modules/math',
+    dataService: 'modules/dataService'
   }
-})
+});
 
-require(['dataService'], function (dataService) {
-  dataService.doSomething()
+require(['dataService'], function(service) {
+  service.doSomething();
 });
 ```
 
-这是一个 [CommonJS](https://requirejs.org/docs/commonjs.html) 风格的示例，使用 `require` 函数在模块内部加载依赖。
+## 二、模块开发
+
+### 无依赖模块
+
+如果模块没有依赖关系，可以直接定义在 [`define()`](https://requirejs.org/docs/api.html#deffunc) 函数中。
 
 ```javascript
-// main.js
-require.config({
-  // baseUrl: '',
-  paths: {
-    math: './math',
-    dataService: './dataService'
+// math.js
+define(function() {
+  const add = (a, b) => a + b;
+  return { add };
+});
+```
+
+### 有依赖模块
+
+若这个模块还依赖其他模块，那么 [`define()`](https://requirejs.org/docs/api.html#defdep) 函数的第一个参数，必须是一个数组，指明该模块的依赖性。当 [`require()`](https://requirejs.org/docs/api.html#data-main) 函数加载该模块时，就会先加载 `math.js` 模块。
+
+```javascript
+// dataService.js
+define(['math'], function(math) {
+  function calculate() {
+    return math.add(2, 3);
   }
-})
+  
+  return { calculate };
+});
+```
 
-require(['dataService']);
+### CommonJS 兼容写法
 
+这是 [CommonJS](https://requirejs.org/docs/commonjs.html) 风格的示例，使用 `require` 函数在模块内部加载依赖。
+
+```javascript
 // dataService.js
 define(function (require) {
-  var math = require('math');
+  const math = require('math');
 
   function doSomething() {
     let result = math.add(2, 9);
-    console.log(result);
   }
 
-  doSomething();
+  return { doSomething };
 })
 ```
 
-在 `index.html` 中引入 `require.js`，并设置 `data-main` 入口主模块。
+## 三、高级配置
 
-```html
-<script data-main="./main.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+### 路径映射
+
+- [paths](https://requirejs.org/docs/api.html#config-paths)
+
+```javascript
+paths: {
+  'jquery': 'libs/jquery-3.5.min'
+}
 ```
 
-## 四、非规范模块加载
+### 非 AMD 模块加载
 
 理论上 RequireJS 加载的模块，必须是按照 AMD 规范用 `define()` 函数定义的模块。
 
-但实际上，虽然已经有一部分流行的函数库（比如 jQuery）符合 AMD 规范，更多的库并不符合。
+实际上，虽然已经有一部分流行的函数库（比如 jQuery）符合 AMD 规范，更多的库并不符合。
 
 这样的模块在用 `require()` 加载之前，要先用 `require.config()` 方法的 [`shim`](https://requirejs.org/docs/api.html#config-shim)，定义它们的一些特征。
 
 - **exports**：输出的变量名，表示这个模块外部调用时的名称。
 - **deps**：数组，表示该模块的依赖项。
 
-## 五、插件
+```javascript
+shim: {
+  'legacyLib': {
+    deps: ['jquery'],
+    exports: 'LegacyLibrary'
+  }
+}
+```
+
+### 插件扩展
 
 RequireJS 允许编写[加载器插件](https://requirejs.org/docs/plugins.html)，可以将不同类型的资源作为依赖项加载。
 
-### require-css
+#### CSS 加载插件
 
 [`require-css`](https://github.com/guybedford/require-css) 允许像加载 JavaScript 模块一样来加载 CSS 文件。
 
@@ -182,6 +168,16 @@ require.config({
 ```javascript
 define(['css!path/to/your/styles'], function() {
   // Your module code here
+});
+```
+
+#### 文本文件加载
+
+[`requirejs/text`](https://github.com/requirejs/text) 用于加载文本资源。
+
+```javascript
+define(['text!templates/main.html'], function(tpl) {
+  console.log(tpl);
 });
 ```
 

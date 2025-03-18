@@ -1,13 +1,26 @@
 # PDF.js
 
-[PDF.js](https://github.com/mozilla/pdf.js) 是一个基于 HTML5 构建的可移植文档格式（PDF）查看器。
+[PDF.js](https://github.com/mozilla/pdf.js) 是基于 HTML5 的 PDF 查看器解决方案。
 
 ## 一、抓取字段
 
-- **坐标系转换**：PDF 默认使用 **左下角为原点** 的坐标系，而网页通常使用左上角，需注意是否需要翻转 Y 轴。
-- **文本项结构**：`item.str` 是文本内容，`item.transform` 包含位置和缩放信息（数组中的索引 `4` 和 `5` 是 X 和 Y 坐标）。
+- **坐标系转换**：PDF 默认使用**左下角为原点**的坐标系，而网页通常使用左上角，需注意是否需要翻转 Y 轴。
+- **文本项结构**：[`item.str`](https://github.com/mozilla/pdf.js/blob/00e3a4d87a22d92938687f7535bc35961a2a40e3/src/display/api.js#L1244) 是文本内容，[`item.transform`](https://github.com/mozilla/pdf.js/blob/00e3a4d87a22d92938687f7535bc35961a2a40e3/src/display/api.js#L1246) 包含位置和缩放信息（数组中的索引 `4` 和 `5` 是 X 和 Y 坐标）。
 
-### 左下角
+[`item.transform`](https://github.com/mozilla/pdf.js/blob/00e3a4d87a22d92938687f7535bc35961a2a40e3/src/display/api.js#L1246) 是一个 6 元素的数组，对应 PDF 规范中的 3x3 仿射变换矩阵。
+
+```typescript
+type Transform = [
+  a: number,  // 水平缩放和旋转分量
+  b: number,  // 垂直倾斜分量
+  c: number,  // 水平倾斜分量
+  d: number,  // 垂直缩放和旋转分量
+  e: number,  // 水平平移（X 坐标）
+  f: number   // 垂直平移（Y 坐标）
+];
+```
+
+### 左下角原点
 
 ```html
 <!DOCTYPE html>
@@ -92,7 +105,7 @@
 </html>
 ```
 
-### 左上角
+### 左上角原点
 
 ```html
 <!DOCTYPE html>

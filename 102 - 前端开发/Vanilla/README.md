@@ -23,6 +23,7 @@
 *JavaScript 代码转译与兼容性处理。*
 
 - [Babel](https://github.com/babel/babel) - JavaScript 编译器，将 ES6+ 代码转换为向后兼容的 JavaScript 版本，支持插件扩展与 Polyfill 注入。
+- [StencilJS](https://stenciljs.com/) - 基于 Web Components 的组件编译器，适合构建跨框架复用的高性能组件库。
 
 ## DOM 操作
 

@@ -2,7 +2,7 @@
 
 ## 一、介绍
 
-[AdminLTE](https://adminlte.io/themes/AdminLTE/) 是一个用于构建管理界面和控制台的免费开源后台管理模板和 UI 框架。
+[AdminLTE](https://github.com/ColorlibHQ/AdminLTE) 是一个用于构建管理界面和控制台的免费开源后台管理模板和 UI 框架。
 
 它基于 Bootstrap 和 jQuery，并提供了许多可定制和实用的 UI 组件、表格、表单、图表等，适用于任何类型的 Web 应用程序。
 
@@ -223,4 +223,12 @@ Logo：
   <div class="card-body">这里是卡片内容</div>
 </div>
 ```
+
+
+
+## Reference
+
+- [AdminLTE 中文文档](https://3vshej.cn/AdminLTE/)
+- [AdminLTE 2](https://adminlte.io/themes/AdminLTE/documentation/index.html)
+- [AdminLTE 3](https://adminlte.io/themes/v3/)
 

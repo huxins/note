@@ -1,5 +1,11 @@
 # Vanilla 生态库
 
+### 包管理
+
+*前端依赖管理与版本控制。*
+
+- [Bower](https://github.com/bower/bower) - 经典的前端包管理器，专注管理 JavaScript/CSS 等浏览器端依赖库，支持版本控制与依赖解析。
+
 ## 模块加载
 
 *JavaScript 的模块化开发解决方案。*

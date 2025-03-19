@@ -12,7 +12,7 @@
 
 - [Webpack](https://github.com/webpack/webpack) - 功能强大的模块打包工具，支持代码分割、懒加载、资源优化，适配多种模块规范。
 - [Rollup](https://github.com/rollup/rollup) - 基于 ES Module 的下一代打包工具，通过 Tree-shaking 优化生成更小体积的代码，尤其适合库开发。
-- [esbuild](https://github.com/evanw/esbuild) - 极速的 JavaScript 打包工具，基于 Go 语言实现，支持 ES6/CommonJS 模块、TypeScript 和 JSX 转译，专注于构建性能和代码压缩。
+- [esbuild](https://github.com/evanw/esbuild) - 极速的 JavaScript 打包工具，支持 ES6/CommonJS 模块、TypeScript 和 JSX 转译，专注于构建性能和代码压缩。
 - [Parcel](https://github.com/parcel-bundler/parcel) - 零配置的快速打包工具，支持热模块替换、代码分割及多种资源类型的处理，适合快速开发。
 - [Browserify](https://github.com/browserify/browserify) - 将 Node.js 风格的 CommonJS 模块编译为浏览器可用的代码，支持 `require()` 语法和 npm 生态模块的直接调用。
 - [RequireJS](https://github.com/requirejs/requirejs) - 异步模块加载器，支持 AMD 规范，实现前端代码的模块化组织与管理。

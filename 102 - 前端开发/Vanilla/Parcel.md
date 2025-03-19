@@ -1,21 +1,32 @@
 # Parcel
 
-## 一、安装
+[Parcel](https://github.com/parcel-bundler/parcel) 是一个用于 Web 的零配置构建工具。
+
+**安装**：
 
 ```sh
 npm install --save-dev parcel
 ```
 
-## 二、配置
+## 一、基础配置
 
-`package.json` 配置如下。参考项目 [PeerJS](https://github.com/peers/peerjs/blob/master/package.json)。
+### 构建目标配置
+
+`package.json` 配置如下，参考：
+
+- [PeerJS](https://github.com/peers/peerjs/blob/master/package.json)
+
+配置完成后，可运行 [`parcel build`](https://parceljs.org/features/cli/#parcel-build-%3Centries%3E) 进行打包。
+
+```sh
+npx parcel build
+```
+
+#### 浏览器环境
 
 ```json
 {
-  "private": true,
-  "name": "snippet",
-  "version": "1.0.0",
-  "description": "",
+  // 非压缩版浏览器构建目标
   "browser-unminified": "dist/browser.js",
   "targets": {
     "browser-unminified": {
@@ -27,12 +38,6 @@ npm install --save-dev parcel
       },
       "source": "src/index.js"
     }
-  },
-  "scripts": {
-    "build": "parcel build"
-  },
-  "devDependencies": {
-    "parcel": "^2.10.3"
   }
 }
 ```

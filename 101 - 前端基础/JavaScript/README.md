@@ -6,6 +6,7 @@
 
 - [JavaScript - *MDN*](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
 - [ES6 入门教程 - *阮一峰*](https://es6.ruanyifeng.com/)
+- [JavaScript Guidebook - *tsejx*](https://tsejx.github.io/javascript-guidebook/)
 
 ### Cheat sheet
 

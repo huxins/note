@@ -1,4 +1,4 @@
-# JavaScript 模块化规范演进
+# JavaScript 模块化
 
 ## 一、CommonJS 规范
 

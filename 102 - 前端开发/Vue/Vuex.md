@@ -1,6 +1,6 @@
 # Vuex
 
-[Vuex](https://vuex.vuejs.org/zh/) 是一个专为 Vue.js 应用程序开发的状态管理模式 + 库。
+[Vuex](https://vuex.vuejs.org/zh/) 是专为 Vue.js 设计的状态管理框架，采用集中式存储机制实现组件间状态管理，作为应用架构核心组件保障状态变更的可预测性。
 
 ## 一、安装
 

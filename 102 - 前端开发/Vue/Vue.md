@@ -4,13 +4,13 @@
 
 查询所使用 [Vue](https://cn.vuejs.org/) 版本，可以借助根节点的属性。
 
-- 查询 [Vue 2](https://v2.cn.vuejs.org/)，如果 `__vue__` 属性存在，则为 Vue 2。
+- 查询 [Vue 2](https://v2.cn.vuejs.org/)，如果 `__vue__` 属性存在，则为 Vue 2
   
   ```javascript
   console.dir(document.querySelector('#app').__vue__)
   ```
 
-- 查询 [Vue 3](https://cn.vuejs.org/) 的具体版本。
+- 查询 [Vue 3](https://cn.vuejs.org/) 的具体版本
 
   ```javascript
   console.dir(document.querySelector('#app').__vue_app__.version)

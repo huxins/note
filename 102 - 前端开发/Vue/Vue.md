@@ -1,5 +1,7 @@
 # Vue
 
+[Vue.js](https://cn.vuejs.org/) 是一个用于创建用户界面的开源 MVVM 前端 JavaScript 框架，也是一个创建单页应用的 Web 应用框架。
+
 查询所使用 [Vue](https://cn.vuejs.org/) 版本，可以借助根节点的属性。
 
 - 查询 [Vue 2](https://v2.cn.vuejs.org/)，如果 `__vue__` 属性存在，则为 Vue 2。

@@ -15,6 +15,10 @@
 
 ## UI 组件库
 
+### 组件库
+
+- [Element Plus](https://element-plus.org/) - 基于 Vue 3 的桌面端组件库，提供丰富的企业级组件。
+
 ### 管理后台模板
 
 - [lyt-top/vue-next-admin](https://gitee.com/lyt-top/vue-next-admin) - 基于 Vue 3、TypeScript、Vite、Element Plus 等，适配手机、平板、PC 的后台开源免费模板库。

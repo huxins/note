@@ -7,7 +7,7 @@
 - 查询 [Vue 2](https://v2.cn.vuejs.org/)，如果 `__vue__` 属性存在，则为 Vue 2
   
   ```javascript
-  console.dir(document.querySelector('#app').__vue__)
+  console.dir(document.querySelector('#app').__vue__.__proto__.constructor.version)
   ```
 
 - 查询 [Vue 3](https://cn.vuejs.org/) 的具体版本
@@ -18,7 +18,7 @@
 
 ## 一、Vue 实例
 
-每个 Vue 应用都是通过用 `Vue` 函数创建一个新的 Vue 实例开始的。
+Vue 应用通过实例化 [`Vue`](https://v2.cn.vuejs.org/v2/guide/instance.html) 构造函数创建根实例完成初始化，该核心机制作为应用开发的入口起点。
 
 ```javascript
 var vm = new Vue({
@@ -30,21 +30,17 @@ var vm = new Vue({
 
 #### DOM
 
-- **el**
+- [**el**](https://v2.cn.vuejs.org/v2/api/#el)
 
-  提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。
+  Vue 实例通过 `el` 配置项声明式指定已存在的 DOM 宿主节点，支持 CSS 选择器或 HTMLElement 对象两种形态，挂载完成后可通过 [`vm.$el`](https://v2.cn.vuejs.org/v2/api/#vm-el) 原型属性访问目标元素。
 
-  可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
-
-  在实例挂载之后，元素可以用 `vm.$el` 访问。
-  
   ```javascript
   const vm = new Vue({
     el: '#app'
   })
   ```
-
-  如果在实例化时存在这个选项，实例将立即进入编译过程，否则，需要显式调用 `vm.$mount()` 手动开启编译。
+  
+  Vue 实例初始化时若声明 `el` 配置项将自动触发编译流程，否则需显式调用 [`$mount()`](https://v2.cn.vuejs.org/v2/api/#vm-mount) 方法启动挂载流程。
   
   ```javascript
   vm.$mount('#app')
@@ -52,11 +48,9 @@ var vm = new Vue({
 
 #### 数据
 
-- **data**
+- [**data**](https://v2.cn.vuejs.org/v2/api/#data)
 
-  Vue 实例的数据对象。
-
-  实例创建之后，可以通过 `vm.$data` 访问原始数据对象。Vue 实例也代理了 data 对象上所有的 property，因此访问 `vm.a` 等价于访问 `vm.$data.a`。
+  `data` 配置项定义 Vue 实例的响应式状态容器，其数据存储于 [`vm.$data`](https://v2.cn.vuejs.org/v2/api/#vm-data) 原型属性。实例通过存取器代理机制暴露数据属性，使得 `vm.a` 与 `vm.$data.a` 具有等价访问语义。
 
   ```javascript
   const vm = new Vue({
@@ -66,10 +60,10 @@ var vm = new Vue({
     }
   })
   ```
+  
+- [**methods**](https://v2.cn.vuejs.org/v2/api/#methods)
 
-- **methods**
-
-  可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 `this` 自动绑定为 Vue 实例。
+  `methods` 配置项声明的方法通过代理机制挂载至组件实例，支持在模版表达式与事件处理器中直接调用，其执行上下文通过 `this` 自动绑定当前 Vue 实例。
 
   ```javascript
   const vm = new Vue({
@@ -81,10 +75,10 @@ var vm = new Vue({
     }
   })
   ```
+  
+- [**computed**](https://v2.cn.vuejs.org/v2/api/#computed)
 
-- **computed**
-
-  计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 `this` 上下文自动地绑定为 Vue 实例。
+  `computed` 配置项声明式定义缓存计算值，其存取器函数的 `this` 上下文强制绑定当前 Vue 实例，基于响应式依赖追踪实现智能缓存更新。
 
   ```javascript
   const vm = new Vue({
@@ -98,9 +92,9 @@ var vm = new Vue({
     }
   })
   ```
-
-  只读取时，可简写为：
   
+  只读取时，可简写。
+
   ```javascript
   const vm = new Vue({
     el: '#app',
@@ -111,10 +105,10 @@ var vm = new Vue({
     }
   })
   ```
+  
+- [**watch**](https://v2.cn.vuejs.org/v2/api/#watch)
 
-- **watch**
-
-  Vue 通过 `watch` 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。
+  `watch` 配置项实现响应式观测系统，允许开发者声明式定义深度观测器，通过自定义回调函数响应状态变更，特别适用于异步任务或性能敏感型副作用处理场景。
 
   ```javascript
   const vm = new Vue({
@@ -133,36 +127,9 @@ var vm = new Vue({
   })
   ```
 
-- **props**
+- [**props**](https://v2.cn.vuejs.org/v2/api/#props)
 
-  `props` 可以是数组或对象，用于接收来自父组件的数据。
-
-  数组语法：
-
-  ```javascript
-  export default {
-    name: "SchoolDetails",
-    props: ['size']
-  };
-  ```
-
-  对象语法：
-
-  ```javascript
-  export default {
-    name: "SchoolDetails",
-    props: {
-      height: Number,
-      size: {
-        type: Number,
-        default: 0,
-        required: true,
-      }
-    }
-  };
-  ```
-
-  父组件传递参数：
+  `props` 配置项声明式定义组件接口契约，支持数组简写或对象类型校验语法，规范父级作用域向子组件的单向数据传递。
 
   ```html
   <template>
@@ -171,26 +138,49 @@ var vm = new Vue({
     </div>
   </template>
   ```
+  
+  - 数组语法
+  
+    ```javascript
+    export default {
+      name: "SchoolDetails",
+      props: ['size']
+    };
+    ```
+  
+  - 对象语法
+  
+    ```javascript
+    export default {
+      name: "SchoolDetails",
+      props: {
+        height: Number,
+        size: {
+          type: Number,
+          default: 0,
+          required: true,
+        }
+      }
+    };
+    ```
 
 #### 生命周期
 
-- **mounted**
+- [**mounted**](https://v2.cn.vuejs.org/v2/api/#mounted)
 
-  Vue 完成模板的解析并把真实的初始 DOM 元素放入页面后，调用 `mounted`。
+  `mounted` 生命周期钩子在编译渲染阶段完成后触发，标志着初始 DOM 完成视图层注入且组件挂载阶段完成。
 
 #### 资源
 
-- **filters**
+- [**filters**](https://v2.cn.vuejs.org/v2/api/#filters)
 
-  过滤器可以用在两个地方：双花括号插值和 `v-bind` 表达式。过滤器应该被添加在 JavaScript 表达式的尾部，由 `|` 符号指示。
+  `filters` 作为模板逻辑扩展机制，通过管道操作符在 Mustache [插值](https://v2.cn.vuejs.org/v2/guide/syntax.html#%E6%96%87%E6%9C%AC)或 [`v-bind`](https://v2.cn.vuejs.org/v2/api/#v-bind) 指令表达式中实现声明式值转换，遵循纯函数设计规范进行无状态数据格式化。
 
   ```html
   {{ message | capitalize }}
   
   <div v-bind:id="rawId | formatId"></div>
   ```
-
-  可以在一个组件的选项中定义本地过滤器。
 
   ```javascript
   filters: {
@@ -200,9 +190,9 @@ var vm = new Vue({
   }
   ```
 
-- **components**
+- [**components**](https://v2.cn.vuejs.org/v2/api/#components)
 
-  局部注册 Vue 实例的可用组件。
+  `components` 选项声明式配置局部作用域封装的可复用自定义元素，实现组件树节点的模块化组合与隔离式状态管理。
 
   ```javascript
   const school = Vue.extend({
@@ -224,9 +214,9 @@ var vm = new Vue({
 
 #### 组合
 
-- **mixins**
+- [**mixins**](https://v2.cn.vuejs.org/v2/api/#mixins)
 
-  `mixins` 选项接收一个混入对象的数组。这些混入对象可以像正常的实例对象一样包含实例选项，这些选项将会被合并到最终的选项中。
+  `mixins` 选项声明式配置可复用逻辑单元集合，通过策略性选项合并机制将混入对象遵循组件选项规范进行深度集成，实现模块化封装横切关注点。
 
   ```javascript
   var mixin = {
@@ -243,28 +233,22 @@ var vm = new Vue({
 
 #### 数据
 
-- vm.**$watch**()
+- vm.[**$watch**](https://v2.cn.vuejs.org/v2/api/#vm-watch)()
 
-  观察 Vue 实例上的一个表达式或者一个函数计算结果的变化。回调函数得到的参数为新值和旧值。
+  `$watch` 方法动态注册响应式观测器，基于依赖追踪系统监听计算表达式值变更，触发回调时形参严格遵循 `(newValue, oldValue)` 签名规范。
 
+  ```javascript
+  vm.$watch('address', function (val, oldVal) {
+    console.log(`address 已修改，原值为 ${oldVal}，新值为 ${val}`);
+  })
   ```
-  vm.$watch( expOrFn, callback, [options] )
-  ```
-
-  - 监听属性变化。
-
-    ```javascript
-    vm.$watch('address', function (val, oldVal) {
-      console.log(`address 已修改，原值为 ${oldVal}，新值为 ${val}`);
-    })
-    ```
 
 #### 生命周期
 
-- vm.**$nextTick**()
+- vm.[**$nextTick**](https://v2.cn.vuejs.org/v2/api/#vm-nextTick)()
 
-  将回调延迟到下次 DOM 更新循环之后执行。
-
+  `$nextTick` 方法实现异步回调调度，将任务延迟至 Vue 视图层渲染事务完成后基于事件循环机制触发执行。
+  
   ```javascript
   new Vue({
     methods: {
@@ -280,25 +264,19 @@ var vm = new Vue({
 
 ### Vue 静态方法
 
-- Vue.**filter**()
+- Vue.[**filter**](https://v2.cn.vuejs.org/v2/api/#Vue-filter)()
 
-  注册或获取全局过滤器。
+  `Vue.filter` 实现全局过滤器的声明式注册与检索，通过全局作用域注入支持跨组件模板复用逻辑的纯函数式值转换器。
 
+  ```javascript
+  Vue.filter('capitalize', function (value) {
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  })
   ```
-  Vue.filter( id, [definition] )
-  ```
+  
+- Vue.[**extend**](https://v2.cn.vuejs.org/v2/api/#Vue-extend)()
 
-  - 在创建 Vue 实例之前定义全局过滤器。
-
-    ```javascript
-    Vue.filter('capitalize', function (value) {
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    })
-    ```
-
-- Vue.**extend**()
-
-  创建一个组件。参数是一个包含组件选项的对象。
+  `Vue.extend` 作为构造器工厂方法，接收包含组件选项的配置对象，返回具备预设 Vue 原生功能的基础组件构造器，支持原型继承模式的组件体系扩展。
 
   ```javascript
   const school = Vue.extend({
@@ -311,9 +289,9 @@ var vm = new Vue({
   })
   ```
 
-- Vue.**component**()
+- Vue.[**component**](https://v2.cn.vuejs.org/v2/api/#Vue-component)()
 
-  注册或获取全局组件。注册还会自动使用给定的 `id` 设置组件的名称。
+  `Vue.component` 方法实现全局组件构造器的声明式注册与检索，通过命名空间标识符自动推导语义化组件名称，并完成全局作用域注入以支持跨模块复用。
 
   ```javascript
   const school = Vue.extend({
@@ -330,16 +308,14 @@ var vm = new Vue({
 
 ### Vue 特殊属性
 
-- **ref**
+- [**ref**](https://v2.cn.vuejs.org/v2/api/#ref)
 
-  `ref` 被用来给元素或子组件注册引用信息。
+  `ref` 用于获取对 DOM 元素或组件实例的直接访问。注册的引用信息将存储在父组件的 [`$refs`](https://v2.cn.vuejs.org/v2/api/#vm-refs) 对象中。
 
   ```html
   <p ref="p">hello</p>
   <child-component ref="child"></child-component>
   ```
-
-  调用方式：
 
   ```javascript
   doSomething() {
@@ -347,19 +323,21 @@ var vm = new Vue({
   }
   ```
 
-## 二、插值
+## 二、模板语法
 
-### 文本
+### 插值
 
-数据绑定最常见的形式就是使用双大括号的文本插值。
+#### 文本
+
+Mustache 语法（`{{ }}`）实现声明式数据绑定的基础范式，通过模板文本插值建立响应式数据源与视图层的单向动态映射。
 
 ```html
 <span>Message: {{ msg }}</span>
 ```
 
-### JavaScript 表达式
+#### JavaScript 表达式
 
-对于所有的数据绑定，Vue 都提供了完全的 JavaScript 表达式支持。
+Vue 模板插值语法深度集成原生 JavaScript 表达式解析引擎，支持在数据绑定作用域内执行符合 ECMAScript 规范的单行表达式运算，其表达式在组件实例的响应式上下文中进行沙箱化求值。
 
 ```javascript
 {{ number + 1 }}
@@ -369,76 +347,94 @@ var vm = new Vue({
 {{ message.split('').reverse().join('') }}
 ```
 
-### 元素属性
+#### 元素属性
 
-Mustache 语法不能作用在 HTML 属性上，应该使用 `v-bind` 指令。
+[`v-bind`](https://v2.cn.vuejs.org/v2/api/#v-bind) 指令系统作为 HTML 特性绑定的标准范式，与 Mustache 插值语法形成视图层绑定的场景互补：Mustache 语法专司文本内容动态化，而 DOM 属性/特性绑定须通过指令系统实现响应式关联。
 
 ```html
 <a v-bind:href="dynamicUrl">传送门</a>
-```
 
-`v-bind` 指令可简写为 `:`。
-
-```html
+<!-- 简写 -->
 <a :href="dynamicUrl">传送门</a>
 ```
 
-## 三、指令
+### 指令
 
-### 表单绑定
+#### 表单绑定
 
-- **v-model**
+- [**v-model**](https://v2.cn.vuejs.org/v2/api/#v-model)
 
-  可以用 `v-model` 指令在表单 `<input>`、`<textarea>` 及 `<select>` 元素上创建双向数据绑定。
-
-  `v-model` 在内部为不同的输入元素使用不同的 property 并抛出不同的事件。
-
-  - `text` 和 `textarea` 元素使用 `value` property 和 `input` 事件；
-  - `checkbox` 和 `radio` 元素使用 `checked` property 和 `change` 事件；
-  - `select` 元素使用 `value` property 和 `change` 事件。
+  `v-model` 作为[表单控件](https://v2.cn.vuejs.org/v2/guide/forms.html)双向绑定的语法糖，通过抽象层适配不同输入类型的响应式双向绑定机制，其内部根据元素类型自动映射 [`value`](https://html.spec.whatwg.org/multipage/input.html#attr-input-value)/[`checked`](https://html.spec.whatwg.org/multipage/input.html#attr-input-checked) 属性与 [`input`](https://html.spec.whatwg.org/multipage/webappapis.html#handler-oninput)/[`change`](https://html.spec.whatwg.org/multipage/webappapis.html#handler-onchange) 事件的对应关系。
 
   ```html
   <input v-model="message" placeholder="edit me">
   <p>Message is: {{ message }}</p>
   ```
 
-### 事件处理
+#### 条件渲染
 
-- **v-on**
+- [**v-show**](https://v2.cn.vuejs.org/v2/api/#v-show)
 
-  可以用 `v-on` 指令监听 DOM 事件，还可以接收一个需要调用的方法名称。
-  
+  `v-show` 指令用于条件性地展示元素。
+
   ```html
-  <div id="app">
-    <h2>欢迎来到 {{address}}</h2>
-    <button v-on:click="showInfo">点我提示信息</button>
-  </div>
+  <h2 v-show="true">欢迎来到 {{ address }}</h2>
   ```
-  
-  ```javascript
-  const vm = new Vue({
-    el: '#app',
-    data,
-    methods: {
-      showInfo() {
-        alert('你好呀')
-      }
+
+- [**v-if**](https://v2.cn.vuejs.org/v2/api/#v-if)
+
+  `v-if` 指令用于条件性地渲染一块内容，这块内容只会在指令的表达式返回 `true` 值的时候被渲染。
+
+  ```html
+  <h2 v-if="flase">欢迎来到 {{ address }}</h2>
+  ```
+
+#### 列表渲染
+
+- [**v-for**](https://v2.cn.vuejs.org/v2/api/#v-for)
+
+  `v-for` 指令基于一个数组来渲染一个列表。
+
+  ```html
+  <ul>
+    <li v-for="item in items" :key="item.id">
+      {{ item.message }}
+    </li>
+  </ul>
+  ```
+
+## 三、事件处理
+
+[`v-on`](https://v2.cn.vuejs.org/v2/api/#v-on) 指令系统实现声明式事件监听机制，支持 DOM 事件与组件方法/内联表达式的响应式绑定，其事件处理器自动注入原生事件对象并绑定当前组件上下文。
+
+```html
+<div id="app">
+  <h2>欢迎来到 {{address}}</h2>
+  <button v-on:click="showInfo">点我提示信息</button>
+</div>
+
+<!-- 简写 -->
+<div id="app">
+  <h2>欢迎来到 {{address}}</h2>
+  <button @click="showInfo">点我提示信息</button>
+</div>
+```
+
+```javascript
+const vm = new Vue({
+  el: '#app',
+  data,
+  methods: {
+    showInfo() {
+      alert('你好呀')
     }
-  })
-  ```
-  
-  `v-on` 可以缩写为 `@`。
-  
-  ```html
-  <div id="app">
-    <h2>欢迎来到 {{address}}</h2>
-    <button @click="showInfo">点我提示信息</button>
-  </div>
-  ```
+  }
+})
+```
 
-#### 内联处理器
+### 内联处理
 
-除了直接绑定到一个方法，也可以在内联 JavaScript 语句中调用方法。
+除了直接绑定到一个方法，也可以在[内联](https://v2.cn.vuejs.org/v2/guide/events.html#%E5%86%85%E8%81%94%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95) JavaScript 语句中调用方法。
 
 ```html
 <div id="app">
@@ -459,7 +455,7 @@ const vm = new Vue({
 })
 ```
 
-有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 `$event` 把它传入方法。
+有时也需要在内联语句处理器中访问原始的 DOM 事件，可以用特殊变量 `$event` 把它传入方法。
 
 ```html
 <div id="app">
@@ -480,7 +476,7 @@ const vm = new Vue({
 })
 ```
 
-#### 事件修饰符
+### 事件修饰符
 
 在事件处理程序中调用 `event.preventDefault()` 或 `event.stopPropagation()` 是非常常见的需求。为了解决这个问题，Vue 为 `v-on` 提供了事件修饰符。
 
@@ -492,51 +488,13 @@ const vm = new Vue({
   <form v-on:submit.prevent="onSubmit"></form>
   ```
 
-#### 按键修饰符
+### 按键修饰符
 
 在监听键盘事件时，经常需要检查详细的按键。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符。
 
 ```html
 <input @keyup.enter="submit">
 ```
-
-### 条件渲染
-
-- **v-show**
-
-  `v-show` 指令用于条件性地展示元素。
-
-  ```html
-  <h2 v-show="true">欢迎来到 {{address}}</h2>
-  ```
-
-- **v-if**
-
-  `v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 True 值的时候被渲染。
-
-  ```html
-  <h2 v-if="flase">欢迎来到 {{address}}</h2>
-  ```
-
-### 列表渲染
-
-- **v-for**
-
-  可以用 `v-for` 指令基于一个数组来渲染一个列表。
-
-  ```html
-  <ul>
-    <li v-for="item in items" :key="item.id">
-      {{ item.message }}
-    </li>
-  </ul>
-  ```
-
-#### 数组更新检测
-
-Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法如下。
-
-- `push()`
 
 ## 四、组件
 
@@ -549,48 +507,48 @@ VueComponent.prototype.__proto__ === Vue.prototype;
 
 ### 组件注册
 
-#### 全局注册
+- **全局注册**
 
-全局注册可以通过 `Vue.component()` 的方式进行。
+  全局注册可以通过 [`Vue.component()`](https://v2.cn.vuejs.org/v2/api/#Vue-component) 的方式进行。
+  
+  ```javascript
+  const school = Vue.extend({
+    template: `<h2>{{schoolName}}</h2>`,
+    data() {
+      return {
+        schoolName: '上海中学'
+      }
+    },
+  })
+  
+  Vue.component('school', school)
+  ```
+  
+- **局部注册**
 
-```javascript
-const school = Vue.extend({
-  template: `<h2>{{schoolName}}</h2>`,
-  data() {
-    return {
-      schoolName: '上海中学'
+  局部注册可通过在实例中的 [`components`](https://v2.cn.vuejs.org/v2/api/#components) 选项进行配置。
+  
+  ```javascript
+  const school = Vue.extend({
+    template: `<h2>{{schoolName}}</h2>`,
+    data() {
+      return {
+        schoolName: '上海中学'
+      }
+    },
+  })
+  
+  new Vue({
+    el: '#app',
+    components: {
+      school
     }
-  },
-})
-
-Vue.component('school', school)
-```
-
-#### 局部注册
-
-局部注册可通过在实例中的 `components` 选项进行配置。
-
-```javascript
-const school = Vue.extend({
-  template: `<h2>{{schoolName}}</h2>`,
-  data() {
-    return {
-      schoolName: '上海中学'
-    }
-  },
-})
-
-new Vue({
-  el: '#app',
-  components: {
-    school
-  }
-})
-```
-
+  })
+  ```
+  
 ### 单文件组件
 
-简单的单文件组件如下所示：
+简单的单文件组件如下所示。
 
 ```vue
 // School.vue
@@ -613,7 +571,7 @@ export default {
 </style>
 ```
 
-由 App 组件统一管理子组件：
+由 App 组件统一管理子组件。
 
 ```vue
 // App.vue
@@ -638,7 +596,7 @@ export default {
 </style>
 ```
 
-最后统一挂载：
+最后统一挂载。
 
 ```javascript
 // main.js
@@ -654,13 +612,13 @@ new Vue({
 
 ### 自定义事件
 
-在子组件标签上绑定自定义事件：
+在子组件标签上绑定[自定义事件](https://v2.cn.vuejs.org/v2/guide/components-custom-events.html)。
 
 ```html
 <my-component v-on:my-event="doSomething"></my-component>
 ```
 
-通过 `ref` 给子组件绑定自定义事件，例如在生命周期上：
+通过 `ref` 给子组件绑定自定义事件，例如在生命周期上。
 
 ```javascript
 export default {
@@ -671,7 +629,7 @@ export default {
 };
 ```
 
-在子组件方法中，触发自定义事件：
+在子组件方法中，触发自定义事件。
 
 ```javascript
 export default {
@@ -688,9 +646,9 @@ export default {
 
 ## 五、组合式 API
 
-### setup()
+### setup
 
-`setup()` 钩子是在组件中使用组合式 API 的入口。
+[`setup()`](https://cn.vuejs.org/api/composition-api-setup) 钩子是在组件中使用组合式 API 的入口。
 
 ```vue
 <script>
@@ -708,5 +666,5 @@ export default {
 </script>
 ```
 
-推荐通过 `<script setup>` 以获得更加简洁及符合人体工程学的语法。
+推荐通过 [`<script setup>`](https://cn.vuejs.org/api/sfc-script-setup.html) 以获得更加简洁及符合人体工程学的语法。
 

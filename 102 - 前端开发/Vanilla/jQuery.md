@@ -282,4 +282,5 @@ $.post("/api", { name: "John" }, res => { /* ... */ });
 - [jQuery Cheat Sheet - *OverAPI*](https://overapi.com/jquery)
 - [camsong/You-Dont-Need-jQuery](https://github.com/camsong/You-Dont-Need-jQuery)
 - [HubSpot/YouMightNotNeedjQuery](https://github.com/HubSpot/YouMightNotNeedjQuery)
+- [you-dont-need/You-Dont-Need-Lodash-Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
 

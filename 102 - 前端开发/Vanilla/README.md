@@ -25,6 +25,13 @@
 - [Babel](https://github.com/babel/babel) - JavaScript 编译器，将 ES6+ 代码转换为向后兼容的 JavaScript 版本，支持插件扩展与 Polyfill 注入。
 - [StencilJS](https://stenciljs.com/) - 基于 Web Components 的组件编译器，适合构建跨框架复用的高性能组件库。
 
+## 实用工具库
+
+*提供常用功能函数与工具方法，简化开发流程。*
+
+- [Lodash](https://github.com/lodash/lodash) - 提供模块化、高性能的数组、对象、函数等操作方法，支持函数式编程范式，兼容多种环境。
+- [Underscore.js](https://github.com/jashkenas/underscore) - 轻量级函数式编程工具库，提供 100+ 实用函数，兼容 IE6+ 等老旧浏览器，可作为 jQuery 的功能性补充库。
+
 ## DOM 操作
 
 *操作 DOM 更加简便和高效。*

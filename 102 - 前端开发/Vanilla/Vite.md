@@ -24,3 +24,7 @@ graph LR
   D --> E[优化产物]
 ```
 
+## Reference
+
+- [环境变量和模式](https://cn.vite.dev/guide/env-and-mode.html)
+

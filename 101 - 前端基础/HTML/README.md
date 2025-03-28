@@ -20,6 +20,7 @@
 - [DOM](https://dom.spec.whatwg.org/)
 - [URL](https://url.spec.whatwg.org/)
 - [File API](https://www.w3.org/TR/FileAPI/)
+- [Web Crypto](https://w3c.github.io/webcrypto/)
 - [XMLHttpRequest](https://xhr.spec.whatwg.org/)
 - [Fetch](https://fetch.spec.whatwg.org/)
 - [User-Agent Client Hints](https://wicg.github.io/ua-client-hints/)

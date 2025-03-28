@@ -47,6 +47,8 @@
 ## 安全加密
 
 - [CryptoJS](https://github.com/brix/crypto-js) - 支持 SHA/MD5/AES 等算法的加密库，提供多种哈希加密与解密功能。
+- [js-md5](https://github.com/emn178/js-md5) - 轻量级 MD5 哈希库，支持字符串/文件/流数据加密，适合浏览器端快速集成。
+- [js-spark-md5](https://github.com/satazor/js-spark-md5) - 针对大文件优化的 MD5 计算库，支持文件分块处理。
 
 ## UI 组件库
 

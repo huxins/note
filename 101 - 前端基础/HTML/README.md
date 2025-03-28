@@ -16,13 +16,14 @@
 - [HTML DOM API](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API)
   - [HTMLElement](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement)
   - [Web Storage](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API)
+  - [Web Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API)
 - [DOM](https://dom.spec.whatwg.org/)
 - [URL](https://url.spec.whatwg.org/)
-- [XMLHttpRequest](https://xhr.spec.whatwg.org/)
 - [File API](https://www.w3.org/TR/FileAPI/)
+- [XMLHttpRequest](https://xhr.spec.whatwg.org/)
+- [Fetch](https://fetch.spec.whatwg.org/)
 - [User-Agent Client Hints](https://wicg.github.io/ua-client-hints/)
 - [Service Worker](https://www.w3.org/TR/service-workers/)
-- [Fetch](https://fetch.spec.whatwg.org/)
 
 ### CDN
 

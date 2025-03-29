@@ -43,6 +43,7 @@
 *专业格式解析与渲染方案。*
 
 - [PDF.js](https://github.com/mozilla/pdf.js) - Mozilla 开源的 HTML5 PDF 渲染器，支持浏览器端直接预览 PDF 文档。
+- [pdf-merger-js](https://github.com/nbesli/pdf-merger-js) - 轻量级 PDF 合并库，支持浏览器与 Node.js 环境，提供异步 API 合并多个 PDF 文件。
 
 ## 安全加密
 

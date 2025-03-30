@@ -201,6 +201,19 @@
 - [**`as` 语法**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
 - [**尖括号语法**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
 
+#### 类型导入
+
+- `import type`
+
+  - [Type-Only Imports and Export](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-and-export)
+  - [Type-Only Imports and Export](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/#type-only-imports-exports)
+  - [Do I need to use the "import type" feature of TypeScript 3.8 if all of my imports are from my own file?](https://stackoverflow.com/q/61412000)
+  - [What's the difference between import type { X } vs. { type X }](https://www.reddit.com/r/typescript/comments/1asfe20/whats_the_difference_between_import_type_x_vs/)
+
+  ```typescript
+  import type { UploadProps, UploadFile, UploadFiles } from "element-plus";
+  ```
+
 ## 二、工程配置
 
 [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) 是 TypeScript 项目的配置文件，用于配置 TypeScript 编译器的行为以及项目的类型检查选项。

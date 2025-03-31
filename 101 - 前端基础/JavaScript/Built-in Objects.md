@@ -59,6 +59,45 @@ JavaScript 中所有的[标准内置对象](https://developer.mozilla.org/zh-CN/
   console.log(new Food('cheese', 5).name);
   ```
 
+### WeakMap
+
+[`WeakMap`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) 对象是一组键值对的集合，其键必须是对象且为弱引用（不会阻止垃圾回收），值可以是任意类型。
+
+**原型方法**：
+
+- WeakMap.prototype.[**set**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/set)(*key*, *value*)
+
+  添加键值对。
+
+  ```javascript
+  const objKey = {};
+  weakMap.set(objKey, 'private data');
+  ```
+
+- WeakMap.prototype.[**get**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/get)(*key*)
+
+  获取键对应的值，无则返回 `undefined`。
+  
+  ```javascript
+  weakMap.get(objKey); // "private data"
+  ```
+  
+- WeakMap.prototype.[**has**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/has)(*key*)
+
+  判断是否存在指定键。
+
+  ```javascript
+  weakMap.has(objKey); // true
+  ```
+
+- WeakMap.prototype.[**delete**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/delete)(*key*)
+
+  删除指定键值对。
+
+  ```javascript
+  weakMap.delete(objKey); // true（删除成功）
+  ```
+
 ## 二、文本处理对象
 
 ### String

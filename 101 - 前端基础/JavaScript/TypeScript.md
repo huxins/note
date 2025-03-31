@@ -85,14 +85,17 @@
 
 - [**object**](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types)
 
+  - [Indexable Types](https://www.typescriptlang.org/docs/handbook/interfaces.html#indexable-types)
+  - [Index Signatures](https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures)
+  
   `object` 表示非原始类型，也就是除 `number`，`string`，`boolean`，`symbol`，`null` 或 `undefined` 之外的类型。
-
+  
   ```typescript
   let obj: object = { name: "John", age: 30 };
   ```
-
+  
   通常不直接使用 `object` 类型，而是使用具体的对象类型，对对象的属性和方法进行类型检查。
-
+  
   ```typescript
   let person: { name: string; age: number } = { name: "John", age: 30 };
   ```
@@ -303,4 +306,5 @@ npx tsx src/index.ts
 
 - [TypeScript 入门教程 - *xcatliu*](https://ts.xcatliu.com/)
 - [TypeScript 使用手册（中文版）翻译 - *zhongsp*](https://github.com/zhongsp/TypeScript)
+- [TypeScript 中的问号 ? 与感叹号 ! 是什么意思？](https://github.com/e2tox/blog/issues/9)
 

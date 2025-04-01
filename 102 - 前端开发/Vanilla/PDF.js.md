@@ -200,3 +200,17 @@ type Transform = [
 </html>
 ```
 
+## 二、参数配置
+
+### Worker
+
+- [No "GlobalWorkerOptions.workerSrc" specified.](https://github.com/mozilla/pdf.js/issues/10478#issuecomment-2242664642)
+- [导入脚本作为 Worker](https://cn.vite.dev/guide/assets#importing-script-as-a-worker)
+- [带有查询后缀的导入](https://cn.vite.dev/guide/features#import-with-query-suffixes)
+
+```typescript
+import workerSrc from 'pdfjs-dist/build/pdf.worker?worker&url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
+```
+

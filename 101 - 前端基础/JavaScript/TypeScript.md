@@ -217,6 +217,31 @@
   import type { UploadProps, UploadFile, UploadFiles } from "element-plus";
   ```
 
+#### 类型推断
+
+- **Promise**
+
+  提取异步函数返回值的类型。
+
+  ```typescript
+  // 定义返回对象类型
+  interface _InvoiceData {
+    date: string;
+    number: string;
+    height: number;
+  }
+  
+  // 定义函数类型
+  type ExtractInvoiceDataFunction = (file: File) => Promise<_InvoiceData>;
+  
+  // 使用 Awaited 和 ReturnType
+  type InvoiceData = Awaited<ReturnType<ExtractInvoiceDataFunction>>;
+  
+  // 如果 TypeScript 版本较低（<4.5），可自定义条件类型
+  type ExtractPromiseType<T> = T extends Promise<infer U> ? U : T;
+  type InvoiceData = ExtractPromiseType<ReturnType<ExtractInvoiceDataFunction>>;
+  ```
+
 ## 二、工程配置
 
 [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) 是 TypeScript 项目的配置文件，用于配置 TypeScript 编译器的行为以及项目的类型检查选项。
@@ -305,6 +330,7 @@ npx tsx src/index.ts
 ## Reference
 
 - [TypeScript 入门教程 - *xcatliu*](https://ts.xcatliu.com/)
+- [TypeScript Deep Dive 中文版 - *jkchao*](https://github.com/jkchao/typescript-book-chinese)
 - [TypeScript 使用手册（中文版）翻译 - *zhongsp*](https://github.com/zhongsp/TypeScript)
 - [TypeScript 中的问号 ? 与感叹号 ! 是什么意思？](https://github.com/e2tox/blog/issues/9)
 

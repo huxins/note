@@ -57,6 +57,10 @@
 
 - [Font Awesome](https://fontawesome.com/) - 知名矢量图标库，提供 7,000+ 可缩放图标，支持 CSS 定制样式，无缝集成各类前端框架。
 
+### Table
+
+- [DataTables](https://datatables.net/) - JavaScript 表格增强库，支持排序、分页、搜索等高级功能，轻松实现交互式数据展示。
+
 ### Material Design
 
 *基于 Google [Material Design](https://en.wikipedia.org/wiki/Material_Design) 设计规范的组件体系。*
@@ -74,8 +78,4 @@
 *后台管理系统与仪表盘模板。*
 
 - [AdminLTE](https://github.com/ColorlibHQ/AdminLTE) - 基于 Bootstrap 的开源后台管理模板，提供丰富的仪表盘界面、组件及插件集成，支持现代化 Web 应用开发。
-
-### Table
-
-- [DataTables](https://datatables.net/) - JavaScript 表格增强库，支持排序、分页、搜索等高级功能，轻松实现交互式数据展示。
 

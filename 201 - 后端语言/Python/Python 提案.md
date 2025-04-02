@@ -8,23 +8,17 @@ PEPs 的类型主要包括：
 - **信息性 PEP**（Informational PEPs）：这些提案提供一般性指导或者信息，但不提出新的特性或功能。
 - **流程 PEP**（Process PEPs）：这些提案描述 Python 社区的流程、决策过程和其他运营方面的事务。
 
-## 一、Finished
+## 定义源代码编码
 
-### 定义源代码编码
-
-[PEP 263](https://peps.python.org/pep-0263/) 建议引入一种语法来声明 Python 源文件的编码。
-
-默认情况下，Python 源码文件的编码是 *UTF-8*。
-
-如果不使用默认编码，则要声明文件的编码，文件的第一行要写成特殊注释。
+[PEP 263](https://peps.python.org/pep-0263/) 建议引入一种语法来声明 Python 源文件的编码。默认情况下，Python 源码文件的编码是 `UTF-8`。如果不使用默认编码，则要声明文件的编码，文件的第一行要写成特殊注释。
 
 ```python
 # -*- coding: encoding -*-
 ```
 
-其中，*encoding* 可以是 Python 支持的任意一种 [codecs](https://docs.python.org/3/library/codecs.html)。
+其中，*encoding* 可以是 Python 支持的任意一种 [codecs](https://docs.python.org/3/library/codecs.html#standard-encodings)。
 
-比如，声明使用 *utf8* 编码。
+比如，声明使用 `utf8` 编码。
 
 ```python
 # -*- coding: utf8 -*-
@@ -37,7 +31,7 @@ PEPs 的类型主要包括：
 # -*- coding: utf8 -*-
 ```
 
-### 导入多行模块
+## 导入多行模块
 
 [PEP 328](https://peps.python.org/pep-0328/) 实现了更优雅的从一个模块或包中导入多个标识符。
 
@@ -46,7 +40,7 @@ from Tkinter import (Tk, Frame, Button, Entry, Canvas, Text,
     LEFT, DISABLED, NORMAL, RIDGE, END)
 ```
 
-### 类型提示
+## 类型提示
 
 [PEP 484](https://peps.python.org/pep-0484/) 实现了类型提示。
 
@@ -68,7 +62,7 @@ def func(a, b) -> int:
 func(1, 2)
 ```
 
-### 数字字面量下划线
+## 数字字面量下划线
 
 [PEP 515](https://peps.python.org/pep-0515/) 提议扩展 Python 的语法和 *number-from-string* 构造函数，以便下划线可以用作视觉分隔符，用于整数、浮点和复数文字中的数字分组目的。
 

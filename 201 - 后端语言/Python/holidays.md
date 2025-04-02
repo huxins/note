@@ -2,13 +2,13 @@
 
 [holidays](https://github.com/vacanza/python-holidays) 库用于在 Python 中生成和处理假期。
 
-可以通过 `pip` 安装 [holidays](https://pypi.org/project/holidays/)：
+**安装**：[`holidays`](https://pypi.org/project/holidays/)
 
 ```sh
 pip install --upgrade holidays
 ```
 
-## 一、法定节假日
+## 法定节假日
 
 如果日期为周一到周五，且为法定节假日时，返回 `True`。
 

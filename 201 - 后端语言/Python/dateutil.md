@@ -8,7 +8,7 @@
 pip install python-dateutil
 ```
 
-## 一、相对时间
+## 相对时间
 
 [`relativedelta`](https://dateutil.readthedocs.io/en/stable/relativedelta.html) 类型可以表示时间间隔。
 

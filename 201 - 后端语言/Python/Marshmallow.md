@@ -2,7 +2,7 @@
 
 [Marshmallow](https://github.com/marshmallow-code/marshmallow) 是一个与 ORM、ODM 和框架无关的库，用于将复杂数据类型与 Python 数据类型相互转换。
 
-可以通过 `pip` 安装：
+**安装**：
 
 ```sh
 pip install -U marshmallow
@@ -10,11 +10,10 @@ pip install -U marshmallow
 
 ## 一、声明模式
 
-以一个基本的 *User* 模型为例：
-
 ```python
 import datetime as dt
 
+# 基本的 User 模型
 class User:
     def __init__(self, name, email):
         self.name = name
@@ -25,9 +24,9 @@ class User:
         return "<User(name={self.name!r})>".format(self=self)
 ```
 
-### 类
+### 类结构
 
-通过[定义一个类](https://marshmallow.readthedocs.io/en/stable/quickstart.html#declaring-schemas)来创建一个模式，该类中的变量将属性名称映射到 [`Field`](https://marshmallow.readthedocs.io/en/stable/marshmallow.fields.html#marshmallow.fields.Field) 对象。
+通过定义[类结构](https://marshmallow.readthedocs.io/en/stable/quickstart.html#declaring-schemas)，将属性名称映射至 [`Field`](https://marshmallow.readthedocs.io/en/stable/marshmallow.fields.html#marshmallow.fields.Field) 对象以创建模式。
 
 ```python
 from marshmallow import Schema, fields
@@ -40,7 +39,7 @@ class UserSchema(Schema):
 
 ### 字典
 
-使用 `from_dict` 方法，通过字典创建模式。
+可通过 [`from_dict`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.from_dict) 方法，基于字段字典构建模式体系。
 
 ```python
 from marshmallow import Schema, fields
@@ -54,9 +53,11 @@ UserSchema = Schema.from_dict(
 )
 ```
 
-## 二、序列化
+## 二、序列化对象
 
-通过将对象传递给 `Schema` 的 [`dump`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.dump) 方法来[序列化](https://marshmallow.readthedocs.io/en/stable/quickstart.html#serializing-objects-dumping)对象，该方法将对象格式化为字典。
+### 序列化
+
+通过调用 `schema` 的 [`dump`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.dump) 方法执行[对象序列化](https://marshmallow.readthedocs.io/en/stable/quickstart.html#serializing-objects-dumping)，可返回格式化数据。
 
 ```python
 from pprint import pprint
@@ -67,14 +68,53 @@ result = schema.dump(user)
 pprint(result)
 ```
 
-还可以使用 [`dumps`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.dumps) 序列化为 JSON 编码的字符串。
+可调用 [`dumps`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.dumps) 方法，将对象序列化为 JSON 格式字符串。
 
 ```python
 json_result = schema.dumps(user)
 pprint(json_result)
 ```
 
-### 集合
+### 反序列化
+
+[`load`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.load) 方法作为 `dump` 的逆过程，可对输入字典执行校验及[反序列化操作](https://marshmallow.readthedocs.io/en/stable/quickstart.html#deserializing-objects-loading)，并转换为应用层数据结构。
+
+```python
+from pprint import pprint
+
+user_data = {
+    "created_at": "2014-08-11T05:26:03.869245",
+    "email": "ken@yahoo.com",
+    "name": "Ken",
+}
+schema = UserSchema()
+result = schema.load(user_data)
+pprint(result)
+```
+
+若需将数据反序列化为对象，应在 `Schema` 类中定义反序列化方法并使用 [`@post_load`](https://marshmallow.readthedocs.io/en/stable/marshmallow.decorators.html#marshmallow.decorators.post_load) 装饰器进行修饰。
+
+```python
+from marshmallow import Schema, fields, post_load
+
+class UserSchema(Schema):
+    name = fields.Str()
+    email = fields.Email()
+    created_at = fields.DateTime()
+
+    @post_load
+    def make_user(self, data, **kwargs):
+        return User(**data)
+
+user_data = {"name": "Ronnie", "email": "ronnie@stones.com"}
+schema = UserSchema()
+result = schema.load(user_data)
+print(result)
+```
+
+### 对象集合
+
+处理可迭代对象集合时，应设置 [`many`](https://marshmallow.readthedocs.io/en/stable/marshmallow.schema.html#marshmallow.schema.Schema.Meta.many) 参数为True。
 
 在处理对象的可迭代集合时，将 `many` 设置为 `True`。
 
@@ -111,46 +151,7 @@ class UserSchema(Schema):
         exclude = ['password']
 ```
 
-## 三、反序列化
 
-[`load`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.load) 方法用于验证输入字典，并将其反序列化为一个字典，其中包含字段名称及其对应的反序列化值。
-
-```python
-from pprint import pprint
-
-user_data = {
-    "created_at": "2014-08-11T05:26:03.869245",
-    "email": "ken@yahoo.com",
-    "name": "Ken",
-}
-schema = UserSchema()
-result = schema.load(user_data)
-pprint(result)
-```
-
-为了反序列化为自定义对象，定义 `Schema` 的方法并用 [`post_load`](https://marshmallow.readthedocs.io/en/stable/marshmallow.decorators.html#marshmallow.decorators.post_load) 装饰它。
-
-```python
-from marshmallow import Schema, fields, post_load
-
-class UserSchema(Schema):
-    name = fields.Str()
-    email = fields.Email()
-    created_at = fields.DateTime()
-
-    @post_load
-    def make_user(self, data, **kwargs):
-        return User(**data)
-```
-
-现在，[`load`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.load) 方法返回一个 *User* 实例。
-
-```python
-user_data = {"name": "Ronnie", "email": "ronnie@stones.com"}
-schema = UserSchema()
-result = schema.load(user_data)
-print(result)
-```
 
 ### 处理未知字段
 
@@ -191,108 +192,5 @@ class MySchema(Schema):
     def process_data(self, data, **kwargs):
         data['name'] = data['name'].strip().title()
         return data
-```
-
-## 四、Marshmallow-Sqlalchemy
-
-SQLAlchemy 与 Marshmallow 序列化库的集成。
-
-### 安装
-
-```sh
-pip install marshmallow-sqlalchemy
-```
-
-### 声明 Sqlalchemy 模型
-
-```python
-import sqlalchemy as sa
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker, relationship, backref
-
-engine = sa.create_engine("sqlite:///:memory:")
-session = scoped_session(sessionmaker(bind=engine))
-Base = declarative_base()
-
-class Author(Base):
-    __tablename__ = "authors"
-    id = sa.Column(sa.Integer, primary_key=True)
-    name = sa.Column(sa.String, nullable=False)
-
-    def __repr__(self):
-        return "<Author(name={self.name!r})>".format(self=self)
-
-class Book(Base):
-    __tablename__ = "books"
-    id = sa.Column(sa.Integer, primary_key=True)
-    title = sa.Column(sa.String)
-    author_id = sa.Column(sa.Integer, sa.ForeignKey("authors.id"))
-    author = relationship("Author", backref=backref("books"))
-
-Base.metadata.create_all(engine)
-```
-
-### 生成 Marshmallow 模式
-
-```python
-from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
-
-class AuthorSchema(SQLAlchemySchema):
-    class Meta:
-        model = Author
-        load_instance = True  # 可选：反序列化为模型实例
-
-    id = auto_field()
-    name = auto_field()
-    books = auto_field()
-
-class BookSchema(SQLAlchemySchema):
-    class Meta:
-        model = Book
-        load_instance = True
-
-    id = auto_field()
-    title = auto_field()
-    author_id = auto_field()
-```
-
-您可以使用 `SQLAlchemyAutoSchema` 为 models 的列自动生成字段。下面的 schema 类等同于上面的。
-
-```python
-from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-
-
-class AuthorSchema(SQLAlchemyAutoSchema):
-    class Meta:
-        model = Author
-        include_relationships = True
-        load_instance = True
-
-class BookSchema(SQLAlchemyAutoSchema):
-    class Meta:
-        model = Book
-        include_fk = True
-        load_instance = True
-```
-
-确保在实例化 Schemas 之前声明 Models。否则 `sqlalchemy.orm.configure_mappers()` 将运行得太快而失败。
-
-### （反）序列化数据
-
-```python
-author = Author(name="Chuck Paluhniuk")
-author_schema = AuthorSchema()
-book = Book(title="Fight Club", author=author)
-session.add(author)
-session.add(book)
-session.commit()
-
-dump_data = author_schema.dump(author)
-print(dump_data)
-# {'id': 1, 'name': 'Chuck Paluhniuk', 'books': [1]}
-
-load_data = author_schema.load(dump_data, session=session)
-print(load_data)
-# <Author(name='Chuck Paluhniuk')>
 ```
 

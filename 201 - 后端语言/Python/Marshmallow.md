@@ -63,6 +63,7 @@ UserSchema = Schema.from_dict(
 from pprint import pprint
 
 user = User(name="Monty", email="monty@python.org")
+
 schema = UserSchema()
 result = schema.dump(user)
 pprint(result)
@@ -87,6 +88,7 @@ user_data = {
     "email": "ken@yahoo.com",
     "name": "Ken",
 }
+
 schema = UserSchema()
 result = schema.load(user_data)
 pprint(result)
@@ -114,14 +116,13 @@ print(result)
 
 ### 对象集合
 
-处理可迭代对象集合时，应设置 [`many`](https://marshmallow.readthedocs.io/en/stable/marshmallow.schema.html#marshmallow.schema.Schema.Meta.many) 参数为True。
-
-在处理对象的可迭代集合时，将 `many` 设置为 `True`。
+处理可迭代[对象集合](https://marshmallow.readthedocs.io/en/stable/quickstart.html#handling-collections-of-objects)时，应设置 [`many`](https://marshmallow.readthedocs.io/en/stable/marshmallow.schema.html#marshmallow.schema.Schema.Meta.many) 参数为 `True`。
 
 ```python
 user1 = User(name="Mick", email="mick@stones.com")
 user2 = User(name="Keith", email="keith@stones.com")
 users = [user1, user2]
+
 schema = UserSchema(many=True)
 result = schema.dump(users)
 print(result)
@@ -129,21 +130,21 @@ print(result)
 
 ### 过滤输出
 
-可以使用 `only` 参数指定要输出的字段，从而避免输出所有声明的字段。
+可通过 [`only`](https://marshmallow.readthedocs.io/en/stable/marshmallow.schema.html#marshmallow.schema.Schema) 参数指定所需输出字段，从而避免输出所有声明的字段。
 
 ```python
 summary_schema = UserSchema(only=("name", "email"))
 summary_schema.dump(user)
 ```
 
-还可以通过传入 `exclude` 参数来排除字段。
+还可以通过传入 [`exclude`](https://marshmallow.readthedocs.io/en/stable/marshmallow.schema.html#marshmallow.schema.Schema) 参数来排除字段。
 
 ```python
 summary_schema = UserSchema(exclude=("created_at",))
 summary_schema.dump(user)
 ```
 
-或者通过 `Mate` 进行配置：
+或者通过 [`Meta`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.Meta) 进行配置。
 
 ```python
 class UserSchema(Schema):
@@ -151,13 +152,11 @@ class UserSchema(Schema):
         exclude = ['password']
 ```
 
+### 未知字段
 
+默认配置下，当检测到数据中存在模式[未定义的字段](https://marshmallow.readthedocs.io/en/stable/quickstart.html#handling-unknown-fields)时，[`load`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.load) 方法将显式抛出 [`ValidationError`](https://marshmallow.readthedocs.io/en/stable/marshmallow.exceptions.html#marshmallow.exceptions.ValidationError) 异常。
 
-### 处理未知字段
-
-默认情况下，如果 `load` 遇到 `schema` 中[没有匹配字段](https://marshmallow.readthedocs.io/en/stable/quickstart.html#handling-unknown-fields)的键，它将引发 [`ValidationError`](https://marshmallow.readthedocs.io/en/stable/marshmallow.exceptions.html#marshmallow.exceptions.ValidationError)。
-
-可以使用 `unknown` 选项修改此行为。
+可以使用 [`unknown`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.Meta.unknown) 选项修改此行为。
 
 ```python
 from marshmallow import Schema, fields, post_load, EXCLUDE
@@ -176,11 +175,9 @@ class DailyReportSchema(Schema):
         return DailyReport(**data)
 ```
 
-### 预处理
+### 数据预处理
 
-[`pre_load`](https://marshmallow.readthedocs.io/en/stable/marshmallow.decorators.html#marshmallow.decorators.pre_load) 是一个装饰器，用于在数据进入 [`load`](https://marshmallow.readthedocs.io/en/stable/api_reference.html#marshmallow.Schema.load) 方法进行验证和反序列化之前对其进行预处理。
-
-可以在 `Schema` 类中定义一个带有 `@pre_load` 装饰器的方法，以便在数据加载前执行一些自定义的逻辑操作，比如数据清理或格式转换。
+通过 [`@pre_load`](https://marshmallow.readthedocs.io/en/stable/marshmallow.decorators.html#marshmallow.decorators.pre_load) 装饰器可在 `Schema` 类中定义预处理方法，该方法会在 [`load`](https://marshmallow.readthedocs.io/en/stable/top_level.html#marshmallow.Schema.load) 方法执行验证及反序列化操作前介入，常用于实现数据清洗或格式转换等预处理逻辑。
 
 ```python
 from marshmallow import Schema, fields, pre_load

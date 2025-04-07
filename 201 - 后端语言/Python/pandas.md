@@ -2,9 +2,7 @@
 
 [pandas](https://pandas.pydata.org/) 是一个快速、强大、灵活、易于使用的开源数据分析和操作工具。
 
-## 一、数据结构
-
-### DataFrame
+## 一、DataFrame
 
 [`DataFrame`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame) 是一种二维标记数据结构，其中列的类型可能不同。可以把它想象成电子表格或 SQL 表。
 
@@ -29,7 +27,7 @@
 
 - 列表中的字典
 
-  如下所示，`data` 是一个列表，其中的每一个元素都是一个字典。这个列表中的字典表示的是 `DataFrame` 的每一行的数据。
+  如下所示，`data` 是一个列表，其中每一个元素都是一个字典。这个列表中的字典表示的是 `DataFrame` 中每一行的数据。
 
   ```python
   import pandas as pd
@@ -43,6 +41,15 @@
   
   print(df)
   ```
+  
+- **Excel**
+
+  可以通过 [`pd.read_excel()`](https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html#pandas.read_excel) 方法，将 Excel 文件转换为 `DataFrame`。
+  
+  ```python
+  # 读取第三行是表头的 Excel 文件
+  df = pd.read_excel(file_path, header=2)
+  ```
 
 ## 二、访问数据
 
@@ -54,8 +61,6 @@
 
 [获取、设置和删除列](https://pandas.pydata.org/docs/user_guide/dsintro.html#column-selection-addition-deletion)的语法与类似的 `dict` 操作相同。
 
-例如，访问列数据。
-
 ```python
 import pandas as pd
 
@@ -66,6 +71,7 @@ data = [
 ]
 df = pd.DataFrame(data)
 
+# 访问列数据
 print(df['Name'])
 ```
 
@@ -109,16 +115,6 @@ print(df.iloc[0])
 for _, row in df.iterrows():
     name = row['姓名']
     times_raw = row.iloc[6]
-```
-
-### Excel
-
-可以通过 [`pd.read_excel()`](https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html#pandas.read_excel) 方法，将 Excel 文件转换为 `DataFrame`。
-
-例如，读取第三行为表头的 Excel 文件。
-
-```python
-df = pd.read_excel(file_path, header=2)
 ```
 
 ## 三、新增数据

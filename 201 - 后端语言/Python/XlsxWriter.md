@@ -1,8 +1,8 @@
 # XlsxWriter
 
-[XlsxWriter](https://github.com/jmcnamara/XlsxWriter) 是一个 Python 模块，用于编写 Excel 2007+ XLSX 文件格式的文件。
+[XlsxWriter](https://github.com/jmcnamara/XlsxWriter) 用于编写 Excel 2007+ XLSX 文件格式的文件。
 
-可以通过 `pip` 安装 [XlsxWriter](https://pypi.org/project/XlsxWriter/)：
+**安装**：[XlsxWriter](https://pypi.org/project/XlsxWriter/)
 
 ```sh
 pip install xlsxwriter

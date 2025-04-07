@@ -1,6 +1,6 @@
 # Python 标准库
 
-[Python 标准库](https://docs.python.org/zh-cn/3/library/index.html)非常庞大，所提供的组件涉及范围十分广泛。
+Python [标准库](https://docs.python.org/zh-cn/3/library/index.html)非常庞大，所提供的组件涉及范围十分广泛。
 
 ## 一、内置函数
 
@@ -12,7 +12,7 @@ Python 解释器[内置](https://docs.python.org/zh-cn/3/library/functions.html)
 all(iterable)
 ```
 
-如果 *iterable* 的所有元素均为真值，或可迭代对象为空，则返回 True。
+如果 `iterable` 的所有元素均为真值，或可迭代对象为空，则返回 `True`。
 
 ```python
 if not all([username, password]):

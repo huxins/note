@@ -2,14 +2,14 @@
 
 [Setuptools](https://github.com/pypa/setuptools) 是一个用于 Python 项目的打包工具，它扩展了 Python 标准库中的 [distutils](https://docs.python.org/zh-cn/3.11/library/distutils.html)。
 
-以下是 Setuptools 的一些主要功能：
+**主要功能**：
 
 - **依赖管理**：允许定义项目的依赖项，并在安装时自动解决这些依赖关系。
 - **打包和分发**：提供工具来打包项目，使其可以上传到 [PyPI](https://pypi.org/) 或其他存储库。
 - **入口点**：支持定义控制台脚本和 GUI 脚本的入口点，使得在安装包时可以自动创建可执行命令。
 - **扩展支持**：支持编译 C 或 C++ 扩展模块，并将其包含在包中。
 
-可以通过 `pip` 安装 Setuptools：
+**安装**：
 
 ```sh
 pip install setuptools
@@ -37,7 +37,7 @@ pip install setuptools
   
   它使用 INI 格式来定义项目的配置信息，不包含任何代码逻辑。
 
-下面是一个简单的 `setup.py` 示例：
+下面是一个简单的 `setup.py` 示例。
 
 ```python
 from setuptools import setup, find_packages

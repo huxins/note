@@ -22,7 +22,7 @@
 
 **作用域**：
 
-每个子命令都可以在其自己的部分中进行配置。这会覆盖具有相同名称的全局设置。
+各子命令可在其[独立配置段](https://pip.pypa.io/en/stable/topics/configuration/#per-command-section)中进行可选配置，该配置将覆盖同名全局设置。
 
 例如，如果您想在运行 `pip freeze` 时将超时时间减少到 10 秒，并为所有其他命令使用 60 秒。
 
@@ -48,87 +48,77 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 
 ## 二、常用命令
 
-### pip install
+### 配置管理
 
-[`pip install`](https://pip.pypa.io/en/stable/cli/pip_install/) 是 Python 包管理工具 [`pip`](https://pip.pypa.io/en/stable/cli/pip/) 用来安装 Python 包的命令。
+- **pip config**
 
-- -**i**, --**index-url** *url*：Python 包索引的 Base URL，默认值为 https://pypi.org/simple。
-- -**e**, --**editable** *path/url*：从本地项目路径或 VCS url 以可编辑模式（即 [setuptools 开发模式](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)）安装项目。
+  [`pip config`](https://pip.pypa.io/en/stable/cli/pip_config/) 命令用于配置 `pip` 的行为。
 
-升级 `pip` 自身版本。
+  配置指定包索引的 Base URL。
 
-```sh
-python -m pip install --upgrade pip
-```
+  ```sh
+  python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple # 清华
+  python -m pip config set global.index-url https://pypi.doubanio.com/simple # 豆瓣
+  ```
 
-使用[需求说明符](https://pip.pypa.io/en/stable/reference/requirement-specifiers/)从 [PyPI](https://pypi.org/) 安装 `SomePackage` 及其依赖项。
+  获取在配置文件中包索引的 Base URL。
 
-```sh
-python -m pip install SomePackage            # 最新版本
-python -m pip install SomePackage==1.0.4     # 具体版本
-python -m pip install 'SomePackage>=1.0.4'   # 最低版本
-```
+  ```sh
+  python -m pip config get global.index-url
+  ```
 
-从不同的索引安装，而不是 PyPI。
+### 依赖管理
 
-```sh
-python -m pip install --index-url https://pypi.doubanio.com/simple SomePackage
-```
+- **pip install**
 
-从包含档案的本地目录安装，并且不扫描索引。
+  [`pip install`](https://pip.pypa.io/en/stable/cli/pip_install/) 是 Python 包管理工具 [`pip`](https://pip.pypa.io/en/stable/cli/pip/) 用来安装 Python 包的命令。
 
-```sh
-python -m pip install --no-index --find-links=file:///local/dir/ SomePackage
-python -m pip install --no-index --find-links=/local/dir/ SomePackage
-python -m pip install --no-index --find-links=relative/dir/ SomePackage
-```
+  - -**i**, --**index-url** *url*：Python 包索引的 Base URL。
+  - -**e**, --**editable** *path/url*：从本地项目路径或 VCS url 以可编辑模式（即 [setuptools 开发模式](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)）安装项目。
 
-根据 [*requirements.txt*](https://pip.pypa.io/en/stable/reference/requirements-file-format/) 文件安装项目依赖。
+  升级 `pip` 自身版本。
+  
+  ```sh
+  python -m pip install --upgrade pip
+  ```
 
-```sh
-python -m pip install -r requirements.txt
-```
+  使用[需求说明符](https://pip.pypa.io/en/stable/reference/requirement-specifiers/)从 [PyPI](https://pypi.org/) 安装 `SomePackage` 及其依赖项。
+  
+  ```sh
+  python -m pip install SomePackage            # 最新版本
+  python -m pip install SomePackage==1.0.4     # 具体版本
+  python -m pip install 'SomePackage>=1.0.4'   # 最低版本
+  ```
 
-以 [setuptools 开发模式](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)安装项目。
+  从包含档案的本地目录安装，并且不扫描索引。
+  
+  ```sh
+  python -m pip install --no-index --find-links=/local/dir/ SomePackage
+  ```
+  
+  根据 [`requirements.txt`](https://pip.pypa.io/en/stable/reference/requirements-file-format/) 文件安装项目依赖。
+  
+  ```sh
+  python -m pip install -r requirements.txt
+  ```
 
-```sh
-pip install -e .
-```
+  以 [setuptools 开发模式](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)安装项目。
+  
+  ```sh
+  pip install -e .
+  ```
 
-### pip config
+- **pip freeze**
 
-[`pip config`](https://pip.pypa.io/en/stable/cli/pip_config/) 命令用于配置 `pip` 的行为。
-
-通过 `pip config`，可以查看和设置 `pip` 的配置选项，这些配置选项会影响 `pip` 的默认行为。
-
-配置指定包索引的 Base URL。
-
-- 豆瓣：https://pypi.doubanio.com/simple
-- 清华：https://pypi.tuna.tsinghua.edu.cn/simple
-
-```sh
-python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
-获取在配置文件中包索引的 Base URL。
-
-```sh
-python -m pip config get global.index-url
-```
-
-### pip freeze
-
-[`pip freeze`](https://pip.pypa.io/en/stable/cli/pip_freeze/) 用于生成当前 Python 环境中已安装的所有包及其版本的列表。
-
-生成一个 [*requirements*](https://pip.pypa.io/en/stable/reference/requirements-file-format/) 文件。
-
-```sh
-python -m pip freeze > requirements.txt
-```
-
-在 Windows 平台以指定文件编码生成。
-
-```sh
-pip freeze | Out-File -Encoding ascii requirements.txt
-```
+  [`pip freeze`](https://pip.pypa.io/en/stable/cli/pip_freeze/) 用于生成当前 Python 环境中已安装的所有包及其版本的列表。
+  
+  ```sh
+  python -m pip freeze --exclude-editable > requirements.txt
+  ```
+  
+  在 Windows 平台以指定文件编码生成。
+  
+  ```sh
+  pip freeze --exclude-editable | Out-File -Encoding ascii requirements.txt
+  ```
 

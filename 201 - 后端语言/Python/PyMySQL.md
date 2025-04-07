@@ -1,5 +1,7 @@
 # PyMySQL
 
+[PyMySQL](https://github.com/PyMySQL/PyMySQL) 是一个基于 PEP 249 标准实现的纯 Python MySQL 及 MariaDB 客户端库。
+
 ## 一、安装
 
 ```sh

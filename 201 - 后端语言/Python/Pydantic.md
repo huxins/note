@@ -4,7 +4,12 @@
 
 ## 一、模式
 
-Pydantic 提供了四种方法来创建模式并执行验证和序列化。
+Pydantic 提供了[四种方法](https://docs.pydantic.dev/latest/why/#dataclasses-typeddict-more)来创建模式并执行验证和序列化。
+
+- **[继承 `BaseModel` 类](https://docs.pydantic.dev/latest/concepts/models/#basic-model-usage)**
+- [**动态模型生成**](https://docs.pydantic.dev/latest/concepts/models/#dynamic-model-creation)
+- [**Pydantic 数据类**](https://docs.pydantic.dev/latest/concepts/dataclasses/#dataclass-config)
+- **基于 `TypedDict` 的验证**
 
 ### BaseModel
 

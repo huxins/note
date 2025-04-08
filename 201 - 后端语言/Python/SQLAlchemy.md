@@ -1,12 +1,14 @@
 # SQLAlchemy
 
-## 一、安装
+SQLAlchemy 是 Python 的 SQL 工具包与对象关系映射（ORM）框架。
+
+**安装**：
 
 ```sh
 pip install SQLAlchemy
 ```
 
-## 二、引擎和连接
+## 一、引擎和连接
 
 ### 引擎配置
 

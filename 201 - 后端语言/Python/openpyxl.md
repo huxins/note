@@ -2,7 +2,7 @@
 
 [openpyxl](https://openpyxl.readthedocs.io/en/stable/) 用于读取或写入 Excel 2010 xlsx/xlsm/xltx/xltm 文件。
 
-**安装**：[openpyxl](https://pypi.org/project/openpyxl/)
+**安装**：[`openpyxl`](https://pypi.org/project/openpyxl/)
 
 ```sh
 pip install openpyxl

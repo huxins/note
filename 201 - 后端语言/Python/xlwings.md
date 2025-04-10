@@ -1,28 +1,25 @@
 # xlwings
 
-[xlwings](https://github.com/xlwings/xlwings) 是一个 Python 库，可以轻松地从 Excel 调用 Python，反之亦然。
+[xlwings](https://github.com/xlwings/xlwings) 可以轻松地从 Excel 调用 Python，反之亦然。
 
-## 一、工作簿
+## 一、Book
 
 [`xw.Book`](https://docs.xlwings.org/en/stable/api/book.html#xlwings.Book) 提供了连接到 Excel 工作簿的最简单方法。
 
-当使用 `xw.Book` 时，它会在所有的 Excel 应用程序实例中查找指定的工作簿。
-
 ```python
-app = xw.App(visible=False)
-wb = xw.Book(file_path)
+wb = xw.Book(file_path)  # 自动创建隐式App实例
 ws = wb.sheets[0]
 
 wb.save()
 wb.close()
-app.quit()
+wb.app.quit()  # 通过工作簿关联的App实例退出
 ```
 
-## 二、数据操作
+## 二、Sheet
 
-### 访问单元格
+### Cell
 
-可以通过 [`ws.range()`](https://docs.xlwings.org/en/stable/api/sheet.html#xlwings.Sheet.range) 访问单元格。该方法返回一个 [`Range`](https://docs.xlwings.org/en/stable/api/range.html#xlwings.Range) 对象，表示一个单元格或一组单元格。
+[`ws.range()`](https://docs.xlwings.org/en/stable/api/sheet.html#xlwings.Sheet.range) 作为核心单元格定位接口，返回的 [`Range`](https://docs.xlwings.org/en/stable/api/range.html#xlwings.Range) 对象封装了单/多单元格操作能力，支持数据读写、格式设置及范围计算等统一访问模式。
 
 ```python
 app = xw.App(visible=False)

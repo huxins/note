@@ -1,16 +1,22 @@
-## 三、扩展
+# Flask 扩展
 
-### Flask-SQLAlchemy
+## Flask-SQLAlchemy
 
-SQLAlchemy 是一个常用的数据库抽象层，需要一些配置工作，Flask-SQLAlchemy 扩展可以简化。
+[SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) 的独立使用需显式配置管理，而 [Flask-SQLAlchemy](https://github.com/pallets-eco/flask-sqlalchemy) 扩展通过框架集成可将其改造为声明式配置模式，提供开箱即用的会话控制与资源生命周期管理。
+
+**安装**：[`Flask-SQLAlchemy`](https://pypi.org/project/Flask-SQLAlchemy/)
 
 ```sh
 pip install Flask-SQLAlchemy
 ```
 
-唯一需要的 Flask 应用程序配置是 `SQLALCHEMY_DATABASE_URI` 键。这是一个连接字符串，它告诉 SQLAlchemy 要连接到哪个数据库。
+Flask 应用配置核心参数为 [`SQLALCHEMY_DATABASE_URI`](https://flask-sqlalchemy.readthedocs.io/en/stable/config/#flask_sqlalchemy.config.SQLALCHEMY_DATABASE_URI)，该键值定义符合 DB-API 规范的标准连接字符串，用于声明 SQLAlchemy 的数据库连接端点。
 
-创建 Flask 应用程序对象，加载配置，然后通过调用 `db.init_app` 使应用程序初始化 SQLAlchemy 扩展类。此示例连接到 SQLite 数据库，该数据库存储在应用程序的实例文件夹中。
+典型应用**初始化流程**如下：
+
+- 实例化 Flask 对象后加载配置
+- 通过 [`db.init_app()`](https://flask-sqlalchemy.readthedocs.io/en/stable/api/#flask_sqlalchemy.SQLAlchemy.init_app) 方法采用工厂模式进行扩展初始化
+- SQLite 数据库上下文绑定至应用实例专属目录
 
 ```python
 from flask import Flask
@@ -25,11 +31,14 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db.init_app(app)
 ```
 
-`db` 对象使您可以访问 `db.Model` 类来定义模型，并访问 `db.session` 来执行查询。
+[`db`](https://flask-sqlalchemy.readthedocs.io/en/stable/quickstart/#about-the-sqlalchemy-object) 对象封装 ORM 核心功能组件：
 
-#### ORM 映射
+- `db.Model` 基类实现声明式模型定义
+- `db.session` 接口执行原子化事务操作，该会话管理器提供 CRUD 操作的事务完整性保障及连接池优化访问。
 
-子类 `db.Model` 以定义模型类。`db` 对象使 `sqlalchemy` 和 `sqlalchemy.orm` 中的名称方便使用，例如 `db.Column`。该模型将通过将 CamelCase 类名转换为 snake_case 来生成表名。
+### 定义模型
+
+[模型类](https://flask-sqlalchemy.readthedocs.io/en/stable/quickstart/#define-models)通过继承 `db.Model` 基类进行定义，其中 `db` 对象封装了 SQLAlchemy 核心模块 [`sqlalchemy`](https://docs.sqlalchemy.org/en/20/core/api_basics.html) 和 ORM 模块 `sqlalchemy.orm` 的常用组件（如 `db.Column`）。根据 SQLAlchemy ORM 机制，数据表名称将自动由模型类的 CamelCase 命名转换为 snake_case 格式。
 
 ```python
 class User(db.Model):
@@ -38,40 +47,44 @@ class User(db.Model):
     email = db.Column(db.String)
 ```
 
-表名 `user` 将自动分配给模型的表。
+### 生成表结构
 
-#### 创建表
-
-定义完所有模型和表后，调用 `SQLAlchemy.create_all()` 在数据库中创建表。这需要一个应用程序上下文。由于此时您不在请求中，请手动创建一个。
+在完成所有模型及数据表定义后，需调用 `SQLAlchemy.create_all()` 方法生成数据库表结构。该操作须在应用上下文中执行，若当前处于非请求处理环境，可通过 `with app.app_context():` 手动构建上下文区块实现。
 
 ```python
 with app.app_context():
     db.create_all()
 ```
 
-如果你在其他模块中定义模型，你必须在调用 `create_all` 之前导入它们，否则 SQLAlchemy 将不知道它们。
+若模型定义分布在多个模块中，需在调用 `create_all()` 前显式导入相关模型类，以确保 SQLAlchemy ORM 能够识别其元数据。
 
-如果表已经在数据库中，`create_all` 不会更新它们。
+此外，`create_all()` 仅执行数据库表的初始化创建操作，若需同步模型字段变更至已存在的表结构，应通过集成迁移工具（如 Flask-Migrate 或 Flask-Alembic）生成迁移脚本，实现数据库模式的版本化演进。
 
-#### 查询表
+### 查询数据
 
-Flask-SQLAlchemy 向每个模型添加一个查询对象。这可用于查询给定模型的实例。`User.query` 是 `db.session.query(User)` 的快捷方式。
+在 Flask 视图或 CLI 命令中，可通过 `db.session` 接口执行 ORM 查询及数据操作。
+
+`Model.query` 为 SQLAlchemy [传统查询模式](https://flask-sqlalchemy.readthedocs.io/en/stable/queries/#legacy-query-interface)，现已被声明式会话取代，后者通过预编译语句实现更规范的查询构建，推荐作为标准实践。
 
 ```python
-# 获取 id 为 5 的用户
-user = User.query.get(5)
+# 获取id为5的用户
+user = User.query.get(5)  # User.query 是 db.session.query(User) 的快捷方式
 
 # 通过用户名获取用户
 user = User.query.filter_by(username=username).one()
 ```
 
-### Flask-Marshmallow
+## Flask-Marshmallow
+
+[Flask-Marshmallow](https://github.com/marshmallow-code/flask-marshmallow) 是 Flask Web 框架与 [marshmallow](https://github.com/marshmallow-code/marshmallow) 对象序列化/反序列化库的轻量化集成方案，其通过扩展字段类型（如 URL 和 Hyperlinks）原生支持构建符合 HATEOAS 规范的 API 接口。该库不仅强化了 marshmallow 的核心功能，还可与 Flask-SQLAlchemy ORM 框架深度整合，实现 ORM 模型与序列化逻辑的无缝衔接。
+
+**安装**：[`flask-marshmallow`](https://pypi.org/project/flask-marshmallow/)
 
 ```sh
 pip install flask-marshmallow
 ```
 
-初始化扩展。
+**初始化**：
 
 ```python
 from flask import Flask
@@ -81,20 +94,18 @@ app = Flask(__name__)
 ma = Marshmallow(app)
 ```
 
-#### 创建 models
+### 声明模式
 
 ```python
 from your_orm import Model, Column, Integer, String, DateTime
 
+# 定义模型
 class User(Model):
     email = Column(String)
     password = Column(String)
     date_created = Column(DateTime, auto_now_add=True)
-```
 
-#### 定义输出格式
-
-```python
+# 声明模式
 class UserSchema(ma.Schema):
     class Meta:
         # 要公开的字段
@@ -112,7 +123,7 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 ```
 
-#### 在视图中输出数据
+### 输出数据
 
 ```python
 @app.route("/api/users/")
@@ -126,17 +137,17 @@ def user_detail(id):
     return user_schema.dump(user)
 ```
 
-#### Flask-SQLAlchemy 集成
+### 深度集成
 
-`Flask-Marshmallow` 包括用于与 `Flask-SQLAlchemy` 和 `marshmallow-sqlalchemy` 集成的有用附加功能。
+[`Flask-Marshmallow`](https://github.com/marshmallow-code/flask-marshmallow) 提供与 [`Flask-SQLAlchemy`](https://github.com/pallets-eco/flask-sqlalchemy) 及 [`marshmallow-sqlalchemy`](https://github.com/marshmallow-code/marshmallow-sqlalchemy) 的深度集成支持，通过 ORM 层适配实现声明式模型序列化。
 
-要启用 SQLAlchemy 集成，请确保同时安装了 `Flask-SQLAlchemy` 和 `marshmallow-sqlalchemy`。
+启用该功能需预先安装 `Flask-SQLAlchemy` 与 `marshmallow-sqlalchemy` 依赖项，以实现自动化模式推断及数据库模型与序列化逻辑的精准映射。
 
 ```sh
 pip install -U flask-sqlalchemy marshmallow-sqlalchemy
 ```
 
-接下来，按顺序初始化 SQLAlchemy 和 Marshmallow 扩展。
+按顺序初始化 SQLAlchemy 和 Marshmallow 扩展。
 
 ```python
 from flask import Flask
@@ -149,11 +160,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/test.db"
 # 顺序很重要：在 Marshmallow 之前初始化 SQLAlchemy
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-```
 
-像往常一样声明你的模型。
-
-```python
+# 声明模型
 class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
@@ -165,7 +173,7 @@ class Book(db.Model):
     author = db.relationship("Author", backref="books")
 ```
 
-使用 `SQLAlchemySchema` 或 `SQLAlchemyAutoSchema` 从您的模型生成 Marshmallow Schema。
+使用 `SQLAlchemySchema` 或 `SQLAlchemyAutoSchema` 从模型生成 Marshmallow Schema。
 
 ```python
 class AuthorSchema(ma.SQLAlchemySchema):
@@ -182,124 +190,17 @@ class BookSchema(ma.SQLAlchemyAutoSchema):
         include_fk = True
 ```
 
-您现在可以使用您的架构来转储和加载您的 ORM 对象。
+## marshmallow-sqlalchemy
 
-```python
-db.create_all()
-author_schema = AuthorSchema()
-book_schema = BookSchema()
-author = Author(name="Chuck Paluhniuk")
-book = Book(title="Fight Club", author=author)
-db.session.add(author)
-db.session.add(book)
-db.session.commit()
-author_schema.dump(author)
-# {'id': 1, 'name': 'Chuck Paluhniuk', 'books': [1]}
-```
+[`marshmallow-sqlalchemy`](https://github.com/marshmallow-code/marshmallow-sqlalchemy) 专为 SQLAlchemy ORM 模型与 marshmallow 序列化/反序列化框架提供深度整合，支持自动化模式推断与双向数据转换。
 
-### Flask-JWT-Extended
-
-```sh
-pip install flask-jwt-extended
-```
-
-#### 配置扩展
-
-在其最简单的形式中，使用此扩展程序并不多。您使用 `create_access_token()` 制作 JSON Web 令牌，使用 `jwt_required()` 保护路由，使用 `get_jwt_identity()` 获取受保护路由中 JWT 的身份。
-
-```python
-from flask import Flask
-from flask import jsonify
-from flask import request
-
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager
-
-app = Flask(__name__)
-
-app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
-jwt = JWTManager(app)
-
-
-@app.route("/login", methods=["POST"])
-def login():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    if username != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
-
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
-
-
-@app.route("/protected", methods=["GET"])
-@jwt_required()
-def protected():
-    current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
-
-
-if __name__ == "__main__":
-    app.run()
-```
-
-#### 部分保护路由
-
-在某些情况下，无论请求中是否存在 JWT，您都希望使用相同的路由。在这些情况下，您可以使用 `jwt_required()` 和 `optional=True` 参数。
-
-如果不存在 JWT，`get_jwt()` 和 `get_jwt_header()` 将返回一个空字典。`get_jwt_identity()`、`current_user` 和 `get_current_user()` 将返回 None。
-
-如果请求中有过期或不可验证的 JWT，仍会像往常一样返回错误。
-
-#### 更改默认行为
-
-- **expired_token_loader**(*callback*)
-
-  此装饰器设置回调函数，用于在遇到过期的 JWT 时返回自定义响应。
-
-  ```python
-  @jwt.expired_token_loader
-  def handle_token_error(jwt_header, jwt_payload):
-      return jsonify(code="dave", err="I can't let you do that"), 401
-  ```
-
-- **invalid_token_loader**(*callback*)
-
-  当遇到无效的 JWT 时，此装饰器设置用于返回自定义响应的回调函数。
-
-  ```python
-  @jwt.invalid_token_loader
-  def handle_token_error(e):
-      return ResMsg(code=ResponseCode.PleaseSignIn).data
-  ```
-
-### Flask-RESTful
-
-```sh
-pip install flask-restful
-```
-
-
-
-
-
-
-
-
-
-## 四、Marshmallow-Sqlalchemy
-
-SQLAlchemy 与 Marshmallow 序列化库的集成。
-
-### 安装
+**安装**：
 
 ```sh
 pip install marshmallow-sqlalchemy
 ```
 
-### 声明 Sqlalchemy 模型
+### 定义模型
 
 ```python
 import sqlalchemy as sa
@@ -328,7 +229,7 @@ class Book(Base):
 Base.metadata.create_all(engine)
 ```
 
-### 生成 Marshmallow 模式
+### 声明模式
 
 ```python
 from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
@@ -352,7 +253,7 @@ class BookSchema(SQLAlchemySchema):
     author_id = auto_field()
 ```
 
-您可以使用 `SQLAlchemyAutoSchema` 为 models 的列自动生成字段。下面的 schema 类等同于上面的。
+可以使用 `SQLAlchemyAutoSchema` 为 Model 的列自动生成字段。
 
 ```python
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
@@ -371,14 +272,15 @@ class BookSchema(SQLAlchemyAutoSchema):
         load_instance = True
 ```
 
-确保在实例化 Schemas 之前声明 Models。否则 `sqlalchemy.orm.configure_mappers()` 将运行得太快而失败。
+需确保在实例化 Schema 前完成数据模型类的声明，以避免 SQLAlchemy ORM 的 `configure_mappers()` 方法因元数据未就绪而触发过早，导致映射配置异常。
 
-### （反）序列化数据
+### 序列化数据
 
 ```python
 author = Author(name="Chuck Paluhniuk")
 author_schema = AuthorSchema()
 book = Book(title="Fight Club", author=author)
+
 session.add(author)
 session.add(book)
 session.commit()
@@ -392,5 +294,92 @@ print(load_data)
 # <Author(name='Chuck Paluhniuk')>
 ```
 
+## Flask-JWT-Extended
 
+[Flask-JWT-Extended](https://github.com/vimalloc/flask-jwt-extended) 为 JWT 身份验证提供全功能支持，具备开箱即用的集成能力，涵盖令牌生成、验证及权限管理等核心流程。
+
+**安装**：
+
+```sh
+pip install flask-jwt-extended
+```
+
+### 基本使用
+
+通过 `create_access_token()` 生成加密令牌；使用 `@jwt_required()` 装饰器实施路由访问控制；在受保护路由中调用 `get_jwt_identity()` 即可解析并获取当前令牌关联的用户身份标识。
+
+```python
+from flask import Flask, request
+
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
+
+app = Flask(__name__)
+
+app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+jwt = JWTManager(app)
+
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    if username != "test" or password != "test":
+        return {"msg": "Bad username or password"}, 401
+
+    access_token = create_access_token(identity=username)
+    return access_token=access_token
+
+@app.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    current_user = get_jwt_identity()
+    return current_user, 200
+
+if __name__ == "__main__":
+    app.run()
+```
+
+### 可选鉴权
+
+在需要兼容 JWT 可选验证的鉴权场景中，可通过 `@jwt_required(optional=True)` 装饰器实现路由的弹性鉴权策略。
+
+此模式下，若请求未携带有效 JWT，`get_jwt()` 及 `get_jwt_header()` 将返回空字典对象，`get_jwt_identity()` 和 `current_user` 则返回 `None` 值。
+
+需注意：当存在 JWT 但发生过期或验证异常时，系统仍会触发标准错误响应机制，确保安全性不受折损。
+
+### 默认行为
+
+该扩展默认提供标准化安全策略。例如，当过期令牌尝试访问受保护端点时，系统将自动返回携带错误信息的 JSON 响应体及 401 状态码。若需针对特定业务场景调整扩展行为（如身份解析方式、令牌验证流程），可通过回调函数体系实现深度定制。
+
+- **expired_token_loader**(*callback*)
+
+  此装饰器设置回调函数，用于在遇到过期的 JWT 时返回自定义响应。
+
+  ```python
+  @jwt.expired_token_loader
+  def handle_token_error(jwt_header, jwt_payload):
+      return jsonify(code="dave", err="I can't let you do that"), 401
+  ```
+
+- **invalid_token_loader**(*callback*)
+
+  当遇到无效的 JWT 时，此装饰器设置用于返回自定义响应的回调函数。
+
+  ```python
+  @jwt.invalid_token_loader
+  def handle_token_error(e):
+      return ResMsg(code=ResponseCode.PleaseSignIn).data
+  ```
+
+## Flask-RESTful
+
+[Flask-RESTful](https://github.com/flask-restful/flask-restful) 为构建符合 REST 架构规范的 API 服务提供核心组件集，通过声明式资源路由、请求数据验证及响应序列化机制，显著简化 RESTful 接口开发流程，支持标准化特性（如内容协商、状态码管理），助力实现高内聚低耦合的 API 设计范式。
+
+**安装**：
+
+```sh
+pip install flask-restful
+```
 

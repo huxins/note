@@ -144,96 +144,82 @@ CPython 解析器在启动时会扫描[命令行参数和环境变量](https://d
 
 ### 特殊方法
 
-一个类可以通过定义具有[特殊名称的方法](https://docs.python.org/zh-cn/3/reference/datamodel.html#special-method-names)来实现由特殊语法来发起调用的特定操作。
+一个类可以通过定义具有[特殊名称](https://docs.python.org/zh-cn/3/reference/datamodel.html#special-method-names)的方法来实现由特殊语法来发起调用的特定操作。这是 Python 实现*运算符重载*的方式，允许每个类自行定义基于该语言运算符的特定行为。
 
-这是 Python 实现*运算符重载*的方式，允许每个类自行定义基于该语言运算符的特定行为。举例来说，如果一个类定义了名为 `__getitem__()` 的方法，并且 `x` 是该类的一个实例，则 `x[i]` 基本就等价于 `type(x).__getitem__(x, i)`。
+- [**\__getitem__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__getitem__)
 
-将一个特殊方法设为 `None` 表示对应的操作不可用。例如，如果一个类将 `__iter__()` 设为 `None`，则该类就是不可迭代的，因此对其实例调用 `iter()` 将引发一个异常。
+  如果一个类定义了该方法，并且 `x` 是该类的一个实例，则 `x[i]` 基本就等价于 `type(x).__getitem__(x, i)`。
+  
+- [**\__iter__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__iter__)
 
-在实现模拟任何内置类型的类时，很重要的一点是模拟的实现程度对于被模拟对象来说应当是有意义的。例如，提取单个元素的操作对于某些序列来说是适宜的，但提取切片可能就没有意义。
+  将一个特殊方法设为 `None` 表示对应的操作不可用。例如一个类将 `__iter__()` 设为 `None`，则该类就是不可迭代的，因此对其实例调用 `iter()` 将引发一个异常。
 
-#### 对象初始化
+- [**\__init__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__init__)
 
-[`__init__`](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__init__) 在实例通过 `__new__()` 创建之后，返回调用者之前调用。其参数与传递给类构造器表达式的参数相同。
+  在实例通过 [`__new__()`](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__new__) 创建之后，返回调用者之前调用。其参数与传递给类构造器表达式的参数相同。
+  
+  ```python
+  object.__init__(self[, ...])
+  ```
 
-```python
-object.__init__(self[, ...])
-```
+  一个基类如果有 `__init__()` 方法，其所派生的类如果也有 `__init__()` 方法，就必须显式地调用它以确保实例基类部分的正确初始化。
+  
+  ```python
+  super().__init__([args...])
+  ```
 
-一个基类如果有 `__init__()` 方法，其所派生的类如果也有 `__init__()` 方法，就必须显式地调用它以确保实例基类部分的正确初始化。
+  因为对象是由 `__new__()` 和 `__init__()` 协作构造完成的，由 `__new__()` 创建，并由 `__init__()` 定制，所以 `__init__()` 返回的值只能是 `None`，否则会在运行时引发 [`TypeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#TypeError)。
 
-```python
-super().__init__([args...])
-```
+- [**\__repr__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__repr__)
 
-因为对象是由 `__new__()` 和 `__init__()` 协作构造完成的，由 `__new__()` 创建，并由 `__init__()` 定制，所以 `__init__()` 返回的值只能是 `None`，否则会在运行时引发 [`TypeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#TypeError)。
+  由 `repr()` 内置函数调用以输出一个对象的字符串表示。
+  
+  ```python
+  object.__repr__(self)
+  ```
+  
+- **上下文管理器**
 
-#### 字符串表示
+  [上下文管理器](https://docs.python.org/zh-cn/3.10/library/stdtypes.html#context-manager-types)定义了在执行 `with` 语句时要建立的运行时上下文。[上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#with-statement-context-managers)处理进入和退出所需运行时上下文，以执行代码块。
 
-[`__repr__`](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__repr__) 由 `repr()` 内置函数调用以输出一个对象的字符串表示。
+  上下文管理器的典型用法包括保存和恢复各种全局状态，锁定和解锁资源，关闭打开的文件等等。
 
-```python
-object.__repr__(self)
-```
+  - object.[**\__enter__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__enter__)()
 
-#### 上下文管理器
+    进入与此对象相关的运行时上下文。`with` 语句将会绑定这个方法的返回值到 `as` 子句中指定的目标，如果有的话。
 
-[*上下文管理器*](https://docs.python.org/zh-cn/3.10/library/stdtypes.html#context-manager-types)是一个对象，它定义了在执行 `with` 语句时要建立的运行时上下文。
+  - object.[**\__exit__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__exit__)()
 
-[上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#with-statement-context-managers)处理进入和退出所需运行时上下文，以执行代码块。通常使用 `with` 语句，但是也可以通过直接调用它们的方法来使用。
+    退出关联到此对象的运行时上下文。
 
-上下文管理器的典型用法包括保存和恢复各种全局状态，锁定和解锁资源，关闭打开的文件等等。
+### 模块导入
 
-- object.**\__enter__**(*self*)
+一个模块内的 Python 代码通过导入操作就能够访问另一个模块内的代码。
 
-  [进入](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__enter__)与此对象相关的运行时上下文。`with` 语句将会绑定这个方法的返回值到 `as` 子句中指定的目标，如果有的话。
+发起调用[导入机制](https://docs.python.org/zh-cn/3/reference/import.html)的方式：
 
-- object.**\__exit__**(*self*, *exc_type*, *exc_value*, *traceback*)
-
-  [退出](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__exit__)关联到此对象的运行时上下文。各个参数描述了导致上下文退出的异常。如果上下文是无异常地退出的，三个参数都将为 `None`。
-
-  如果提供了异常，并且希望方法屏蔽此异常，则应当返回真值。否则的话，异常将在退出此方法时按正常流程处理。
-
-  请注意 `__exit__()` 方法不应该重新引发被传入的异常，这是调用者的责任。
-
-## 三、导入系统
-
-一个 *module* 内的 Python 代码通过 *importing* 操作就能够访问另一个模块内的代码。
-
-[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句是发起调用[导入机制](https://docs.python.org/zh-cn/3/reference/import.html)的最常用方式，但不是唯一的方式。[`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module) 以及内置的 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 等函数也可以被用来发起调用导入机制。
+- [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句
+- [`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module)
+- [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__)
 
 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句结合了两个操作：
 
-```
-1、搜索指定名称的模块。
-2、然后将搜索结果绑定到当前作用域中的名称。
-```
+- 搜索指定名称的模块
+- 将搜索结果绑定到当前作用域中的名称
 
-[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句的搜索操作被定义为对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 函数的调用并带有适当的参数。[`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的返回值会被用于执行 `import` 语句的名称绑定操作。
+[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句的搜索操作被定义为对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 函数的调用并带有适当的参数，[`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的返回值会被用于执行 `import` 语句的名称绑定操作。
 
 对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的直接调用将仅执行模块搜索，如果找到，则执行模块创建操作。只有 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句会执行名称绑定操作。
 
-当一个模块首次被导入时，Python 会搜索该模块，如果找到就创建一个 *module* 对象并初始化它。如果指定名称的模块未找到，则会引发 [`ModuleNotFoundError`](https://docs.python.org/zh-cn/3/library/exceptions.html#ModuleNotFoundError)。
+### 包和模块
 
-当发起调用导入机制时，Python 会实现多种策略来搜索指定名称的模块。这些策略可以通过使用下文所描述的多种钩子来加以修改和扩展。
+Python 所有模块均属于唯一的模块对象类型，无论由 Python、C 或其他语言实现。为构建模块化的代码组织体系，Python 通过包实现层次化命名空间管理，形成结构化模块资源池。
 
-### importlib
-
-[`importlib`](https://docs.python.org/zh-cn/3/library/importlib.html#module-importlib) 模块提供了丰富的 API 用来与导入系统进行交互。
-
-例如 [`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module) 提供了相比内置的 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 更推荐、更简单的 API 用来发起调用导入机制。
-
-### 包
-
-Python 只有一种模块对象类型，所有模块都属于该类型，无论模块是用 Python、C 还是别的语言实现。为了帮助组织模块并提供名称层次结构，Python 还引入了[包](https://docs.python.org/zh-cn/3/reference/import.html#packages)的概念。
-
-可以把包看成是文件系统中的目录，并把模块看成是目录中的文件。与文件系统一样，包通过层次结构进行组织，在包之内除了一般的模块，还可以有**子包**。
+可以把包看成是文件系统中的目录，并把模块看成是目录中的文件。包既可包含常规模块，又可嵌套包含**子包**，形成树状结构化的代码容器体系。
 
 所有**包都是模块**，但并非所有模块都是包。或者换句话说，包只是一种特殊的模块。特别地，任何具有 `__path__` 属性的模块都会被当作是包。
 
-所有模块都有自己的名字。子包名与其父包名会以点号分隔，与 Python 的标准属性访问语法一致。因此你可能会有一个名为 `email` 的包，这个包中又有一个名为 `email.mime` 的子包，以及该子包中的名为 `email.mime.text` 的子包。
-
-[常规包](https://docs.python.org/zh-cn/3/reference/import.html#regular-packages)是传统的包类型。常规包通常以一个包含 `__init__.py` 文件的目录形式实现。当一个常规包被导入时，这个 `__init__.py` 文件会隐式地被执行，它所定义的对象会被绑定到该包命名空间中的名称。
+[常规包](https://docs.python.org/zh-cn/3/reference/import.html#regular-packages)通常以一个包含 `__init__.py` 文件的目录形式实现，当一个常规包被导入时，这个 `__init__.py` 文件会隐式地被执行，它所定义的对象会被绑定到该包命名空间中的名称。
 
 `__init__.py` 文件可以包含与任何其他模块中所包含的 Python 代码相似的代码，Python 将在模块被导入时为其添加额外的属性。
 
@@ -250,19 +236,38 @@ parent/
         __init__.py
 ```
 
-导入 `parent.one` 将隐式地执行 `parent/__init__.py` 和 `parent/one/__init__.py`。后续导入 `parent.two` 或 `parent.three` 则将分别执行 `parent/two/__init__.py` 和 `parent/three/__init__.py`。
+导入 `parent.one` 将隐式地执行 `parent/__init__.py` 和 `parent/one/__init__.py`，后续导入 `parent.two` 或 `parent.three` 则将分别执行 `parent/two/__init__.py` 和 `parent/three/__init__.py`。
 
-## 四、表达式
+### 表达式
 
 [表达式](https://docs.python.org/zh-cn/3/reference/expressions.html)（Expression）是一个能够计算出一个值的代码片段。表达式可以由常量、变量、运算符、函数调用等组成，并且在求值时会生成一个具体的结果。
 
-### 算术转换
+#### 算术转换
 
 [算术转换](https://docs.python.org/zh-cn/3/reference/expressions.html#arithmetic-conversions)是指在算术运算过程中对不同类型的数据进行隐式或显式转换，以确保操作数兼容并生成预期结果的过程。算术转换通常涉及基本数据类型（如整数、浮点数等）之间的转换。
 
 - 如果任一参数为复数，另一参数会被转换为复数；
 - 否则，如果任一参数为浮点数，另一参数会被转换为浮点数；
 - 否则，两者应该都为整数，不需要进行转换。
+
+#### lambda
+
+[`lambda`](https://docs.python.org/zh-cn/3/reference/expressions.html#lambda) 表达式被用于创建匿名函数。
+
+下列表达式会产生一个函数对象。
+
+```python
+lambda parameters: expression
+```
+
+该未命名对象的行为类似于用以下方式定义的函数。
+
+```python
+def <lambda>(parameters):
+    return expression
+```
+
+## 三、函数和类
 
 ### 函数调用
 
@@ -272,19 +277,14 @@ parent/
 
 用于函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)，根据[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)的参数位置来传递参数。
 
-以此函数为例：
-
 ```python
 def print_hello(name, sex):
     sex_dict = {1: u'先生', 2: u'女士'}
     print(
         'hello %s %s, welcome to python world!' % (name, sex_dict.get(sex))
     )
-```
 
-通过位置参数调用：
-
-```python
+# 通过位置参数调用
 print_hello('x', 1)
 ```
 
@@ -294,23 +294,20 @@ print_hello('x', 1)
 
 有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。
 
-以上一节函数为例，通过关键字参数调用：
+以上一节函数为例，通过关键字参数调用。
 
 ```python
 print_hello('x', sex=1)
 print_hello(name='x', sex=1)
 print_hello(sex=1, name='x')
-```
 
-错误的调用方式：
-
-```python
+# 错误的调用方式
 print_hello(1, name='x')
 print_hello(name='x', 1)
 print_hello(sex=1, 'x')
 ```
 
-#### 解包
+#### 参数解包
 
 如果存在比正式参数空位多的**位置参数**，将会引发 [`TypeError`](https://docs.python.org/zh-cn/3/library/exceptions.html#TypeError) 异常，除非有一个正式参数使用了 `*expression` 句法。在此情况下，该正式参数将接受一个包含了多余位置参数的元组，如果没有多余位置参数则为一个空元组。
 
@@ -336,39 +333,218 @@ def f(a, b):
 f(**{'a': 1, 'b': 2})
 ```
 
-### lambda
+### 函数定义
 
-[`lambda`](https://docs.python.org/zh-cn/3/reference/expressions.html#lambda) 表达式被用于创建匿名函数。
+[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)是一条可执行语句。它执行时会在当前局部命名空间中将函数名称绑定到一个函数对象（函数可执行代码的包装器）。
 
-下列表达式会产生一个函数对象。
+这个函数对象包含对当前全局命名空间的引用，作为函数被调用时所使用的全局命名空间。
+
+#### 默认形参
+
+默认形参值会在执行函数定义时按从左至右的顺序被求值，这意味着当函数被定义时将对表达式求值一次，相同的*预计算*值将在每次调用时被使用。
+
+例如，列表或字典等可变对象，如果函数修改了该对象，则实际上默认值也会被修改。
 
 ```python
-lambda parameters: expression
+def test(a=[]):
+    a.append('test')
+    print(a)
+
+test()
+test()
 ```
 
-该未命名对象的行为类似于用以下方式定义的函数。
+绕过此问题的一个方法是使用 `None` 作为默认值。
 
 ```python
-def <lambda>(parameters):
-    return expression
+def whats_on_the_telly(penguin=None):
+    if penguin is None:
+        penguin = []
+    penguin.append("property of the zoo")
+    return penguin
+
+whats_on_the_telly()
+whats_on_the_telly()
 ```
 
-## 五、简单语句
+所有位置参数必须出现在默认参数前，包括[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)和[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)。
+
+```python
+def print_hello(name, sex=1):
+    pass
+```
+
+#### 位置参数
+
+我们传进的额外的位置参数都会被 `args` 变量收集，它会根据传进参数的位置合并为一个元组，`args` 是元组类型。
+
+```python
+def func(*args):
+    pass
+```
+
+在 `/` 之前的形参，都是仅限位置形参，因而只能通过位置参数传入。
+
+#### 关键字参数
+
+我们传进的额外的关键字参数都会被 `kargs` 变量收集，它会根据传进参数的关键字合并为一个字典，`kargs` 是字典类型。
+
+```python
+def func(**kargs):
+    pass
+```
+
+在 `*` 或 `*identifier` 之后的形参，都是仅限关键字形参，因而只能通过关键字参数传入。
+
+```python
+def add(a, b, c, *, d):
+    print(a, b, c, d)
+
+add(1, 2, 3, d=4)
+```
+
+### 装饰器
+
+一个函数定义可以被一个或多个 *decorator* 表达式所包装。
+
+当函数被定义时将在包含该函数定义的作用域中对装饰器表达式求值。求值结果必须是一个可调用对象，它会以该函数对象作为唯一参数被发起调用。其返回值将被绑定到函数名称而非函数对象。
+
+多个装饰器会以嵌套方式被应用：
+
+```python
+@f1(arg)
+@f2
+def func(): pass
+```
+
+大致等价于
+
+```python
+def func(): pass
+func = f1(arg)(f2(func))
+```
+
+不同之处在于原始函数并不会被临时绑定到名称 `func`。
+
+#### 无参装饰器
+
+装饰器可以有参数，也可以没有参数。
+
+装饰器无需传参：
+
+```python
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+
+@log
+def now():
+    print('2015-3-25')
+```
+
+大致等价于：
+
+```python
+now = log(now)
+```
+
+可快速调用：
+
+```python
+log(now)()
+```
+
+#### 有参装饰器
+
+装饰器需要参数：
+
+```python
+def log(text):
+    def decorator(func):
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+
+@log('execute')
+def now():
+    print('2015-3-25')
+```
+
+和两层嵌套的 *decorator* 相比，三层嵌套的效果是这样的：
+
+```python
+now = log('execute')(now)
+```
+
+可快速调用：
+
+```python
+log('execute')(now)()
+```
+
+#### 函数签名
+
+函数也是对象，它有 `__name__` 等属性，经过 *decorator* 装饰之后的函数，它们的 `__name__` 已经从原来的 `now` 变成了 `wrapper`。
+
+因为返回的 `wrapper()` 函数名字就是 `wrapper`，所以，需要把原始函数的 `__name__` 等属性复制到 `wrapper()` 函数中，否则，有些依赖函数签名的代码执行就会出错。
+
+不需要编写 `wrapper.__name__ = func.__name__` 这样的代码，Python 内置的 `functools.wraps` 就是解决这个问题的。
+
+一个完整的 *decorator* 的写法如下：
+
+```python
+import functools
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+```
+
+或者针对带参数的 `decorator`：
+
+```python
+import functools
+
+def log(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+```
+
+### 类定义
+
+[类定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#class-definitions)就是对类对象的定义。
+
+类定义是一条可执行语句。其中继承列表通常给出基类的列表，列表中的每一项都应当被求值为一个允许子类的类对象。没有继承列表的类默认继承自基类 [`object`](https://docs.python.org/zh-cn/3/library/functions.html#object)。
+
+因此：
+
+```python
+class Foo:
+    pass
+```
+
+等价于：
+
+```python
+class Foo(object):
+    pass
+```
+
+## 四、简单语句
 
 [简单语句](https://docs.python.org/zh-cn/3/reference/simple_stmts.html)由一个单独的逻辑行构成。多条简单语句可以存在于同一行内并以分号分隔。
-
-### 赋值语句
-
-[赋值语句](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#assignment-statements)用于将名称（重）绑定到特定值，以及修改属性或可变对象的成员项。
-
-赋值的左手边与右手边是同时进行的，例如 `a, b = b, a` 会交换两个变量的值。但在赋值给变量的多项集之内的重叠是从左至右进行的。
-
-```python
-x = [0, 1]
-i = 0
-i, x[i] = 1, 2
-print(x)
-```
 
 ### raise
 
@@ -441,7 +617,7 @@ if __debug__:
     if not expression1: raise AssertionError(expression2)
 ```
 
-## 六、复合语句
+## 五、复合语句
 
 [复合语句](https://docs.python.org/zh-cn/3/reference/compound_stmts.html)是包含其它语句的语句，它们会以某种方式影响或控制所包含其它语句的执行。
 
@@ -515,214 +691,5 @@ with (
     B() as b,
 ):
     SUITE
-```
-
-### 函数定义
-
-[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)是一条可执行语句。它执行时会在当前局部命名空间中将函数名称绑定到一个函数对象（函数可执行代码的包装器）。
-
-这个函数对象包含对当前全局命名空间的引用，作为函数被调用时所使用的全局命名空间。
-
-#### 默认形参
-
-默认形参值会在执行函数定义时按从左至右的顺序被求值，这意味着当函数被定义时将对表达式求值一次，相同的*预计算*值将在每次调用时被使用。
-
-例如，列表或字典等可变对象，如果函数修改了该对象，则实际上默认值也会被修改。
-
-```python
-def test(a=[]):
-    a.append('test')
-    print(a)
-
-test()
-test()
-```
-
-绕过此问题的一个方法是使用 `None` 作为默认值。
-
-```python
-def whats_on_the_telly(penguin=None):
-    if penguin is None:
-        penguin = []
-    penguin.append("property of the zoo")
-    return penguin
-
-whats_on_the_telly()
-whats_on_the_telly()
-```
-
-所有位置参数必须出现在默认参数前，包括[函数定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#function-definitions)和[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)。
-
-```python
-def print_hello(name, sex=1):
-    pass
-```
-
-#### 位置参数
-
-我们传进的额外的位置参数都会被 `args` 变量收集，它会根据传进参数的位置合并为一个元组，`args` 是元组类型。
-
-```python
-def func(*args):
-    pass
-```
-
-在 `/` 之前的形参，都是仅限位置形参，因而只能通过位置参数传入。
-
-#### 关键字参数
-
-我们传进的额外的关键字参数都会被 `kargs` 变量收集，它会根据传进参数的关键字合并为一个字典，`kargs` 是字典类型。
-
-```python
-def func(**kargs):
-    pass
-```
-
-在 `*` 或 `*identifier` 之后的形参，都是仅限关键字形参，因而只能通过关键字参数传入。
-
-```python
-def add(a, b, c, *, d):
-    print(a, b, c, d)
-
-add(1, 2, 3, d=4)
-```
-
-#### 装饰器
-
-一个函数定义可以被一个或多个 *decorator* 表达式所包装。
-
-当函数被定义时将在包含该函数定义的作用域中对装饰器表达式求值。求值结果必须是一个可调用对象，它会以该函数对象作为唯一参数被发起调用。其返回值将被绑定到函数名称而非函数对象。
-
-多个装饰器会以嵌套方式被应用：
-
-```python
-@f1(arg)
-@f2
-def func(): pass
-```
-
-大致等价于
-
-```python
-def func(): pass
-func = f1(arg)(f2(func))
-```
-
-不同之处在于原始函数并不会被临时绑定到名称 `func`。
-
-##### 无参装饰器
-
-装饰器可以有参数，也可以没有参数。
-
-装饰器无需传参：
-
-```python
-def log(func):
-    def wrapper(*args, **kw):
-        print('call %s():' % func.__name__)
-        return func(*args, **kw)
-    return wrapper
-
-@log
-def now():
-    print('2015-3-25')
-```
-
-大致等价于：
-
-```python
-now = log(now)
-```
-
-可快速调用：
-
-```python
-log(now)()
-```
-
-##### 有参装饰器
-
-装饰器需要参数：
-
-```python
-def log(text):
-    def decorator(func):
-        def wrapper(*args, **kw):
-            print('%s %s():' % (text, func.__name__))
-            return func(*args, **kw)
-        return wrapper
-    return decorator
-
-@log('execute')
-def now():
-    print('2015-3-25')
-```
-
-和两层嵌套的 *decorator* 相比，三层嵌套的效果是这样的：
-
-```python
-now = log('execute')(now)
-```
-
-可快速调用：
-
-```python
-log('execute')(now)()
-```
-
-##### 函数签名
-
-函数也是对象，它有 `__name__` 等属性，经过 *decorator* 装饰之后的函数，它们的 `__name__` 已经从原来的 `now` 变成了 `wrapper`。
-
-因为返回的 `wrapper()` 函数名字就是 `wrapper`，所以，需要把原始函数的 `__name__` 等属性复制到 `wrapper()` 函数中，否则，有些依赖函数签名的代码执行就会出错。
-
-不需要编写 `wrapper.__name__ = func.__name__` 这样的代码，Python 内置的 `functools.wraps` 就是解决这个问题的。
-
-一个完整的 *decorator* 的写法如下：
-
-```python
-import functools
-
-def log(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kw):
-        print('call %s():' % func.__name__)
-        return func(*args, **kw)
-    return wrapper
-```
-
-或者针对带参数的 `decorator`：
-
-```python
-import functools
-
-def log(text):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kw):
-            print('%s %s():' % (text, func.__name__))
-            return func(*args, **kw)
-        return wrapper
-    return decorator
-```
-
-### 类定义
-
-[类定义](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#class-definitions)就是对类对象的定义。
-
-类定义是一条可执行语句。其中继承列表通常给出基类的列表，列表中的每一项都应当被求值为一个允许子类的类对象。没有继承列表的类默认继承自基类 [`object`](https://docs.python.org/zh-cn/3/library/functions.html#object)。
-
-因此：
-
-```python
-class Foo:
-    pass
-```
-
-等价于：
-
-```python
-class Foo(object):
-    pass
 ```
 

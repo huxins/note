@@ -68,6 +68,7 @@
 - [marshmallow-sqlalchemy](https://github.com/marshmallow-code/marshmallow-sqlalchemy)
 - [Flask-JWT-Extended](https://github.com/vimalloc/flask-jwt-extended)
 - [Flask-RESTful](https://github.com/flask-restful/flask-restful)
+- [Flask-CORS](https://github.com/corydolphin/flask-cors)
 
 ## 数据库驱动
 

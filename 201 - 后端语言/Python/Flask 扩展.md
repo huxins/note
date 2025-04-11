@@ -383,3 +383,13 @@ if __name__ == "__main__":
 pip install flask-restful
 ```
 
+## Flask-CORS
+
+[Flask-CORS](https://github.com/corydolphin/flask-cors) 通过中间件机制实现跨域资源共享（CORS）协议，为 REST API 提供符合 W3C 规范的跨域 AJAX 请求安全授权解决方案。
+
+**安装**：
+
+```sh
+pip install flask-cors
+```
+

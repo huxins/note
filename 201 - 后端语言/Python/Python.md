@@ -2,80 +2,129 @@
 
 [Python](https://docs.python.org/zh-cn/3/) 是一种广泛使用的解释型、高级和通用的编程语言。
 
-## 一、词法分析
+## 一、语言基础
+
+### 命令行接口
+
+CPython 解析器在启动时会扫描[命令行参数和环境变量](https://docs.python.org/zh-cn/3/using/cmdline.html)，以获取各种设置信息，这样可以根据用户提供的参数和环境配置调整其行为。
+
+- -[**c**](https://docs.python.org/zh-cn/3/using/cmdline.html#cmdoption-c) *command*
+
+  执行 `command` 中的 Python 代码。`command` 可以是一条语句，也可以是用换行符分隔的多条语句。
+
+  使用此选项时，[`sys.argv`](https://docs.python.org/zh-cn/3/library/sys.html#sys.argv) 的首个元素为 `-c`，并会把当前目录加入至 [`sys.path`](https://docs.python.org/zh-cn/3/library/sys.html#sys.path) 开头。
+
+  ```sh
+  python -c "import sys; print(sys.argv)"
+  python -c "import sys; print(sys.path)"
+  ```
+
+- -[**m**](https://docs.python.org/zh-cn/3/using/cmdline.html#cmdoption-m) *module-name*
+
+  在 [`sys.path`](https://docs.python.org/zh-cn/3/library/sys.html#sys.path) 中搜索指定模块，并以 [`__main__`](https://docs.python.org/zh-cn/3/library/__main__.html#module-__main__) 模块执行其内容。
+
+  ```sh
+  python -m pip --version
+  ```
+
+### 安装
+
+安装 [Python](https://docs.python.org/zh-cn/3/using/index.html) 环境是开发和运行 Python 程序的基础，不同平台的安装方式可能略有不同。
+
+- **编译安装**
+
+  - CentOS 7
+  
+    ```sh
+    # 安装编译 Python 所需的依赖
+    yum groupinstall "Development Tools"
+    yum install openssl-devel bzip2-devel libffi-devel
+    
+    # 下载 Python 源代码
+    wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz
+    
+    # 解压源代码并进入目录
+    tar -zxvf Python-3.9.18.tgz
+    cd Python-3.9.18
+    
+    # 配置并编译 Python
+    ./configure
+    make -j$(nproc)
+    
+    # 安装 Python
+    make altinstall
+    ```
+
+## 二、核心语法
 
 [词法分析](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html)（Lexical Analysis）是编译器或解释器中的一个关键步骤，其主要任务是将源代码转换成一系列的标记（token）。这些标记是源代码中最小的有意义的单元，比如关键字、标识符、运算符和分隔符等。词法分析器（lexer 或 scanner）负责执行这一过程。
 
-### 字面值
+### 字面量
 
-[字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#literals)是内置类型常量值的表示法。
+[字面量](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#literals)是内置类型常量值的表示法。
 
-#### 字节串
+- **字节串**
 
-[字节串字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals)要加前缀 `b` 或 `B`。生成的是类型 `bytes` 的实例，不是类型 `str` 的实例。
+  [字节串字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals)要加前缀 `b` 或 `B`。生成的是类型 `bytes` 的实例，不是类型 `str` 的实例。
+  
+  ```python
+  # 字节串只能包含 ASCII 字符
+  bytes = b'hello'
+  
+  # 字节串数值大于等于 128 时，必须用转义表示
+  bytes = b'hello\x80world'
+  ```
 
-字节串只能包含 ASCII 字符。
+- **字符串**
 
-```python
-bytes = b'hello'
-```
+  [字符串和字节串](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals)都可以加前缀 `r` 或 `R`，称为**原始字符串**，原始字符串把反斜杠当作原义字符，不执行转义操作。
+  
+  ```python
+  normal_str = "C:\\Users\\User\\Documents"
+  raw_str = r"C:\Users\User\Documents"
+  ```
 
-字节串数值大于等于 128 时，必须用转义表示。
+  为兼容 Python 2，支持 Unicode 字面值前缀 `u` 或 `U`，和普通字符串意义一样。
+  
+  ```python
+  name = "Fred"
+  u_name = u"Fred"
+  ```
 
-```python
-bytes = b'hello\x80world'
-```
+  前缀为 `f` 或 `F` 的字符串称为[**格式字符串**](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings)；`f` 可与 `r` 连用，但不能与 `b` 或 `u` 连用，因此，可以使用**原始格式字符串**，但不能使用格式字节串。
+  
+  ```python
+  name = "Fred"
+  formatted_str = f"He said his name is {name!r}."
+  ```
 
-#### 字符串
+- **整数**
 
-[字符串和字节串](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals)都可以加前缀 `r` 或 `R`，称为**原始字符串**，原始字符串把反斜杠当作原义字符，不执行转义操作。
+  [整数字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#integer-literals)的长度没有限制，能一直大到占满可用内存。
 
-```python
-normal_str = "C:\\Users\\User\\Documents"
-raw_str = r"C:\Users\User\Documents"
-```
+  确定数值时，会忽略字面值中的下划线。下划线只是为了分组数字，让数字更易读。下划线可在数字之间，也可在 `0x` 等基数说明符后。
 
-为兼容 Python 2，支持 Unicode 字面值前缀 `u` 或 `U`，和普通字符串意义一样。
+  注意，除了 0 以外，十进制数字的开头不允许有零，以免与八进制字面值混淆。
+  
+  ```
+  decinteger: 10_000_000
+  bininteger: 0b_1010_0110_10
+  octinteger: 0o_1232
+  hexinteger: 0x_29a
+  ```
 
-```python
-name = "Fred"
-u_name = u"Fred"
-```
+- **浮点数**
 
-前缀为 `f` 或 `F` 的字符串称为[**格式字符串**](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings)；`f` 可与 `r` 连用，但不能与 `b` 或 `u` 连用，因此，可以使用**原始格式字符串**，但不能使用格式字节串。
-
-```python
-name = "Fred"
-formatted_str = f"He said his name is {name!r}."
-```
-
-#### 整数
-
-[整数字面值](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#integer-literals)的长度没有限制，能一直大到占满可用内存。
-
-确定数值时，会忽略字面值中的下划线。下划线只是为了分组数字，让数字更易读。下划线可在数字之间，也可在 `0x` 等基数说明符后。
-
-注意，除了 0 以外，十进制数字的开头不允许有零。以免与八进制字面值混淆。
-
-```
-decinteger: 10_000_000
-bininteger: 0b_1010_0110_10
-octinteger: 0o_1232
-hexinteger: 0x_29a
-```
-
-#### 浮点数
-
-[浮点数](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#floating-point-literals)解析时，整数和指数部分总以 10 为基数。例如，`077e010` 是合法的，表示的数值与 `77e10` 相同。
-
-```
-3.14
-10.
-.001
-1e3
-0e0
-3.14_15_93
-```
+  [浮点数](https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#floating-point-literals)解析时，整数和指数部分总以 10 为基数。例如，`077e010` 是合法的，表示的数值与 `77e10` 相同。
+  
+  ```
+  3.14
+  10.
+  .001
+  1e3
+  0e0
+  3.14_15_93
+  ```
 
 ### 运算符
 
@@ -92,8 +141,6 @@ hexinteger: 0x_29a
 | **     | 幂，返回 *x* 的 *y* 次幂                       | 10 ** 2 = 100 |
 
 除法 `/` 始终返回一个浮点数。要进行向下取整除法并获得整数结果，可以使用 `//` 运算符；要计算余数，可以使用 `%`。
-
-## 二、数据模型
 
 ### 特殊方法
 

@@ -364,4 +364,5 @@ value = str(file.stream.read(), encoding="utf-8")
 
 - [Flask 中文文档 - *dormouse*](https://github.com/dormouse/Flask_Docs_ZhCn)
 - [Flask 入门教程 - *helloflask*](https://github.com/helloflask/flask-tutorial)
+- [qzq1111/flask-restful-example](https://github.com/qzq1111/flask-restful-example)
 

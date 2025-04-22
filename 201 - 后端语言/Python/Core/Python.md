@@ -177,66 +177,6 @@ CPython 解析器在启动时会扫描[命令行参数和环境变量](https://d
   ```python
   object.__repr__(self)
   ```
-  
-- **上下文管理器**
-
-  [上下文管理器](https://docs.python.org/zh-cn/3.10/library/stdtypes.html#context-manager-types)定义了在执行 `with` 语句时要建立的运行时上下文。[上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#with-statement-context-managers)处理进入和退出所需运行时上下文，以执行代码块。
-
-  上下文管理器的典型用法包括保存和恢复各种全局状态，锁定和解锁资源，关闭打开的文件等等。
-
-  - object.[**\__enter__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__enter__)()
-
-    进入与此对象相关的运行时上下文。`with` 语句将会绑定这个方法的返回值到 `as` 子句中指定的目标，如果有的话。
-
-  - object.[**\__exit__**](https://docs.python.org/zh-cn/3/reference/datamodel.html#object.__exit__)()
-
-    退出关联到此对象的运行时上下文。
-
-### 模块导入
-
-一个模块内的 Python 代码通过导入操作就能够访问另一个模块内的代码。
-
-发起调用[导入机制](https://docs.python.org/zh-cn/3/reference/import.html)的方式：
-
-- [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句
-- [`importlib.import_module()`](https://docs.python.org/zh-cn/3/library/importlib.html#importlib.import_module)
-- [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__)
-
-[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句结合了两个操作：
-
-- 搜索指定名称的模块
-- 将搜索结果绑定到当前作用域中的名称
-
-[`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句的搜索操作被定义为对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 函数的调用并带有适当的参数，[`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的返回值会被用于执行 `import` 语句的名称绑定操作。
-
-对 [`__import__()`](https://docs.python.org/zh-cn/3/library/functions.html#import__) 的直接调用将仅执行模块搜索，如果找到，则执行模块创建操作。只有 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#import) 语句会执行名称绑定操作。
-
-### 包和模块
-
-Python 所有模块均属于唯一的模块对象类型，无论由 Python、C 或其他语言实现。为构建模块化的代码组织体系，Python 通过包实现层次化命名空间管理，形成结构化模块资源池。
-
-可以把包看成是文件系统中的目录，并把模块看成是目录中的文件。包既可包含常规模块，又可嵌套包含**子包**，形成树状结构化的代码容器体系。
-
-所有**包都是模块**，但并非所有模块都是包。或者换句话说，包只是一种特殊的模块。特别地，任何具有 `__path__` 属性的模块都会被当作是包。
-
-[常规包](https://docs.python.org/zh-cn/3/reference/import.html#regular-packages)通常以一个包含 `__init__.py` 文件的目录形式实现，当一个常规包被导入时，这个 `__init__.py` 文件会隐式地被执行，它所定义的对象会被绑定到该包命名空间中的名称。
-
-`__init__.py` 文件可以包含与任何其他模块中所包含的 Python 代码相似的代码，Python 将在模块被导入时为其添加额外的属性。
-
-例如，以下文件系统布局定义了一个最高层级的 `parent` 包和三个子包：
-
-```
-parent/
-    __init__.py
-    one/
-        __init__.py
-    two/
-        __init__.py
-    three/
-        __init__.py
-```
-
-导入 `parent.one` 将隐式地执行 `parent/__init__.py` 和 `parent/one/__init__.py`，后续导入 `parent.two` 或 `parent.three` 则将分别执行 `parent/two/__init__.py` 和 `parent/three/__init__.py`。
 
 ### 表达式
 
@@ -250,7 +190,7 @@ parent/
 - 否则，如果任一参数为浮点数，另一参数会被转换为浮点数；
 - 否则，两者应该都为整数，不需要进行转换。
 
-#### lambda
+#### Lambda
 
 [`lambda`](https://docs.python.org/zh-cn/3/reference/expressions.html#lambda) 表达式被用于创建匿名函数。
 
@@ -290,9 +230,7 @@ print_hello('x', 1)
 
 #### 关键字参数
 
-用于函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)，通过键值对形式加以指定。可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。
-
-有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。
+用于函数[调用](https://docs.python.org/zh-cn/3/reference/expressions.html#calls)，通过键值对形式加以指定。可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。
 
 以上一节函数为例，通过关键字参数调用。
 
@@ -542,9 +480,7 @@ class Foo(object):
     pass
 ```
 
-## 四、简单语句
-
-[简单语句](https://docs.python.org/zh-cn/3/reference/simple_stmts.html)由一个单独的逻辑行构成。多条简单语句可以存在于同一行内并以分号分隔。
+## 四、常用语句
 
 ### raise
 
@@ -554,49 +490,6 @@ class Foo(object):
 
 ```python
 raise KeyError('未找到对应的配置信息')
-```
-
-### import
-
-基本的 [`import`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#the-import-statement) 语句会分两步执行：
-
-```
-1、查找一个模块，如果有必要还会加载并初始化模块。
-2、在局部命名空间中，为 import 语句发生位置所处的作用域，定义一个或多个名称。
-```
-
-当语句包含多个子句时，这两个步骤将对每个子句分别执行，如同这些子句被分成独立的 `import` 语句一样。
-
-[`from`](https://docs.python.org/zh-cn/3/reference/simple_stmts.html#index-36) 形式使用的过程略微繁复一些：
-
-```
-1、查找 from 子句中指定的模块，如有必要还会加载并初始化模块。
-2、对于 import 子句中指定的每个标识符：
-    1、检查被导入模块是否有该名称的属性。
-    2、如果没有，尝试导入具有该名称的子模块，然后再次检查被导入模块是否有该属性。
-    3、如果未找到该属性，则引发 ImportError。
-    4、否则的话，将对该值的引用存入局部命名空间，如果有 as 子句则使用其指定的名称，否则使用该属性的名称。
-```
-
-如果标识符列表改为一个星号 `*`，则在模块中定义的全部**公有名称**都将按 `import` 语句所在的作用域被绑定到局部命名空间。
-
-```python
-from module import *
-```
-
-- **公有名称**：公有名称是指在模块中可以被外部直接访问和使用的名称（如函数、类、变量等）。
-- **私有名称**：私有名称通常以下划线 `_` 开头，表示这些名称是模块的内部实现细节，不建议外部访问。
-
-一个模块所定义的**公有名称**，是由在模块的命名空间中检测一个名为 `__all__` 的变量来确定的；如果有定义，它必须是一个字符串列表，其中的项为该模块所定义或导入的名称。
-
-当使用 `from module import *` 语句时，只有 `__all__` 列表中的名称会被导入。
-
-如果没有定义 `__all__`，Python 会默认将所有不以下划线 `_` 开头的名称视为公有名称。
-
-```python
-from . import views
-
-__all__ = ["views"]
 ```
 
 ### assert
@@ -615,81 +508,5 @@ if __debug__:
 ```python
 if __debug__:
     if not expression1: raise AssertionError(expression2)
-```
-
-## 五、复合语句
-
-[复合语句](https://docs.python.org/zh-cn/3/reference/compound_stmts.html)是包含其它语句的语句，它们会以某种方式影响或控制所包含其它语句的执行。
-
-### with
-
-[`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement) 语句用于包装带有使用[上下文管理器](https://docs.python.org/zh-cn/3/reference/datamodel.html#context-managers)定义的方法的代码块的执行。这允许对普通的 [`try`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#try)...[`except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#except)...[`finally`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#finally) 使用模式进行封装以方便地重用。
-
-[`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#with) 语句的执行过程如下：
-
-```
-1、对上下文表达式进行求值来获得上下文管理器。
-2、载入上下文管理器的 __enter__() 以便后续使用。
-3、载入上下文管理器的 __exit__() 以便后续使用。
-4、发起调用上下文管理器的 __enter__() 方法。
-5、如果 with 语句中包含一个目标，来自 __enter__() 的返回值将被赋值给它。
-6、执行语句体。
-7、发起调用上下文管理器的 __exit__() 方法。
-    如果语句体的退出是由异常导致的，则其类型、值和回溯信息将被作为参数传递给 __exit__()。否则的话，将提供三个 None 参数。
-    如果语句体的退出是由异常导致的，并且来自 __exit__() 方法的返回值为假，则该异常会被重新引发。如果返回值为真，则该异常会被抑制，并会继续执行 with 语句之后的语句。
-    如果语句体由于异常以外的任何原因退出，则来自 __exit__() 的返回值会被忽略，并会在该类退出正常的发生位置继续执行。
-```
-
-以下代码：
-
-```python
-with EXPRESSION as TARGET:
-    SUITE
-```
-
-在语义上等价于：
-
-```python
-manager = (EXPRESSION)
-enter = type(manager).__enter__
-exit = type(manager).__exit__
-value = enter(manager)
-hit_except = False
-
-try:
-    TARGET = value
-    SUITE
-except:
-    hit_except = True
-    if not exit(manager, *sys.exc_info()):
-        raise
-finally:
-    if not hit_except:
-        exit(manager, None, None, None)
-```
-
-如果有多个项目，则会视作存在多个 [`with`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#with) 语句嵌套来处理多个上下文管理器：
-
-```python
-with A() as a, B() as b:
-    SUITE
-```
-
-在语义上等价于：
-
-```python
-with A() as a:
-    with B() as b:
-        SUITE
-```
-
-也可以用圆括号包围的多行形式的多项目上下文管理器：
-
-```python
-with (
-    A() as a,
-    B() as b,
-):
-    SUITE
 ```
 

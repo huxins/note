@@ -35,6 +35,7 @@
 - [dateutil](https://github.com/dateutil/dateutil) - [datetime](https://docs.python.org/zh-cn/3/library/datetime.html) 模块的扩展。
 - [holidays](https://github.com/vacanza/python-holidays) - 在 Python 中生成和处理假期。
 - [chinese-calendar](https://github.com/LKI/chinese-calendar) - 中国节假日计算。
+- [pytz](https://github.com/stub42/pytz) - 将 IANA tz 数据库引入 Python。
 
 ## 数据分析
 

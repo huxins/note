@@ -4,6 +4,10 @@
 
 - [luong-komorebi/Awesome-Linux-Software](https://github.com/luong-komorebi/Awesome-Linux-Software)
 
+## 发行版
+
+- [Debian](https://www.debian.org/)
+
 ## 脚本开发
 
 - [Bash](https://www.gnu.org/software/bash/) - Bash 是一种广泛使用的 Linux 命令行解释器和脚本语言。

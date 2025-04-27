@@ -137,6 +137,11 @@ Bash 将 `$` 开头的词视为变量，将其[扩展](https://www.gnu.org/softw
 ```sh
 NAME="Alice"
 echo "Hello, ${NAME}"!
+
+# 将参数值中的反斜杠转义序列按 $'...' 引用机制展开
+str='line1\r\nline2'
+echo "${str@E}"
+echo $'line1\r\nline2'
 ```
 
 ### 命令替换

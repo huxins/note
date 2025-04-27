@@ -539,7 +539,15 @@ logger.info("登录请求成功")
 
 ### hashlib
 
-哈希算法（MD5, SHA256）。
+[`hashlib`](https://docs.python.org/zh-cn/3/library/hashlib.html) 模块实现了一个针对不同哈希算法的通用接口。
+
+- hashlib.[**md5**](https://docs.python.org/zh-cn/3/library/hashlib.html#hashlib.md5)()
+
+  ```python
+  md5 = hashlib.md5()
+  md5.update("123".encode('utf_8'))
+  sign = md5.hexdigest()
+  ```
 
 ### secrets
 

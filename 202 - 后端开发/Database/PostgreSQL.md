@@ -58,9 +58,8 @@ docker run -d -p 5432:5432 --name postgres \
 
 [检查约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS)是最通用的约束类型。它允许我们指定特定列中的值必须满足布尔表达式。
 
-例如，为了要求正值的产品价格，我们可以使用：
-
 ```sql
+# 要求正值的产品价格
 CREATE TABLE products (
     product_no integer,
     name text,
@@ -140,7 +139,7 @@ CREATE TABLE products (
 
 增加一个唯一约束会在约束列或列组上自动创建一个唯一 *B-tree* 索引。
 
-### 主键
+### 主键约束
 
 [主键约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-PRIMARY-KEYS)保证在一列或一组列中可以用作表中行的唯一标识符。这要求值既是唯一的又是非空的。因此，以下两个表定义接受相同的数据。
 
@@ -174,7 +173,7 @@ CREATE TABLE products (
 
 一个表最多只能有一个主键。关系数据库理论要求每一个表都要有一个主键，但 PostgreSQL 中并未强制要求这一点，但是最好能够遵循它。
 
-### 外键
+### 外键约束
 
 [外键约束](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-FK)指定一列或一组列中的值必须匹配出现在另一个表中某些行的值。
 
@@ -194,13 +193,15 @@ CREATE TABLE orders (
 
 ## 三、函数
 
-### 序列操作
+### 序列
 
 [序列](https://www.postgresql.org/docs/12/functions-sequence.html)是一个数据库对象，本质上是一个自增器。序列在其他同类型数据库软件中以 `AUTO_INCREMENT` 值的形式存在。
 
+序列对象是使用 [`CREATE SEQUENCE`](https://www.postgresql.org/docs/12/sql-createsequence.html) 创建的特殊单行表，序列对象通常用于为表的行生成唯一标识符。
+
 序列对象中包含当前值，和一些独特属性，例如如何递增或递减。序列不能直接访问，需要通过 PostgreSQL 中的相关函数来操作它们。
 
-以下为用于操作序列对象的函数，也称为序列生成器或序列。序列对象是使用 [`CREATE SEQUENCE`](https://www.postgresql.org/docs/12/sql-createsequence.html) 创建的特殊单行表，序列对象通常用于为表的行生成唯一标识符。
+以下为用于操作序列对象的函数，也称为序列生成器或序列。
 
 - **nextval**(*regclass*) → `bigint`
 
@@ -267,8 +268,8 @@ SELECT p.relname, a.adsrc FROM pg_class p
 通过 SQL 查询配置文件和数据目录位置。
 
 ```sh
-psql -U postgres -c "SHOW config_file"
-psql -U postgres -c "SHOW data_directory"
+psql -U postgres -c "SHOW config_file"     # 配置文件目录
+psql -U postgres -c "SHOW data_directory"  # 数据目录
 ```
 
 通过 [`pg_config`](https://www.postgresql.org/docs/17/app-pgconfig.html) 可以查询执行文件所在目录。
@@ -302,12 +303,12 @@ host    all             all             127.0.0.1/32            trust
 host    database        user            address                 auth-method  [auth-options]
 ```
 
-#### 身份验证方法
+#### 身份验证
 
-PostgreSQL 提供了多种[验证](https://www.postgresql.org/docs/12/auth-methods.html)用户的方法：
+PostgreSQL 提供了多种[验证用户](https://www.postgresql.org/docs/12/auth-methods.html)的方法：
 
-- [**Trust authentication**](https://www.postgresql.org/docs/12/auth-trust.html)，简单的信任用户声称的身份。
-- [**Password authentication**](https://www.postgresql.org/docs/current/auth-password.html)，需要用户提供密码。
+- [**Trust authentication**](https://www.postgresql.org/docs/12/auth-trust.html)：简单的信任用户声称的身份。
+- [**Password authentication**](https://www.postgresql.org/docs/current/auth-password.html)：需要用户提供密码。
 
 #### 密码认证
 
@@ -340,8 +341,6 @@ psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'new-password'"
 ### initdb
 
 [`initdb`](https://www.postgresql.org/docs/12/app-initdb.html) 用于创建一个新的 PostgreSQL 数据库集簇。
-
-语法如下：
 
 ```
 initdb [option...] [ --pgdata | -D ] directory
@@ -415,7 +414,7 @@ createuser -P -s -e sonar;
 psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432
 ```
 
-[Meta 命令](https://www.postgresql.org/docs/12/app-psql.html#APP-PSQL-META-COMMANDS)：
+[**Meta 命令**](https://www.postgresql.org/docs/12/app-psql.html#APP-PSQL-META-COMMANDS)：
 
 - \\**l**：列出服务器中的数据库，并显示它们的名称、所有者、字符集编码和访问权限。
 - \\**c** *dbname*：建立到 PostgreSQL 服务器的新连接。

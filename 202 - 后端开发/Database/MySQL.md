@@ -193,7 +193,7 @@ CREATE TABLE users (
 mysql --user=user_name --password db_name
 ```
 
-`mysql` [选项](https://dev.mysql.com/doc/refman/5.7/en/mysql-command-options.html)：
+`mysql` [**选项**](https://dev.mysql.com/doc/refman/5.7/en/mysql-command-options.html)：
 
 - --**user**=*user_name*, -**u** *user_name*
 
@@ -211,7 +211,7 @@ mysql --user=user_name --password db_name
 
   MySQL 服务器所在的主机。
 
-`mysql` [命令](https://dev.mysql.com/doc/refman/5.7/en/mysql-commands.html)：
+`mysql` [**命令**](https://dev.mysql.com/doc/refman/5.7/en/mysql-commands.html)：
 
 `mysql` 会将发出的每个 SQL 语句发送到要执行的服务器，同时还有一组 `mysql` 自己解释的命令。
 
@@ -233,7 +233,7 @@ mysql --user=user_name --password db_name
 mysqladmin --user=user_name --password flush-privileges
 ```
 
-`mysqladmin` 选项：
+`mysqladmin` **选项**：
 
 `mysqladmin` 支持以下选项，可以在命令行或选项文件的 `[mysqladmin]` 和 `[client]` 组中指定。
 
@@ -245,7 +245,7 @@ mysqladmin --user=user_name --password flush-privileges
 
   连接到服务器时使用的密码。
 
-`mysqladmin` 命令：
+`mysqladmin` **命令**：
 
 - `flush-privileges`
 
@@ -291,7 +291,7 @@ mysql < dump.sql
 source dump.sql
 ```
 
-`mysqldump` 选项：
+`mysqldump` **选项**：
 
 - --**host**=*host_name*, -**h** *host_name*
 
@@ -309,7 +309,7 @@ source dump.sql
 
 [`mysqld`](https://dev.mysql.com/doc/refman/5.7/en/mysqld.html)，也称为 MySQL Server。
 
-`mysqld` [选项](https://dev.mysql.com/doc/refman/5.7/en/server-options.html)：
+`mysqld` [**选项**](https://dev.mysql.com/doc/refman/5.7/en/server-options.html)：
 
 `mysqld` 从[选项文件](https://dev.mysql.com/doc/refman/5.7/en/option-files.html)中的 `[mysqld]` 和 `[server]` 部分读取[所有选项](https://dev.mysql.com/doc/refman/5.7/en/server-options.html)。
 

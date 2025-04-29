@@ -4,13 +4,13 @@
 
 ## 一、安装
 
-### Debian
+- **Debian**
 
-使用[脚本](https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script)快速安装。
-
-```sh
-curl -fsSL https://get.docker.com | bash -s -- --mirror Aliyun
-```
+  使用[脚本](https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script)快速安装。
+  
+  ```sh
+  curl -fsSL https://get.docker.com | bash -s -- --mirror Aliyun
+  ```
 
 默认情况下，`docker` 命令会使用 Unix socket 与 Docker 引擎通讯，而只有 `root` 用户和 `docker` 组的用户才可以访问 Docker 引擎的 Unix socket。
 

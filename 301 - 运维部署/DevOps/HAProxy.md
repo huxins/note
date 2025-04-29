@@ -1,8 +1,8 @@
 # HAProxy
 
-## 一、入门
+[HAProxy](https://www.haproxy.org/) 是高性能的开源负载均衡器和代理服务器，专注于优化 TCP/HTTP 应用流量分发，提升系统的高可用性和可扩展性。
 
-### 安装
+## 一、安装
 
 ```sh
 # CentOS 7
@@ -11,13 +11,13 @@ yum install haproxy
 
 ## 二、配置
 
-在 Shell 中测试配置：
+在 Shell 中测试配置。
 
 ```sh
 haproxy -f /etc/haproxy/haproxy.cfg -c
 ```
 
-### 例子
+配置示例如下：
 
 ```
 defaults
@@ -58,12 +58,12 @@ listen  admin_status
 
 ## 三、Proxies
 
-代理配置可以位于一组 *sections* 中：
+代理配置可以位于一组 `sections` 中：
 
-- defaults *\<name>*
-- frontend *\<name>*
-- backend *\<name>*
-- listen *\<name>*
+- **defaults** *\<name>*
+- **frontend** *\<name>*
+- **backend** *\<name>*
+- **listen** *\<name>*
 
 `defaults` 部分为声明后的所有其他部分设置默认参数。`name` 是可选的，但鼓励使用它以提高可读性。
 

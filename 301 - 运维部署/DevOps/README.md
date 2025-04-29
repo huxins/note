@@ -40,4 +40,8 @@
 
 - [Dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) - 轻量级的 DNS 缓存服务器，同时也支持 DHCP、TFTP 和 PXE 相关功能。
 - [Shadowsocks](https://shadowsocks.org/) - 基于 Socks5 代理方式的加密传输协议。
+- [V2Ray](https://github.com/v2fly/v2ray-core)
+- [Trojan](https://github.com/trojan-gfw/trojan)
+- [WireGuard](https://www.wireguard.com/)
+- [Tailscale](https://github.com/tailscale/tailscale)
 

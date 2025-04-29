@@ -35,7 +35,29 @@ reboot
 
 进入 `Linux Network Installs (64-bit)` 后，再找到 PVE 安装下面的稳定版即可。
 
-### LVM 配置选项
+### 模板镜像
+
+ISO Images 存储于 `/var/lib/vz/template/iso`。
+
+CT Templates 存储于 `/var/lib/vz/template/cache`。
+
+使用软件源镜像。
+
+```sh
+# Bullseye
+sed -i 's/ftp.debian.org/mirrors.sjtug.sjtu.edu.cn/g' /etc/apt/sources.list
+sed -i 's/security.debian.org/mirrors.sjtug.sjtu.edu.cn\/debian-security/g' /etc/apt/sources.list
+# Proxmox
+rm -f /etc/apt/sources.list.d/pve-enterprise.list
+echo "deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+# CT Templates
+sed -i 's/download.proxmox.com/mirrors.tuna.tsinghua.edu.cn\/proxmox/g' /usr/share/perl5/PVE/APLInfo.pm
+sed -i '/mirrors/s/http/https/g' /usr/share/perl5/PVE/APLInfo.pm
+```
+
+## 二、LVM
+
+### 配置选项
 
 安装程序会创建一个名为 `pve` 的 Volume Group，以及名为 `root`、`data` 和 `swap` 的 Logical Volumes。
 
@@ -63,29 +85,9 @@ reboot
 
   定义 LVM volume group `pve` 中剩余的可用空间量。如果可用存储空间超过 128 GB，则默认为 16 GB，否则将使用 `hdsize/8`。
 
-### 模板镜像
+## 三、命令工具
 
-ISO Images 存储于 `/var/lib/vz/template/iso`。
-
-CT Templates 存储于 `/var/lib/vz/template/cache`。
-
-使用软件源镜像。
-
-```sh
-# Bullseye
-sed -i 's/ftp.debian.org/mirrors.sjtug.sjtu.edu.cn/g' /etc/apt/sources.list
-sed -i 's/security.debian.org/mirrors.sjtug.sjtu.edu.cn\/debian-security/g' /etc/apt/sources.list
-# Proxmox
-rm -f /etc/apt/sources.list.d/pve-enterprise.list
-echo "deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
-# CT Templates
-sed -i 's/download.proxmox.com/mirrors.tuna.tsinghua.edu.cn\/proxmox/g' /usr/share/perl5/PVE/APLInfo.pm
-sed -i '/mirrors/s/http/https/g' /usr/share/perl5/PVE/APLInfo.pm
-```
-
-## 二、qm
-
-### importdisk
+### 磁盘映像导入
 
 将外部磁盘映像导入为 VM 中未使用的磁盘。
 
@@ -99,45 +101,47 @@ qm importdisk <vmid> <source> <storage> [OPTIONS]
 qm importdisk 100 openwrt.qcow2 local-lvm
 ```
 
-### unlock
+### 虚拟机控制
 
-解锁虚拟机。
+- **unlock**
 
-```sh
-qm unlock <vmid>
-```
+  解锁虚拟机。
+  
+  ```sh
+  qm unlock <vmid>
+  ```
+  
+- **stop**
 
-### stop
+  停止虚拟机。`qemu` 进程将立即退出。
 
-停止虚拟机。
+  这类似于拔掉正在运行的计算机的电源插头，可能会损坏 VM 数据。
 
-`qemu` 进程将立即退出。
+  ```sh
+  qm stop <vmid> [OPTIONS]
+  ```
+  
+- **status**
 
-这类似于拔掉正在运行的计算机的电源插头，可能会损坏 VM 数据。
+  显示虚拟机状态。
+  
+  ```sh
+  qm status <vmid> [OPTIONS]
+  ```
 
-```sh
-qm stop <vmid> [OPTIONS]
-```
+## 四、常见问题
 
-### status
+### Control Group
 
-显示虚拟机状态。
-
-```sh
-qm status <vmid> [OPTIONS]
-```
-
-## 三、Control Group
-
-CentOS 7 和 Ubuntu 16.10 的 systemd 版本太旧，无法在 cgroupv2 环境中运行。[社区讨论](https://forum.proxmox.com/threads/solved-warn-old-systemd-v232-detected-container-wont-run-in-a-pure-cgroupv2-environment.114736/)。
+CentOS 7 和 Ubuntu 16.10 的 `systemd` 版本太旧，无法在 [`cgroupv2`](https://forum.proxmox.com/threads/solved-warn-old-systemd-v232-detected-container-wont-run-in-a-pure-cgroupv2-environment.114736/) 环境中运行。
 
 ```
 WARN: old systemd (< v232) detected, container won't run in a pure cgroupv2 environment! Please see documentation -> container -> cgroup version.
 ```
 
-可以切换回 legacy cgroup。
+可以切换回 `legacy cgroup`。
 
-从 Proxmox VE 9.0 开始，将不再支持 legacy controller。
+从 Proxmox VE 9.0 开始，将不再支持 `legacy controller`。
 
 编辑 `/etc/default/grub`。
 

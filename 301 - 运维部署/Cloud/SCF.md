@@ -108,9 +108,28 @@ TENCENT_SECRET_KEY=xxxxxxxx
 
 [`@tencentyun/serverless-demo`](https://github.com/tencentyun/serverless-demo) 也有许多模板可供参考。
 
+配置[启动文件](https://cloud.tencent.com/document/product/583/56126)：
+
+```sh
+#!/bin/bash
+SERVERLESS=1 /var/lang/python39/bin/python3.9 -u run.py
+```
+
 部署函数：
 
 ```sh
 scf deploy --noCache
+```
+
+## 运行环境
+
+### 层
+
+SCF 中的[层](https://cloud.tencent.com/document/product/583/40159)用于管理依赖库或公共代码文件。
+
+打包 Python 依赖：
+
+```sh
+pip install -r requirements.txt -t ./runtime
 ```
 

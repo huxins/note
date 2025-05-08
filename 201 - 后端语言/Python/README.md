@@ -82,4 +82,5 @@
 ## 云服务
 
 - [Boto3](https://github.com/boto/boto3) - AWS SDK Python 版。
+- [wechatpy](https://github.com/wechatpy/wechatpy) - WeChat SDK for Python.
 

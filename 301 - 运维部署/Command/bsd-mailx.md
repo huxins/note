@@ -2,7 +2,7 @@
 
 [`bsd-mailx`](https://packages.debian.org/bookworm/bsd-mailx) 是一个命令行邮件客户端工具，通常简称为 `mailx`。它允许用户通过命令行发送电子邮件，或者在某些情况下也可以用来查看和管理邮件。`bsd-mailx` 是 `mailx` 的一个具体实现，继承自 BSD 系统中的邮件工具。
 
-- 在 Debian 12 上进行安装。
+- 在 Debian 12 上进行安装
 
   ```sh
   apt install bsd-mailx

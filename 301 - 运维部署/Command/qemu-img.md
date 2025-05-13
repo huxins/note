@@ -1,6 +1,6 @@
 # QEMU disk image utility
 
-`qemu-img` 允许您离线创建、转换和修改图像。它可以处理 QEMU 支持的所有图像格式。
+[`qemu-img`](https://www.qemu.org/docs/master/tools/qemu-img.html) 允许离线创建、转换和修改图像。它可以处理 QEMU 支持的所有图像格式。
 
 ## 语法
 
@@ -30,8 +30,4 @@ qemu-img check openwrt.qcow2
 ```sh
 qemu-img convert -f vmdk -O qcow2 path/to/file/foo.vmdk path/to/file/foo.qcow2
 ```
-
-## Reference
-
-- [QEMU disk image utility - QEMU documentation](https://www.qemu.org/docs/master/tools/qemu-img.html)
 

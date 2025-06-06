@@ -14,6 +14,7 @@
 | [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |            |          |                   |
 | [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790    |          | 417 \* 175 \* 360 |
 | [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | i5-11500T  | F1V5NM3  | 182 \* 36 \* 178  |
+| [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7  |          |                   |
 | [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700    | 1788LN2  | 292 \* 92 \* 290  |
 | [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |            |          |                   |
 | [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100   |          |                   |
@@ -73,6 +74,17 @@
 | 机箱 | 先马 趣造                           | 199  |
 | 散热 | 酷冷至尊 i70C                       | 45   |
 |      |                                     | 2017 |
+
+## 小主机
+
+| 品牌   | 型号                                                         | 代表 CPU                                                     |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 铭凡   | [UM760 Slim](https://www.minisforum.com/zh-hans/products/minisforum-um680-um760-um870-slim) | [R5 7640HS](https://www.amd.com/zh-tw/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7640hs.html) |
+| 铭凡   | [UM790 Pro](https://www.minisforum.com/new/support#/support/page/spec/79) | [R9 7940HS](https://www.amd.com/zh-tw/products/processors/laptop/ryzen/7000-series/amd-ryzen-9-7940hs.html) |
+| 铭凡   | [UM870 Slim](https://www.minisforum.com/new/support#/support/page/spec/156) | [R7 8745H](https://www.amd.com/zh-cn/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8745h.html) |
+| 极摩客 | [K6](https://www.gmktec.cn/product/1603/)                    | [R7 7840HS](https://www.amd.com/zh-tw/products/processors/laptop/ryzen/7000-series/amd-ryzen-7-7840hs.html) |
+| 极摩客 | [K11](https://www.gmktec.cn/product/4705/)                   | [R9 8945HS](https://www.amd.com/zh-tw/products/processors/laptop/ryzen/8000-series/amd-ryzen-9-8945hs.html) |
+| 天钡   | [GEM12 PRO](https://www.sztbkj.com/minipc/pc-9)              | [R7 PRO 8845HS](https://www.amd.com/zh-tw/products/processors/laptop/ryzen-pro/8000-series/amd-ryzen-7-pro-8845hs.html) |
 
 ## Reference
 

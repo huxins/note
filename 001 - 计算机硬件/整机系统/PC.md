@@ -16,6 +16,7 @@
 | [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | i5-11500T  | F1V5NM3  | 182 \* 36 \* 178  |
 | [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7  |          |                   |
 | [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700    | 1788LN2  | 292 \* 92 \* 290  |
+| [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700   |          |                   |
 | [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |            |          |                   |
 | [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100   |          |                   |
 | [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | 2021     | i3-10105   |          |                   |

@@ -9,17 +9,20 @@
 
 **产品**：
 
-| 型号                                                         | 上市时间 | 代表处理器 | 服务编号 | 物理尺寸          |
-| ------------------------------------------------------------ | -------- | ---------- | -------- | ----------------- |
-| [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |            |          |                   |
-| [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790    |          | 417 \* 175 \* 360 |
-| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | i5-11500T  | F1V5NM3  | 182 \* 36 \* 178  |
-| [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7  |          |                   |
-| [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700    | 1788LN2  | 292 \* 92 \* 290  |
-| [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700   |          |                   |
-| [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |            |          |                   |
-| [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100   |          |                   |
-| [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | 2021     | i3-10105   |          |                   |
+| 型号                                                         | 上市时间 | 代表处理器                                                   | 服务编号 | 物理尺寸          |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | -------- | ----------------- |
+| [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |                                                              |          |                   |
+| [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790                                                      |          | 417 \* 175 \* 360 |
+| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | i5-11500T                                                    | F1V5NM3  | 182 \* 36 \* 178  |
+| [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7                                                    |          |                   |
+| [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700                                                      | 1788LN2  | 292 \* 92 \* 290  |
+| [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700                                                     |          |                   |
+| [Pro Max Micro FCM2250](https://www.dell.com/support/product-details/zh-cn/product/dell-pro-max-fcm2250-micro/overview) | 2025     | [Ultra 5 245](https://www.intel.cn/content/www/cn/zh/products/sku/241876/intel-core-ultra-5-processor-245-24m-cache-up-to-5-10-ghz/specifications.html) | JM12384  |                   |
+| [Precision 5520](https://www.dell.com/support/product-details/zh-tw/product/precision-15-5520-laptop/overview) | 2017     | i7-7700HQ                                                    |          |                   |
+| [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |                                                              |          |                   |
+| [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100                                                     |          |                   |
+| [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | 2021     | i3-10105                                                     |          |                   |
+| [Latitude 7330 Rugged Extreme](https://www.dell.com/support/product-details/en-us/product/latitude-13-7330-laptop/overview) |          |                                                              |          |                   |
 
 **BIOS 控制快捷键**：
 
@@ -38,6 +41,8 @@
 | [ENVY 13-aq1047tx](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/29126477/model/32126589) | 2019     | i5-10210U  | 8CG9481J2P | 8TN47PA |                  |       |                                                            |
 | [EliteBook 835 G9](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/2100825623/model/2101120745) | 2022     | R7 6800U   | 5CG2190TNH | 6J5F2PC |                  |       |                                                            |
 | [EliteDesk 800 G6 DM](https://support.hp.com/cn-zh/product/details/hp-elitedesk-800-g6-desktop-mini-pc/34658463) | 2021     | i9-10900T  |            |         |                  |       | [一支花](https://www.chiphell.com/thread-2320557-1-1.html) |
+| [ZBook 15 G4](https://support.hp.com/tw-zh/product/details/hp-zbook-15-g4-mobile-workstation/model/14840013) |          |            |            |         |                  |       |                                                            |
+| [ZBook Studio G4](https://support.hp.com/tw-zh/product/details/hp-zbook-studio-g4-mobile-workstation/model/14840027) |          |            |            |         |                  |       |                                                            |
 | [Z2 Mini G5 Workstation](https://support.hp.com/cn-zh/product/details/34407176) | 2020     | i9-10900   |            |         | 216 \* 216 \* 58 | 2.1kg |                                                            |
 
 **BIOS 控制快捷键**：

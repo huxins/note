@@ -1,5 +1,7 @@
 # PC
 
+> 传奇耐电王 Raptor Lake：[i5-13600K](https://www.intel.cn/content/www/cn/zh/products/sku/230493/intel-core-i513600k-processor-24m-cache-up-to-5-10-ghz/specifications.html)、[i5-14600K](https://www.intel.cn/content/www/cn/zh/products/sku/236799/intel-core-i5-processor-14600k-24m-cache-up-to-5-30-ghz/specifications.html) 等
+
 ## 戴尔
 
 开机自检期间，当出现戴尔徽标时，可以：
@@ -13,7 +15,7 @@
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | -------- | ----------------- |
 | [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |                                                              |          |                   |
 | [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790                                                      |          | 417 \* 175 \* 360 |
-| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | i5-11500T                                                    | F1V5NM3  | 182 \* 36 \* 178  |
+| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | [i5-11500T](https://www.intel.cn/content/www/cn/zh/products/sku/212272/intel-core-i511500t-processor-12m-cache-up-to-3-90-ghz/specifications.html) | F1V5NM3  | 182 \* 36 \* 178  |
 | [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7                                                    |          |                   |
 | [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700                                                      | 1788LN2  | 292 \* 92 \* 290  |
 | [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700                                                     |          |                   |

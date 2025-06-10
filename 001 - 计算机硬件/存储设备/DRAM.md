@@ -10,15 +10,33 @@ DRAM 拥有非常高的密度，单位体积的容量较高，成本也较低。
 - **DIMM**：双列直插式存储器模块（Dual In-line Memory Module）
 - **SO-DIMM**：小外形双列直插式内存模块（Small Outline Dual In-line Memory Module）
 
-## 内存颗粒
+## 颗粒
 
 目前市场上，主流内存颗粒生产商是三星、海力士、镁光。
 
 - [颗粒天梯图 - *寒哥评测室*](https://www.bilibili.com/video/BV15exPe4E1Q?t=330.8)
 
-目前单根容量大于 24GB 的内存，基本是双面颗粒，其温度、延迟、超频性能都不如单面颗粒的内存。
+> 目前单根容量大于 24GB 的内存，基本是双面颗粒，其温度、延迟、超频性能都不如单面颗粒的内存。
 
-## 内存频率
+- ECC 内存
+
+  ECC 内存又分为纯 ECC 和 RECC，RECC 的 R 表示寄存器，也就是 RECC 比 ECC 多了个寄存器芯片，即单面 10 颗芯片颗粒。
+  
+  RECC 由于有寄存器芯片，让 RECC 内存支持的内存颗粒数能翻倍，容量可以做的更大，性能更好，E3 不支持 RECC，只有 E5 以上才支持。
+
+- 颗粒数
+
+  > Rank 是由 DIMM 上一组颗粒组成的数据使用区域。
+  >
+  > Rank 中的 Bank 不必限于同一个 side，有可能两面都有 Bank，但依然是一个 Rank。
+  >
+  > x4 和 x8 指的是每个 Bank 的 data-bus width。
+  
+  内存条根据颗粒的数量分为 Single-Rank, Dual-Rank, Quad-Rank，分别简写为 1R，2R 和 4R。
+  
+  一个 Rank 的 data-bus width 是 64 bits，如果每个 Bank 的 data-bus width 是 4 bits，那么就需要 16 个 Bank，如果每个 Bank 的 data-bus width 是 8 bits，那么就需要 8 个 Bank。
+
+## 频率
 
 ```
 读写速度 = 内存频率 * 64 * 通道数 / 8
@@ -26,9 +44,9 @@ DRAM 拥有非常高的密度，单位体积的容量较高，成本也较低。
 
 内存工作频率受到内存控制器的制约，从 11 代酷睿处理器开始，Intel 就紧跟 AMD 锐龙的步伐，引入「内存分频机制」。
 
-Intel 12 和 13 代 Non-K CPU 会锁 SA 电压，使用 D4 内存频率超过 3200Mhz，大概率会进入 Gear 2 分频模式；使用 D5 内存频率推荐 6400MHz。K CPU 使用 D4 内存，可上到 4000 Mhz；D5 内存根据主板的不同，可上到 7000 甚至是 8000+MHz。
+> Intel 12 和 13 代 Non-K CPU 会锁 SA 电压，使用 D4 内存频率超过 3200Mhz，大概率会进入 Gear 2 分频模式；使用 D5 内存频率推荐 6400MHz。K CPU 使用 D4 内存，可上到 4000 Mhz；D5 内存根据主板的不同，可上到 7000 甚至是 8000+MHz。
 
-## 内存时序
+## 时序
 
 内存时序是描述内存条性能的一种参数，一般存储在内存条的 SPD 中。
 
@@ -54,12 +72,12 @@ DDR4-2400 17-17-17-39：17*2/2400 = 14 ns
 DDR4-3200 22-22-22-52：22*2/3200 = 13.7 ns
 ```
 
-## 内存超频
+## 超频
 
 - [XMP](https://www.intel.cn/content/www/cn/zh/gaming/extreme-memory-profile-xmp.html)
 - [EXPO](https://www.amd.com/zh-cn/products/processors/technologies/expo.html)
 
-## 内存品牌
+## 品牌
 
 - 宜鼎/Innodisk
 

@@ -37,15 +37,16 @@
 
 **产品**：
 
-| 型号                                                         | 上市时间 | 代表处理器 | SN         | ProdID  | 物理尺寸         | 重量  | 开箱                                                       |
-| ------------------------------------------------------------ | -------- | ---------- | ---------- | ------- | ---------------- | ----- | ---------------------------------------------------------- |
-| [OMEN 15-ax219TX](https://support.hp.com/cn-zh/product/omen-by-hp-15-ax200-laptop-pc-series/13810162/model/15178106) |          |            |            |         |                  |       |                                                            |
-| [ENVY 13-aq1047tx](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/29126477/model/32126589) | 2019     | i5-10210U  | 8CG9481J2P | 8TN47PA |                  |       |                                                            |
-| [EliteBook 835 G9](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/2100825623/model/2101120745) | 2022     | R7 6800U   | 5CG2190TNH | 6J5F2PC |                  |       |                                                            |
-| [EliteDesk 800 G6 DM](https://support.hp.com/cn-zh/product/details/hp-elitedesk-800-g6-desktop-mini-pc/34658463) | 2021     | i9-10900T  |            |         |                  |       | [一支花](https://www.chiphell.com/thread-2320557-1-1.html) |
-| [ZBook 15 G4](https://support.hp.com/tw-zh/product/details/hp-zbook-15-g4-mobile-workstation/model/14840013) |          |            |            |         |                  |       |                                                            |
-| [ZBook Studio G4](https://support.hp.com/tw-zh/product/details/hp-zbook-studio-g4-mobile-workstation/model/14840027) |          |            |            |         |                  |       |                                                            |
-| [Z2 Mini G5 Workstation](https://support.hp.com/cn-zh/product/details/34407176) | 2020     | i9-10900   |            |         | 216 \* 216 \* 58 | 2.1kg |                                                            |
+| 型号                                                         | 上市时间 | 代表处理器                                                   | SN         | ProdID  | 物理尺寸         | 重量  | 开箱                                                       |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ---------- | ------- | ---------------- | ----- | ---------------------------------------------------------- |
+| [OMEN 15-ax219TX](https://support.hp.com/cn-zh/product/omen-by-hp-15-ax200-laptop-pc-series/13810162/model/15178106) |          |                                                              |            |         |                  |       |                                                            |
+| [ENVY 13-aq1047tx](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/29126477/model/32126589) | 2019     | i5-10210U                                                    | 8CG9481J2P | 8TN47PA |                  |       |                                                            |
+| [EliteBook 835 G9](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/2100825623/model/2101120745) | 2022     | R7 6800U                                                     | 5CG2190TNH | 6J5F2PC |                  |       |                                                            |
+| [EliteDesk 800 G6 DM](https://support.hp.com/cn-zh/product/details/hp-elitedesk-800-g6-desktop-mini-pc/34658463) | 2021     | i9-10900T                                                    |            |         |                  |       | [一支花](https://www.chiphell.com/thread-2320557-1-1.html) |
+| [ZBook 15 G4](https://support.hp.com/tw-zh/product/details/hp-zbook-15-g4-mobile-workstation/model/14840013) |          |                                                              |            |         |                  |       |                                                            |
+| [ZBook Studio G4](https://support.hp.com/tw-zh/product/details/hp-zbook-studio-g4-mobile-workstation/model/14840027) |          |                                                              |            |         |                  |       |                                                            |
+| [Z440](https://support.hp.com/tw-zh/product/details/hp-z440-workstation/6978828) |          | [E5-2667 v4](https://www.intel.cn/content/www/cn/zh/products/sku/92979/intel-xeon-processor-e52667-v4-25m-cache-3-20-ghz/specifications.html) |            |         |                  |       |                                                            |
+| [Z2 Mini G5 Workstation](https://support.hp.com/cn-zh/product/details/34407176) | 2020     | i9-10900                                                     |            |         | 216 \* 216 \* 58 | 2.1kg |                                                            |
 
 **BIOS 控制快捷键**：
 

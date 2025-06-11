@@ -21,8 +21,15 @@ DRAM 拥有非常高的密度，单位体积的容量较高，成本也较低。
 - ECC 内存
 
   ECC 内存又分为纯 ECC 和 RECC，RECC 的 R 表示寄存器，也就是 RECC 比 ECC 多了个寄存器芯片，即单面 10 颗芯片颗粒。
-  
-  RECC 由于有寄存器芯片，让 RECC 内存支持的内存颗粒数能翻倍，容量可以做的更大，性能更好，E3 不支持 RECC，只有 E5 以上才支持。
+
+  > RECC 由于有寄存器芯片，让 RECC 内存支持的内存颗粒数能翻倍，容量可以做的更大，性能更好，E3 不支持 RECC，只有 E5 以上才支持。
+  >
+  > - LRDIMM：低压内存，如 PC3L-12800L。
+  > - RDIMM：标压内存，如 PC3-12800R。
+
+  LRDIMM 增加了缓冲器，可以让内存条对 CPU 始终保持 2 个逻辑 Rank，最终实现单条内存容量更大，所以 LRDIMM 的内存可以做到比 RDIMM 大很多，RDIMM 在 DDR3 时代最多单条 64G，而 LRDIMM 可以做到单条 128G。
+
+  LRDIMM 使用了缓冲器，缓冲器需要额外耗电，所以电气负载较 RDIMM 低，但是功耗和延迟却比 RDIMM 更高，极端状态下 LRDIMM 的功耗会比同容量同频率的 RDIMM 翻倍。
 
 - 颗粒数
 
@@ -34,7 +41,9 @@ DRAM 拥有非常高的密度，单位体积的容量较高，成本也较低。
   
   内存条根据颗粒的数量分为 Single-Rank, Dual-Rank, Quad-Rank，分别简写为 1R，2R 和 4R。
   
-  一个 Rank 的 data-bus width 是 64 bits，如果每个 Bank 的 data-bus width 是 4 bits，那么就需要 16 个 Bank，如果每个 Bank 的 data-bus width 是 8 bits，那么就需要 8 个 Bank。
+  > 1Rx8 表示单 Rank，其中的 Bank 是 8 bit，如果容量为 8GB，那么需要 8 个 Bank。
+  
+  一个 Rank 的 data-bus width 是 64 bit，如果每个 Bank 的 data-bus width 是 4 bit，那么就需要 16 个 Bank，如果每个 Bank 的 data-bus width 是 8 bit，那么就需要 8 个 Bank。
 
 ## 频率
 

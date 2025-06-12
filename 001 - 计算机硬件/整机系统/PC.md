@@ -11,20 +11,25 @@
 
 **产品**：
 
-| 型号                                                         | 上市时间 | 代表处理器                                                   | 服务编号 | 物理尺寸          |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | -------- | ----------------- |
-| [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |                                                              |          |                   |
-| [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790                                                      |          | 417 \* 175 \* 360 |
-| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | [i5-11500T](https://www.intel.cn/content/www/cn/zh/products/sku/212272/intel-core-i511500t-processor-12m-cache-up-to-3-90-ghz/specifications.html) | F1V5NM3  | 182 \* 36 \* 178  |
-| [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7                                                    |          |                   |
-| [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700                                                      | 1788LN2  | 292 \* 92 \* 290  |
-| [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700                                                     |          |                   |
-| [Pro Max Micro FCM2250](https://www.dell.com/support/product-details/zh-cn/product/dell-pro-max-fcm2250-micro/overview) | 2025     | [Ultra 5 245](https://www.intel.cn/content/www/cn/zh/products/sku/241876/intel-core-ultra-5-processor-245-24m-cache-up-to-5-10-ghz/specifications.html) | JM12384  |                   |
-| [Precision 5520](https://www.dell.com/support/product-details/zh-tw/product/precision-15-5520-laptop/overview) | 2017     | i7-7700HQ                                                    |          |                   |
-| [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |                                                              |          |                   |
-| [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100                                                     |          |                   |
-| [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | 2021     | i3-10105                                                     |          |                   |
-| [Latitude 7330 Rugged Extreme](https://www.dell.com/support/product-details/en-us/product/latitude-13-7330-laptop/overview) |          |                                                              |          |                   |
+| 型号                                                         | 上市时间 | 代表处理器                                                   | 服务编号 | 接口          | 物理尺寸          |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | -------- | ------------- | ----------------- |
+| [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |                                                              |          |               |                   |
+| [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790                                                      |          |               | 417 \* 175 \* 360 |
+| [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7                                                    |          |               |                   |
+| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | [i5-11500T](https://www.intel.cn/content/www/cn/zh/products/sku/212272/intel-core-i511500t-processor-12m-cache-up-to-3-90-ghz/specifications.html) | F1V5NM3  |               | 182 \* 36 \* 178  |
+| [OptiPlex 3000 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-3000-micro/resources/manuals) |          | i5-12500T                                                    |          | Nvme + SATA   |                   |
+| [OptiPlex 7000 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7000-micro/overview) |          | i5-12500                                                     |          | Nvme x2       |                   |
+| [OptiPlex Micro 7010](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7010-micro/overview) |          | i5-13500T                                                    | 4XFGP04  | Nvme + SATA   |                   |
+| [OptiPlex Micro Plus 7010](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7010-plus-micro/overview) |          | i5-13500                                                     | 9MF2JZ3  | Nvme x2 \| D5 |                   |
+| [OptiPlex Micro 7020](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7020-micro/overview) |          | i5-14500T                                                    |          | Nvme x2 \| D5 |                   |
+| [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700                                                      | 1788LN2  |               | 292 \* 92 \* 290  |
+| [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700                                                     |          |               |                   |
+| [Pro Max Micro FCM2250](https://www.dell.com/support/product-details/zh-cn/product/dell-pro-max-fcm2250-micro/overview) | 2025     | [Ultra 5 245](https://www.intel.cn/content/www/cn/zh/products/sku/241876/intel-core-ultra-5-processor-245-24m-cache-up-to-5-10-ghz/specifications.html) | JM12384  |               |                   |
+| [Precision 5520](https://www.dell.com/support/product-details/zh-tw/product/precision-15-5520-laptop/overview) | 2017     | i7-7700HQ                                                    |          |               |                   |
+| [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |                                                              |          |               |                   |
+| [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100                                                     |          |               |                   |
+| [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | 2021     | i3-10105                                                     |          |               |                   |
+| [Latitude 7330 Rugged Extreme](https://www.dell.com/support/product-details/en-us/product/latitude-13-7330-laptop/overview) |          |                                                              |          |               |                   |
 
 **BIOS 控制快捷键**：
 

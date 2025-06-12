@@ -35,3 +35,17 @@
   | v3   | Haswell         | [E5-4610 v3](https://www.intel.cn/content/www/cn/zh/products/sku/85757/intel-xeon-processor-e54610-v3-25m-cache-1-70-ghz/specifications.html) |
   | v4   | Broadwell       | [E5-4610 v4](https://www.intel.cn/content/www/cn/zh/products/sku/93812/intel-xeon-processor-e54610-v4-25m-cache-1-80-ghz/specifications.html) |
 
+- **Core**
+
+  | 版本 | 代号        | 代表型号                                                     | 核显    |
+  | ---- | ----------- | ------------------------------------------------------------ | ------- |
+  | 6    | Skylake     | [i5-6600T](https://www.intel.cn/content/www/cn/zh/products/sku/88189/intel-core-i56600t-processor-6m-cache-up-to-3-50-ghz/specifications.html) | HD 530  |
+  | 7    | Kaby Lake   | [i5-7600T](https://www.intel.cn/content/www/cn/zh/products/sku/97183/intel-core-i57600t-processor-6m-cache-up-to-3-70-ghz/specifications.html) | HD 630  |
+  | 8    | Coffee Lake | [i7-8700](https://www.intel.cn/content/www/cn/zh/products/sku/126686/intel-core-i78700-processor-12m-cache-up-to-4-60-ghz/specifications.html) | UHD 630 |
+  | 9    | Coffee Lake | [i5-9600](https://www.intel.cn/content/www/cn/zh/products/sku/134900/intel-core-i59600-processor-9m-cache-up-to-4-60-ghz/specifications.html) | UHD 630 |
+  | 10   | Comet Lake  | [i3-10100](https://www.intel.cn/content/www/cn/zh/products/sku/199283/intel-core-i310100-processor-6m-cache-up-to-4-30-ghz/specifications.html) | UHD 630 |
+  | 11   | Rocket Lake | [i5-11500T](https://www.intel.cn/content/www/cn/zh/products/sku/212272/intel-core-i511500t-processor-12m-cache-up-to-3-90-ghz/specifications.html) | UHD 750 |
+  | 12   | Alder Lake  | [i9-12900](https://www.intel.cn/content/www/cn/zh/products/sku/134597/intel-core-i912900-processor-30m-cache-up-to-5-10-ghz/specifications.html) | UHD 770 |
+  | 13   | Raptor Lake | [i5-13500](https://www.intel.cn/content/www/cn/zh/products/sku/230580/intel-core-i513500-processor-24m-cache-up-to-4-80-ghz/specifications.html) | UHD 770 |
+  | 14   | Raptor Lake | [i7-14700T](https://www.intel.cn/content/www/cn/zh/products/sku/236794/intel-core-i7-processor-14700t-33m-cache-up-to-5-20-ghz/specifications.html) | UHD 770 |
+

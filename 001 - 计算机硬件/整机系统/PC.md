@@ -116,13 +116,20 @@
 > 辨别：螺丝边缘有纹理或翻折把手、电源生产日期
 
 > - [M720q 外壳打印，加大风扇](https://www.youtube.com/watch?v=UH2Hpt9JIn8)
+> - [半高 PCIe 挡板打样制作](https://oshwhub.com/eorof/half-height-pcie-bracket)
+> - [P330 Tiny 1L 全闪 NAS 改造方案](https://www.chiphell.com/thread-2677627-1-1.html)
+> - [Tiny5 M.2 Riser](https://github.com/j4cbo/tiny5-m2-riser)
+> - [部分 Lenovo 联想 LGA1151 主机支持 8 代 9 代 BIOS 修改工具](https://www.chiphell.com/thread-1958822-1-1.html)
 
 | 型号                                                         | 代表处理器   | 手册                                                         | 商品                                                         | 接口       |
 | ------------------------------------------------------------ | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
 | NEC 8                                                        |              |                                                              | M720q                                                        |            |
 | [M92p Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m92p) | i5-3470T     | [M92p](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/M92&M92p.pdf) | Tiny 1                                                       |            |
+| [M72](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/M72e.pdf) |              |                                                              |                                                              | M3500q     |
 | [M93p Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m93p) | i5-4590T     | [M93p](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M93_M93p_Tiny/ThinkCentre_M93_M93p_Tiny_Spec.PDF) | Tiny 2                                                       |            |
-| [M900 Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m900) | i3-6100T     | [M900](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M900_Tiny/ThinkCentre_M900_Tiny_Spec.PDF) | Tiny 3                                                       |            |
+| [M73](https://support.lenovo.com/us/en/solutions/pd029621-detailed-specifications-for-thinkcentre-m73-tiny-form-factor) |              |                                                              |                                                              | M4500q     |
+| [M900 Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m900) | i3-6100T     | [M900](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M900_Tiny/ThinkCentre_M900_Tiny_Spec.PDF) | Tiny 3                                                       | NVMe       |
+| [M700 Desktop](https://pcsupport.lenovo.com/tw/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m700-tiny) |              | [WDProduct](https://psref.lenovo.com/WDProduct/ThinkCentre/ThinkCentre_M700_Tiny?tab=model) | M8600q                                                       | NGFF       |
 | [P320 Tiny Workstation](https://pcsupport.lenovo.com/us/zc/products/workstations/thinkstation-p-series-workstations/thinkstation-p320-tiny) | i7-7700T     | Nvme x2                                                      | Tiny 4                                                       | PCIe       |
 | [M910q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m910q) | i7-7700T     | [M910q](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M910_Tiny/ThinkCentre_M910_Tiny_Spec.pdf) | Tiny 4                                                       |            |
 | [M710q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m710q) | i7-7700      | 刷 BIOS 9th                                                  | 铜底散热                                                     |            |

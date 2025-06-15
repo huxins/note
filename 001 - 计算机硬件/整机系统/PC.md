@@ -96,6 +96,7 @@
 **产品**：
 
 > - [ThinkStation P340 Tiny - *Dracl*](https://www.chiphell.com/thread-2352814-1-1.html)
+> - [联想 1L 机器 Tiny 主机认识贴 - *GGciMIDA*](https://www.goofish.com/item?id=701842166649)
 
 > P360 Tiny 测试版主板为红色或蓝色，正式版为红色
 >
@@ -118,7 +119,7 @@
 > - [M720q 外壳打印，加大风扇](https://www.youtube.com/watch?v=UH2Hpt9JIn8)
 > - [半高 PCIe 挡板打样制作](https://oshwhub.com/eorof/half-height-pcie-bracket)
 > - [P330 Tiny 1L 全闪 NAS 改造方案](https://www.chiphell.com/thread-2677627-1-1.html)
-> - [Tiny5 M.2 Riser](https://github.com/j4cbo/tiny5-m2-riser)
+> - [Tiny5 M.2 Riser](https://github.com/j4cbo/tiny5-m2-riser) | [TinySecrets](https://github.com/a-little-wifi/TinySecrets) | [m920q-pcie-bifurcation](https://github.com/badger707/m920q-pcie-bifurcation) | [m920q-dual-NVME](https://github.com/badger707/m920q-dual-NVME) | [咸鱼](https://www.goofish.com/item?id=876890198194) | [咸鱼](https://www.goofish.com/item?id=901949599313) | [咸鱼](https://www.goofish.com/item?id=915773493464) | [咸鱼](https://www.goofish.com/item?id=910634015862) | [咸鱼](https://www.goofish.com/item?id=915646599780)
 > - [部分 Lenovo 联想 LGA1151 主机支持 8 代 9 代 BIOS 修改工具](https://www.chiphell.com/thread-1958822-1-1.html)
 
 | 型号                                                         | 代表处理器   | 手册                                                         | 商品                                                         | 接口       |

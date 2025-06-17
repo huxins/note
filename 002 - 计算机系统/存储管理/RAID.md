@@ -1,2 +1,6 @@
 # RAID
 
+- **JBOD**
+  - Unraid
+  - LVM
+

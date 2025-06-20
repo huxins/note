@@ -67,18 +67,12 @@
 
 ```sql
 OFFSET(reference, rows, cols, [height], [width])
-```
 
-例如，在 D3 引用的基础上，加上偏移量。
-
-```sql
+# 在 D3 引用的基础上，加上偏移量
 =OFFSET(D3, -2, -3)
 -- Result: A1
-```
 
-例如，在行中，倒叙引用指定列的数据。
-
-```sql
+# 在行中，倒叙引用指定列的数据
 =OFFSET($D$34, -(COLUMNS($B$5:B5) - 1), 0)
 ```
 
@@ -86,11 +80,8 @@ OFFSET(reference, rows, cols, [height], [width])
 
 ```sql
 INDEX(reference, row_num, [column_num], [area_num])
-```
 
-例如，在行中，倒叙引用指定列的数据。
-
-```sql
+# 在行中，倒叙引用指定列的数据
 =INDEX($D:$D, ROW($D$34) - COLUMNS($B$5:B5) + 1)
 ```
 
@@ -98,41 +89,29 @@ INDEX(reference, row_num, [column_num], [area_num])
 
 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 函数在引用或数组中查找值，返回该项在该区域中的相对位置。
 
-```sql
-MATCH(lookup_value, lookup_array, [match_type])
-```
-
 - *match_type*：`1` 完全匹配或次小，`0` 完全匹配，`-1` 完全匹配或次大。
 
-例如，区域 A1:A3 包含值 5、7 和 38，找出 7 是该区域中的第几个项目。
-
 ```sql
+MATCH(lookup_value, lookup_array, [match_type])
+
+# 区域 A1:A3 包含值 5、7 和 38，找出 7 是该区域中的第几个项目
 =MATCH(7, A1:A3, 0)
-```
 
-例如，E 列为访客人数，C 列为日期，通过 [`MAXIFS`](https://support.microsoft.com/zh-cn/office/dfd611e6-da2c-488a-919b-9b6376b28883) 筛选指定日期最大的访客数，通过 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 获取行号。
-
-```sql
+# E 列为访客人数，C 列为日期，通过 MAXIFS 筛选指定日期最大的访客数，通过 MATCH 获取行号
 =MATCH(MAXIFS(E:E, C:C, DATE(2023,6,1)), E:E, 0)
-```
 
-例如，根据 [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) 获取指定日期最大访客数的行号，配合 [`INDEX`](https://support.microsoft.com/zh-cn/office/a5dcf0dd-996d-40a4-a822-b56b061328bd) 函数，取出对应关键词数据。
-
-```sql
+# 根据 MATCH 获取指定日期最大访客数的行号，配合 INDEX 函数，取出对应关键词数据
 =INDEX(D:D, MATCH(MAXIFS(E:E, C:C, DATE(2023, 6, 1)), E:E, 0))
 ```
 
 [`VLOOKUP`](https://support.microsoft.com/zh-cn/office/0bbc8083-26fe-4963-8ab8-93a18ad188a1) 函数在数组第一列中查找，然后在行之间移动以返回单元格的值。
 
-```sql
-VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
-```
-
 - *range_lookup*：默认为 `TRUE` 近似匹配。`FALSE` 为完全匹配。
 
-例如，根据 H3 的值，在 B4:E13 的范围内查找相匹配的数据，选择第二列。
-
 ```sql
+VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+
+# 根据 H3 的值，在 B4:E13 的范围内查找相匹配的数据，选择第二列
 =VLOOKUP(H3, B4:E13, 2, FALSE)
 ```
 
@@ -140,27 +119,21 @@ VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
 
 ```sql
 =FILTER(array, include, [if_empty])
-```
 
-例如，返回 C 列值等于 H2 的行。
-
-```sql
+# 返回 C 列值等于 H2 的行
 =FILTER(A5:D20, C5:C20=H2, "")
 ```
 
 [`DGET`](https://exceljet.net/functions/dget-function) 函数从数据库提取符合指定条件的单个记录。
 
-```sql
-DGET(database, field, criteria)
-```
-
 - *database*：构成列表或数据库的单元格区域，包括标题。
 - *field*：指定函数所使用的列名或索引。
 - *criteria*：所指定条件的单元格区域，包括标题。
 
-例如，获取指定条件的数据。
-
 ```sql
+DGET(database, field, criteria)
+
+# 获取指定条件的数据
 =DGET($C$2:$E$2370, "访客数", N2:O3)
 ```
 
@@ -170,16 +143,13 @@ DGET(database, field, criteria)
 
 [`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) 对区域或数组的内容进行排序。
 
-```sql
-SORT(array, [sort_index], [sort_order], [by_col])
-```
-
 - *sort_order*：`1` 升序，`-1` 降序。默认为升序。
 - *by_col*：`TRUE` 按列排序。`FALSE` 按行排序。默认为 `FALSE`。
 
-例如，按分数降序排列。
-
 ```sql
+SORT(array, [sort_index], [sort_order], [by_col])
+
+# 按分数降序排列
 =SORT(B5:C14, 2)
 ```
 
@@ -189,11 +159,8 @@ SORT(array, [sort_index], [sort_order], [by_col])
 
 ```sql
 IF(logical_test, value_if_true, [value_if_false])
-```
 
-例如，规避被除数为 0 的情况。
-
-```sql
+# 规避被除数为 0 的情况
 =IF(B19=0, 0, B20/B19)
 ```
 
@@ -205,11 +172,7 @@ IF(logical_test, value_if_true, [value_if_false])
 
 ```sql
 SUM(number1, [number2], ...)
-```
 
-例如。
-
-```sql
 =SUM(A1:A5)
 ```
 
@@ -217,17 +180,11 @@ SUM(number1, [number2], ...)
 
 ```sql
 SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
-```
 
-例如，获取指定条件的数据。此函数是汇总函数，但可匹配项多，可更好的替代 [`DGET`](https://exceljet.net/functions/dget-function) 函数。
-
-```sql
+# 获取指定条件的数据。此函数是汇总函数，但可匹配项多，可更好的替代 DGET 函数
 =SUMIFS($E$3:$E$2370, $C$3:$C$2370, B$2, $D$3:$D$2370, "手淘搜索")
-```
 
-还可以根据列汇总。
-
-```sql
+# 可以根据列汇总
 =SUMIFS(E2:AH2, E1:AH1, ">="&DATE(2023, 6, 1), E1:AH1, "<="&DATE(2023, 6, 30))
 ```
 
@@ -237,11 +194,8 @@ SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 
 ```sql
 MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
-```
 
-例如，C 列为日期，E 列为访客数，获取指定日期的最大访客数。
-
-```sql
+# C 列为日期，E 列为访客数，获取指定日期的最大访客数
 =MAXIFS(E:E, C:C, DATE(2023, 6, 1))
 ```
 
@@ -251,17 +205,11 @@ MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)
 
 ```sql
 COUNTA(value1, [value2], ...)
-```
 
-例如，获取指定单元格区域中不为空的单元格个数。
-
-```sql
+# 获取指定单元格区域中不为空的单元格个数
 =COUNTA(B5:B15)
-```
 
-例如，获取整列中不为空的单元格个数。
-
-```sql
+# 获取整列中不为空的单元格个数
 =COUNTA(A:A)
 ```
 
@@ -269,11 +217,8 @@ COUNTA(value1, [value2], ...)
 
 ```sql
 SUBTOTAL(function_num, ref1, [ref2], ...)
-```
 
-例如，生成筛选后自动重排的序号。
-
-```sql
+# 生成筛选后自动重排的序号
 =SUBTOTAL(3, $B$2:B2)
 ```
 
@@ -285,11 +230,8 @@ SUBTOTAL(function_num, ref1, [ref2], ...)
 
 ```sql
 DATE(year, month, day)
-```
 
-例如，指定日期。
-
-```sql
+# 指定日期
 =DATE(2022, 1, 1)
 ```
 
@@ -303,31 +245,26 @@ DATE(year, month, day)
 
 [`YEAR`](https://support.microsoft.com/zh-cn/office/c64f017a-1354-490d-981f-578e8ec8d3b9) 函数返回对应于某个日期的年份。
 
-例如，获取指定单元格引用的年份。
-
 ```sql
+# 获取指定单元格引用的年份
 =YEAR(A1)
 ```
 
 [`MONTH`](https://support.microsoft.com/zh-cn/office/579a2881-199b-48b2-ab90-ddba0eba86e8) 函数返回日期中的月份。
 
-例如，获取指定单元格引用的月份。
-
 ```sql
+# 获取指定单元格引用的月份
 =MONTH(A1)
 ```
 
 #### 比较日期
 
-[`DATEDIF`](https://support.microsoft.com/zh-cn/office/25dba1a4-2812-480b-84dd-8b32a451b35c) 函数用于计算两个日期之间相隔的天数、月数或年数。
+[`DATEDIF`](https://support.microsoft.com/zh-cn/office/25dba1a4-2812-480b-84dd-8b32a451b35c) 函数用于计算两个日期之间相隔的天数、[月数](https://support.microsoft.com/zh-cn/office/8235e7c9-b430-44ca-9425-46100a162f38#ID0EDDBBL)或年数。
 
 ```sql
 DATEDIF(start_date, end_date, unit)
-```
 
-例如，计算[以月为单位的差值](https://support.microsoft.com/zh-cn/office/8235e7c9-b430-44ca-9425-46100a162f38#ID0EDDBBL)。
-
-```sql
+# 计算以月为单位的差值
 =DATEDIF(B3, TODAY(), "m")
 ```
 
@@ -339,11 +276,8 @@ DATEDIF(start_date, end_date, unit)
 
 ```sql
 LEFT(text, [num_chars])
-```
 
-例如，截取指定字符的前 15 个字符。
-
-```sql
+# 截取指定字符的前 15 个字符
 =LEFT(I1, 15)
 ```
 
@@ -351,11 +285,8 @@ LEFT(text, [num_chars])
 
 ```sql
 MID(text, start_num, num_chars)
-```
 
-例如，从字符串中第一个字符开始，返回五个字符。
-
-```sql
+# 从字符串中第一个字符开始，返回五个字符
 =MID("Fluid Flow", 1, 5)
 ```
 
@@ -363,11 +294,8 @@ MID(text, start_num, num_chars)
 
 ```sql
 FIND(find_text, within_text, [start_num])
-```
 
-例如，查找单元格 A2 中第一个 "M" 的位置。
-
-```sql
+# 查找单元格 A2 中第一个 "M" 的位置，区分大小写
 =FIND("M", A2)
 ```
 
@@ -375,11 +303,8 @@ FIND(find_text, within_text, [start_num])
 
 ```sql
 SEARCH(find_text, within_text, [start_num])
-```
 
-例如，查找对应字符串的位置，且不区分大小写。
-
-```sql
+# 查找对应字符串的位置，且不区分大小写
 =SEARCH("apple", "I have an Apple")
 ```
 
@@ -474,11 +399,10 @@ CONCAT(text1, [text2], ...)
     =MAX({1,2,3} * {4,5,6})
     ```
 
-在 Excel 365 和 Excel 2019 中，微软引入了[动态数组](https://support.microsoft.com/zh-cn/office/205c6b06-03ba-4151-89a1-87a7eb36e531)功能，这使得数组公式的使用更加直观和简单，例如不再需要使用 `Ctrl + Shift + Enter`，可以直接输入公式并获得结果。在旧版 Excel 中打开包含动态数组公式的工作簿时，有一些[兼容性注意事项](https://support.microsoft.com/zh-cn/office/696e164e-306b-4282-ae9d-aa88f5502fa2)。
-
-例如，计算从指定范围内所有包含 "上班迟到" 的文本中提取的分钟数的总和。
+在 Excel 365 和 Excel 2019 中，微软引入了[动态数组](https://support.microsoft.com/zh-cn/office/205c6b06-03ba-4151-89a1-87a7eb36e531)功能，这使得数组公式的使用更加直观和简单，不再需要使用 `Ctrl + Shift + Enter`，可以直接输入公式并获得结果。在旧版 Excel 中打开包含动态数组公式的工作簿时，有一些[兼容性注意事项](https://support.microsoft.com/zh-cn/office/696e164e-306b-4282-ae9d-aa88f5502fa2)。
 
 ```sql
+# 计算从指定范围内所有包含 "上班迟到" 的文本中提取的分钟数的总和
 =SUM(
     IF(
         ISNUMBER(SEARCH("上班迟到", F10:AM10)),
@@ -489,11 +413,8 @@ CONCAT(text1, [text2], ...)
         0
     )
 )
-```
 
-可以通过 `IFERROR` 函数，优化逻辑结构。
-
-```sql
+# 通过 IFERROR 函数，优化逻辑结构
 =SUM(
     IFERROR(
         VALUE(

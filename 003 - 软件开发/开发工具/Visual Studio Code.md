@@ -11,19 +11,19 @@
 
 ## 二、扩展
 
-### 代码编辑
+### Web
 
-#### Web
+- [Highlight Matching Tag](https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag)
 
-[Highlight Matching Tag](https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag) 扩展可以突出显示匹配的开始和结束标签。
+  可以突出显示匹配的开始和结束标签。
+  
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-#### CSharp
+  为静态和动态页面，启动具有实时重新加载功能的本地开发服务器。
 
-官方 [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) 扩展通过 LSP 提供了丰富的语言支持。
+### CSharp
 
-### 开发环境
+- [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 
-#### Web
-
-[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 扩展为静态和动态页面，启动具有实时重新加载功能的本地开发服务器。
+  通过 LSP 提供丰富的语言支持。
 

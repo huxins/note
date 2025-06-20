@@ -6,7 +6,7 @@
 
 ### 代码格式
 
-#### XAML
+- [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
 
-[XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022) 扩展基于一组样式规则，格式化 XAML 源代码。
+  基于一组样式规则，格式化 XAML 源代码。
 

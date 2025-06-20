@@ -11,14 +11,12 @@
 
 ## IP Address
 
-```
-https://dynamicdns.park-your-domain.com/getip
-https://icanhazip.com/
-https://ipinfo.io/ip
-https://ddnsip.cn/
-https://ipv4.ddnsip.cn/
-https://ipv6.ddnsip.cn/
-```
+| API                                                          | Description  | Auth | HTTPS | CORS |
+| ------------------------------------------------------------ | ------------ | ---- | ----- | ---- |
+| [Park Your Domain](https://dynamicdns.park-your-domain.com/getip) | 获取 IP 地址 |      |       |      |
+| [Icanhazip](https://icanhazip.com/)                          | 获取 IP 地址 |      |       |      |
+| [IP Info](https://ipinfo.io/ip)                              | 获取 IP 地址 |      |       |      |
+| [DDNS IP](https://ipv4.ddnsip.cn/)                           | 获取 IP 地址 |      |       |      |
 
 ## Image Proxy
 

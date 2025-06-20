@@ -90,3 +90,18 @@ DDR4-3200 22-22-22-52：22*2/3200 = 13.7 ns
 
 - 宜鼎/Innodisk
 
+- [美光/Micron](https://www.micron.cn/sales-support/sales-network/authorized-distributors)
+
+- 英睿达/Crucial
+  
+  - [物料号识别](https://www.crucial.com/support/identify-parts)
+  - [物料号验证](https://www.crucial.com/warranty-home)
+  - 零件号：C16FT
+    - 第一位为颗粒品牌，M、C 为美光，K 为三星，可能不存在
+    - 数字为颗粒个数
+    - 最后一位为颗粒版本
+  - 颗粒号：前两位为日期，中间第三位为颗粒版本，可参考 CSN11
+  
+  - 文明蒙恬旗下北京合众怡毅科技有限公司
+  - 深圳市怡亚通供应链股份有限公司
+

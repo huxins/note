@@ -1,16 +1,14 @@
 # CSS
 
-## 一、资源
-
-### Tutorial
+## Tutorial
 
 - [CSS - MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS)
 
-### Cheat sheet
+## Cheat sheet
 
 - [CSS4-Selectors](https://css4-selectors.com/selectors/)
 
-### Module
+## Module
 
 - [Selectors](https://www.w3.org/TR/selectors-3/)
 - [Backgrounds and Borders](https://www.w3.org/TR/css-backgrounds-3/)

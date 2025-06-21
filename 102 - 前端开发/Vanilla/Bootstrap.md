@@ -6,7 +6,7 @@
 
 ### 环境准备
 
-Bootstrap 需要 [jQuery](https://jquery.com/)，[Popper.js](https://popper.js.org/docs/v2/) 以及 Bootstrap 自带的 JS 来实现功能。
+Bootstrap 需要 [jQuery](https://jquery.com/)、[Popper.js](https://popper.js.org/docs/v2/) 以及 Bootstrap 自带的 JS 来实现功能。
 
 ```html
 <!-- CSS 引入 -->

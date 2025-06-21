@@ -12,9 +12,9 @@ npm install --save-dev parcel
 
 ### 构建目标配置
 
-`package.json` 配置如下，参考：
-
-- [PeerJS](https://github.com/peers/peerjs/blob/master/package.json)
+> `package.json` 配置参考：
+> 
+> - [PeerJS](https://github.com/peers/peerjs/blob/master/package.json)
 
 配置完成后，可运行 [`parcel build`](https://parceljs.org/features/cli/#parcel-build-%3Centries%3E) 进行打包。
 

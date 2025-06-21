@@ -1,17 +1,15 @@
 # HTML
 
-## 一、资源
-
-### Tutorial
+## Tutorial
 
 - [HTML - MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML)
 
-### Cheat sheet
+## Cheat sheet
 
 - [Can I use](https://caniuse.com/)
 - [Frontend Developer Roadmap](https://roadmap.sh/frontend)
 
-### Web API
+## Web API
 
 - [HTML DOM API](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API)
   - [HTMLElement](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement)
@@ -26,7 +24,7 @@
 - [User-Agent Client Hints](https://wicg.github.io/ua-client-hints/)
 - [Service Worker](https://www.w3.org/TR/service-workers/)
 
-### CDN
+## CDN
 
 - [SRI Hash Generator](https://www.srihash.org/)
 - [Google Hosted Libraries](https://developers.google.com/speed/libraries?hl=zh-cn)

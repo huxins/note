@@ -4,9 +4,7 @@
 
 ## 一、安装
 
-### Linux
-
-#### Red Hat
+### Red Hat
 
 要使用 PostgreSQL [Yum Repository](https://www.postgresql.org/download/linux/redhat/)，请按以下步骤操作。
 
@@ -29,7 +27,7 @@ systemctl enable postgresql-12
 systemctl start postgresql-12
 ```
 
-#### Debian
+### Debian
 
 [Debian](https://www.postgresql.org/download/linux/debian/) 默认包含 PostgreSQL。
 
@@ -37,7 +35,7 @@ systemctl start postgresql-12
 apt install postgresql
 ```
 
-#### Docker
+### Docker
 
 Docker 可以不受宿主机的限制，安装各种版本的 PostgreSQL。
 

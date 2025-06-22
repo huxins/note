@@ -4,9 +4,7 @@
 
 ## 一、安装
 
-### Linux
-
-#### YUM
+### YUM
 
 添加 MySQL Yum [存储库](https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html)。
 
@@ -56,7 +54,7 @@ systemctl start mysqld
 grep 'temporary password' /var/log/mysqld.log
 ```
 
-#### APT
+### APT
 
 从 Debian 9（Stretch）开始，Debian 官方库中的 [MySql](https://wiki.debian.org/MySql) 被 MariaDB 替代。
 

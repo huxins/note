@@ -1,12 +1,10 @@
 # Serverless
 
-## Serverless
-
-### Plugins
+## Plugins
 
 [Serverless Plugin](https://www.serverless.com/plugins) 实际上是一个函数的管理工具，无论针对 AWS 还是腾讯云，Plugin 的目标都是对函数进行管理。
 
-- [serverless/examples](https://github.com/serverless/examples)
+> - [serverless/examples](https://github.com/serverless/examples)
 
 以下为 `serverless.yml` 基本配置示例：
 
@@ -26,7 +24,7 @@ functions:
       - httpApi: '*'
 ```
 
-#### serverless-python-requirements
+### serverless-python-requirements
 
 [`serverless-python-requirements`](https://github.com/serverless/serverless-python-requirements) 用于自动捆绑 `requirements.txt` 中的依赖项并使其在您的 `PYTHONPATH` 中可用。
 
@@ -38,7 +36,7 @@ serverless plugin install -n serverless-python-requirements
 
 > 最后上传到云函数 SCF 的包，包内文件的修改时间可能导致部署失败。
 
-#### serverless-wsgi
+### serverless-wsgi
 
 [`serverless-wsgi`](https://github.com/logandk/serverless-wsgi) 用于使用无服务器构建部署 Python WSGI 应用程序。
 

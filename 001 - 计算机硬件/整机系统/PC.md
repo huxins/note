@@ -106,6 +106,7 @@
 
 > - [ThinkStation P340 Tiny - *Dracl*](https://www.chiphell.com/thread-2352814-1-1.html)
 > - [联想 1L 机器 Tiny 主机认识贴 - *GGciMIDA*](https://www.goofish.com/item?id=701842166649)
+> - [Lenovo Tiny Reference Thread - *ServeTheHome*](https://forums.servethehome.com/index.php?threads/lenovo-thinkcentre-thinkstation-tiny-project-tinyminimicro-reference-thread.34925/)
 
 > P360 Tiny 测试版主板为红色或蓝色，正式版为红色
 >

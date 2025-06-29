@@ -10,85 +10,80 @@ CSharp 是一种强[类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/fund
 
 CSharp 提供了一组标准的[内置类型](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/built-in-types)。
 
-#### char
+- **char**
 
-[`char`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/char) 类型表示 Unicode UTF-16 字符。
+  [`char`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/char) 类型表示 Unicode UTF-16 字符。
+  
+  ```c#
+  char firstLetter = 'C';
+  ```
 
-```c#
-char firstLetter = 'C';
-```
+- **int**
 
-#### int
+  [`int`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) 类型表示整数。所有的整型数值类型均为值类型。
+  
+  | C#    | Size               | .NET                                                         |
+  | ----- | ------------------ | ------------------------------------------------------------ |
+  | `int` | 带符号的 32 位整数 | [`System.Int32`](https://learn.microsoft.com/zh-cn/dotnet/api/system.int32) |
 
-[`int`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) 类型表示整数。所有的整型数值类型均为值类型。
+- **float**
 
-| C#    | Size               | .NET                                                         |
-| ----- | ------------------ | ------------------------------------------------------------ |
-| `int` | 带符号的 32 位整数 | [`System.Int32`](https://learn.microsoft.com/zh-cn/dotnet/api/system.int32) |
+  [`float`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types) 类型表示实数。所有浮点型数值类型均为值类型。
+  
+  | C#        | Size    | .NET                                                         |
+  | --------- | ------- | ------------------------------------------------------------ |
+  | `float`   | 4 字节  | [`System.Single`](https://learn.microsoft.com/zh-cn/dotnet/api/system.single) |
+  | `double`  | 8 字节  | [`System.Double`](https://learn.microsoft.com/zh-cn/dotnet/api/system.double) |
+  | `decimal` | 16 字节 | [`System.Decimal`](https://learn.microsoft.com/zh-cn/dotnet/api/system.decimal) |
 
-#### float
+  ```c#
+  // 创建 float 类型，在数字后面追加字母 F
+  Console.WriteLine(0.25F.GetType());
+  
+  // 创建 double 类型，只需输入一个十进制数字即可
+  Console.WriteLine(2.625.GetType());
+  
+  // 创建 decimal 类型，在数字后面追加字母 M
+  Console.WriteLine(12.39816M.GetType());
+  ```
 
-[`float`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types) 类型表示实数。所有浮点型数值类型均为值类型。
+- **bool**
 
-| C#        | Size    | .NET                                                         |
-| --------- | ------- | ------------------------------------------------------------ |
-| `float`   | 4 字节  | [`System.Single`](https://learn.microsoft.com/zh-cn/dotnet/api/system.single) |
-| `double`  | 8 字节  | [`System.Double`](https://learn.microsoft.com/zh-cn/dotnet/api/system.double) |
-| `decimal` | 16 字节 | [`System.Decimal`](https://learn.microsoft.com/zh-cn/dotnet/api/system.decimal) |
+  [`bool`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/bool) 类型关键字是 .NET [`System.Boolean`](https://learn.microsoft.com/zh-cn/dotnet/api/system.boolean) 结构类型的别名，它表示一个布尔值，可为 `true` 或 `false`。
+  
+  ```c#
+  Console.WriteLine(true);
+  Console.WriteLine(false);
+  ```
 
-若要创建 `float` 类型，请在数字后面追加字母 `F`。
+- **string**
 
-```c#
-Console.WriteLine(0.25F.GetType());
-```
+  [`string`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/reference-types#the-string-type) 类型表示零个或多个 Unicode 字符的序列。`string` 是 [`System.String`](https://learn.microsoft.com/zh-cn/dotnet/api/system.string) 在 .NET 中的别名。
 
-若要创建 `double` 类型，只需输入一个十进制数字即可。
+  字符串文本可包含任何字符文本，包括转义序列。
+  
+  ```c#
+  // 使用 `\n` 表示换行符
+  Console.WriteLine("Hello\nWorld!");
+  Console.WriteLine("Hello\tWorld!");
+  
+  // 使用转义序列 `\\` 表示反斜杠
+  // 使用 `\u0066` 表示字母 f
+  Console.WriteLine("\\\u0066\n F");
+  ```
 
-```c#
-Console.WriteLine(2.625.GetType());
-```
+  [逐字字符串](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/verbatim)将保留所有空格和字符，而无需转义反斜杠。要创建逐字字符串，请在文本字符串的前面使用 `@` 指令。
+  
+  ```c#
+  Console.WriteLine(@"    c:\source\repos    
+          (this is where your code goes)");
+  ```
 
-若要创建 `decimal` 类型，请在数字后面追加字母 `M`。
-
-```c#
-Console.WriteLine(12.39816M.GetType());
-```
-
-#### bool
-
-[`bool`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/bool) 类型关键字是 .NET [`System.Boolean`](https://learn.microsoft.com/zh-cn/dotnet/api/system.boolean) 结构类型的别名，它表示一个布尔值，可为 `true` 或 `false`。
-
-```c#
-Console.WriteLine(true);
-Console.WriteLine(false);
-```
-
-#### string
-
-[`string`](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/reference-types#the-string-type) 类型表示零个或多个 Unicode 字符的序列。`string` 是 [`System.String`](https://learn.microsoft.com/zh-cn/dotnet/api/system.string) 在 .NET 中的别名。
-
-字符串文本可包含任何字符文本，包括转义序列。
-
-例如，下面的示例使用转义序列 `\\` 表示反斜杠，使用 `\u0066` 表示字母 f，以及使用 `\n` 表示换行符。
-
-```c#
-Console.WriteLine("Hello\nWorld!");
-Console.WriteLine("Hello\tWorld!");
-Console.WriteLine("\\\u0066\n F");
-```
-
-[逐字字符串](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/verbatim)将保留所有空格和字符，而无需转义反斜杠。要创建逐字字符串，请在文本字符串的前面使用 `@` 指令。
-
-```c#
-Console.WriteLine(@"    c:\source\repos    
-        (this is where your code goes)");
-```
-
-[字符串模板](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/interpolated)可以将多个值合并为单个文本字符串。
-
-```c#
-string message = $"{greeting} {firstName}!";
-```
+  [字符串模板](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/interpolated)可以将多个值合并为单个文本字符串。
+  
+  ```c#
+  string message = $"{greeting} {firstName}!";
+  ```
 
 ### 引用类型
 
@@ -162,21 +157,21 @@ foreach (string name in names)
 
 语言集成查询 [LINQ](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/) 是一系列直接将查询功能集成到 C# 语言的技术统称，提供[语言级查询](https://learn.microsoft.com/zh-cn/dotnet/standard/linq/#language-level-query-syntax)功能和高阶函数 API。
 
-[语言级查询](https://learn.microsoft.com/zh-cn/dotnet/standard/linq/#language-level-query-syntax)语法如下：
+- [语言级查询](https://learn.microsoft.com/zh-cn/dotnet/standard/linq/#language-level-query-syntax)
 
-```c#
-var parts = from x in salesOrderItems
-            where salesOrderItems.FindIndex(z => z.PartNumber == x.PartNumber) == salesOrderItems.IndexOf(x)
-            select x;
-```
+  ```c#
+  var parts = from x in salesOrderItems
+              where salesOrderItems.FindIndex(z => z.PartNumber == x.PartNumber) == salesOrderItems.IndexOf(x)
+              select x;
+  ```
 
-使用 `IEnumerable<T>` API 的情况如下：
+- `IEnumerable<T>` API
 
-```c#
-var parts = salesOrderItems
-    .Where((x, i) => salesOrderItems.FindIndex(z => z.PartNumber == x.PartNumber) == i)
-    .ToList();
-```
+  ```c#
+  var parts = salesOrderItems
+      .Where((x, i) => salesOrderItems.FindIndex(z => z.PartNumber == x.PartNumber) == i)
+      .ToList();
+  ```
 
 ### 排序
 

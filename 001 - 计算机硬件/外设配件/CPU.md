@@ -3,8 +3,6 @@
 ## Intel
 
 > - [贯彻新命名策略 Xeon E3 系列将改名为 Xeon E](https://www.expreview.com/57996.html)
->
-> Intel 的企业级处理器命名发生了巨大改变，Intel 开始用金属元素去区分产品定位，这种命名也延伸到低端的至强 E3 系列，新的 E3 系列会被命名为 `Xeon E` 入门系列。
 
 - **Xeon E**
 

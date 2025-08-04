@@ -1,8 +1,8 @@
 # .NET 标准库
 
-[.NET Standard 库](https://learn.microsoft.com/zh-cn/dotnet/standard/class-libraries#net-standard-class-libraries)是平台特定的库和可移植库概念的替代。
+[.NET Standard 类库](https://learn.microsoft.com/zh-cn/dotnet/standard/class-libraries#net-standard-class-libraries)是平台特定的库和可移植库概念的替代。
 
-## 一、System
+## System
 
 [System](https://learn.microsoft.com/zh-cn/dotnet/api/system) 命名空间包含用于定义常用值和引用数据类型、事件和事件处理程序、接口、属性和处理异常的基本类和基类。
 
@@ -33,9 +33,8 @@
 
   重写 `Equals()` 方法的实现，也应当同时改写 `GetHashCode()` 方法的实现。否则 `GetHashCode()` 方法依然返回的是依据 `Object` 类中的地址值得到的哈希值。
 
-  例如，`String` 类中，`Equals()` 方法经过[重写](https://github.com/dotnet/runtime/blob/v8.0.6/src/libraries/System.Private.CoreLib/src/System/String.Comparison.cs#L613C13-L622C44)，`String` 对象在调用 `Equals()` 方法比较另一个对象时，除了认定相同地址值的两个对象相等以外，还认定每个字符都相等的两个 `String` 对象也相等，即使这两个 `String` 对象的地址值不同。
+  例如，`String` 类中，`Equals()` 方法经过[重写](https://github.com/dotnet/runtime/blob/v8.0.6/src/libraries/System.Private.CoreLib/src/System/String.Comparison.cs#L613C13-L622C44)，`String` 对象在调用 `Equals()` 方法比较另一个对象时，除了认定相同地址值的两个对象相等以外，还认定每个字符都相等的两个 `String` 对象也相等，即使这两个 `String` 对象的地址值不同。同时 [`GetHashCode()`](https://github.com/dotnet/runtime/blob/1d1bf92fcf43aa6981804dc53c5174445069c9e4/src/libraries/System.Private.CoreLib/src/System/String.Comparison.cs#L753C13-L756C167) 方法并不是基于对象的地址引用，而是基于字符串的内容计算的哈希码。
   
-  同时 [`GetHashCode()`](https://github.com/dotnet/runtime/blob/1d1bf92fcf43aa6981804dc53c5174445069c9e4/src/libraries/System.Private.CoreLib/src/System/String.Comparison.cs#L753C13-L756C167) 方法并不是基于对象的地址引用，而是基于字符串的内容计算的哈希码。
 
 #### Random
 
@@ -62,7 +61,7 @@
 
   指示指定的字符串是 `null`、空还是仅由空白字符组成。
 
-## 二、System.Windows.Controls
+## System.Windows.Controls
 
 [System.Windows.Controls](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.controls) 命名空间提供一些类以创建称为控件的元素，从而使用户可使用这些元素与应用程序进行交互。
 
@@ -199,9 +198,8 @@
 
 [`ListBox`](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.controls.ListBox) 包含可选项列表。
 
-例如，列表框将位于第 `1` 行和第 `0` 列。我们还将此控件命名为 `lstNames`。
-
 ```xaml
+<!-- 列表框将位于第 1 行和第 0 列，并将此控件命名为 lstNames -->
 <ListBox Grid.Row="1" x:Name="lstNames" />
 ```
 
@@ -307,7 +305,7 @@
 </DataGrid>
 ```
 
-## 三、System.Windows
+## System.Windows
 
 [System.Windows](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows) 命名空间提供了一些重要的 WPF 基元素类、各种支持 WPF 属性系统和事件逻辑的类以及由 WPF 核心和框架更加广泛使用的其他类型。
 

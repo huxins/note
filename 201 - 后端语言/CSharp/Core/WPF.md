@@ -7,6 +7,7 @@
 ## 一、创建应用
 
 - [教程：使用 .NET 创建新的 WPF 应用](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/get-started/create-app-visual-studio?view=netdesktop-8.0)
+- [指定应用程序图标](https://learn.microsoft.com/zh-cn/visualstudio/ide/how-to-specify-an-application-icon-visual-basic-csharp?view=vs-2022)
 
 ## 二、数据绑定
 

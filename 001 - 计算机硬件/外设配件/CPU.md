@@ -35,6 +35,10 @@
 
 - **Core**
 
+  > 传奇耐电王 Raptor Lake：[i5-13600K](https://www.intel.cn/content/www/cn/zh/products/sku/230493/intel-core-i513600k-processor-24m-cache-up-to-5-10-ghz/specifications.html)、[i5-14600K](https://www.intel.cn/content/www/cn/zh/products/sku/236799/intel-core-i5-processor-14600k-24m-cache-up-to-5-30-ghz/specifications.html) 等
+  >
+  > 芯片组的接口分配模式，可参考对应 Block Diagram
+  
   | 版本 | 代号        | 代表型号                                                     | 核显    |
   | ---- | ----------- | ------------------------------------------------------------ | ------- |
   | 6    | Skylake     | [i5-6600T](https://www.intel.cn/content/www/cn/zh/products/sku/88189/intel-core-i56600t-processor-6m-cache-up-to-3-50-ghz/specifications.html) | HD 530  |

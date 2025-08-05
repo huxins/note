@@ -1,9 +1,5 @@
 # PC
 
-> 传奇耐电王 Raptor Lake：[i5-13600K](https://www.intel.cn/content/www/cn/zh/products/sku/230493/intel-core-i513600k-processor-24m-cache-up-to-5-10-ghz/specifications.html)、[i5-14600K](https://www.intel.cn/content/www/cn/zh/products/sku/236799/intel-core-i5-processor-14600k-24m-cache-up-to-5-30-ghz/specifications.html) 等
->
-> 芯片组的接口分配模式，可参考对应 Block Diagram
-
 ## 戴尔
 
 开机自检期间，当出现戴尔徽标时，可以：

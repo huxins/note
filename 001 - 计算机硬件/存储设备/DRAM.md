@@ -4,17 +4,15 @@
 
 DRAM 拥有非常高的密度，单位体积的容量较高，成本也较低。但相反的，DRAM 也有访问速度较慢，耗电量较大的缺点。为了进一步提高速度，开发了 SDRAM，操作与外部时钟同步，以实现高速运行。如今，DRAM 一般都指 SDRAM。
 
-- [**DDR SDRAM**](https://zh.wikipedia.org/wiki/DDR_SDRAM)：双倍数据率同步动态随机存储器（Double Data Rate Synchronous Dynamic Random Access Memory）
+- [DDR SDRAM](https://zh.wikipedia.org/wiki/DDR_SDRAM)：双倍数据率同步动态随机存储器（Double Data Rate Synchronous Dynamic Random Access Memory）
 - [DDR4 SDRAM](https://zh.wikipedia.org/wiki/DDR4_SDRAM)
 - [DDR5 SDRAM](https://zh.wikipedia.org/wiki/DDR5_SDRAM)
-- **DIMM**：双列直插式存储器模块（Dual In-line Memory Module）
-- **SO-DIMM**：小外形双列直插式内存模块（Small Outline Dual In-line Memory Module）
+- DIMM：双列直插式存储器模块（Dual In-line Memory Module）
+- SO-DIMM：小外形双列直插式内存模块（Small Outline Dual In-line Memory Module）
 
 ## 颗粒
 
 目前市场上，主流内存颗粒生产商是三星、海力士、镁光。
-
-- [颗粒天梯图 - *寒哥评测室*](https://www.bilibili.com/video/BV15exPe4E1Q?t=330.8)
 
 > 目前单根容量大于 24GB 的内存，基本是双面颗粒，其温度、延迟、超频性能都不如单面颗粒的内存。
 
@@ -102,6 +100,8 @@ DDR4-3200 22-22-22-52：22*2/3200 = 13.7 ns
     - 最后一位为颗粒版本
   - 颗粒号：前两位为日期，中间第三位为颗粒版本，可参考 CSN11
   
-  - 文明蒙恬旗下北京合众怡毅科技有限公司
-  - 深圳市怡亚通供应链股份有限公司
+  - 经销商
+  
+    - 文明蒙恬旗下北京合众怡毅科技有限公司
+    - 深圳市怡亚通供应链股份有限公司
 

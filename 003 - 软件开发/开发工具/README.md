@@ -4,10 +4,10 @@
 
 - [IntelliJ IDEA](https://www.jetbrains.com/zh-cn/idea/)
 - [Visual Studio](https://visualstudio.microsoft.com/)
-- [Sublime Text 3](https://www.sublimetext.com/3)
 - [Visual Studio Code](https://code.visualstudio.com/docs)
+- [Sublime Text 3](https://www.sublimetext.com/3)
 
-## 电子表格
+## 办公套件
 
 - [Microsoft Excel](https://support.microsoft.com/zh-cn/excel)
 

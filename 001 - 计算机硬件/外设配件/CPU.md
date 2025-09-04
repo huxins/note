@@ -2,8 +2,6 @@
 
 ## Intel
 
-> - [贯彻新命名策略 Xeon E3 系列将改名为 Xeon E](https://www.expreview.com/57996.html)
-
 - **Xeon E**
 
   > 第三位数字：表示性能等级，如 0, 1, 2 表示不支持超线程。

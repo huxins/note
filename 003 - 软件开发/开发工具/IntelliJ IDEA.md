@@ -12,14 +12,15 @@
 
 ### JVM 参数
 
-> - [Windows](https://www.jetbrains.com/help/idea/tuning-the-ide.html)：`<IDE_HOME>\bin\idea64.exe.vmoptions`
+- [Windows](https://www.jetbrains.com/help/idea/tuning-the-ide.html)：`<IDE_HOME>\bin\idea64.exe.vmoptions`
 
 ## 二、代码编辑
 
 ### 文件结构
 
-> - [**快捷键**](https://www.jetbrains.com/help/idea/viewing-structure-of-a-source-file.html)：`Ctrl + F12`
-> - `Navigate > File Structure`
+> `Navigate > File Structure`
+>
+> [`Ctrl + F12`](https://www.jetbrains.com/help/idea/viewing-structure-of-a-source-file.html)
 
 ### Inlay Hints
 
@@ -32,7 +33,9 @@
 
 ### Find Usages
 
-> 右键符号 > `Find Usages` 或 `Alt + F7`
+> 右键符号 > `Find Usages`
+>
+> `Alt + F7`
 
 - 单文件/全局检索
 - 自定义作用域筛选

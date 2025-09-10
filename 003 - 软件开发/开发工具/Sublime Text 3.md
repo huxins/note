@@ -2,9 +2,11 @@
 
 [Sublime Text 3](https://www.sublimetext.com/3) 是一款为代码、标记语言和纯文本而生的文本编辑器。
 
-## 一、Config
+## 一、环境配置
 
 ### Build Systems
+
+Sublime Text 提供 [*build systems*](https://www.sublimetext.com/docs/build_systems.html)，允许用户运行外部程序。
 
 - **Python**
 
@@ -17,9 +19,13 @@
   }
   ```
 
-## 二、Package Control
+## 二、Packages
 
-Sublime Text [Package Control](https://packagecontrol.io/) 让查找、安装和保持包更新变得非常简单。
+[Packages](https://www.sublimetext.com/docs/packages.html) 是 Sublime Text 所使用的资源文件集合。
+
+### Package Control
+
+[Package Control](https://packagecontrol.io/) 让查找、安装和更新包变得非常简单。
 
 - **安装包管理器**
 
@@ -38,15 +44,15 @@ Sublime Text [Package Control](https://packagecontrol.io/) 让查找、安装和
 
 - **Install Package**：显示可安装的所有可用软件包的列表。这将包括默认频道中的所有包，以及您添加的存储库中的任何包。
 
-## 三、Package
+### Plugins
 
-### Emmet
+#### Emmet
 
 [Emmet](https://packagecontrol.io/packages/Emmet) 是许多流行文本编辑器的插件，它极大地改进了 HTML 和 CSS 工作流程。
 
-### SideBarEnhancements
+#### SideBarEnhancements
 
-[SideBarEnhancements](https://packagecontrol.io/packages/SideBarEnhancements) 是 Sublime Text 的侧边栏工具与增强功能：文件与文件夹管理。
+[SideBarEnhancements](https://packagecontrol.io/packages/SideBarEnhancements) 是侧边栏工具与增强功能，如文件与文件夹管理。
 
 **快捷键绑定**：
 
@@ -65,7 +71,7 @@ Sublime Text [Package Control](https://packagecontrol.io/) 让查找、安装和
 ]
 ```
 
-### SublimeCodeIntel
+#### SublimeCodeIntel
 
 [SublimeCodeIntel](https://packagecontrol.io/packages/SublimeCodeIntel) 是全功能代码智能和智能自动补全引擎。
 
@@ -75,7 +81,7 @@ Sublime Text [Package Control](https://packagecontrol.io/) 让查找、安装和
 
   配置 Python 相关环境。
 
-  > `codeintel_scan_extra_dir` 需包含的目录可以通过 `sys.path` 查看
+  > `codeintel_scan_extra_dir` 需包含的目录可以通过 `sys.path` 查看。
   
   ```json
   {

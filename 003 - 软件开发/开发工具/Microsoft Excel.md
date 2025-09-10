@@ -4,6 +4,38 @@
 
 ## 一、函数
 
+| 函数名                                                       | 函数简介                     | 函数分类       |
+| ------------------------------------------------------------ | ---------------------------- | -------------- |
+| [`ROW`](https://support.microsoft.com/zh-cn/office/3a63b74a-c4d0-4093-b49a-e76eb49a6d8d) | 返回引用的行号               | 数据引用与定位 |
+| [`ROWS`](https://support.microsoft.com/zh-cn/office/b592593e-3fc2-47f2-bec1-bda493811597) | 返回引用中的行数             | 数据引用与定位 |
+| [`COLUMN`](https://support.microsoft.com/zh-cn/office/44e8c754-711c-4df3-9da4-47a55042554b) | 返回引用的列号               | 数据引用与定位 |
+| [`COLUMNS`](https://support.microsoft.com/zh-cn/office/4e8e7b4e-e603-43e8-b177-956088fa48ca) | 返回引用中的列数             | 数据引用与定位 |
+| [`ADDRESS`](https://support.microsoft.com/zh-cn/office/d0c26c0d-3991-446b-8de4-ab46431d4f89) | 返回指定行列的单元格地址文本 | 数据引用与定位 |
+| [`INDIRECT`](https://support.microsoft.com/zh-cn/office/474b3a3a-8a26-4f44-b491-92b6306fa261) | 返回文本字符串指定的引用     | 数据引用与定位 |
+| [`OFFSET`](https://support.microsoft.com/zh-cn/office/c8de19ae-dd79-4b9b-a14e-b4d906d11b66) | 按偏移量返回引用             | 数据引用与定位 |
+| [`INDEX`](https://support.microsoft.com/zh-cn/office/a5dcf0dd-996d-40a4-a822-b56b061328bd) | 通过索引从引用或数组选择值   | 数据引用与定位 |
+| [`MATCH`](https://support.microsoft.com/zh-cn/office/e8dffd45-c762-47d6-bf89-533f4a37673a) | 查找值在区域中的相对位置     | 数据查找与引用 |
+| [`VLOOKUP`](https://support.microsoft.com/zh-cn/office/0bbc8083-26fe-4963-8ab8-93a18ad188a1) | 在数组首列查找并返回对应值   | 数据查找与引用 |
+| [`FILTER`](https://support.microsoft.com/zh-cn/office/f4f7cb66-82eb-4767-8f7c-4877ad80c759) | 基于条件筛选数据             | 数据查找与引用 |
+| [`DGET`](https://exceljet.net/functions/dget-function)       | 从数据库提取符合条件的记录   | 数据查找与引用 |
+| [`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) | 对区域或数组的内容进行排序   | 数据分析与处理 |
+| [`IF`](https://support.microsoft.com/zh-cn/office/69aed7c9-4e8a-4755-a9bc-aa8bbff73be2) | 执行逻辑检测                 | 数据分析与处理 |
+| [`SUM`](https://support.microsoft.com/zh-cn/office/043e1c7d-7726-4e80-8f32-07b23e057f89) | 求参数的和                   | 数据汇总与运算 |
+| [`SUMIFS`](https://support.microsoft.com/zh-cn/office/c9e748f5-7ea7-455d-9406-611cebce642b) | 对满足多个条件的参数求和     | 数据汇总与运算 |
+| [`MAXIFS`](https://support.microsoft.com/zh-cn/office/dfd611e6-da2c-488a-919b-9b6376b28883) | 返回满足条件的最大值         | 数据汇总与运算 |
+| [`COUNTA`](https://support.microsoft.com/zh-cn/office/7dc98875-d5c1-46f1-9a82-53f3219e2509) | 计算非空单元格个数           | 数据汇总与运算 |
+| [`SUBTOTAL`](https://support.microsoft.com/zh-cn/office/7b027003-f060-4ade-9040-e478765b9939) | 返回列表或数据库的分类汇总   | 数据汇总与运算 |
+| [`DATE`](https://support.microsoft.com/zh-cn/office/e36c0c8c-4104-49da-ab83-82328b832349) | 将年、月、日合并为日期       | 日期与时间     |
+| [`TODAY`](https://support.microsoft.com/zh-cn/office/5eb3078d-a82c-4736-8930-2f51a028fdd9) | 返回今天日期                 | 日期与时间     |
+| [`YEAR`](https://support.microsoft.com/zh-cn/office/c64f017a-1354-490d-981f-578e8ec8d3b9) | 返回日期的年份               | 日期与时间     |
+| [`MONTH`](https://support.microsoft.com/zh-cn/office/579a2881-199b-48b2-ab90-ddba0eba86e8) | 返回日期的月份               | 日期与时间     |
+| [`DATEDIF`](https://support.microsoft.com/zh-cn/office/25dba1a4-2812-480b-84dd-8b32a451b35c) | 计算两个日期之间的差值       | 日期与时间     |
+| [`LEFT`](https://support.microsoft.com/zh-cn/office/9203d2d2-7960-479b-84c6-1ea52b99640c) | 从文本开头返回指定字符       | 文本处理       |
+| [`MID`](https://support.microsoft.com/zh-cn/office/2eba57be-0c05-4bdc-bf81-5ecf4421eb8a) | 从指定位置返回特定数目字符   | 文本处理       |
+| [`FIND`](https://support.microsoft.com/zh-cn/office/c7912941-af2a-4bdf-a553-d0d89b0a0628) | 定位文本串（区分大小写）     | 文本处理       |
+| [`SEARCH`](https://support.microsoft.com/zh-cn/office/9ab04538-0e55-4719-a72e-b6f54513b495) | 定位文本串（不区分大小写）   | 文本处理       |
+| [`CONCAT`](https://support.microsoft.com/zh-cn/office/9b1a9a3f-94ff-41af-9736-694cbd6b4ca2) | 合并多个区域或字符串的文本   | 文本处理       |
+
 ### 数据引用与定位
 
 #### 获取引用信息
@@ -144,7 +176,7 @@ DGET(database, field, criteria)
 [`SORT`](https://support.microsoft.com/zh-cn/office/22f63bd0-ccc8-492f-953d-c20e8e44b86c) 对区域或数组的内容进行排序。
 
 - *sort_order*：`1` 升序，`-1` 降序。默认为升序。
-- *by_col*：`TRUE` 按列排序。`FALSE` 按行排序。默认为 `FALSE`。
+- *by_col*：`TRUE` 按列排序，`FALSE` 按行排序。默认为 `FALSE`。
 
 ```sql
 SORT(array, [sort_index], [sort_order], [by_col])

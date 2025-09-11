@@ -6,11 +6,7 @@
 
 - [接口描述语言属性](https://developer.mozilla.org/zh-CN/docs/Glossary/IDL)
 
-  IDL 属性和方法是指在 Web API 中定义的与 DOM 接口相关的属性和方法。
-
-  它们用于在浏览器中操作 HTML 元素，通过 JavaScript 访问和修改 DOM 元素的属性、行为等。
-
-  IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScript 来操作和使用。
+IDL 属性和方法是指在 Web API 中定义的与 DOM 接口相关的属性和方法。它们用于在浏览器中操作 HTML 元素，通过 JavaScript 访问和修改 DOM 元素的属性、行为等。IDL 属性和方法并不直接反映在 HTML 标签中，而是通过 JavaScript 来操作和使用。
 
 ## 一、基本结构
 

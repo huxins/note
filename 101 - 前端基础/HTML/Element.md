@@ -81,6 +81,15 @@
 
 ### 文本内容
 
+| 元素                                                         | 作用         | 重要属性 |
+| ------------------------------------------------------------ | ------------ | -------- |
+| [\<p>](https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element) | 段落         |          |
+| [\<ol>](https://html.spec.whatwg.org/multipage/grouping-content.html#the-ol-element) | 有序项目列表 |          |
+| [\<ul>](https://html.spec.whatwg.org/multipage/grouping-content.html#the-ul-element) | 无序项目列表 |          |
+| [\<dl>](https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element) | 关联列表     |          |
+| [\<a>](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element) | 超链接       |          |
+| [\<span>](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element) |              |          |
+
 #### p
 
 [`p`](https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element) 元素代表一个段落。
@@ -161,6 +170,17 @@
 | [\<footer>](https://html.spec.whatwg.org/multipage/sections.html#the-footer-element) | 页脚/章节尾     |
 
 ## 三、表单系统
+
+| 元素                                                         | 作用       | 重要属性                   |
+| ------------------------------------------------------------ | ---------- | -------------------------- |
+| [\<form>](https://html.spec.whatwg.org/multipage/forms.html#the-form-element) | 表单       |                            |
+| [\<label>](https://html.spec.whatwg.org/multipage/forms.html#the-label-element) | 标题       |                            |
+| [\<button>](https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element) | 按钮       |                            |
+| [\<datalist>](https://html.spec.whatwg.org/multipage/form-elements.html#the-datalist-element) | 预定义选项 |                            |
+| [\<fieldset>](https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element) | 表单控件组 |                            |
+| [\<input>](https://html.spec.whatwg.org/multipage/input.html#the-input-element) | 数据字段   | `type`、`value`、`checked` |
+| [\<select>](https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element) | 选项字段   |                            |
+| [\<textarea>](https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element) | 多行纯文本 |                            |
 
 ### 表单容器
 

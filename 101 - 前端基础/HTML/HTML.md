@@ -339,9 +339,9 @@ delegate(document.body, 'click', '.dynamic-item', function() {
 
 ### 核心事件
 
-#### 表单事件
-
 以下是所有 HTML 元素必须支持的[事件处理程序](https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers-on-elements,-document-objects,-and-window-objects)。
+
+#### 表单事件
 
 | 事件处理程序 | 事件类型 | 目标        | 描述                         |
 | ------------ | -------- | ----------- | ---------------------------- |

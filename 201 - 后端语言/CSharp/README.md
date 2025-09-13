@@ -34,5 +34,5 @@
 
 ## Office
 
-- [Syncfusion .NET Excel Framework](https://www.syncfusion.com/document-processing/excel-framework/net) - 高性能的 .NET Excel 框架，没有 Microsoft Office 或互操作依赖关系。无缝创建、读取和编辑 Excel 文档。
+- [Syncfusion .NET Excel Framework](https://www.syncfusion.com/document-processing/excel-framework/net) - 高性能的 .NET Excel 框架，没有 Microsoft Office 或互操作依赖关系。
 

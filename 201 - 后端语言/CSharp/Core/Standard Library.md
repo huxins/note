@@ -408,7 +408,7 @@
   </Style>
   ```
 
-## 四、System.Collections.Generic
+## System.Collections.Generic
 
 [System.Collections.Generic](https://learn.microsoft.com/zh-cn/dotnet/api/System.Collections.Generic) 命名空间包含用于定义泛型集合的接口和类，可允许用户创建强类型集合，以提供比非泛型强类型集合更好的类型安全性和性能。
 
@@ -430,7 +430,7 @@
   Console.WriteLine("Index of 3: " + index);
   ```
 
-## 五、System.Linq
+## System.Linq
 
 [System.Linq](https://learn.microsoft.com/zh-cn/dotnet/api/System.Linq) 命名空间提供支持某些查询的类和接口，这些查询使用语言集成查询 LINQ。
 

@@ -404,7 +404,7 @@ public class YourViewModel
 </Window>
 ```
 
-## 三、异常
+## 四、异常
 
 ### 编译错误
 
@@ -426,7 +426,7 @@ Windows 事件查看器是排查应用程序崩溃问题的一个重要工具。
 
 这些日志会包含崩溃的详细信息，如异常类型、错误消息和堆栈跟踪。
 
-## 四、部署
+## 五、部署
 
 [生成和部署](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/app-development/building-and-deploying-wpf-applications?view=netframeworkdesktop-4.8)模型提供在本地和远程生成和部署应用程序的功能。
 
@@ -442,32 +442,32 @@ Windows 事件查看器是排查应用程序崩溃问题的一个重要工具。
 
 通常使用 Visual Studio [安装程序项目扩展](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)将应用程序打包为 MSI。
 
-##### 创建安装项目
+- **创建安装项目**
 
-在解决方案上新建项目，选择 `Setup Project` 项目。
+  在解决方案上新建项目，选择 `Setup Project` 项目。
 
-File System 有三个目录：
+  File System 有三个目录：
 
-- **Application Folder**：安装程序的根目录，编写的程序生成的 dll，安装后就存放在这个目录。
-- **User's Desktop**：用户桌面快捷方式设置。
-- **User's Programs Menu**：用户启动菜单的快捷方式设置。
+  - **Application Folder**：安装程序的根目录，编写的程序生成的 dll，安装后就存放在这个目录。
+  - **User's Desktop**：用户桌面快捷方式设置。
+  - **User's Programs Menu**：用户启动菜单的快捷方式设置。
 
-##### 添加项目输出
+- **添加项目输出**
 
-安装项目建好后，需要往里面添加项目输出。
+  安装项目建好后，需要往里面添加项目输出。
 
-在弹出的页面中，它会默认选中需要打包的程序集和发布项，点击确定即可。
+  在弹出的页面中，它会默认选中需要打包的程序集和发布项，点击确定即可。
 
-##### 设置项目属性
+- **设置项目属性**
 
-项目属性的设置，是用于生成安装程序的描述信息，主要内容有程序的作者，标题，公司信息，技术支持等等。
+  项目属性的设置，是用于生成安装程序的描述信息，主要内容有程序的作者，标题，公司信息，技术支持等等。
 
-项目属性的设置方式为：
+  项目属性的设置方式为：
 
-```
-1、左键选中安装项目。
-2、点击解决方案栏左下角的属性。
-```
+  ```
+  1、左键选中安装项目。
+  2、点击解决方案栏左下角的属性。
+  ```
 
-⼀般情况，修改 Author、Description、Manufacturer、ProductName、Title 属性即可。
+  ⼀般情况，修改 `Author`、`Description`、`Manufacturer`、`ProductName`、`Title` 属性即可。
 

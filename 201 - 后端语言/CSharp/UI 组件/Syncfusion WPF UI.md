@@ -65,77 +65,75 @@
       ItemsSource="{Binding SalesOrderReviews}" />
   ```
 
-#### 条件样式
-
 可以通过三种方式根据数据有条件地设置 `DataGrid` 及其内部元素（单元格、行和列）的样式。
 
 - 转换器
 - 数据触发器
 - 样式选择器
 
-##### 单元格样式
+#### 单元格样式
 
-###### 转换器
+- **转换器**
 
-通过使用[转换器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-converter)根据 `cell value` 或 `data object` 更改其属性值，可以有条件地自定义 `GridCell`。
+  通过使用[转换器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-converter)根据 `cell value` 或 `data object` 更改其属性值，可以有条件地自定义 `GridCell`。
+  
+  ```xaml
+  <syncfusion:GridPercentColumn.CellStyle>
+      <Style TargetType="syncfusion:GridCell">
+          <Setter Property="Background" Value="{Binding Path=GrossMargin, Converter={StaticResource ProfitRateColorConverter}}" />
+      </Style>
+  </syncfusion:GridPercentColumn.CellStyle>
+  ```
 
-```xaml
-<syncfusion:GridPercentColumn.CellStyle>
-    <Style TargetType="syncfusion:GridCell">
-        <Setter Property="Background" Value="{Binding Path=GrossMargin, Converter={StaticResource ProfitRateColorConverter}}" />
-    </Style>
-</syncfusion:GridPercentColumn.CellStyle>
-```
+- **数据触发器**
 
-###### 数据触发器
+  基于指定条件应用属性值的[触发器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-triggers)。
 
-基于指定条件应用属性值的[触发器](https://help.syncfusion.com/wpf/datagrid/conditional-styling#conditional-styling-of-cells-using-triggers)。
+  默认只能进行等于比较，无法直接进行大于或小于的比较。
+  
+  ```xaml
+  <syncfusion:GridPercentColumn.CellStyle>
+      <Style TargetType="syncfusion:GridCell">
+          <Style.Triggers>
+              <DataTrigger Binding="{Binding Path=GrossMargin}" Value="0.5">
+                  <Setter Property="Background" Value="Bisque" />
+              </DataTrigger>
+          </Style.Triggers>
+      </Style>
+  </syncfusion:GridPercentColumn.CellStyle>
+  ```
 
-默认只能进行等于比较，无法直接进行大于或小于的比较。
+  通过 `Converter`，可以实现大于、小于或者其他条件进行判定。
 
-```xaml
-<syncfusion:GridPercentColumn.CellStyle>
-    <Style TargetType="syncfusion:GridCell">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=GrossMargin}" Value="0.5">
-                <Setter Property="Background" Value="Bisque" />
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-</syncfusion:GridPercentColumn.CellStyle>
-```
+  例如，当关联单据为空，就更换背景颜色。
+  
+  ```xaml
+  <syncfusion:GridCurrencyColumn.CellStyle>
+      <Style TargetType="syncfusion:GridCell">
+          <Style.Triggers>
+              <DataTrigger Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="">
+                  <Setter Property="Background" Value="LightPink" />
+              </DataTrigger>
+          </Style.Triggers>
+      </Style>
+  </syncfusion:GridCurrencyColumn.CellStyle>
+  ```
 
-通过 `Converter`，可以实现大于、小于或者其他条件进行判定。
-
-例如，当关联单据为空，就更换背景颜色。
-
-```xaml
-<syncfusion:GridCurrencyColumn.CellStyle>
-    <Style TargetType="syncfusion:GridCell">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="">
-                <Setter Property="Background" Value="LightPink" />
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-</syncfusion:GridCurrencyColumn.CellStyle>
-```
-
-使用 `MultiDataTrigger` 可以指定多个条件。
-
-```xaml
-<syncfusion:GridCurrencyColumn.CellStyle>
-    <Style TargetType="syncfusion:GridCell">
-        <Style.Triggers>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="" />
-                    <Condition Binding="{Binding Path=PurchaseUnitPrice, Converter={StaticResource GreaterThanConverter}, ConverterParameter=0}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Background" Value="#CCCCCC" />
-            </MultiDataTrigger>
-        </Style.Triggers>
-    </Style>
-</syncfusion:GridCurrencyColumn.CellStyle>
-```
+  使用 `MultiDataTrigger` 可以指定多个条件。
+  
+  ```xaml
+  <syncfusion:GridCurrencyColumn.CellStyle>
+      <Style TargetType="syncfusion:GridCell">
+          <Style.Triggers>
+              <MultiDataTrigger>
+                  <MultiDataTrigger.Conditions>
+                      <Condition Binding="{Binding Path=LinkedPurchaseOrders, Converter={StaticResource LinkedPurchaseOrdersConverter}}" Value="" />
+                      <Condition Binding="{Binding Path=PurchaseUnitPrice, Converter={StaticResource GreaterThanConverter}, ConverterParameter=0}" Value="True" />
+                  </MultiDataTrigger.Conditions>
+                  <Setter Property="Background" Value="#CCCCCC" />
+              </MultiDataTrigger>
+          </Style.Triggers>
+      </Style>
+  </syncfusion:GridCurrencyColumn.CellStyle>
+  ```
 

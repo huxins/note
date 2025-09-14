@@ -18,12 +18,12 @@
 
 - [vim](https://github.com/vim/vim) - 无处不在的文本编辑器。
 - [nano](https://www.nano-editor.org/) - 轻量级的文本编辑器，主要用于在终端中编辑文本文件。
+- [grep](https://www.gnu.org/software/grep/manual/html_node/index.html) - 从文件或标准输入中查找匹配特定模式（通常是正则表达式）的行。
 - [sed](https://www.gnu.org/software/sed/manual/html_node/index.html) - 流编辑器，用于对文本文件进行解析和编辑操作。
 - [awk](https://www.gnu.org/software/gawk/manual/html_node/index.html) - 强大的文本处理工具和编程语言，专门用于处理和分析文本数据。
 
 ## 文件管理
 
-- [grep](https://www.gnu.org/software/grep/manual/html_node/index.html) - 从文件或标准输入中查找匹配特定模式（通常是正则表达式）的行。
 - [s5cmd](https://github.com/peak/s5cmd) - 非常快速的 S3 和本地文件系统执行工具。
 - [restic](https://github.com/restic/restic) - 快速、高效、安全的备份程序。
 

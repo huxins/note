@@ -40,8 +40,9 @@
 
 - [Dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) - 轻量级的 DNS 缓存服务器，同时也支持 DHCP、TFTP 和 PXE 相关功能。
 - [Shadowsocks](https://shadowsocks.org/) - 基于 Socks5 代理方式的加密传输协议。
-- [V2Ray](https://github.com/v2fly/v2ray-core)
-- [Trojan](https://github.com/trojan-gfw/trojan)
-- [WireGuard](https://www.wireguard.com/)
-- [Tailscale](https://github.com/tailscale/tailscale)
+- [V2Ray](https://github.com/v2fly/v2ray-core) - 用于构建代理以绕过网络限制的平台。
+- [Trojan](https://github.com/trojan-gfw/trojan) - 一种无法识别的机制，可帮助绕过防火墙。
+- [WireGuard](https://www.wireguard.com/) - 极其简洁、快速且现代化的 VPN。
+- [Tailscale](https://github.com/tailscale/tailscale) - 基于 WireGuard 构建的，极其简便的软件定义网络（SDN）平台。
+- [Headscale](https://github.com/juanfont/headscale) - Tailscale 控制服务器的一个开源、可自托管的实现。
 

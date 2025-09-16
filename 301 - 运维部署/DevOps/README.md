@@ -45,4 +45,5 @@
 - [WireGuard](https://www.wireguard.com/) - 极其简洁、快速且现代化的 VPN。
 - [Tailscale](https://github.com/tailscale/tailscale) - 基于 WireGuard 构建的，极其简便的软件定义网络（SDN）平台。
 - [Headscale](https://github.com/juanfont/headscale) - Tailscale 控制服务器的一个开源、可自托管的实现。
+- [OPNsense](https://opnsense.org/) - 开源、基于 FreeBSD 的防火墙和路由软件。
 

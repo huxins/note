@@ -52,7 +52,9 @@
 > - [HP PartSurfer](https://partsurfer.hp.com/)
 > - [迈拓晨峰 - 惠普经销商](https://www.hp168.com/)
 
-> EliteDesk 800 G4 DM 硬盘架改造：[Specific-Action-8993](https://www.reddit.com/r/homelab/comments/1hnniwe/stuffing_4x_ssds_in_a_hp_elitedesk_800_g4_micro/?tl=zh-hans)、[yuffooz](https://www.reddit.com/r/homelab/comments/1e913vb/hp_elitedesk_800_g4_mini_the_ultimate_4drive_setup/?tl=zh-hans)、[Avid_Minimalist9199](https://www.reddit.com/r/MiniPCs/comments/1hxim9s/hp_elitedesk_800_g5_mini_maximum_storage_amount/?tl=zh-hans) | [sghael](https://www.reddit.com/r/homelab/comments/1aiulh9/how_to_get_3_drives_installed_in_a_hp_elitedesk/?tl=zh-hans) | [SunBrilliant549](https://www.reddit.com/r/homelab/comments/1b3zbkc/hp_prodesk_600_g4_mini_with_4_drives/?tl=zh-hans) | [咸鱼](https://www.goofish.com/item?id=894707966391) | [咸鱼](https://www.goofish.com/item?id=947306997385)
+> EliteDesk 800 G4 DM 硬盘架改造：[Specific-Action-8993](https://www.reddit.com/r/homelab/comments/1hnniwe/stuffing_4x_ssds_in_a_hp_elitedesk_800_g4_micro/?tl=zh-hans)、[yuffooz](https://www.reddit.com/r/homelab/comments/1e913vb/hp_elitedesk_800_g4_mini_the_ultimate_4drive_setup/?tl=zh-hans)、[Avid_Minimalist9199](https://www.reddit.com/r/MiniPCs/comments/1hxim9s/hp_elitedesk_800_g5_mini_maximum_storage_amount/?tl=zh-hans) | [sghael](https://www.reddit.com/r/homelab/comments/1aiulh9/how_to_get_3_drives_installed_in_a_hp_elitedesk/?tl=zh-hans) | [SunBrilliant549](https://www.reddit.com/r/homelab/comments/1b3zbkc/hp_prodesk_600_g4_mini_with_4_drives/?tl=zh-hans)
+>
+> 闲鱼玩家：[吴地安宁](https://www.goofish.com/item?id=761203577022) | [机器人技术宅](https://www.goofish.com/item?id=894707966391) | [JunellRose](https://www.goofish.com/item?id=910746300239) | [圆圆的](https://www.goofish.com/item?id=947306997385) | [木头啊](https://www.goofish.com/item?id=918170430875) | [阿布图腾](https://www.goofish.com/item?id=774138928156)
 >
 > 加装 SATA 硬盘时，上标压奔腾和赛扬开机不会报错，上 i3、i5 标压 CPU 会报风扇错误
 >

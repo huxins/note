@@ -2,7 +2,7 @@
 
 [Gitea](https://docs.gitea.com/) 是一个轻量级的开源 Git 代码托管平台，类似于 GitHub、GitLab 和 Bitbucket，但 Gitea 更加注重简单性和资源的高效利用。它允许开发团队和个人在自己的服务器上搭建代码托管服务，提供类似 GitHub 的功能，支持 Git 仓库的管理、代码协作和版本控制等。
 
-## 一、安装
+## 安装
 
 ### 二进制
 
@@ -133,7 +133,7 @@ server {
 }
 ```
 
-## 二、管理
+## 管理
 
 ### 备份
 
@@ -157,4 +157,12 @@ su gitea -c "/usr/local/bin/gitea dump --config /etc/gitea/app.ini"
 3、repos/：仓库目录的完整副本。
 4、gitea-db.sql：数据库备份。
 ```
+
+### 数据目录
+
+| 名称       | 目录                                     |
+| ---------- | ---------------------------------------- |
+| 仓库根目录 | `/var/lib/gitea/data/gitea-repositories` |
+| LFS 根目录 | `/var/lib/gitea/data/lfs`                |
+| 日志路径   | `/var/lib/gitea/log`                     |
 

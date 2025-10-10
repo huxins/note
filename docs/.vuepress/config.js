@@ -62,6 +62,7 @@ module.exports = {
       "/301 - 运维部署/Cloud/": 运维部署.Cloud,
       "/301 - 运维部署/Command/": 运维部署.Command,
       "/301 - 运维部署/DevOps/": 运维部署.DevOps,
+      "/301 - 运维部署/Proxmox VE/": 运维部署.PVE,
 
       "/302 - 操作系统/Linux/": 操作系统.Linux,
       "/302 - 操作系统/Windows/": 操作系统.Windows,

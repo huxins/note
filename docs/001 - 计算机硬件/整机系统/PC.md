@@ -1,52 +1,5 @@
 # PC
 
-## 戴尔
-
-开机自检期间，当出现戴尔徽标时，可以：
-
-- 按下 `F2` 键进入 *BIOS* 设置程序
-- 按下 `F12` 键显示一次性引导菜单
-
-> MFF 7090 南桥在底部通过机壳直接散热
->
-> MFF 7000 开始，没有 PCIe 插槽
->
-> 风扇策略调速线：[咸鱼](https://www.goofish.com/item?id=725275327077)
-
-| 型号                                                         | 上市时间 | 代表处理器                                                   | 服务编号 | 接口                                                 | 物理尺寸          |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | -------- | ---------------------------------------------------- | ----------------- |
-| Wyse 5070                                                    |          |                                                              |          | [KCORES-5070](https://github.com/KCORES/KCORES-5070) |                   |
-| [OptiPlex 3020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-3020-desktop/overview) |          |                                                              |          |                                                      |                   |
-| [Optiplex 9020](https://www.dell.com/support/home/zh-cn/product-support/product/optiplex-9020-desktop/overview) | 2015     | i7-4790                                                      |          |                                                      | 417 \* 175 \* 360 |
-| [OptiPlex 9020M](https://www.dell.com/support/product-details/zh-cn/product/optiplex-9020m-desktop/overview) |          |                                                              |          | Nvme + SATA                                          |                   |
-| [OptiPlex 7040 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7040-micro/overview) |          | i5-6600                                                      |          | Nvme + SATA                                          |                   |
-| [OptiPlex 7050 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7050-micro/overview) |          | i7-7700                                                      |          | Nvme + SATA                                          |                   |
-| [OptiPlex 7060 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7060-micro/overview) |          | i5-8500                                                      |          | Nvme + SATA                                          |                   |
-| [OptiPlex 7070 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7070-micro/overview) |          | i5-8600T                                                     |          | Nvme + SATA                                          |                   |
-| [OptiPlex 7080 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7080-micro/overview) |          | i3-10100T                                                    |          | Nvme x2 + SATA                                       |                   |
-| [OptiPlex 7090 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7090-micro/overview) | 2022     | [i5-11500T](https://www.intel.cn/content/www/cn/zh/products/sku/212272/intel-core-i511500t-processor-12m-cache-up-to-3-90-ghz/specifications.html) | F1V5NM3  | Nvme x2 + SATA                                       | 182 \* 36 \* 178  |
-| [OptiPlex 7090 Ultra](https://www.dell.com/support/product-details/zh-tw/product/optiplex-7090-ultra/overview) | 2021     | i5-1145G7                                                    |          |                                                      |                   |
-| [OptiPlex 3000 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-3000-micro/resources/manuals) |          | i5-12500T                                                    |          | Nvme + SATA                                          |                   |
-| [OptiPlex 7000 Micro](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7000-micro/overview) |          | i5-12500                                                     |          | Nvme x2                                              |                   |
-| [OptiPlex Micro 7010](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7010-micro/overview) |          | i5-13500T                                                    | 4XFGP04  | Nvme + SATA                                          |                   |
-| [OptiPlex Micro Plus 7010](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7010-plus-micro/overview) |          | i5-13500                                                     | 9MF2JZ3  | Nvme x2 \| D5                                        |                   |
-| [OptiPlex Micro 7020](https://www.dell.com/support/product-details/zh-cn/product/optiplex-7020-micro/overview) |          | i5-14500T                                                    |          | Nvme x2 \| D5                                        |                   |
-| [Precision Tower 3420](https://www.dell.com/support/product-details/zh-cn/product/precision-t3420-workstation/overview) |          | i7-6700                                                      | 1788LN2  |                                                      | 292 \* 92 \* 290  |
-| [Precision 3280 Compact](https://www.dell.com/support/product-details/zh-cn/product/precision-3280-workstation/overview) |          | i7-14700                                                     |          |                                                      |                   |
-| [Pro Max Micro FCM2250](https://www.dell.com/support/product-details/zh-cn/product/dell-pro-max-fcm2250-micro/overview) | 2025     | [Ultra 5 245](https://www.intel.cn/content/www/cn/zh/products/sku/241876/intel-core-ultra-5-processor-245-24m-cache-up-to-5-10-ghz/specifications.html) | JM12384  |                                                      |                   |
-| [Precision 5520](https://www.dell.com/support/product-details/zh-tw/product/precision-15-5520-laptop/overview) | 2017     | i7-7700HQ                                                    |          |                                                      |                   |
-| [Vostro 3471](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3471-desktop/overview) | 2019     |                                                              |          |                                                      |                   |
-| [Vostro 3881](https://www.dell.com/support/home/zh-cn/product-support/product/vostro-3881-desktop/overview) | 2021     | i3-10100                                                     |          |                                                      |                   |
-| [Inspiron 3891](https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-3891-desktop/overview) | 2021     | i3-10105                                                     |          |                                                      |                   |
-| [Latitude 7330 Rugged Extreme](https://www.dell.com/support/product-details/en-us/product/latitude-13-7330-laptop/overview) |          |                                                              |          |                                                      |                   |
-
-**BIOS 控制快捷键**：
-
-| 快捷键 | 说明         |
-| ------ | ------------ |
-| `F2`   | 设置 BIOS    |
-| `F12`  | 启动设备选项 |
-
 ## 惠普
 
 > - [HP PartSurfer](https://partsurfer.hp.com/)

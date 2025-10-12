@@ -1,46 +1,6 @@
 # PC
 
-## 惠普
 
-> - [HP PartSurfer](https://partsurfer.hp.com/)
-> - [迈拓晨峰 - 惠普经销商](https://www.hp168.com/)
-
-> EliteDesk 800 G4 DM 硬盘架改造：[Specific-Action-8993](https://www.reddit.com/r/homelab/comments/1hnniwe/stuffing_4x_ssds_in_a_hp_elitedesk_800_g4_micro/?tl=zh-hans)、[yuffooz](https://www.reddit.com/r/homelab/comments/1e913vb/hp_elitedesk_800_g4_mini_the_ultimate_4drive_setup/?tl=zh-hans)、[Avid_Minimalist9199](https://www.reddit.com/r/MiniPCs/comments/1hxim9s/hp_elitedesk_800_g5_mini_maximum_storage_amount/?tl=zh-hans) | [sghael](https://www.reddit.com/r/homelab/comments/1aiulh9/how_to_get_3_drives_installed_in_a_hp_elitedesk/?tl=zh-hans) | [SunBrilliant549](https://www.reddit.com/r/homelab/comments/1b3zbkc/hp_prodesk_600_g4_mini_with_4_drives/?tl=zh-hans) | [爱电脑的王尼玛](https://www.bilibili.com/opus/779814801028153361) | [在下艺高人胆大](https://www.bilibili.com/video/BV15dkgYeEWS?t=1.2)
->
-> 闲鱼玩家：[吴地安宁](https://www.goofish.com/item?id=761203577022) | [机器人技术宅](https://www.goofish.com/item?id=894707966391) | [JunellRose](https://www.goofish.com/item?id=910746300239) | [圆圆的](https://www.goofish.com/item?id=947306997385) | [木头啊](https://www.goofish.com/item?id=918170430875) | [阿布图腾](https://www.goofish.com/item?id=774138928156)
->
-> 加装 SATA 硬盘时，上标压奔腾和赛扬开机不会报错，上 i3、i5 标压 CPU 会报风扇错误
->
-> EliteDesk 800 G6 DM 支持 Flex IO 网卡
-
-| 型号                                                         | 上市时间 | 代表处理器                                                   | SN         | ProdID  | 接口           | 物理尺寸         | 开箱                                                         |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ---------- | ------- | -------------- | ---------------- | ------------------------------------------------------------ |
-| [OMEN 15-ax219TX](https://support.hp.com/cn-zh/product/omen-by-hp-15-ax200-laptop-pc-series/13810162/model/15178106) |          |                                                              |            |         |                |                  |                                                              |
-| [ENVY 13-aq1047tx](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/29126477/model/32126589) | 2019     | i5-10210U                                                    | 8CG9481J2P | 8TN47PA |                |                  |                                                              |
-| [EliteBook 835 G9](https://support.hp.com/cn-zh/product/hp-envy-13-aq1000-laptop-pc-series/2100825623/model/2101120745) | 2022     | R7 6800U                                                     | 5CG2190TNH | 6J5F2PC |                |                  | [Notebookcheck](https://www.notebookcheck.net/HP-EliteBook-835-G9-review-Powerful-business-notebook-with-bright-screen-and-great-keyboard.681697.0.html) |
-| [EliteDesk 800 35W G2 DM](https://support.hp.com/tw-zh/product/details/hp-elitedesk-800-35w-g2-desktop-mini-pc/7633266) |          | i5-6500T                                                     | JPH705RZZ8 | L1W21AV | Nvme + SATA    |                  |                                                              |
-| [EliteDesk 800 35W G3 DM](https://support.hp.com/us-en/product/details/hp-elitedesk-800-35w-g3-desktop-mini-pc/model/15234608) |          | i3-7100T                                                     | JPH803XTQT | Z9Y29AV | Nvme + SATA    |                  | [linjianhua](https://www.chiphell.com/thread-1739694-1-1.html) |
-| [EliteDesk 800 65W G4 DM](https://support.hp.com/tw-zh/product/details/hp-elitedesk-800-65w-g4-desktop-mini-pc/21353734) |          | i7-8700                                                      | 8CC9230C2X | 5UF80EC | Nvme x2 + SATA | 硬盘架压 M.2     | [HackTiny](https://www.hacktiny.com/posts/4561.html)         |
-| [EliteDesk 800 G5 DM](https://support.hp.com/tw-zh/product/details/hp-elitedesk-800-g5-desktop-mini-pc/27066639) |          | i5-9600T                                                     |            |         | Nvme x2 + SATA | 硬盘架压 M.2     |                                                              |
-| [EliteDesk 800 G6 DM](https://support.hp.com/cn-zh/product/details/hp-elitedesk-800-g6-desktop-mini-pc/34658463) | 2021     | i9-10900T                                                    | 8CC0502D5M |         | Nvme x2 + SATA | 存疑             | [一支花](https://www.chiphell.com/thread-2320557-1-1.html)   |
-| [EliteDesk 800 G8 DM](https://support.hp.com/cn-zh/product/details/hp-elitedesk-800-g8-desktop-mini-pc/2100017814) |          | i5-11500T                                                    |            |         |                |                  |                                                              |
-| [Elite Mini 800 G9](https://support.hp.com/cn-zh/product/details/hp-elite-mini-800-g9-desktop-pc/model/2101656467) | 2022     | i5-14500                                                     | 8CC34910ZB | 9C6X7EC | Nvme x2 + SATA | 存疑             |                                                              |
-| [ZBook 15 G4](https://support.hp.com/tw-zh/product/details/hp-zbook-15-g4-mobile-workstation/model/14840013) |          |                                                              |            |         |                |                  |                                                              |
-| [ZBook Studio G4](https://support.hp.com/tw-zh/product/details/hp-zbook-studio-g4-mobile-workstation/model/14840027) |          |                                                              |            |         |                |                  |                                                              |
-| [Z440](https://support.hp.com/tw-zh/product/details/hp-z440-workstation/6978828) | 2014     | [E5-2667 v4](https://www.intel.cn/content/www/cn/zh/products/sku/92979/intel-xeon-processor-e52667-v4-25m-cache-3-20-ghz/specifications.html) | 6CR701WQZY | F5W13AV |                |                  |                                                              |
-| [Z2 Mini G5 Workstation](https://support.hp.com/cn-zh/product/details/34407176) | 2020     | i9-10900                                                     |            |         |                | 216 \* 216 \* 58 |                                                              |
-
-**BIOS 控制快捷键**：
-
-| 快捷键 | 说明         |
-| ------ | ------------ |
-| `Esc`  | 启动菜单     |
-| `F1`   | 系统信息     |
-| `F2`   | 系统检测     |
-| `F9`   | 启动设备选项 |
-| `F10`  | 设置 BIOS    |
-| `F11`  | 系统恢复     |
-| `F12`  | 网络启动     |
 
 ## 联想
 

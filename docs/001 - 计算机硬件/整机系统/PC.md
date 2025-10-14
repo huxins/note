@@ -2,59 +2,6 @@
 
 
 
-## 联想
-
-如需进入 BIOS 菜单，只需重新启动计算机。当显示徽标屏幕时，按 `F1` 或 `Fn + F1` 进入 BIOS 菜单。
-
-> - [Find Parts](https://support.lenovo.com/us/en/parts-lookup)
-> - [Encompass](https://encompass.com/) | [01AJ940](https://lenovo.encompass.com/item/11675670/Lenovo/01AJ940/)
-
-> - [联想 1L 机器 Tiny 主机认识贴 - *GGciMIDA*](https://www.goofish.com/item?id=701842166649)
-> - [Lenovo Tiny Reference Thread - *ServeTheHome*](https://forums.servethehome.com/index.php?threads/lenovo-thinkcentre-thinkstation-tiny-project-tinyminimicro-reference-thread.34925/)
-
-> P360 Tiny 测试版主板为红色或蓝色，正式版为绿色
->
-> P360 Tiny 测试版的 BIOS 芯片可拆卸
->
-> P360 Tiny 测试版有第三个 Nvme 接口，位于 CPU 下方，正式版无焊盘
->
-> P360 Tiny 测试版有 WWAN 接口，正式版有焊盘
->
-> P360 Tiny 测试版有 SATA 2 接口，正式版有焊盘
->
-> P360 Tiny 开始，PCIe 转接板带 DC DC 和变压器，直连电源供电，接近于 Ultra 系列
->
-> Tiny PCIe 转接板的 X16 接口走 CPU，X4 接口走 PCH，其中 X16 接口为 X8 速率，且只识别 X8 设备
->
-> Tiny 的 PCIe 插槽，P360 为 170 针，P350、P340 为 150 针，再之前是 120 针
-
-> - [M720q 外壳打印，加大风扇](https://www.youtube.com/watch?v=UH2Hpt9JIn8)
-> - [半高 PCIe 挡板打样制作](https://oshwhub.com/eorof/half-height-pcie-bracket)
-> - [P330 Tiny 1L 全闪 NAS 改造方案](https://www.chiphell.com/thread-2677627-1-1.html)
-> - [Tiny5 M.2 Riser](https://github.com/j4cbo/tiny5-m2-riser) | [TinySecrets](https://github.com/a-little-wifi/TinySecrets) | [m920q-pcie-bifurcation](https://github.com/badger707/m920q-pcie-bifurcation) | [m920q-dual-NVME](https://github.com/badger707/m920q-dual-NVME) | [badger707_XXL](https://www.reddit.com/r/homelab/comments/11oz3k0/lenovo_m920q_tiny_hardware_mod_for_dual_nvme/?tl=zh-hans) | [咸鱼](https://www.goofish.com/item?id=876890198194) | [咸鱼](https://www.goofish.com/item?id=901949599313) | [咸鱼](https://www.goofish.com/item?id=915773493464) | [咸鱼](https://www.goofish.com/item?id=910634015862) | [咸鱼](https://www.goofish.com/item?id=915646599780)
-> - [部分 Lenovo 联想 LGA1151 主机支持 8 代 9 代 BIOS 修改工具 - *dsanke*](https://www.chiphell.com/thread-1958822-1-1.html)
-
-| 型号                                                         | 代表处理器 | 手册                                                         | 商品                                                         | 接口       | 优点                                                      | 备注        |
-| ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- | --------------------------------------------------------- | ----------- |
-| NEC 8                                                        |            |                                                              | M720q                                                        |            |                                                           |             |
-| [M92p Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m92p) | i5-3470T   | [M92p](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/M92&M92p.pdf) | Tiny 1                                                       |            |                                                           |             |
-| [M72](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/M72e.pdf) |            |                                                              | M3500q                                                       |            |                                                           |             |
-| [M93p Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m93p) | i5-4590T   | [M93p](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M93_M93p_Tiny/ThinkCentre_M93_M93p_Tiny_Spec.PDF) | Tiny 2                                                       |            |                                                           |             |
-| [M73](https://support.lenovo.com/us/en/solutions/pd029621-detailed-specifications-for-thinkcentre-m73-tiny-form-factor) |            |                                                              | M4500q                                                       |            |                                                           |             |
-| [M900 Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m900) | i3-6100T   | [M900](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M900_Tiny/ThinkCentre_M900_Tiny_Spec.PDF) | Tiny 3                                                       | NVMe       |                                                           |             |
-| [M700 Desktop](https://pcsupport.lenovo.com/tw/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m700-tiny) |            | [WDProduct](https://psref.lenovo.com/WDProduct/ThinkCentre/ThinkCentre_M700_Tiny?tab=model) | M8600q                                                       | NGFF       |                                                           |             |
-| [P320 Tiny Workstation](https://pcsupport.lenovo.com/us/zc/products/workstations/thinkstation-p-series-workstations/thinkstation-p320-tiny) | i7-7700T   |                                                              | Tiny 4                                                       | Nvme x2    |                                                           | PCIe        |
-| [M910q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m910q) | i7-7700T   | [M910q](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M910_Tiny/ThinkCentre_M910_Tiny_Spec.pdf) | Tiny 4                                                       |            |                                                           |             |
-| [M710q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m710q) | i7-7700    |                                                              |                                                              |            | 铜底散热                                                  | 刷 BIOS 9th |
-| [P330 Tiny Workstation](https://pcsupport.lenovo.com/us/zc/products/workstations/thinkstation-p-series-workstations/thinkstation-p330-tiny) | i5-9600    | [P330 Tiny](https://thinkstation-specs.com/thinkstation/p330-tiny/) | Tiny 5                                                       |            |                                                           |             |
-| [M920x Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m920x) |            |                                                              | [Lenovo](https://www.lenovo.com/us/en/p/desktops/thinkcentre/m-series-tiny/thinkcentre-m920x/11tc1mtm92x) | Nvme x2    | 左上角散热孔                                              | PCIe        |
-| [M920q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m920q) |            |                                                              |                                                              |            |                                                           | PCIe        |
-| [M720q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/m720q) |            |                                                              |                                                              |            |                                                           | PCIe        |
-| [P340 Tiny Workstation](https://pcsupport.lenovo.com/tw/zc/products/workstations/thinkstation-p-series-workstations/thinkstation-p340-tiny) | i7-10700T  | [P340 Tiny](https://thinkstation-specs.com/thinkstation/p340-tiny/) | [Lenovo](https://www.lenovo.com/us/en/p/workstations/thinkstation-p-tiny/thinkstation-p340-tiny/33ts3tp340t) |            | [Dracl](https://www.chiphell.com/thread-2352814-1-1.html) | PCIe        |
-| [M90q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/thinkcentre-m90q) | i9-10900   | [M90q](https://psref.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M90q/ThinkCentre_M90q_Spec.PDF) | M930x                                                        |            |                                                           | PCIe        |
-| [M70q Desktop](https://pcsupport.lenovo.com/us/zc/products/desktops-and-all-in-ones/thinkcentre-m-series-desktops/m70q) |            |                                                              | M730q                                                        |            |                                                           | No PCIe     |
-| [P350 Tiny Workstation](https://pcsupport.lenovo.com/tw/zc/products/workstations/thinkstation-p-series-workstations/thinkstation-p350-tiny) | i9-11900   | [P350 Tiny](https://thinkstation-specs.com/thinkstation/p350-tiny/) |                                                              |            |                                                           |             |
-| [P360 Tiny Workstation](https://pcsupport.lenovo.com/tw/zc/products/workstations/thinkstation-p-series-workstations/thinkstation-p360-tiny) | i9-12900   | [P360 Tiny](https://thinkstation-specs.com/thinkstation/p360-tiny/) |                                                              | 以太网接口 |                                                           |             |
 
 ## 配置单
 

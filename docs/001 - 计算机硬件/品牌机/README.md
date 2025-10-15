@@ -10,3 +10,5 @@
 > - [Lenovo Find Parts](https://support.lenovo.com/us/en/parts-lookup)
 > - [Encompass](https://encompass.com/) | [01AJ940](https://lenovo.encompass.com/item/11675670/Lenovo/01AJ940/)
 
+> - [HackTiny](https://www.hacktiny.com/)
+

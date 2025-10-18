@@ -1,6 +1,6 @@
 # iPhone
 
-## 一、格式化
+## 格式化
 
 ### 恢复模式
 
@@ -8,7 +8,7 @@
 
 Recovery Mode 使用 iBoot 来升级或恢复 iPhone。iBoot 是 iOS 设备的引导加载程序。恢复模式下的 iPhone 屏幕提示将 iPhone 连接到 iTunes。
 
-按照以下步骤进入恢复模式：
+**按照以下步骤进入恢复模式**：
 
 - iPhone 8 或更新机型
 

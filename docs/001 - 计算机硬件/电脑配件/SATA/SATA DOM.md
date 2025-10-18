@@ -5,7 +5,18 @@
 > - [PQI 劲永](https://acceed.com/media/manual/manuals/pqi-dom-019.pdf)
 > - [Apacer 宇瞻](https://www.apacer.com/zh-cn/product/industrial-product/industrialsearch/industrial_ssd/sata_pata/ssd_module)
 
-> **关键词**：半高、工业级、服务器硬盘、宽温硬盘、电子盘
+> **关键词**：半高、工业级、服务器硬盘、宽温硬盘、电子盘、eUSB
+
+> **USB DOM**：
+>
+> 主板常规插针为 2.54
+>
+> - [北京老九](https://www.goofish.com/personal?userId=1240601)
+
+> **检测工具**：
+>
+> - GetInfo
+> - urwtest
 
 > **产品**：
 >
@@ -15,4 +26,8 @@
 >
 > - [浪里淘沙](https://www.goofish.com/personal?userId=169682)
 > - [诺方恒科](https://www.goofish.com/personal?userId=2217497941421)
+
+> **TF**：
+>
+> [mSATA 转 TF](https://detail.tmall.com/item.htm?id=782088281264)
 

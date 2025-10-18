@@ -8,6 +8,8 @@ const SATA = ["./SATA/SATA DOM"];
 
 const PCIe = ["./PCIe/转接卡"];
 
+const 机架 = ["./机架/3D 打印"];
+
 const 电脑配件 = [
   "配置单",
   "显示器",
@@ -31,6 +33,10 @@ const 电脑配件 = [
   {
     title: "PCIe",
     children: PCIe,
+  },
+  {
+    title: "机架",
+    children: 机架,
   },
 ];
 

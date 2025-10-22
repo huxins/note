@@ -29,6 +29,7 @@
 ## Ethernet
 
 > - [Patching Intel X520 EEPROM to unlock all SFP+ transceivers - *ServeTheHome*](https://forums.servethehome.com/index.php?threads/patching-intel-x520-eeprom-to-unlock-all-sfp-transceivers.24634/)
+> - [介绍一下我的家用万兆内网（含X520-DA2装驱动的办法）- *Minerval*](https://www.bilibili.com/opus/837007830857809952)
 
 > **X520**：
 >
@@ -36,15 +37,15 @@
 >
 > 82599EN 支持单口万兆，82599EB 和 82599ES 则能支持双口万兆
 
-| 型号                                                         | 速率   | RSS 队列 | 说明   |
-| ------------------------------------------------------------ | ------ | -------- | ------ |
-| [I219-V](https://www.intel.cn/content/www/cn/zh/products/sku/82186/intel-ethernet-connection-i219v/specifications.html) | 1G     |          | 消费级 |
-| [I210-AT](https://www.intel.cn/content/www/cn/zh/products/sku/64400/intel-ethernet-controller-i210at/specifications.html) | 1G     | 4        |        |
-| [I211-AT](https://www.mouser.com/pdfDocs/i211-at-ethernet-controller-brief.pdf) | 1G     | 2        |        |
-| [I350-T4](https://www.intel.com.tw/content/www/tw/zh/products/sku/184824/intel-ethernet-network-adapter-i350t4-for-ocp-3-0/specifications.html) | 1G x4  | 8        |        |
-| [X540-T2](https://www.mouser.com/datasheet/2/612/ethernet-x540-t2-brief-257635.pdf) | 10G x2 |          | 发热大 |
-| [X550-T2](https://www.intel.cn/content/www/cn/zh/products/sku/88209/intel-ethernet-converged-network-adapter-x550t2/specifications.html) | 10G x2 |          |        |
-| [X710-T4](https://www.intel.com.tw/content/www/tw/zh/products/sku/204835/intel-ethernet-network-adapter-x710t4l-for-ocp-3-0/specifications.html) | 10G x4 |          |        |
+| 型号                                                         | 速率   | RSS 队列 | 说明       |
+| ------------------------------------------------------------ | ------ | -------- | ---------- |
+| [I219-V](https://www.intel.cn/content/www/cn/zh/products/sku/82186/intel-ethernet-connection-i219v/specifications.html) | 1G     |          | 消费级     |
+| [I210-AT](https://www.intel.cn/content/www/cn/zh/products/sku/64400/intel-ethernet-controller-i210at/specifications.html) | 1G     | 4        |            |
+| [I211-AT](https://www.mouser.com/pdfDocs/i211-at-ethernet-controller-brief.pdf) | 1G     | 2        |            |
+| [I350-T4](https://www.intel.com.tw/content/www/tw/zh/products/sku/184824/intel-ethernet-network-adapter-i350t4-for-ocp-3-0/specifications.html) | 1G x4  | 8        | 单双控制器 |
+| [X540-T2](https://www.mouser.com/datasheet/2/612/ethernet-x540-t2-brief-257635.pdf) | 10G x2 |          | 发热大     |
+| [X550-T2](https://www.intel.cn/content/www/cn/zh/products/sku/88209/intel-ethernet-converged-network-adapter-x550t2/specifications.html) | 10G x2 |          |            |
+| [X710-T4](https://www.intel.com.tw/content/www/tw/zh/products/sku/204835/intel-ethernet-network-adapter-x710t4l-for-ocp-3-0/specifications.html) | 10G x4 |          |            |
 
 ## 产品
 

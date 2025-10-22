@@ -9,6 +9,7 @@ const 网卡 = [
   "./网卡/联发科",
   "./网卡/高通",
   "./网卡/博通",
+  "./网卡/FLR",
   "./网卡/光纤",
 ];
 
@@ -24,8 +25,12 @@ const 机架 = ["./机架/3D 打印"];
 
 const 电脑配件 = [
   "配置单",
-  "耳机",
   "显示器",
+  "耳机",
+  {
+    title: "CPU",
+    children: CPU,
+  },
   {
     title: "显卡",
     children: 显卡,
@@ -37,10 +42,6 @@ const 电脑配件 = [
   {
     title: "鼠标",
     children: 鼠标,
-  },
-  {
-    title: "CPU",
-    children: CPU,
   },
   {
     title: "USB",

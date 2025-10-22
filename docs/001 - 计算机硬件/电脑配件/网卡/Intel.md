@@ -1,5 +1,7 @@
 # Intel
 
+> - [嘉华众力](https://www.unicaca.com/)
+
 ## Wi-Fi
 
 > 在中国大陆地区，6GHz 频段目前尚未开放用于 Wi-Fi 通信，因此路由器的 6GHz 功能在国内无法正常使用
@@ -26,6 +28,14 @@
 
 ## Ethernet
 
+> - [Patching Intel X520 EEPROM to unlock all SFP+ transceivers - *ServeTheHome*](https://forums.servethehome.com/index.php?threads/patching-intel-x520-eeprom-to-unlock-all-sfp-transceivers.24634/)
+
+> **X520**：
+>
+> X520 网卡的 Intel 82599 系列芯片主要有 3 个型号：82599EB、82599ES、82599EN
+>
+> 82599EN 支持单口万兆，82599EB 和 82599ES 则能支持双口万兆
+
 | 型号                                                         | 速率   | RSS 队列 | 说明   |
 | ------------------------------------------------------------ | ------ | -------- | ------ |
 | [I219-V](https://www.intel.cn/content/www/cn/zh/products/sku/82186/intel-ethernet-connection-i219v/specifications.html) | 1G     |          | 消费级 |
@@ -50,4 +60,8 @@
 | Comfast | [CF-AX200 PLUS](http://www.comfast.com.cn/index.php?m=content&c=index&a=show&catid=13&id=100) | AX200  |
 | EDUP    | [EP-9636](https://www.szedup.com/pcie-adaptersS7D/EP9636GS.html) | AX200  |
 | Netis   | NW-AX3000 Pro                                                | AX200  |
+
+| 品牌 | 型号                                                         | 芯片 |
+| ---- | ------------------------------------------------------------ | ---- |
+| 华为 | [SP310](https://support.huawei.com/enterprise/zh/doc/EDOC1100257796/8ed286b2) | X520 |
 

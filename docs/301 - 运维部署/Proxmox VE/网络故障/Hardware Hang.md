@@ -1,4 +1,4 @@
-# Intel NIC
+# Hardware Hang
 
 > - [Intel NIC e1000e 硬件单元卡死 - *Reddit*](https://www.reddit.com/r/Proxmox/comments/1drs89s/intel_nic_e1000e_hardware_unit_hang/?tl=zh-hans)
 > - [e1000e eno1: Detected Hardware Unit Hang - *Proxmox*](https://forum.proxmox.com/threads/e1000e-eno1-detected-hardware-unit-hang.59928/)

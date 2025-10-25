@@ -1,9 +1,9 @@
-const 网络 = ["./网络/Intel NIC"];
+const 网络故障 = ["./网络故障/Hardware Hang"];
 
 const PVE = [
   {
-    title: "网络",
-    children: 网络,
+    title: "网络故障",
+    children: 网络故障,
   },
 ];
 

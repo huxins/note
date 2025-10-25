@@ -1,4 +1,4 @@
-# 联发科
+# MediaTek
 
 ## Wi-Fi
 

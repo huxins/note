@@ -1,4 +1,4 @@
-# 高通
+# Qualcomm
 
 ## Wi-Fi
 

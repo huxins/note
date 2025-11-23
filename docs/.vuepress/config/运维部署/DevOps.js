@@ -2,13 +2,9 @@ const Web = ["./Web/HAProxy", "./Web/Nginx", "./Web/Tomcat"];
 
 const 存储系统 = ["./存储系统/MinIO"];
 
-const 流水线 = ["./流水线/Gitea", "./流水线/GitHub Actions"];
+const 流水线 = ["./流水线/Gitea"];
 
-const 网络处理 = [
-  "./网络处理/Dnsmasq",
-  "./网络处理/Shadowsocks",
-  "./网络处理/Tailscale",
-];
+const 网络处理 = ["./网络处理/Dnsmasq", "./网络处理/Shadowsocks"];
 
 const 虚拟容器 = ["./虚拟容器/Proxmox VE", "./虚拟容器/Docker"];
 

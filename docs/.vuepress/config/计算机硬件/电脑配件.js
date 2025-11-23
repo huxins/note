@@ -13,8 +13,6 @@ const 网卡 = [
   "./网卡/光纤",
 ];
 
-const CPU = ["./CPU/Intel"];
-
 const USB = ["./USB/转接线"];
 
 const SATA = ["./SATA/SATA DOM"];
@@ -28,10 +26,7 @@ const 电脑配件 = [
   "显示器",
   "耳机",
   "电源",
-  {
-    title: "CPU",
-    children: CPU,
-  },
+
   {
     title: "显卡",
     children: 显卡,

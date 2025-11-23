@@ -47,6 +47,6 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: docs/.vuepress/dist
-          fqdn: wiki2.inxiny.cn
+          fqdn: note.inxiny.cn
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}

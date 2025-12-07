@@ -35,26 +35,6 @@ reboot
 
 进入 `Linux Network Installs (64-bit)` 后，再找到 PVE 安装下面的稳定版即可。
 
-### 模板镜像
-
-ISO Images 存储于 `/var/lib/vz/template/iso`。
-
-CT Templates 存储于 `/var/lib/vz/template/cache`。
-
-使用软件源镜像。
-
-```sh
-# Bullseye
-sed -i 's/ftp.debian.org/mirrors.sjtug.sjtu.edu.cn/g' /etc/apt/sources.list
-sed -i 's/security.debian.org/mirrors.sjtug.sjtu.edu.cn\/debian-security/g' /etc/apt/sources.list
-# Proxmox
-rm -f /etc/apt/sources.list.d/pve-enterprise.list
-echo "deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
-# CT Templates
-sed -i 's/download.proxmox.com/mirrors.tuna.tsinghua.edu.cn\/proxmox/g' /usr/share/perl5/PVE/APLInfo.pm
-sed -i '/mirrors/s/http/https/g' /usr/share/perl5/PVE/APLInfo.pm
-```
-
 ## 二、LVM
 
 ### 配置选项
@@ -128,30 +108,4 @@ qm importdisk 100 openwrt.qcow2 local-lvm
   ```sh
   qm status <vmid> [OPTIONS]
   ```
-
-## 四、常见问题
-
-### Control Group
-
-CentOS 7 和 Ubuntu 16.10 的 `systemd` 版本太旧，无法在 [`cgroupv2`](https://forum.proxmox.com/threads/solved-warn-old-systemd-v232-detected-container-wont-run-in-a-pure-cgroupv2-environment.114736/) 环境中运行。
-
-```
-WARN: old systemd (< v232) detected, container won't run in a pure cgroupv2 environment! Please see documentation -> container -> cgroup version.
-```
-
-可以切换回 `legacy cgroup`。
-
-从 Proxmox VE 9.0 开始，将不再支持 `legacy controller`。
-
-编辑 `/etc/default/grub`。
-
-```
-GRUB_CMDLINE_LINUX_DEFAULT="systemd.unified_cgroup_hierarchy=0 quiet"
-```
-
-将其内容附加到 `/boot/grub/grub.cfg`。
-
-```sh
-update-grub
-```
 

@@ -1,6 +1,6 @@
 const 存储系统 = ["./存储系统/LVM"];
 
-const 发行版 = ["./发行版/Debian", "./发行版/RPM", "./发行版/YUM"];
+const 发行版 = ["./发行版/Debian", "./发行版/RPM"];
 
 const 脚本开发 = [
   "./脚本开发/Bash",
@@ -8,7 +8,7 @@ const 脚本开发 = [
   "./脚本开发/Systemd",
 ];
 
-const 系统安全 = ["./系统安全/OpenSSH", "./系统安全/Sudo"];
+const 系统安全 = ["./系统安全/Sudo"];
 
 const Linux = [
   {

@@ -162,10 +162,6 @@ const nav = [
         text: "DevOps",
         link: "/301 - 运维部署/DevOps/",
       },
-      {
-        text: "Proxmox VE",
-        link: "/301 - 运维部署/Proxmox VE/",
-      },
     ],
   },
 

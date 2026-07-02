@@ -4,55 +4,7 @@
 
 ## 一、安装
 
-### YUM
 
-添加 MySQL Yum [存储库](https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html)。
-
-```sh
-yum install https://repo.mysql.com/mysql80-community-release-el7-7.noarch.rpm     # 对于基于 EL7 的系统
-```
-
-选择发布系列。
-
-```sh
-yum-config-manager --disable mysql80-community
-yum-config-manager --enable mysql57-community
-```
-
-安装 MySQL。
-
-```sh
-yum install mysql-community-server
-```
-
-腾讯镜像加速。
-
-```sh
-sed -e '/http/s@repo.mysql.com@mirrors.cloud.tencent.com/mysql@g' \
--e '/http/s@/el/7/@-el7-@g' \
--i /etc/yum.repos.d/mysql-community.repo
-```
-
-启动 MySQL 服务器。
-
-```sh
-systemctl start mysqld
-```
-
-在服务器初始启动时，如果服务器的数据目录为空，则会发生以下情况。
-
-```
-1、服务器初始化。
-2、SSL 证书和密钥文件在数据目录中生成。
-3、validate_password 默认安装并启用。
-4、创建超级用户帐户 'root'@'localhost'。超级用户的默认密码存储在错误日志文件中。
-```
-
-要显示超级用户的默认密码，请使用以下命令。
-
-```sh
-grep 'temporary password' /var/log/mysqld.log
-```
 
 ### APT
 
@@ -74,27 +26,7 @@ apt install mysql-server
 
 ## 二、账户管理
 
-### 修改账户
 
-[`ALTER USER`](https://dev.mysql.com/doc/refman/5.7/en/alter-user.html) 语句可以修改 MySQL 帐户。它支持为现有帐户修改身份验证、SSL/TLS、资源限制和密码管理属性，它还可用于锁定和解锁帐户。
-
-- [更改用户密码](https://dev.mysql.com/doc/refman/5.7/en/assigning-passwords.html)
-
-  ```sql
-  ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
-  ```
-
-- 更改服务器用于验证当前客户端的 MySQL 帐户的用户密码
-
-  ```sql
-  ALTER USER CURRENT_USER() IDENTIFIED BY 'new_password';
-  ```
-
-- 更改当前 MySQL 帐户的用户密码
-
-  ```sql
-  ALTER USER USER() IDENTIFIED BY 'new_password';
-  ```
 
 ### 权限管理
 
@@ -181,127 +113,11 @@ CREATE TABLE users (
 
 ## 四、命令行程序
 
-### mysql
 
-[`mysql`](https://dev.mysql.com/doc/refman/5.7/en/mysql.html) 是一个简单的 SQL Shell。
 
-从命令行中调用它，如下所示。
 
-```sh
-mysql --user=user_name --password db_name
-```
 
-`mysql` [**选项**](https://dev.mysql.com/doc/refman/5.7/en/mysql-command-options.html)：
 
-- --**user**=*user_name*, -**u** *user_name*
-
-  连接到服务器时使用的 MySQL 用户名。
-
-- --**password**[=*password*], -**p**[*password*]
-
-  连接到服务器时使用的密码。
-
-- --**port**=*port_num*, -**P** *port_num*
-
-  用于连接的 TCP/IP 端口号。
-
-- --**host**=*host_name*, -**h** *host_name*
-
-  MySQL 服务器所在的主机。
-
-`mysql` [**命令**](https://dev.mysql.com/doc/refman/5.7/en/mysql-commands.html)：
-
-`mysql` 会将发出的每个 SQL 语句发送到要执行的服务器，同时还有一组 `mysql` 自己解释的命令。
-
-- `status`, `\s`
-
-  从服务器获取状态信息。
-  
-- `\u` *db_name*
-
-  使用 `db_name` 作为默认数据库。
-
-### mysqladmin
-
-[`mysqladmin`](https://dev.mysql.com/doc/refman/5.7/en/mysqladmin.html) 是用于执行管理操作的客户端。可以使用它来检查服务器的配置和当前状态，创建和删除数据库等等。
-
-从命令行中调用它，如下所示。
-
-```sh
-mysqladmin --user=user_name --password flush-privileges
-```
-
-`mysqladmin` **选项**：
-
-`mysqladmin` 支持以下选项，可以在命令行或选项文件的 `[mysqladmin]` 和 `[client]` 组中指定。
-
-- --**user**=*user_name*, -**u** *user_name*
-
-  连接到服务器时使用的 MySQL 用户名。
-
-- --**password**[=*password*], -**p**[*password*]
-
-  连接到服务器时使用的密码。
-
-`mysqladmin` **命令**：
-
-- `flush-privileges`
-
-  重新加载授权表。
-
-- `password` *new_password*
-
-  设置新密码。
-
-### mysqldump
-
-[`mysqldump`](https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html) 客户端执行逻辑备份，生成一组 SQL 语句，可以执行这些语句以重现原始数据库对象定义和表数据。
-
-默认情况下，`mysqldump` 将信息作为 SQL 语句写入标准输出，可以将输出保存在文件中。
-
-要转储所有数据库，使用 `--all-databases` 选项调用 `mysqldump`。
-
-```sh
-mysqldump --all-databases > dump.sql
-```
-
-要仅转储特定数据库，使用 `--databases` 选项。
-
-```sh
-mysqldump --databases db1 db2 db3 > dump.sql
-```
-
-要只转储数据库中的特定表，请在命令行中将这些表命名在数据库名称之后。
-
-```sh
-mysqldump db1 t1 t3 t7 > dump.sql
-```
-
-要重新加载由 `mysqldump` 编写的包含 SQL 语句的转储文件，请将其用作 `mysql` 客户端的输入。
-
-```sh
-mysql < dump.sql
-```
-
-或者，从 `mysql` 中使用 `source` 命令。
-
-```sh
-source dump.sql
-```
-
-`mysqldump` **选项**：
-
-- --**host**=*host_name*, -**h** *host_name*
-
-  从给定主机上的 MySQL 服务器转储数据。
-
-- --**password**[=*password*], -**p**[*password*]
-
-  用于连接到服务器的 MySQL 帐户的密码。
-
-- --**port**=*port_num*, -**P** *port_num*
-
-  对于 TCP/IP 连接，要使用的端口号。
 
 ### mysqld
 

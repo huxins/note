@@ -4,12 +4,7 @@
 
 - [vinta/awesome-python](https://github.com/vinta/awesome-python)
 
-## 包管理
 
-*用于包和依赖关系管理的库。*
-
-- [pip](https://pip.pypa.io/en/stable/) - 官方包管理器。
-- [Pyenv](https://github.com/pyenv/pyenv) - 多版本 Python 环境管理。
 
 ## 打包与分发
 

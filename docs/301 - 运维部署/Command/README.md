@@ -24,7 +24,6 @@
 
 ## 文件管理
 
-- [s5cmd](https://github.com/peak/s5cmd) - 非常快速的 S3 和本地文件系统执行工具。
 - [restic](https://github.com/restic/restic) - 快速、高效、安全的备份程序。
 
 ## 磁盘管理
@@ -103,4 +102,3 @@
   - `fdisk`
   - `mkfs`
   - `mount`
-

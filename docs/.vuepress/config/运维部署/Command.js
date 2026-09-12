@@ -2,7 +2,6 @@ const 磁盘文件 = [
   "./磁盘文件/gdisk",
   "./磁盘文件/qemu-img",
   "./磁盘文件/restic",
-  "./磁盘文件/s5cmd",
   "./磁盘文件/util-linux",
 ];
 

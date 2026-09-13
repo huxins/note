@@ -7,8 +7,6 @@ const Core = [
   "./Core/上下文管理器",
 ];
 
-const Web = ["./Web/Flask 扩展", "./Web/Flask"];
-
 const 工程化 = ["./工程化/pip", "./工程化/Pyenv", "./工程化/Setuptools"];
 
 const 时间日期 = [
@@ -36,10 +34,6 @@ const Python = [
   {
     title: "Core",
     children: Core,
-  },
-  {
-    title: "Web",
-    children: Web,
   },
   {
     title: "工程化",

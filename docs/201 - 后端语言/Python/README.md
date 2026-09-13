@@ -54,18 +54,6 @@
 
 - [PyYAML](https://github.com/yaml/pyyaml) - YAML 文件处理。
 
-## Web 框架
-
-### Flask
-
-- [Flask](https://github.com/pallets/flask)
-- [Flask-SQLAlchemy](https://github.com/pallets-eco/flask-sqlalchemy)
-- [Flask-Marshmallow](https://github.com/marshmallow-code/flask-marshmallow)
-- [marshmallow-sqlalchemy](https://github.com/marshmallow-code/marshmallow-sqlalchemy)
-- [Flask-JWT-Extended](https://github.com/vimalloc/flask-jwt-extended)
-- [Flask-RESTful](https://github.com/flask-restful/flask-restful)
-- [Flask-CORS](https://github.com/corydolphin/flask-cors)
-
 ## 数据库驱动
 
 - [PyMySQL](https://github.com/PyMySQL/PyMySQL)
@@ -78,4 +66,3 @@
 
 - [Boto3](https://github.com/boto/boto3) - AWS SDK Python 版。
 - [wechatpy](https://github.com/wechatpy/wechatpy) - WeChat SDK for Python.
-

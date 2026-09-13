@@ -54,10 +54,6 @@
 
 - [PyYAML](https://github.com/yaml/pyyaml) - YAML 文件处理。
 
-## 数据库驱动
-
-- [PyMySQL](https://github.com/PyMySQL/PyMySQL)
-
 ## ORM
 
 - [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy)

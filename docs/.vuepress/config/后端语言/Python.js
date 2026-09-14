@@ -20,7 +20,6 @@ const 数据操作 = [
   "./数据操作/Boto3",
   "./数据操作/openpyxl",
   "./数据操作/pandas",
-  "./数据操作/PyYAML",
   "./数据操作/Requests",
   "./数据操作/SQLAlchemy",
   "./数据操作/XlsxWriter",

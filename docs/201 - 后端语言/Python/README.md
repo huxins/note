@@ -50,10 +50,6 @@
 
 - [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/) - 迭代、搜索和修改 HTML 或 XML。
 
-### 结构化数据
-
-- [PyYAML](https://github.com/yaml/pyyaml) - YAML 文件处理。
-
 ## ORM
 
 - [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy)
